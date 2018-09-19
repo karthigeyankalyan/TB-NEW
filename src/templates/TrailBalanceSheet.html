@@ -1,0 +1,137 @@
+{% extends "post_login_accounts.html" %}
+{% block content %}
+
+<body>
+    <div style="display: flex; flex-direction: row; justify-content: space-around; align-items: center; margin-top: 10px; margin-bottom: 10px">
+        <div id="Search" style="display: flex; flex-direction: column;">
+            <label for="myInput" style="margin-left: 10%">Search Account Head:</label>
+            <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
+        </div>
+        <button onclick="downloadTBSheet()">Download Sheet</button>
+    </div>
+
+    <div id="accountHeadList">
+    </div>
+</body>
+
+<script>
+        var start_date = "{{start_date}}";
+        var end_date = "{{end_date}}";
+        var source = "/RawTrailBalance/"+start_date+"/"+end_date;
+        $.ajax({
+            type: 'GET',
+            url: source,
+            contentType: "application/json",
+            dataType: 'json',
+            success: function (json) {
+                    {
+                        console.log(json);
+                        var aggregatedData = d3.nest()
+                            .key(function (d) {
+                                return d.account_head;
+                            })
+                            .rollup(function (v) {
+                                return {
+                                    "Credit": d3.sum(v, function (d) { if(d.nature_of_transaction==="Credit") {return d.amount}  }),
+                                    "Debit": d3.sum(v, function (d) { if(d.nature_of_transaction==="Debit") {return d.amount}  })
+                                }
+                            })
+                            .entries(json);
+
+                            var tbl = $("<table class='table table-bordered table-dark' id='accountHeadDetails'/>");
+                            $("#accountHeadList").append(tbl);
+                            var hr = "<tr>";
+                            var th1 = "<th style='text-align:center;vertical-align:middle'>" + "S. No" + "</th>";
+                            var th2 = "<th style='text-align:center;vertical-align:middle'>" + "Account Head" + "</th>";
+                            var th3 = "<th style='text-align:center;vertical-align:middle'>" + "Clearing Credit" + "</th>";
+                            var th4 = "<th style='text-align:center;vertical-align:middle'>" + "Clearing Debit" + "</th>";
+                            $("#accountHeadDetails").append(hr + th1 + th2 + th3 + th4);
+                            for (var j = 0; j < aggregatedData.length; j++) {
+                                    var row = $('<tr></tr>').html(
+                                        '<td>'+(j+1)+'</td>'+
+                                        '<td>' +aggregatedData[j].key + '</td>'+
+                                        '<td>'+aggregatedData[j].values["Credit"]+'</td>'+
+                                        '<td>'+aggregatedData[j].values["Debit"]+'</td>');
+                                    $("#accountHeadDetails").append(row);
+                            }
+                        }
+                },
+            error: function (e) {
+                alert("error");
+            }
+        });
+
+    function myFunction() {
+        var input, filter, table, tr, td, i;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("accountHeadList");
+        tr = table.getElementsByTagName("tr");
+        console.log(tr.length);
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[1];
+            if (td) {
+                if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+
+    function downloadTBSheet() {
+        var source = "/RawTrailBalance/"+start_date+"/"+end_date;
+        var doc = new jsPDF();
+        $.ajax({
+            type: 'GET',
+            url: source,
+            contentType: "application/json",
+            dataType: 'json',
+            success: function (json) {
+                var aggregatedData = d3.nest()
+                    .key(function (d) {
+                        return d.account_head;
+                    })
+                    .rollup(function (v) {
+                        return {
+                            "Credit": d3.sum(v, function (d) { if(d.nature_of_transaction==="Credit") {return d.amount}  }),
+                            "Debit": d3.sum(v, function (d) { if(d.nature_of_transaction==="Debit") {return d.amount}  })
+                        }
+                    })
+                    .entries(json);
+
+                    doc.setFontSize(12);
+
+                    var heading = doc.splitTextToSize('TAMILNADU BACKWARD CLASSES ECONOMIC DEVELOPMENT CORPORATION ' +
+                        'LTD., No. 735, LLA Building, III Floor, Anna Salai, Chennai - 600 002.', 170);
+
+                    doc.text(30, 20, heading);
+
+                    var period = doc.splitTextToSize('Trial Balance From '+start_date+' to '+end_date, 140);
+
+                    doc.text(60, 35, period);
+
+                    var columns = ["S. No", "Head of Accounts", "Cl. Debit Balance", "Cl. Credit Balance"];
+                    var rows = [];
+
+                    for(var a=0; a<aggregatedData.length; a++) {
+                    rows.push([[a+1],[aggregatedData[a].key], [aggregatedData[a].values['Credit']],
+                        [aggregatedData[a].values['Debit']]]);
+                    }
+
+                    doc.autoTable(columns, rows, {startY: 45});
+
+                    doc.save('test.pdf')
+
+                },
+            error: function (e) {
+                alert("error");
+            }
+        });
+
+    }
+
+</script>
+
+{% endblock %}

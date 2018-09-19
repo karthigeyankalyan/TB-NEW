@@ -1,0 +1,472 @@
+{% extends "post_login_accounts.html" %}
+{% block content %}
+<style>
+    #cardCategory {
+        border: 5px groove;
+        width: 40%;
+        align-items: center;
+        justify-content: center;
+        display: flex;
+        color: green;
+        padding: 20px;
+    }
+</style>
+
+<div style="display: flex; align-items: center; justify-content: center">
+    <div id="cardCategory">
+    </div>
+</div>
+
+<div style="display: flex; flex-direction: row; justify-content: space-around; align-items: center; margin-top: 10px">
+    <button onclick="downloadPL()">P&L Sheet</button>
+    <button onclick="downloadBS()">Balance Sheet</button>
+    <button onclick="downloadCB()">Cash Book</button>
+</div>
+
+
+<script>
+
+    document.getElementById("cardCategory").innerHTML = "Between: {{start_date}} and {{end_date}}";
+
+    function downloadBS() {
+    var start_date = "{{start_date}}";
+    var end_date = "{{end_date}}";
+    var doc = new jsPDF();
+    var MD = 'N. Venkatachalam';
+    var source = "/accounts_between/"+"{{start_date}}"+"/"+"{{end_date}}";
+    $.ajax({
+        type: 'GET',
+        url: source,
+        contentType: "application/json",
+        dataType: 'json',
+        success: function (json) {
+            console.log(json);
+            var aggregated_doc_head = d3.nest()
+                .key(function (d) {
+                    return d.doc_account_head;
+                })
+                .rollup(function (v) {
+                    return d3.sum(v, function(d) { return d.amount });
+                })
+                .entries(json);
+
+            var cell1 = 0;
+            var cell2 = 0;
+            var cell3 = 0;
+            var cell4 = 0;
+            var cell5 = 0;
+            var cell6 = 0;
+            var cell7 = 0;
+            var cell8 = 0;
+            var cell9 = 0;
+            var cell10 = 0;
+            var cell11 = 0;
+            var cell12 = 0;
+            var cell13 = 0;
+
+            for(var i=0; i< aggregated_doc_head.length; i++) {
+                if(aggregated_doc_head[i]['key'] === "Share Capital") {
+                    cell1 = parseInt(aggregated_doc_head[i]['values']);
+                }
+                else {
+                    cell1 += 0;
+                }
+                if(aggregated_doc_head[i]['key'] === "Reserves and Surplus") {
+                    cell2 = parseInt(aggregated_doc_head[i]['values']);
+                }
+                else {
+                    cell2 += 0;
+                }
+                if(aggregated_doc_head[i]['key'] === "Long Term Borrowings") {
+                    cell3 = parseInt(aggregated_doc_head[i]['values']);
+                }
+                else {
+                    cell3 += 0;
+                }
+                if(aggregated_doc_head[i]['key'] === "Long Term Provisions") {
+                    cell4 = parseInt(aggregated_doc_head[i]['values']);
+                }
+                else {
+                    cell4 += 0;
+                }
+                if(aggregated_doc_head[i]['key'] === "Other Current Liabilities") {
+                    cell5 = parseInt(aggregated_doc_head[i]['values']);
+                }
+                else {
+                    cell5 += 0;
+                }
+                if(aggregated_doc_head[i]['key'] === "Short Term Provisions") {
+                    cell6 = parseInt(aggregated_doc_head[i]['values']);
+                }
+                else {
+                    cell6 += 0;
+                }
+                if(aggregated_doc_head[i]['key'] === "Depreciation") {
+                    cell7 = parseInt(aggregated_doc_head[i]['values']);
+                }
+                else {
+                    cell7 += 0;
+                }
+                if(aggregated_doc_head[i]['key'] === "Capital Work-In Progress") {
+                    cell8 = parseInt(aggregated_doc_head[i]['values']);
+                }
+                else {
+                    cell8 += 0;
+                }
+                if(aggregated_doc_head[i]['key'] === "Long Term Loans and Advances") {
+                    cell9 = parseInt(aggregated_doc_head[i]['values']);
+                }
+                else {
+                    cell9 += 0;
+                }
+                if(aggregated_doc_head[i]['key'] === "Other Non-Current Assets") {
+                    cell10 = parseInt(aggregated_doc_head[i]['values']);
+                }
+                else {
+                    cell10 += 0;
+                }
+                if(aggregated_doc_head[i]['key'] === "Short Term Loans and Advances") {
+                    cell11 = parseInt(aggregated_doc_head[i]['values']);
+                }
+                else {
+                    cell11 += 0;
+                }
+                if(aggregated_doc_head[i]['key'] === "Cash and Cash Equivalents") {
+                    cell12 = parseInt(aggregated_doc_head[i]['values']);
+                }
+                else {
+                    cell12 += 0;
+                }
+                if(aggregated_doc_head[i]['key'] === "Other Current Assets") {
+                    cell13 = parseInt(aggregated_doc_head[i]['values']);
+                }
+                else {
+                    cell13 += 0;
+                }
+            }
+
+            columns = ["S.No", "Particulars", "Amount"];
+            rows = [];
+            rows.push([["I"], ["EQUITY & LIABILITIES"], ['']]);
+            rows.push([["1"], ["SHAREHOLDERS' FUNDS"], ['']]);
+            rows.push([[""], ["a.   Share Capital"], [cell1]]);
+            rows.push([[""], ["b.   Reserves & Surplus"], [cell2]]);
+            rows.push([[""], [""], [cell1+cell2]]);
+            rows.push([["2"], ["SHARE APPLICATION MONEY PENDING ALLOTMENT"], ['']]);
+            rows.push([["3"], ["NON-CURRENT LIABILITIES"], ['']]);
+            rows.push([[""], ["a.   Long Term Borrowings"], [cell3]]);
+            rows.push([[""], ["b.   Deferred Tax Liability (net)"], ['']]);
+            rows.push([[""], ["c.   Other long term liabilities"], ['']]);
+            rows.push([[""], ["d.   Long Term Provisions"], [cell4]]);
+            rows.push([[""], [""], [cell3+cell4]]);
+            rows.push([["4"], ["CURRENT LIABILITIES"], ['']]);
+            rows.push([[""], ["a.   Short Term Borrowings"], ['']]);
+            rows.push([[""], ["b.   Trade Payables"], ['']]);
+            rows.push([[""], ["c.   Other Current Liabilities"], [cell5]]);
+            rows.push([[""], ["d.   Short Term Provisions"], [cell6]]);
+            rows.push([[""], [""], [cell5+cell6]]);
+            rows.push([[""], ["Total"], [cell1+cell2+cell3+cell4+cell5+cell6]]);
+
+            rows.push([["II"], ["ASSETS"], ['']]);
+            rows.push([["1"], ["Non-Current Assets"], ['']]);
+            rows.push([[""], ["a.   Fixed Assets"], ['']]);
+            rows.push([[""], ["   i.   Tangible Assets"], [cell7]]);
+            rows.push([[""], ["   ii.  Intangible Assets"], ['']]);
+            rows.push([[""], ["   iii. Capital work-in-progress"], [cell8]]);
+            rows.push([[""], ["   iv.  Intangible assets under development"], ['']]);
+            rows.push([[""], [""], [cell7+cell8]]);
+            rows.push([[""], ["b.   Non-Current Investments"], ['']]);
+            rows.push([[""], ["c.   Deferred Tax Assets (net)"], ['']]);
+            rows.push([[""], ["d.   Long term Loans and Advances"], [cell9]]);
+            rows.push([[""], ["e.   Other Non-Current Assets"], [cell10]]);
+            rows.push([[""], [""], [cell7+cell8+cell9+cell10]]);
+            rows.push([["2"], ["CURRENT ASSETS"], ['']]);
+            rows.push([[""], ["a.   Current Investments"], ['']]);
+            rows.push([[""], ["b.   Inventories"], ['']]);
+            rows.push([[""], ["c.   Trade Receivables"], ['']]);
+            rows.push([[""], ["d.   Short-Term Loans and Advances"], [cell11]]);
+            rows.push([[""], ["e.   Cash and Cash Equivalents"], [cell12]]);
+            rows.push([[""], ["f.   Other Current Assets"], [cell13]]);
+            rows.push([[""], [""], [cell11+cell12+cell3]]);
+            rows.push([[""], ["Total"], [cell7+cell8+cell9+cell10+cell11+cell12+cell13]]);
+            doc.autoTable(columns, rows);
+
+            doc.setFontSize(8);
+
+            doc.text(30, doc.autoTableEndPosY()+20, "Financial Advisor/Company Secretary");
+            doc.text(100, doc.autoTableEndPosY()+20, "Managing Director");
+            doc.text(170, doc.autoTableEndPosY()+20, "Additional Director Finance");
+
+            doc.text(30, doc.autoTableEndPosY()+50, "Place:    Chennai");
+            doc.text(30, doc.autoTableEndPosY()+60, "Date:");
+
+            doc.save('BalanceSheet'+start_date+'to'+end_date+'.pdf')
+
+        },
+        error: function (e) {
+            alert("error");
+        }
+    });
+    }
+
+    function downloadPL() {
+    var start_date = "{{start_date}}";
+    var end_date = "{{end_date}}";
+    var doc = new jsPDF();
+    var MD = 'N. Venkatachalam';
+    var source = "/accounts_between/"+"{{start_date}}"+"/"+"{{end_date}}";
+    $.ajax({
+        type: 'GET',
+        url: source,
+        contentType: "application/json",
+        dataType: 'json',
+        success: function (json) {
+
+            var aggregated_doc_head = d3.nest()
+                .key(function (d) {
+                    return d.doc_account_head;
+                })
+                .rollup(function (v) {
+                    return d3.sum(v, function(d) { return d.amount });
+                })
+                .entries(json);
+
+            var cell1 = 0;
+            var cell2 = 0;
+            var cell3 = 0;
+            var cell4 = 0;
+            var cell5 = 0;
+            var cell7 = 0;
+
+            for(var i=0; i< aggregated_doc_head.length; i++) {
+                if(aggregated_doc_head[i]['key'] === "Revenue From Operations") {
+                    cell1 = parseInt(aggregated_doc_head[i]['values']);
+                }
+                else {
+                    cell1 += parseInt(0);
+                }
+
+                if(aggregated_doc_head[i]['key'] === "Other Income") {
+                    cell2 = parseInt(aggregated_doc_head[i]['values']);
+                }
+                else {
+                    cell2 += 0;
+                }
+                if(aggregated_doc_head[i]['key'] === "Employee Benefit Expenses") {
+                    cell3 = parseInt(aggregated_doc_head[i]['values']);
+                }
+                else {
+                    cell3 += 0;
+                }
+                if(aggregated_doc_head[i]['key'] === "Finance Cost") {
+                    cell4 = parseInt(aggregated_doc_head[i]['values']);
+                }
+                else {
+                    cell4 += 0;
+                }
+                if(aggregated_doc_head[i]['key'] === "Other Expenses") {
+                    cell5 = parseInt(aggregated_doc_head[i]['values']);
+                }
+                else {
+                    cell5 += 0;
+                }
+                if(aggregated_doc_head[i]['key'] === "Depreciation") {
+                    cell7 = parseInt(aggregated_doc_head[i]['values']);
+                }
+                else {
+                    cell7 += 0;
+                }
+            }
+
+            columns = ["S.No", "Particulars", "Amount"];
+            rows = [];
+            rows.push([["I"], ["REVENUE FROM OPERATIONS"], [cell1]]);
+            rows.push([["II"], ["Other Income"], [cell2]]);
+            rows.push([["III"], ["Total Revenue"], [cell1+cell2]]);
+            rows.push([["IV"], ["Expenses"], ['']]);
+            rows.push([[""], ["1.   Employee Benefit Expenses"], [cell3]]);
+            rows.push([[""], ["2.   Finance Cost"], [cell4]]);
+            rows.push([[""], ["3.   Depreciation"], [cell7]]);
+            rows.push([[""], ["4.   Other Expenses"], [cell5]]);
+            rows.push([[""], ["Total"], [cell5+cell4+cell7+cell3]]);
+            rows.push([["V"], ["Profit/Loss before Exceptional & Extraordinary items and tax"], [(cell1+cell2)-(cell5+cell4+cell7+cell3)]]);
+            rows.push([["VI"], ["Exceptional Items"], ['']]);
+            rows.push([["VII"], ["Profit/Loss Before before Extraordinary items and tax"], [(cell1+cell2)-(cell5+cell4+cell7+cell3)]]);
+            rows.push([["VIII"], ["Extraordinary items"], ['']]);
+            rows.push([["IX"], ["Profit/Loss Before Tax"], [(cell1+cell2)-(cell5+cell4+cell7+cell3)]]);
+            rows.push([["X"], ["Tax Expenses"], ['']]);
+            rows.push([[""], ["1.   Current Tax"], ['']]);
+            rows.push([[""], ["2.   Deferred Tax (Liability)"], ['']]);
+            rows.push([["XI"], ["Profit /(Loss) for the period from Continuing Operations"], [(cell1+cell2)-(cell5+cell4+cell7+cell3)]]);
+            rows.push([["XII"], ["Profit /(Loss) for the period from Discontinuing"], ['']]);
+            rows.push([["XIII"], ["Tax expenses on Discontinuing Operations"], ['']]);
+            rows.push([["XIV"], ["Profit /(Loss) for the period from Discontinuing"], ['']]);
+            rows.push([["XV"], ["Profit /(Loss) for the period"], [(cell1+cell2)-(cell5+cell4+cell7+cell3)]]);
+
+            doc.autoTable(columns, rows);
+
+            doc.setFontSize(8);
+
+            doc.text(30, doc.autoTableEndPosY()+20, "Financial Advisor/Company Secretary");
+            doc.text(100, doc.autoTableEndPosY()+20, "Managing Director");
+            doc.text(170, doc.autoTableEndPosY()+20, "Additional Director Finance");
+
+            doc.text(30, doc.autoTableEndPosY()+50, "Place:    Chennai");
+            doc.text(30, doc.autoTableEndPosY()+60, "Date:");
+
+            doc.save('Profit&Loss'+start_date+'to'+end_date+'.pdf')
+
+        },
+        error: function (e) {
+            alert("error");
+        }
+    });
+    }
+
+    function downloadCB() {
+    var start_date = "{{start_date}}";
+    var end_date = "{{end_date}}";
+    var doc = new jsPDF('l', 'mm', [297, 210]);
+    var MD = 'N. Venkatachalam';
+    var source = "/accounts_between/"+"{{start_date}}"+"/"+"{{end_date}}";
+    $.ajax({
+        type: 'GET',
+        url: source,
+        contentType: "application/json",
+        dataType: 'json',
+        success: function (json) {
+
+            console.log(json);
+
+            doc.text(30, 20, "Tamil Nadu Backward Classes Economic Development Corporation");
+            doc.text(90, 30, "Cash Book for "+start_date+" to "+end_date);
+
+            columns = ["Voucher #", "Cheque/DD #", "Date", "Description", "Details", "", "", "Receipt", "", "", "", "", "Payment", "", ""];
+            rows = [];
+            rows.push([[""], [""], [""], [""], [""], ["IOB"], ["BOB"], ["SYN"], ["TNSC"], ["INDU. IND"], ["IOB"], ["BOB"], ["SYN"], ["TNSC"], ["INDU. IND"]]);
+
+                var col1sum = 0;
+                var col2sum = 0;
+                var col3sum = 0;
+                var col4sum = 0;
+                var col5sum = 0;
+                var col6sum = 0;
+                var col7sum = 0;
+                var col8sum = 0;
+                var col9sum = 0;
+                var col10sum = 0;
+
+            for(var i=0; i< json.length; i++) {
+
+                var col1 = 0;
+                var col2 = 0;
+                var col3 = 0;
+                var col4 = 0;
+                var col5 = 0;
+                var col6 = 0;
+                var col7 = 0;
+                var col8 = 0;
+                var col9 = 0;
+                var col10 = 0;
+
+                if(json[i]['bank_account'] === "IOB" && json[i]['nature_of_transaction'] === "Credit") {
+                    col1 = parseInt(json[i]['principal'])+parseInt(json[i]['interest'])+
+                        parseInt(json[i]['penal_interest'])-parseInt(json[i]['service_charge']);
+                }
+                else if(json[i]['bank_account'] === "BOB" && json[i]['nature_of_transaction'] === "Credit") {
+                    col2 = parseInt(json[i]['principal'])+parseInt(json[i]['interest'])+
+                        parseInt(json[i]['penal_interest'])-parseInt(json[i]['service_charge']);
+                }
+                else if(json[i]['bank_account'] === "SYN" && json[i]['nature_of_transaction'] === "Credit") {
+                    col3 = parseInt(json[i]['principal'])+parseInt(json[i]['interest'])+
+                        parseInt(json[i]['penal_interest'])-parseInt(json[i]['service_charge']);
+                }
+                else if(json[i]['bank_account'] === "INSC" && json[i]['nature_of_transaction'] === "Credit") {
+                    col4 = parseInt(json[i]['principal'])+parseInt(json[i]['interest'])+
+                        parseInt(json[i]['penal_interest'])-parseInt(json[i]['service_charge']);
+                }
+                else if(json[i]['bank_account'] === "INDUS. IND" && json[i]['nature_of_transaction'] === "Credit") {
+                    col5 = parseInt(json[i]['principal'])+parseInt(json[i]['interest'])+
+                        parseInt(json[i]['penal_interest'])-parseInt(json[i]['service_charge']);
+                }
+                else if(json[i]['bank_account'] === "IOB" && json[i]['nature_of_transaction'] === "Debit") {
+                    col6 = parseInt(json[i]['principal'])+parseInt(json[i]['interest'])+
+                        parseInt(json[i]['penal_interest'])-parseInt(json[i]['service_charge']);
+                }
+                else if(json[i]['bank_account'] === "IOB" && json[i]['nature_of_transaction'] === "Debit") {
+                    col6 = parseInt(json[i]['principal'])+parseInt(json[i]['interest'])+
+                        parseInt(json[i]['penal_interest'])-parseInt(json[i]['service_charge']);
+                }
+                else if(json[i]['bank_account'] === "BOB" && json[i]['nature_of_transaction'] === "Debit") {
+                    col7 = parseInt(json[i]['principal'])+parseInt(json[i]['interest'])+
+                        parseInt(json[i]['penal_interest'])-parseInt(json[i]['service_charge']);
+                }
+                else if(json[i]['bank_account'] === "SYN" && json[i]['nature_of_transaction'] === "Debit") {
+                    col8 = parseInt(json[i]['principal'])+parseInt(json[i]['interest'])+
+                        parseInt(json[i]['penal_interest'])-parseInt(json[i]['service_charge']);
+                }
+                else if(json[i]['bank_account'] === "INSC" && json[i]['nature_of_transaction'] === "Debit") {
+                    col9 = parseInt(json[i]['principal'])+parseInt(json[i]['interest'])+
+                        parseInt(json[i]['penal_interest'])-parseInt(json[i]['service_charge']);
+                }
+                else if(json[i]['bank_account'] === "INDUS. IND" && json[i]['nature_of_transaction'] === "Debit") {
+                    col10 = parseInt(json[i]['principal'])+parseInt(json[i]['interest'])+
+                        parseInt(json[i]['penal_interest'])-parseInt(json[i]['service_charge']);
+                }
+
+                if(json[i]['principal']){
+                    rows.push([[json[i]['payment_voucher']], [json[i]['cheque_number']], [moment(json[i]['cheque_date']['$date']).format('YYYY-MM-DD')],
+                    [json[i]['depositing_bank']], [""], [col1],
+                    [col2], [col3], [col4], [col5], [col6], [col7], [col8], [col9], [col10]]);
+                    rows.push([[""], [""], [""], [json[i]['depositing_bank']], [json[i]['principal'].toFixed(0)],
+                        [""], [""], [""], [""], [""], [""], [""], [""], [""], [""]]);
+                    rows.push([[""], [""], [""], [json[i]['depositing_bank']+' INT'], [json[i]['interest'].toFixed(0)],
+                        [""], [""], [""], [""], [""], [""], [""], [""], [""], [""]]);
+                    rows.push([[""], [""], [""], [json[i]['depositing_bank']+' P.Int'], [json[i]['penal_interest'].toFixed(0)],
+                        [""], [""], [""], [""], [""], [""], [""], [""], [""], [""]]);
+                    rows.push([[""], [""], [""], [json[i]['depositing_bank']+' SC'], [json[i]['service_charge'].toFixed(0)],
+                        [""], [""], [""], [""], [""], [""], [""], [""], [""], [""]]);
+                    rows.push([[""], [""], [""], [json[i]['narration']], [''],
+                        [""], [""], [""], [""], [""], [""], [""], [""], [""], [""]]);
+                }
+
+                else if(!json[i]['principal']){
+                    rows.push([[json[i]['payment_voucher']], [json[i]['cheque_number']], [moment(json[i]['cheque_date']['$date']).format('YYYY-MM-DD')],
+                        [json[i]['narration']], [json[i]['amount']],
+                        [""], [""], [""], [""], [""], [""], [""], [""], [""], [""]]);
+                }
+
+                col1sum += col1;
+                col2sum += col2;
+                col3sum += col3;
+                col4sum += col4;
+                col5sum += col5;
+                col6sum += col6;
+                col7sum += col7;
+                col8sum += col8;
+                col9sum += col9;
+                col10sum += col10;
+            }
+
+            rows.push([["Total"], [""], [""], [""], [""],
+                    [col1sum], [col2sum], [col3sum], [col4sum], [col5sum], [col6sum], [col7sum], [col8sum], [col9sum], [col10sum]]);
+
+            rows.push([["Op. Bal"], [""], [""], [""], [""],
+                    [0], [0], [0], [0], [0], [0], [0], [0], [0], [0]]);
+
+            rows.push([["Grand Total"], [""], [""], [""], [""],
+                    [col1sum], [col2sum], [col3sum], [col4sum], [col5sum], [col6sum], [col7sum], [col8sum], [col9sum], [col10sum]]);
+
+            doc.autoTable(columns, rows, {startY: 40});
+
+            doc.save('CashBook'+start_date+'to'+end_date+'.pdf')
+        },
+        error: function (e) {
+            alert("error");
+        }
+    });
+    }
+
+</script>
+
+{% endblock %}

@@ -1,0 +1,191 @@
+{% extends "post_login_loans.html" %}
+{% block content %}
+
+<body>
+    <div style="display: flex; flex-direction: row; justify-content: space-around; align-items: center; margin-top: 10px; margin-bottom: 10px">
+        <div id="Search" style="display: flex; flex-direction: column;">
+            <label for="myInput" style="margin-left: 10%">Search Bank:</label>
+            <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
+        </div>
+        <button onclick="downloadTBSheet()">Download Sheet</button>
+    </div>
+
+    <div id="accountHeadList">
+    </div>
+</body>
+
+<script>
+        var loan_category = "{{loan_category}}";
+        var start_date = "{{start_date}}";
+        var end_date = "{{end_date}}";
+        var source = "/RawUC/"+loan_category+"/"+start_date+"/"+end_date;
+        $.ajax({
+            type: 'GET',
+            url: source,
+            contentType: "application/json",
+            dataType: 'json',
+            success: function (json) {
+                    {
+                        for (var i=0; i<json.length; i++) {
+                            if(loan_category === 'GTL'){
+                                json[i]['TABCEDCO_share'] = json[i]['loan_amount']*0.1;
+                                json[i]['NBCFDC_share'] = json[i]['loan_amount']*0.9;
+                            }
+                            else if (loan_category === 'NSS') {
+                                json[i]['TABCEDCO_share'] = json[i]['loan_amount']*0.05;
+                                json[i]['NBCFDC_share'] = json[i]['loan_amount']*0.95;
+                            }
+                        }
+
+                        if (loan_category === 'GTL' || loan_category === 'NSS') {
+                            var tbl = $("<table class='table table-bordered table-dark' id='accountHeadDetails'/>");
+                            $("#accountHeadList").append(tbl);
+                            var hr = "<tr>";
+                            var th1 = "<th style='text-align:center;vertical-align:middle'>" + "S. No" + "</th>";
+                            var th2 = "<th style='text-align:center;vertical-align:middle'>" + "Name of Bank" + "</th>";
+                            var th3 = "<th style='text-align:center;vertical-align:middle'>" + "District" + "</th>";
+                            var th4 = "<th style='text-align:center;vertical-align:middle'>" + "#RO" + "</th>";
+                            var th5 = "<th style='text-align:center;vertical-align:middle'>" + "Applicant Name" + "</th>";
+                            var th6 = "<th style='text-align:center;vertical-align:middle'>" + "Nature of Business" + "</th>";
+                            var th7 = "<th style='text-align:center;vertical-align:middle'>" + "TABCEDCO Share" + "</th>";
+                            var th8 = "<th style='text-align:center;vertical-align:middle'>" + "NBCFDC Share" + "</th>";
+                            $("#accountHeadDetails").append(hr + th1 + th2 + th3 + th4 + th5 + th6 + th7 + th8);
+                            for (var j = 0; j < json.length; j++) {
+                                    var row = $('<tr></tr>').html(
+                                        '<td>'+(j+1)+'</td>'+
+                                        '<td>' +json[j]['bank'] + '</td>'+
+                                        '<td>' +json[j]['district'] + '</td>'+
+                                        '<td>' +json[j]['ann_loan_id']+'/'+json[j]['loan_category']+'/'+
+                                        (moment(json[0]['received_date']).year() - 2000) + '' +(moment(json[0]['received_date']).year() - 1999)+ '</td>'+
+                                        '<td>' +json[j]['applicant_name'] + '</td>'+
+                                        '<td>' +json[j]['loan_reason'] + '</td>'+
+                                        '<td>'+json[j]["TABCEDCO_share"]+'</td>'+
+                                        '<td>'+json[j]["NBCFDC_share"]+'</td>');
+                                    $("#accountHeadDetails").append(row);
+                            }
+                        }
+                    }
+                },
+            error: function (e) {
+                alert("error");
+            }
+        });
+
+    function myFunction() {
+        var input, filter, table, tr, td, i;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("accountHeadList");
+        tr = table.getElementsByTagName("tr");
+        console.log(tr.length);
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[1];
+            if (td) {
+                if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+
+    function downloadTBSheet() {
+        var source = "/RawUC/"+loan_category+'/'+start_date+"/"+end_date;
+        var doc = new jsPDF();
+        $.ajax({
+            type: 'GET',
+            url: source,
+            contentType: "application/json",
+            dataType: 'json',
+            success: function (json) {
+
+                        for (var i=0; i<json.length; i++) {
+                            if(loan_category === 'GTL'){
+                                json[i]['TABCEDCO_share'] = json[i]['loan_amount']*0.1;
+                                json[i]['NBCFDC_share'] = json[i]['loan_amount']*0.9;
+                            }
+                            else if (loan_category === 'NSS') {
+                                json[i]['TABCEDCO_share'] = json[i]['loan_amount']*0.05;
+                                json[i]['NBCFDC_share'] = json[i]['loan_amount']*0.95;
+                            }
+                            else if (loan_category === 'MCL') {
+                                json[i]['TABCEDCO_share'] = json[i]['loan_amount']*0.05;
+                                json[i]['NBCFDC_share'] = json[i]['loan_amount']*0.90;
+                            }
+                            else {
+                                json[i]['TABCEDCO_share'] = json[i]['loan_amount']*0.05;
+                                json[i]['NBCFDC_share'] = json[i]['loan_amount']*0.95;
+                            }
+                        }
+
+                    if(loan_category === 'GTL' || loan_category === 'NSS') {
+                        doc.setFontSize(12);
+
+                        var heading = doc.splitTextToSize('TAMILNADU BACKWARD CLASSES ECONOMIC DEVELOPMENT CORPORATION ' +
+                            'LTD., No. 735, LLA Building, III Floor, Anna Salai, Chennai - 600 002.', 170);
+
+                        doc.text(30, 20, heading);
+
+                        var period = doc.splitTextToSize('Utilisation Certificate of '+ loan_category +' '+start_date+' to '+end_date, 140);
+
+                        doc.text(60, 35, period);
+
+                        var columns = ["S. No", "Bank", "District", "#RO", "Name", "Business",
+                        "TABCEDCO", "NBCFDC"];
+                        var rows = [];
+
+                        for(var a=0; a<json.length; a++) {
+                        rows.push([[a+1],[json[a]['bank']], [json[a]['district']], [json[a]['ann_loan_id']+'/'+json[a]['loan_category']+
+                        '/'+(moment(json[a]['received_date']).year() - 2000) + '' +(moment(json[a]['received_date']).year() - 1999)],
+                            [json[a]['applicant_name']], [json[a]['loan_reason']], [json[a]['TABCEDCO_share']],
+                            [json[a]['NBCFDC_share']]]);
+                        }
+
+                        doc.autoTable(columns, rows, {startY: 45});
+
+                        doc.save('UC '+loan_category+'-'+start_date+'to'+end_date+'.pdf')
+                    }
+
+                    else if(loan_category === 'MCL' || loan_category === 'MSY') {
+                        doc.setFontSize(12);
+
+                        heading = doc.splitTextToSize('TAMILNADU BACKWARD CLASSES ECONOMIC DEVELOPMENT CORPORATION ' +
+                            'LTD., No. 735, LLA Building, III Floor, Anna Salai, Chennai - 600 002.', 170);
+
+                        doc.text(30, 20, heading);
+
+                        period = doc.splitTextToSize('Utilisation Certificate of '+ loan_category +' '+start_date+' to '+end_date, 140);
+
+                        doc.text(60, 35, period);
+
+                        columns = ["S. No", "Bank", "District", "#RO", "SHG", "Business",
+                        "# Beneficiaries", "Sanctioned Loan"];
+                        rows = [];
+
+                        for(a=0; a<json.length; a++) {
+                            for(var b=0; b<parseInt(json[0]['no_of_shgs']); b++) {
+                                var shg_i = b+1;
+                                var shg_name = 'shg'+(b+1);
+                                rows.push([[shg_i], [json[a]['bank']], [json[a]['district']], [json[a]['ann_loan_id'] + '/' + json[a]['loan_category'] +
+                                '/' + (moment(json[a]['received_date']).year() - 2000) + '' + (moment(json[a]['received_date']).year() - 1999)],
+                                    [json[a][shg_name]['name']], [json[a]['loan_reason']], [json[a]['TABCEDCO_share']],
+                                    [json[a]['NBCFDC_share']]]);
+                            }
+                        }
+
+                        doc.autoTable(columns, rows, {startY: 45});
+
+                        doc.save('UC '+loan_category+'-'+start_date+'to'+end_date+'.pdf')
+                    }
+                },
+            error: function (e) {
+                alert("error");
+            }
+        });
+
+    }
+
+</script>
+
+{% endblock %}

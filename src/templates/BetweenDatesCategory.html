@@ -1,0 +1,30 @@
+{% extends "post_login_loans.html" %}
+{% block content %}
+
+<div style="display: flex; flex-direction: column; justify-content: space-between; align-items: center;">
+    <form id="getByDate" action="/utilisation_certificate" method="post">
+        <div>
+            Enter Dates Below to get Utilisation Certificate
+        </div>
+        <div>
+            <label for="startDate">Start Date</label>
+            <input type="date" id="startDate" name="startDate">
+        </div>
+        <div>
+            <label for="endDate">End Date</label>
+            <input type="date" id="endDate" name="endDate">
+        </div>
+        <div class="form-group" style="display: block; width: 38%">
+            <label for="loanCategory">Loan Category</label>
+            <select class="form-control" id="loanCategory" name="loanCategory">
+                {% set categories = ['GTL', 'NSS', 'MCL', 'MSY'] %}
+                {% for category in categories %}
+                    <option value= "{{category}}">{{category}}</option>"
+                {% endfor %}
+            </select>
+        </div>
+        <button type="submit" class="btn btn-success">Trail Balance</button>
+    </form>
+</div>
+
+{% endblock %}

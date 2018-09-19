@@ -1,0 +1,21 @@
+{% extends "post_login_accounts.html" %}
+{% block content %}
+
+<div style="display: flex; flex-direction: column; justify-content: space-between; align-items: center;">
+    <form id="getByDate" action="/accounting_statements" method="post">
+        <div>
+            Enter Dates Below to get Account Statements
+        </div>
+        <div>
+            <label for="startDate">Start Date</label>
+            <input type="date" id="startDate" name="startDate">
+        </div>
+        <div>
+            <label for="endDate">End Date</label>
+            <input type="date" id="endDate" name="endDate">
+        </div>
+        <button type="submit" class="btn btn-success">Account Statements</button>
+    </form>
+</div>
+
+{% endblock %}

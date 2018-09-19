@@ -1,0 +1,125 @@
+{% extends "post_login_loans.html" %}
+{% block content %}
+
+<form id="new-intent" action="/updateDemand/{{ demand_id }}" method="post">
+<div style="display: flex; flex-direction: column; align-items: center; flex: 1; justify-content: space-around; margin-top: 10px">
+    <div class="form-group" style="display: block; width: 38%">
+        <label for="loanCategory">Loan Category</label>
+        <select class="form-control" id="loanCategory" name="loanCategory">
+            {% set categories = ['GTL', 'NSS', 'MCL', 'MSY'] %}
+            {% for category in categories %}
+                <option value= "{{category}}">{{category}}</option>"
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="form-group">
+          <label for="district">Select District:</label>
+          <select class="form-control" style="text-align: center;" id="district" name="district">
+            {% set districts = ['Ariyalur', 'Karur', 'Nagapattinam', 'Perambalur',
+              'Pudukkottai', 'Thanjavur', 'Tiruchirappalli','Tiruvarur', 'Dharmapuri',
+              'Coimbatore', 'Erode', 'Krishnagiri', 'Namakkal', 'The Nilgiris', 'Salem',
+              'Tiruppur', 'Dindigul', 'Kanyakumari', 'Madurai', 'Ramanathapuram', 'Sivaganga',
+              'Theni', 'Thoothukudi','Tirunelveli', 'Virudhunagar', 'Chennai', 'Cuddalore', 'Kancheepuram',
+              'Tiruvallur', 'Tiruvannamalai', 'Vellore','Viluppuram'] %}
+
+            {% for district in districts %}
+                <option value= "{{district}}">{{district}}</option>"
+            {% endfor %}
+          </select>
+    </div>
+
+    <div class="form-group" style="display: flex; justify-content: space-between; align-items: center; flex-direction: row">
+        <label for="bank">Enter Bank:</label>
+        <select class="form-control" style="margin-left: 5px;flex: 4" id="bank" name="bank">
+            {% set nature = ['KVB', 'IOB', 'CUB', 'SBI', 'SBI Egmore', 'Indian Bank Saidapet'] %}
+
+            {% for nat in nature %}
+                <option value= "{{nat}}">{{nat}}</option>"
+            {% endfor %}
+        </select>
+
+        <label for="subBank">Enter Sub-Bank:</label>
+        <select class="form-control" style="margin-left: 5px; flex: 4" id="subBank" name="subBank">
+            {% set nature = ['KVB', 'IOB', 'CUB', 'SBI', 'SBI Egmore', 'Indian Bank Saidapet'] %}
+
+            {% for nat in nature %}
+                <option value= "{{nat}}">{{nat}}</option>"
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="form-group" style="display: flex; flex-direction: row; justify-content: space-between;">
+        <div>
+            <label for="loanAmount">Loan Amount</label>
+            <input type="number" id="loanAmount" name="loanAmount">
+        </div>
+        <div style="margin-left: 10px">
+            <label for="receivedDate">Snaction Date [if Loan Approved]</label>
+            <input type="date" id="receivedDate" name="receivedDate">
+        </div>
+    </div>
+
+    <div id="demandDetails" class="form-group" style="display: flex; flex-direction: row;">
+        <div id="heading" style="display: flex; flex-direction: column; justify-content: space-between;">
+            <h6>Demand #</h6>
+            <h6>Demand Date</h6>
+            <h6>Principal Payable</h6>
+            <h6>Interest Payable</h6>
+            <h6>Total Cheque Amount</h6>
+            <h6>Cheque #</h6>
+            <h6>Cheque Received Date</h6>
+        </div>
+        <div id="inputForm" style="display: flex; flex-direction: column; justify-content: space-between;">
+            <input type="number" name="demandNumber" id="demandNumber">
+            <input type="date" name="demandDate" id="demandDate">
+            <input type="number" name="demandPrincipalPayable" id="demandPrincipalPayable">
+            <input type="number" name="demandInterestPayable" id="demandInterestPayable">
+            <input type="number" name="totalChequeAmount" id="totalChequeAmount">
+            <input type="number" name="chequeNumber" id="chequeNumber">
+            <input type="Date" name="chequeDate" id="chequeDate">
+        </div>
+    </div>
+
+    <div id="annualloanid" style="display: flex; flex-direction: row; align-items: center; justify-content: center">
+        <label for="loanID">Annual Loan ID</label>
+        <input type="number" name="loanID" id="loanID">
+    </div>
+
+    <button type="submit" class="btn btn-success">Save Application Details</button>
+
+</div>
+
+</form>
+
+<script>
+    var source = "/demand/"+"{{demand_id}}";
+    $.ajax({
+        type: 'GET',
+        url: source,
+        contentType: "application/json",
+        dataType: 'json',
+        success: function (json) {
+            console.log(json);
+                document.getElementById("loanCategory").value = json[0]["loan_category"];
+                document.getElementById("bank").value = json[0]["district_bank"];
+                document.getElementById("subBank").value = json[0]["sub_bank"];
+                document.getElementById("loanAmount").value = json[0]["loan_amount"];
+                document.getElementById("receivedDate").value = moment(json[0]["loan_sanction_date"]['$date']).format('YYYY-MM-DD');
+                document.getElementById("loanID").value = json[0]["ann_id"];
+                document.getElementById("demandNumber").value = parseInt(json[0]["demand_number"]);
+                document.getElementById("demandDate").value = moment(json[0]["demand_date"]['$date']).format('YYYY-MM-DD');
+                document.getElementById("demandPrincipalPayable").value = parseInt("{{total_principal_demand}}");
+                document.getElementById("demandPrincipalPaid").value = parseInt(json[0]["principal_collected"]);
+                document.getElementById("demandInterestPayable").value = parseInt("{{total_interest_demand}}");
+                document.getElementById("demandInterestPaid").value = parseInt(json[0]["interest_collected"]);
+                document.getElementById("chequeNumber").value = parseInt(json[0]["cheque_number"]);
+                document.getElementById("chequeDate").value = moment(json[0]["cheque_date"]['$date']).format('YYYY-MM-DD');
+        },
+        error: function (e) {
+            alert("The Loan Application does not exist");
+        }
+    });
+</script>
+
+{% endblock %}

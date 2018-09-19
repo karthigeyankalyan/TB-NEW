@@ -1,0 +1,334 @@
+{% extends "post_login_loans.html" %}
+{% block content %}
+
+<form id="new-intent" action="/new_loanApplication/{{ user._id }}" method="post">
+
+<div style="display: flex; flex-direction: column; align-items: center; flex: 1; justify-content: space-around; margin-top: 10px">
+
+    <div class="form-group" style="display: block; width: 38%">
+        <label for="loanCategory">Loan Category</label>
+        <select class="form-control" id="loanCategory" name="loanCategory" onchange="categorySelection(this)">
+            {% set categories = ['GTL (General Term Loan)', 'NSS (New-Swarnima Scheme)', 'MCG (Micro-Credit Gents)', 'MSY (Mahila Samriddhi Yojana)'] %}
+            {% for category in categories %}
+                <option value= "{{category}}">{{category}}</option>"
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="form-group" style="display: block; width: 38%" id="nameOfApplicant">
+        <label for="applicantName">Applicant Name</label>
+        <input type="text" id="applicantName" name="applicantName" style="display: block; width: 100%">
+    </div>
+
+    <div class="form-group" style="display: block; width: 38%" id="nameOfApplicantFather">
+        <label for="applicantFatherName">Applicant's Father Name</label>
+        <input type="text" id="applicantFatherName" name="applicantFatherName" style="display: block; width: 100%">
+    </div>
+
+    <div class="form-group" style="display: block; width: 38%" id="ageOfApplicant">
+        <label for="age">Age</label>
+        <input type="number" id="age" min="18" max="60" name="age" style="display: block; width: 100%">
+        <label for="gender">Gender</label>
+        <select class="form-control" id="gender" name="gender">
+            {% set genders = ['Male', 'Female', 'Third-Gender'] %}
+            {% for gender in genders %}
+                <option value= "{{gender}}">{{gender}}</option>"
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="form-group" style="display: block; width: 38%" id="addressOfApplicant">
+        <label for="address">Address of Applicant</label>
+        <input type="text" id="address" name="address" style="display: block; width: 100%">
+    </div>
+
+    <div class="form-group">
+          <label for="district">Select District:</label>
+          <select class="form-control" style="text-align: center;" id="district" name="district" onchange="createNewFields()">
+            {% set districts = ['Ariyalur', 'Karur', 'Nagapattinam', 'Perambalur',
+              'Pudukkottai', 'Thanjavur', 'Tiruchirappalli','Tiruvarur', 'Dharmapuri',
+              'Coimbatore', 'Erode', 'Krishnagiri', 'Namakkal', 'The Nilgiris', 'Salem',
+              'Tiruppur', 'Dindigul', 'Kanyakumari', 'Madurai', 'Ramanathapuram', 'Sivaganga',
+              'Theni', 'Thoothukudi','Tirunelveli', 'Virudhunagar', 'Chennai', 'Cuddalore', 'Kancheepuram',
+              'Tiruvallur', 'Tiruvannamalai', 'Vellore','Viluppuram'] %}
+
+            {% for district in districts %}
+                <option value= "{{district}}">{{district}}</option>"
+            {% endfor %}
+          </select>
+    </div>
+
+    <div class="form-group" style="display: block; width: 38%" id="personalInfo">
+        <label for="annualIncome">Annual Income (in Rs.)</label>
+        <input type="number" id="annualIncome" name="annualIncome" style="display: block; width: 100%">
+        <label for="caste">Caste</label>
+        <select class="form-control" id="caste" name="caste">
+            {% set castes = ['BC', 'MBC', 'DNC'] %}
+            {% for caste in castes %}
+                <option value= "{{caste}}">{{caste}}</option>"
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="form-group" style="display: block; width: 38%">
+        <label for="bankName">District Bank</label>
+        <input type="text" id="bankName" name="bankName" style="display: block; width: 100%">
+
+        <div id="sb">
+            <label for="subBank">Sub Bank</label>
+            <input type="text" id="subBank" name="subBank" style="display: block; width: 100%">
+        </div>
+    </div>
+
+    <div class="form-group" style="display: block; width: 38%">
+        <label for="loanReason">Reason for Loan</label>
+        <input type="text" id="loanReason" name="loanReason" style="display: block; width: 100%">
+    </div>
+
+    <div style="display: flex; flex-direction: row; justify-content: space-around;">
+        <button type="button"><a onclick="addAnotherField()">Add Another Field</a></button>
+        <button type="button"><a onclick="populateTotals()">Done</a></button>
+    </div>
+
+    <div id="shgDetails" class="form-group" style="display: none;">
+    </div>
+
+    <div id="BenCount" style="display: none;">
+        <label for="beneficiaryCount">Beneficiary Count</label>
+        <input type="number" id="beneficiaryCount" name="beneficiaryCount">
+
+        <label for="shgCount">SHG Count</label>
+        <input type="number" id="shgCount" name="shgCount">
+    </div>
+
+    <div class="form-group" style="display: flex; flex-direction: row; justify-content: space-between;">
+        <div>
+            <label for="loanAmount">Loan Amount</label>
+            <input type="number" id="loanAmount" name="loanAmount">
+        </div>
+        <div style="margin-left: 10px">
+            <label for="receivedDate">Application Received Date</label>
+            <input type="date" id="receivedDate" name="receivedDate">
+        </div>
+        <div style="margin-left: 10px">
+            <label for="screeningDate">Screening Committee Date</label>
+            <input type="date" id="screeningDate" name="screeningDate">
+        </div>
+    </div>
+
+    <div class="form-group" style="display: flex; flex-direction: row; justify-content: space-between;">
+        <div>
+            <label for="jrLetterNumber">JR Letter Number</label>
+            <input type="text" id="jrLetterNumber" name="jrLetterNumber">
+        </div>
+        <div style="margin-left: 10px">
+            <label for="jrLetterDate">JR Letter Date</label>
+            <input type="date" id="jrLetterDate" name="jrLetterDate">
+        </div>
+    </div>
+
+    <div class="form-group" style="display: flex; flex-direction: row; justify-content: space-between;">
+        <div>
+            <label for="interest">Rate of Interest %</label>
+            <input type="number" id="interest" name="interest">
+        </div>
+        <div style="margin-left: 10px">
+            <label for="noOfDemands"># of Installments</label>
+            <input type="number" id="noOfDemands" name="noOfDemands">
+        </div>
+    </div>
+
+    <div class="form-group" style="display: flex; flex-direction: row; justify-content: space-between;">
+        <div>
+            <label for="status">Application Status</label>
+            <select class="form-control" id="status" name="status">
+                {% set castes = ['Form A', 'PSO', 'Release Order', 'Payment Voucher', 'Covering Letter'] %}
+                {% for caste in castes %}
+                    <option value= "{{caste}}">{{caste}}</option>"
+                {% endfor %}
+            </select>
+        </div>
+        <div style="margin-left: 10px">
+            <label for="statusDate">Status Date</label>
+            <input type="date" id="statusDate" name="statusDate">
+        </div>
+    </div>
+
+    <div class="form-group" style="display: flex; flex-direction: row; justify-content: space-between;">
+        <div>
+            <label for="annualLoanID">File Number</label>
+            <input type="text" id="annualLoanID" name="annualLoanID">
+        </div>
+        <div id="pson">
+            <label for="loanNumber">PSO Number</label>
+            <input type="number" id="loanNumber" name="loanNumber">
+        </div>
+        <div>
+            <label for="roNumber">RO Number</label>
+            <input type="number" id="roNumber" name="roNumber">
+        </div>
+    </div>
+
+    <div class="form-group" style="display: flex; flex-direction: row; justify-content: space-between;">
+        <div id="psod">
+            <label for="psoDate">PSO Date</label>
+            <input type="date" id="psoDate" name="psoDate">
+        </div>
+        <div>
+            <label for="roDate">RO Date</label>
+            <input type="date" id="roDate" name="roDate">
+        </div>
+    </div>
+
+    <div class="form-group" style="display: flex; flex-direction: row; justify-content: space-between;">
+        <div>
+            <label for="chequeNumber">Cheque Number [Update Before Sanction]</label>
+            <input type="text" id="chequeNumber" name="chequeNumber">
+        </div>
+        <div style="display: none">
+            <label for="invIDCTR">Cheque Number [Update Before Sanction]</label>
+            <input type="number" id="invIDCTR" name="invIDCTR">
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-success">Save Application Details</button>
+
+</div>
+</form>
+
+<script>
+
+    var i = 0;
+
+    function categorySelection(that) {
+        console.log(that.value);
+        if (that.value === "MCG (Micro-Credit Gents)" || that.value === "MSY (Mahila Samriddhi Yojana)"){
+            document.getElementById("shgDetails").style.display = "flex";
+            document.getElementById("shgDetails").style.flexDirection = "column";
+            document.getElementById("shgDetails").style.justifyContent = "space-between";
+            document.getElementById("nameOfApplicant").style.display = "none";
+            document.getElementById("ageOfApplicant").style.display = "none";
+            document.getElementById("addressOfApplicant").style.display = "none";
+            document.getElementById("personalInfo").style.display = "none";
+            document.getElementById("age").style.display = "none";
+            document.getElementById("nameOfApplicantFather").style.display = "none";
+            document.getElementById("psod").style.display = "none";
+            document.getElementById("pson").style.display = "none";
+            document.getElementById("sb").style.display = "none";
+            document.getElementById("BenCount").style.display = "";
+            document.getElementById("shgCount").style.display = "";
+        }
+        else {
+            document.getElementById("shgDetails").style.display = "none";
+            document.getElementById("nameOfApplicant").style.display = "";
+            document.getElementById("nameOfApplicantFather").style.display = "";
+            document.getElementById("ageOfApplicant").style.display = "";
+            document.getElementById("addressOfApplicant").style.display = "";
+            document.getElementById("personalInfo").style.display = "";
+            document.getElementById("BenCount").style.display = "none";
+            document.getElementById("shgCount").style.display = "none";
+        }
+    }
+
+    function createNewFields() {
+        var shg_det = $("#shgDetails");
+        shg_det.empty();
+            var shg_name = "sn"+i;
+            var inputSNO = "sno"+i;
+            var sb = "sb"+i;
+            var amount_pm = "apm"+i;
+            var strength = "strength"+i;
+            var total_amount = "ta"+i;
+        var row = $('<div style="display: flex; flex-direction: row; justify-content: space-around; align-items: center;"></div>')
+            .html(
+                '<div style="display: flex; flex-direction: column;">' +
+                '<label for='+inputSNO+'>S.No</label>' +
+                '<input class="amount" type="number" id='+inputSNO+' name='+inputSNO+' value='+(i+1)+'>' +
+                '</div>' +
+                '<div style="display: flex; flex-direction: column;">' +
+                '<label for='+sb+'>Branch</label>' +
+                '<input type="text" id='+sb+' name='+sb+'>' +
+                '</div>' +
+                '<div style="display: flex; flex-direction: column;">' +
+                '<label for='+shg_name+'>SHG Name</label>' +
+                '<input type="text" id='+shg_name+' name='+shg_name+'>' +
+                '</div>' +
+                '<div style="display: flex; flex-direction: column;">' +
+                '<label for='+strength+'>Strength</label>' +
+                '<input type="text" id='+strength+' name='+strength+'>' +
+                '</div>' +
+                '<div style="display: flex; flex-direction: column;">' +
+                '<label for='+amount_pm+'>Amount Per Member</label>' +
+                '<input type="text" id='+amount_pm+' name='+amount_pm+' onchange="calculateTotal(this)">' +
+                '</div>'+
+                '<div style="display: flex; flex-direction: column;">' +
+                '<label for='+total_amount+'>Total Amount</label>' +
+                '<input type="text" id='+total_amount+' name='+total_amount+'>' +
+                '</div>'
+            );
+        shg_det.append(row);
+        i++
+    }
+
+    function addAnotherField() {
+
+        var shg_name = "sn"+i;
+        var inputSNO = "sno"+i;
+        var sb = "sb"+i;
+        var amount_pm = "apm"+i;
+        var strength = "strength"+i;
+        var total_amount = "ta"+i;
+        var row = $('<div style="display: flex; flex-direction: row; justify-content: space-around; align-items: center;"></div>')
+            .html(
+                '<div style="display: flex; flex-direction: column;">' +
+                '<input type="number" id='+inputSNO+' name='+inputSNO+' value='+(i+1)+'>' +
+                '</div>' +
+                '<div style="display: flex; flex-direction: column;">' +
+                '<input type="text" id='+sb+' name='+sb+'>' +
+                '</div>' +
+                '</div>' +
+                '<div style="display: flex; flex-direction: column;">' +
+                '<input type="text" id='+shg_name+' name='+shg_name+'>' +
+                '</div>' +
+                '<div style="display: flex; flex-direction: column;">' +
+                '<input type="text" id='+strength+' name='+strength+'>' +
+                '</div>' +
+                '<div style="display: flex; flex-direction: column;">' +
+                '<input type="text" id='+amount_pm+' name='+amount_pm+' onchange="calculateTotal(this)">' +
+                '</div>'+
+                '<div style="display: flex; flex-direction: column;">' +
+                '<input type="text" id='+total_amount+' name='+total_amount+'>' +
+                '</div>'
+            );
+        $("#shgDetails").append(row);
+        i++;
+    }
+
+    var total_loan_amount = 0;
+    var total_ben_count = 0;
+
+    function calculateTotal(that) {
+        var str = that.id;
+        var number = str.charAt(str.length-1);
+        var amount_tag_id = "apm"+number;
+        var strength_tag_id = "strength"+number;
+        var total_tag_id = "ta"+number;
+
+        var apm = document.getElementById(amount_tag_id).value;
+        var strength = document.getElementById(strength_tag_id).value;
+
+        var total_shg_amount = parseInt(apm)*parseInt(strength);
+        document.getElementById(total_tag_id).value = total_shg_amount;
+        total_loan_amount += total_shg_amount;
+        total_ben_count += parseInt(strength);
+        document.getElementById("invIDCTR").value = (i);
+    }
+
+    function populateTotals() {
+        document.getElementById('beneficiaryCount').value = total_ben_count;
+        document.getElementById('loanAmount').value = total_loan_amount;
+    }
+
+</script>
+
+{% endblock %}

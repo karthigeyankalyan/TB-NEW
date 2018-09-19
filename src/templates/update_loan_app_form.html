@@ -1,0 +1,336 @@
+{% extends "post_login_loans.html" %}
+{% block content %}
+
+<form id="new-intent" action="/updateApplication/{{ application_id }}" method="post">
+<div style="display: flex; flex-direction: column; align-items: center; flex: 1; justify-content: space-around; margin-top: 10px">
+
+    <div class="form-group" style="display: block; width: 38%">
+        <label for="loanCategory">Loan Category</label>
+        <select class="form-control" id="loanCategory" name="loanCategory" onchange="categorySelection(this)">
+            {% set categories = ['GTL (General Term Loan)', 'NSS (New-Swarnima Scheme)', 'MCG (Micro-Credit Gents)', 'MSY (Mahila Samriddhi Yojana)'] %}
+            {% for category in categories %}
+                <option value= "{{category}}">{{category}}</option>"
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="form-group" style="display: block; width: 38%" id="nameOfApplicant">
+        <label for="applicantName">Applicant Name</label>
+        <input type="text" id="applicantName" name="applicantName" style="display: block; width: 100%">
+    </div>
+
+    <div class="form-group" style="display: block; width: 38%" id="nameOfApplicantFather">
+        <label for="applicantFatherName">Applicant's Father Name</label>
+        <input type="text" id="applicantFatherName" name="applicantFatherName" style="display: block; width: 100%">
+    </div>
+
+    <div class="form-group" style="display: block; width: 38%" id="ageOfApplicant">
+        <label for="age">Age</label>
+        <input type="number" id="age" min="18" max="60" name="age" style="display: block; width: 100%">
+        <label for="gender">Gender</label>
+        <select class="form-control" id="gender" name="gender">
+            {% set genders = ['Male', 'Female', 'Third-Gender'] %}
+            {% for gender in genders %}
+                <option value= "{{gender}}">{{gender}}</option>"
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="form-group" style="display: block; width: 38%" id="addressOfApplicant">
+        <label for="address">Address of Applicant</label>
+        <input type="text" id="address" name="address" style="display: block; width: 100%">
+    </div>
+
+    <div class="form-group">
+          <label for="district">Select District:</label>
+          <select class="form-control" style="text-align: center;" id="district" name="district">
+            {% set districts = ['Ariyalur', 'Karur', 'Nagapattinam', 'Perambalur',
+              'Pudukkottai', 'Thanjavur', 'Tiruchirappalli','Tiruvarur', 'Dharmapuri',
+              'Coimbatore', 'Erode', 'Krishnagiri', 'Namakkal', 'The Nilgiris', 'Salem',
+              'Tiruppur', 'Dindigul', 'Kanyakumari', 'Madurai', 'Ramanathapuram', 'Sivaganga',
+              'Theni', 'Thoothukudi','Tirunelveli', 'Virudhunagar', 'Chennai', 'Cuddalore', 'Kancheepuram',
+              'Tiruvallur', 'Tiruvannamalai', 'Vellore','Viluppuram'] %}
+
+            {% for district in districts %}
+                <option value= "{{district}}">{{district}}</option>"
+            {% endfor %}
+          </select>
+    </div>
+
+    <div class="form-group" style="display: block; width: 38%" id="personalInfo">
+        <label for="annualIncome">Annual Income (in Rs.)</label>
+        <input type="number" id="annualIncome" name="annualIncome" style="display: block; width: 100%">
+        <label for="caste">Caste</label>
+        <select class="form-control" id="caste" name="caste">
+            {% set castes = ['BC', 'MBC', 'DNC'] %}
+            {% for caste in castes %}
+                <option value= "{{caste}}">{{caste}}</option>"
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="form-group" style="display: block; width: 38%">
+        <label for="bankName">District Bank</label>
+        <input type="text" id="bankName" name="bankName" style="display: block; width: 100%">
+
+        <label for="subBank">Sub Bank</label>
+        <input type="text" id="subBank" name="subBank" style="display: block; width: 100%">
+    </div>
+
+    <div class="form-group" style="display: block; width: 38%">
+        <label for="loanReason">Reason for Loan</label>
+        <input type="text" id="loanReason" name="loanReason" style="display: block; width: 100%">
+    </div>
+
+    <div id="shgDetails" class="form-group" style="display: none;">
+        <div id="heading" style="display: flex; flex-direction: row; justify-content: space-between;">
+            <h5>Name of SHG</h5>
+            <h5>Number of Members</h5>
+            <h5>Amount Per Member</h5>
+            <h5>Applicant Names</h5>
+        </div>
+        <div id="shg1" style="display: flex; flex-direction: row; justify-content: space-between;">
+            <input type="text" name="n1">
+            <input type="number" name="s1">
+            <input type="number" name="a1">
+            <input type="text" name="app1">
+        </div>
+
+        <div id="shg2" style="display: flex; flex-direction: row; justify-content: space-between;">
+            <input type="text" name="n2">
+            <input type="number" name="s2">
+            <input type="number" name="a2">
+            <input type="text" name="app2">
+        </div>
+
+        <div id="shg3" style="display: flex; flex-direction: row; justify-content: space-between;">
+            <input type="text" name="n3">
+            <input type="number" name="s3">
+            <input type="number" name="a3">
+            <input type="text" name="app3">
+        </div>
+
+        <div id="shg4" style="display: flex; flex-direction: row; justify-content: space-between;">
+            <input type="text" name="n4">
+            <input type="number" name="s4">
+            <input type="number" name="a4">
+            <input type="text" name="app4">
+        </div>
+
+        <div id="shg5" style="display: flex; flex-direction: row; justify-content: space-between;">
+            <input type="text" name="n5">
+            <input type="number" name="s5">
+            <input type="number" name="a5">
+            <input type="text" name="app5">
+        </div>
+
+        <div id="shg6" style="display: flex; flex-direction: row; justify-content: space-between;">
+            <input type="text" name="n6">
+            <input type="number" name="s6">
+            <input type="number" name="a6">
+            <input type="text" name="app6">
+        </div>
+
+        <div id="shg7" style="display: flex; flex-direction: row; justify-content: space-between;">
+            <input type="text" name="n7">
+            <input type="number" name="s7">
+            <input type="number" name="a7">
+            <input type="text" name="app7">
+        </div>
+
+        <div id="shg8" style="display: flex; flex-direction: row; justify-content: space-between;">
+            <input type="text" name="n8">
+            <input type="number" name="s8">
+            <input type="number" name="a8">
+            <input type="text" name="app8">
+        </div>
+
+        <div id="shg9" style="display: flex; flex-direction: row; justify-content: space-between;">
+            <input type="text" name="n9">
+            <input type="number" name="s9">
+            <input type="number" name="a9">
+            <input type="text" name="app9">
+        </div>
+
+        <div id="shg10" style="display: flex; flex-direction: row; justify-content: space-between;">
+            <input type="text" name="n10">
+            <input type="number" name="s10">
+            <input type="number" name="a10">
+            <input type="text" name="app10">
+        </div>
+    </div>
+
+    <div id="BenCount" style="display: none;">
+        <label for="beneficiaryCount">Beneficiary Count</label>
+        <input type="number" id="beneficiaryCount" name="beneficiaryCount">
+
+        <label for="shgCount">SHG Count</label>
+        <input type="number" id="shgCount" name="shgCount">
+    </div>
+
+    <div class="form-group" style="display: flex; flex-direction: row; justify-content: space-between;">
+        <div>
+            <label for="loanAmount">Loan Amount</label>
+            <input type="number" id="loanAmount" name="loanAmount">
+        </div>
+        <div style="margin-left: 10px">
+            <label for="receivedDate">Application Received Date</label>
+            <input type="date" id="receivedDate" name="receivedDate">
+        </div>
+        <div style="margin-left: 10px">
+            <label for="screeningDate">Screening Committee Date</label>
+            <input type="date" id="screeningDate" name="screeningDate">
+        </div>
+    </div>
+
+    <div class="form-group" style="display: flex; flex-direction: row; justify-content: space-between;">
+        <div>
+            <label for="jrLetterNumber">JR Letter Number</label>
+            <input type="text" id="jrLetterNumber" name="jrLetterNumber">
+        </div>
+        <div style="margin-left: 10px">
+            <label for="jrLetterDate">JR Letter Date</label>
+            <input type="date" id="jrLetterDate" name="jrLetterDate">
+        </div>
+    </div>
+
+    <div class="form-group" style="display: flex; flex-direction: row; justify-content: space-between;">
+        <div>
+            <label for="interest">Rate of Interest %</label>
+            <input type="number" id="interest" name="interest">
+        </div>
+        <div style="margin-left: 10px">
+            <label for="noOfDemands"># of Installments</label>
+            <input type="number" id="noOfDemands" name="noOfDemands">
+        </div>
+    </div>
+
+    <div class="form-group" style="display: flex; flex-direction: row; justify-content: space-between;">
+        <div>
+            <label for="status">Application Status</label>
+            <select class="form-control" id="status" name="status">
+                {% set castes = ['Form A', 'PSO', 'Release Order', 'Payment Voucher', 'Covering Letter'] %}
+                {% for caste in castes %}
+                    <option value= "{{caste}}">{{caste}}</option>"
+                {% endfor %}
+            </select>
+        </div>
+        <div style="margin-left: 10px">
+            <label for="statusDate">Status Date</label>
+            <input type="date" id="statusDate" name="statusDate">
+        </div>
+    </div>
+
+    <div class="form-group" style="display: flex; flex-direction: row; justify-content: space-between;">
+        <div>
+            <label for="annualLoanID">File Number</label>
+            <input type="text" id="annualLoanID" name="annualLoanID">
+        </div>
+        <div>
+            <label for="loanNumber">PSO Number</label>
+            <input type="number" id="loanNumber" name="loanNumber">
+        </div>
+        <div>
+            <label for="roNumber">RO Number</label>
+            <input type="number" id="roNumber" name="roNumber">
+        </div>
+    </div>
+
+    <div class="form-group" style="display: flex; flex-direction: row; justify-content: space-between;">
+        <div>
+            <label for="psoDate">PSO Date</label>
+            <input type="date" id="psoDate" name="psoDate">
+        </div>
+        <div>
+            <label for="roDate">RO Date</label>
+            <input type="date" id="roDate" name="roDate">
+        </div>
+    </div>
+
+    <div class="form-group" style="display: flex; flex-direction: row; justify-content: space-between;">
+        <div>
+            <label for="chequeNumber">Cheque Number [Update Before Sanction]</label>
+            <input type="text" id="chequeNumber" name="chequeNumber">
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-success">Save Application Details</button>
+
+</div>
+</form>
+
+<script>
+    function categorySelection(that) {
+        console.log(that.value);
+        if (that.value === "MCG (Micro-Credit Gents)" || that.value === "MSY (Mahila Samriddhi Yojana)"){
+            document.getElementById("shgDetails").style.display = "flex";
+            document.getElementById("shgDetails").style.flexDirection = "column";
+            document.getElementById("shgDetails").style.justifyContent = "space-between";
+            document.getElementById("nameOfApplicant").style.display = "none";
+            document.getElementById("nameOfApplicantFather").style.display = "none";
+            document.getElementById("ageOfApplicant").style.display = "none";
+            document.getElementById("addressOfApplicant").style.display = "none";
+            document.getElementById("personalInfo").style.display = "none";
+            document.getElementById("age").style.display = "none";
+            document.getElementById("BenCount").style.display = "";
+            document.getElementById("shgCount").style.display = "";
+        }
+        else {
+            document.getElementById("shgDetails").style.display = "none";
+            document.getElementById("nameOfApplicant").style.display = "";
+            document.getElementById("nameOfApplicantFather").style.display = "";
+            document.getElementById("ageOfApplicant").style.display = "";
+            document.getElementById("addressOfApplicant").style.display = "";
+            document.getElementById("personalInfo").style.display = "";
+            document.getElementById("BenCount").style.display = "none";
+            document.getElementById("shgCount").style.display = "none";
+        }
+    }
+            var source = "/loan/"+"{{application_id}}";
+            $.ajax({
+            type: 'GET',
+            url: source,
+            contentType: "application/json",
+            dataType: 'json',
+            success: function (json) {
+                console.log(json);
+                document.getElementById("loanCategory").value = json[0]["loan_category"];
+                document.getElementById("applicantName").value = json[0]["applicant_name"];
+                document.getElementById("applicantFatherName").value = json[0]["father_name"];
+                document.getElementById("age").value = json[0]["age"];
+                document.getElementById("gender").value = json[0]["gender"];
+                document.getElementById("address").value = json[0]["address"];
+                document.getElementById("district").value = json[0]["district"];
+                document.getElementById("annualIncome").value = json[0]["annual_income"];
+                document.getElementById("caste").value = json[0]["caste"];
+                document.getElementById("bankName").value = json[0]["bank"];
+                document.getElementById("subBank").value = json[0]["sub_bank"];
+                document.getElementById("interest").value = json[0]["roi"];
+                document.getElementById("noOfDemands").value = json[0]["no_of_demands"];
+                document.getElementById("loanReason").value = json[0]["loan_reason"];
+                document.getElementById("loanAmount").value = json[0]["loan_amount"];
+                document.getElementById("loanNumber").value = json[0]["loan_number"];
+                document.getElementById("status").value = json[0]["status"];
+                document.getElementById("jrLetterNumber").value = json[0]["jr_letter_number"];
+                document.getElementById("annualLoanID").value = json[0]["ann_loan_id"];
+                document.getElementById("roNumber").value = json[0]["ro_number"];
+                document.getElementById("receivedDate").value = moment(json[0]["received_date"]['$date']).format("YYYY-MM-DD");
+                document.getElementById("statusDate").value = moment(json[0]["status_date"]['$date']).format("YYYY-MM-DD");
+                document.getElementById("jrLetterDate").value = moment(json[0]["jr_letter_date"]['$date']).format("YYYY-MM-DD");
+                document.getElementById("screeningDate").value = moment(json[0]["screening_date"]['$date']).format("YYYY-MM-DD");
+                document.getElementById("roDate").value = moment(json[0]["ro_date"]['$date']).format("YYYY-MM-DD");
+                document.getElementById("psoDate").value = moment(json[0]["pso_date"]['$date']).format("YYYY-MM-DD");
+                for(var i=1; i<10; i++){
+                    var shgString = 'shg' + i;
+                    document.getElementsByName("n"+i).value = json[0][shgString].name;
+                    document.getElementsByName("s"+i).value = json[0][shgString].strength;
+                    document.getElementsByName("a"+i).value = json[0][shgString].amount;
+                }
+        },
+            error: function (e) {
+                alert("error");
+            }
+        });
+</script>
+
+{% endblock %}

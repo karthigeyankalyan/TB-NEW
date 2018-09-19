@@ -1,0 +1,83 @@
+{% extends "post_login_loans.html" %}
+{% block content %}
+
+<style>
+    #cardCategory, #cardBank{
+        border: 5px groove;
+        margin-top: 40px;
+        width: 20%;
+        align-items: center;
+        justify-content: center;
+        display: flex;
+        color: green;
+        padding: 20px;
+    }
+</style>
+
+
+    <div style="display: flex; flex-direction: row; justify-content: space-around;">
+        <div id="cardBank">
+        </div>
+        <div id="cardCategory">
+        </div>
+    </div>
+
+    <div style="display: flex; flex-direction: row; justify-content: space-around; align-items: center; margin-top: 10px; margin-bottom: 10px">
+        <button onclick="downloadFS()">Download Financial Statement</button>
+    </div>
+
+<div id="financialList">
+</div>
+
+<script>
+    var source = "/RawDemandsBetween/"+"{{bank}}"+"/"+"{{loan_category}}";
+    var start_date = moment("{{start_date}}");
+    var end_date = moment("{{end_date}}");
+    var bank = "{{bank}}";
+    var category = "{{loan_category}}";
+
+    // Populating the Blocks
+        // Category Card
+        document.getElementById("cardBank").innerHTML = "Name of the Bank: "+bank;
+        document.getElementById("cardCategory").innerHTML = "Category of Loan: "+category;
+    $.ajax({
+        type: 'GET',
+        url: source,
+        contentType: "application/json",
+        dataType: 'json',
+        success: function (json) {
+        var tbl = $("<table class='table table-bordered table-dark' id='financialDetails'/>");
+        $("#financialList").append(tbl);
+        var hr = "<tr>";
+        var th1 = "<th style='text-align:center;vertical-align:middle'>" + "Loan Id" + "</th>";
+        var th2 = "<th style='text-align:center;vertical-align:middle'>" + "Applicant Name" + "</th>";
+        var th3 = "<th style='text-align:center;vertical-align:middle'>" + "Nature of Business" + "</th>";
+        var th4 = "<th style='text-align:center;vertical-align:middle'>" + "# of Demands" + "</th>";
+        var th5 = "<th style='text-align:center;vertical-align:middle'>" + "Loan Amount" + "</th>";
+        var th6 = "<th style='text-align:center;vertical-align:middle'>" + "Loan Amount Remaining" + "</th>";
+        var th7 = "<th style='text-align:center;vertical-align:middle'>" + "View Demands" + "</th>";
+        $("#financialDetails").append(hr + th1 + th2 + th3 + th4 + th5 + th6 + th7);
+        for (var j = 0; j < json.length; j++) {
+                var url2 = '/ViewDemandsByLoan/'+json[j]['_id'];
+                var row = $('<tr></tr>').html('<td>' +
+                    json[j]['ann_loan_id'] + '/' + category + '/' +
+                        // Creating financial Year (For e.g. 1718, 1819)
+                        (moment(json[j]['sanctioned_date']).year() - 2000) + '' +
+                        (moment(json[j]['sanctioned_date']).year() - 1999) + '</td>'+
+                    '<td>'+json[j]["applicant_name"] +'</td>'+
+                    '<td>'+json[j]["loan_reason"] +'</td>'+
+                    '<td>'+json[j]["no_of_demands"] +'</td>'+
+                    '<td>'+json[j]["loan_amount"] +'</td>'+
+                    '<td>'+(json[j]["amount_yet_to_pay"]) +'</td>' +
+                    '<td><button class="btn btn-default"><a href="' + url2 + '">'+ 'View Demands' +'</a></button></td>');
+                $("#financialDetails").append(row);
+	    	}
+		},
+        error: function (e) {
+            alert("The Loan Application does not exist");
+        }
+    });
+
+</script>
+
+{% endblock %}

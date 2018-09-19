@@ -1,0 +1,144 @@
+{% extends "post_login_loans.html" %}
+{% block content %}
+
+<body>
+    <div id="demandList">
+    </div>
+</body>
+
+<script>
+        var source = "/rawDemandsByLoan/{{loan_id}}";
+        $.ajax({
+            type: 'GET',
+            url: source,
+            contentType: "application/json",
+            dataType: 'json',
+            success: function (json) {
+                    {
+                        if (json[0]['closing_balance_principal_due'] === null) {
+                                json[0]['opening_balance_principal_due'] = 0;
+                                json[0]['opening_balance_interest_due'] = 0;
+                                json[0]['opening_balance_principal_ndue'] = parseInt(json[0]['loan_amount']);
+                        }
+
+                        for(var i = 0; i<json.length; i++) {
+                            json[i]['demand_number'] = parseInt(json[i]['demand_number']);
+                            if (i !== 0 ) {
+                                json[i]['opening_balance_principal_due'] = parseInt(json[i-1]['closing_balance_principal_due']);
+                                json[i]['opening_balance_interest_due'] = parseInt(json[i-1]['closing_balance_interest_due']);
+                                json[i]['opening_balance_principal_ndue'] = parseInt(json[i-1]['closing_balance_principal_ndue']);
+                            }
+
+                            if(json[i]["cheque_date"] !== null) {
+                                json[i]["cheque_date"] = moment(json[i]["cheque_date"]['$date']).format('YYYY-MM-DD');
+                            }
+
+                            if(json[i]["demand_date"] !== null) {
+                                json[i]["demand_date"] = moment(json[i]["demand_date"]['$date']).format('YYYY-MM-DD');
+                            }
+
+                            if(moment(json[i]['demand_date']).isValid()) {
+                                if(moment(json[i]['demand_date']).isBefore(moment()) && json[i]['principal_collected'] === null) {
+                                    json[i]['cheque_date'] = moment();
+                                    json[i]['Total Principal Demand'] = parseInt(json[i]['principal_demand'])+parseInt(json[i]['opening_balance_principal_due']);
+                                    json[i]['Total Interest Demand'] = parseInt(json[i]['interest_demand'])+parseInt(json[i]['opening_balance_interest_due']);
+                                    json[i]['Total Demand'] = json[i]['Total Principal Demand']+json[i]['Total Interest Demand'];
+                                    if(json[i]['demand_number'] === 1) {
+                                        var delay = moment().diff(moment(json[i]['demand_date']), 'days');
+                                        json[i]['delay'] = delay;
+                                        json[i]['penal_interest'] = (delay*json[i]['Total Demand']*5)/(365*100);
+                                        json[i]['belated_interest'] = (delay*json[i]['Total Demand']*parseInt(json[i]['roi']))/(365*100);
+                                    }
+                                    else {
+                                        json[i]['opening_balance_due'] = json[i]['opening_balance_principal_due']+json[i]['opening_balance_interest_due'];
+                                        var delay_old = moment(json[i]['demand_date']).diff(moment(json[i-1]['cheque_date']), 'days');
+                                        json[i]['delay_old'] = delay_old;
+                                        json[i]['penal_interest_old'] = (delay_old*json[i]['opening_balance_due']*5)/(365*100);
+                                        json[i]['belated_interest_old'] = (delay_old*json[i]['opening_balance_due']*parseInt(json[i]['roi']))/(365*100);
+
+                                        delay = moment().diff(moment(json[i]['demand_date']), 'days');
+                                        json[i]['penal_interest'] = (delay*json[i]['Total Demand']*5)/(365*100);
+                                        json[i]['delay'] = delay;
+                                        json[i]['belated_interest'] = (delay*json[i]['Total Demand']*parseInt(json[i]['roi']))/(365*100);
+
+                                        json[i]['penal_interest'] += json[i]['penal_interest_old'];
+                                        json[i]['belated_interest'] += json[i]['belated_interest_old'];
+                                    }
+                                    json[i]['Remarks'] = "Demand Payment not yet made; Penal Interest shown if payment is made today";
+                                    json[i]['closing_balance_principal_due'] = parseInt(json[i]['Total Principal Demand']);
+                                    json[i]['closing_balance_interest_due'] = parseInt(json[i]['Total Interest Demand']);
+                                    json[i]['closing_balance_principal_ndue'] = parseInt(json[i]['loan_amount'])-parseInt(json[i]['Total Principal Demand']);
+                                }
+                            }
+                        }
+
+                        var tbl = $("<table class='table table-bordered table-dark' id='demandDetails'/>");
+                        $("#demandList").append(tbl);
+                        var hr = "<tr>";
+                        var th1 = "<th style='text-align:center;vertical-align:middle'>" + "Demand Number" + "</th>";
+                        var th2 = "<th style='text-align:center;vertical-align:middle'>" + "Demand Date" + "</th>";
+                        var th3 = "<th style='text-align:center;vertical-align:middle'>" + "Cheque Date" + "</th>";
+                        var th4 = "<th style='text-align:center;vertical-align:middle'>" + "Loan Amount" + "</th>";
+                        var th5 = "<th style='text-align:center;vertical-align:middle'>" + "Belated Interest" + "</th>";
+                        var th6 = "<th style='text-align:center;vertical-align:middle'>" + "Penal Interest" + "</th>";
+                        var th7 = "<th style='text-align:center;vertical-align:middle'>" + "Principal Due" + "</th>";
+                        var th8 = "<th style='text-align:center;vertical-align:middle'>" + "Interest Due" + "</th>";
+                        var th9 = "<th style='text-align:center;vertical-align:middle'>" + "Edit Application" + "</th>";
+                        var th10 = "<th style='text-align:center;vertical-align:middle'>" + "Remarks" + "</th>";
+                        $("#demandDetails").append(hr + th1 + th2 + th3 + th4 + th5 + th6 + th7 + th8 + th9 + th10);
+                        for (var j = 0; j < json.length; j++) {
+                            {
+                                if (json[j]["belated_interest"] === null){
+                                    json[j]["belated_interest"] = json[j]["belated_interest"];
+                                }
+                                else {
+                                    json[j]["belated_interest"] = json[j]["belated_interest"].toFixed(2);
+                                }
+
+                                if (json[j]["penal_interest"] === null){
+                                    json[j]["penal_interest"] = json[j]["penal_interest"];
+                                }
+                                else {
+                                    json[j]["penal_interest"] = json[j]["penal_interest"].toFixed(2);
+                                }
+
+                                if (json[j]["closing_balance_principal_due"] === null){
+                                    json[j]["closing_balance_principal_due"] = json[j]["closing_balance_principal_due"];
+                                }
+                                else {
+                                    json[j]["closing_balance_principal_due"] = json[j]["closing_balance_principal_due"].toFixed(2);
+                                }
+
+                                if (json[j]["closing_balance_interest_due"] === null){
+                                    json[j]["closing_balance_interest_due"] = json[j]["closing_balance_interest_due"];
+                                }
+                                else {
+                                    json[j]["closing_balance_interest_due"] = json[j]["closing_balance_interest_due"].toFixed(2);
+                                }
+
+                                var demand_id = json[j]["_id"];
+                                var url = '/updateDemand/'+demand_id;
+                                var row = $('<tr></tr>').html('<td>' +
+                                    +json[j]["demand_number"] +'</td>'+
+                                    '<td>'+json[j]["demand_date"]+'</td>'+
+                                    '<td>'+moment(json[j]["cheque_date"]['$date']).format('YYYY-MM-DD')+'</td>'+
+                                    '<td>'+json[j]["loan_amount"]+'</td>'+
+                                    '<td>'+json[j]["belated_interest"]+'</td>'+
+                                    '<td>'+json[j]["penal_interest"]+'</td>'+
+                                    '<td>'+json[j]["closing_balance_principal_due"]+'</td>'+
+                                    '<td>'+json[j]["closing_balance_interest_due"]+'</td>'+
+                                    '<td><button class="btn btn-default"><a href="' + url + '">'+ 'Update Demand' +'</a></button></td>'+
+                                    '<td style="font-size: 10px">'+json[j]["Remarks"]+'</td>');
+                                $("#demandDetails").append(row);
+                            }
+                        }
+                    }
+                },
+            error: function (e) {
+                alert("error");
+            }
+        });
+
+</script>
+
+{% endblock %}

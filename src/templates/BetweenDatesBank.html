@@ -1,0 +1,39 @@
+{% extends "post_login_accounts.html" %}
+{% block content %}
+
+<div style="display: flex; flex-direction: column; justify-content: space-between; align-items: center;">
+    <form id="getByDate" action="/bank_accounting_statements" method="post">
+        <div>
+            Enter Dates Below to get Account Statements
+        </div>
+        <div>
+            <label for="startDate">Start Date</label>
+            <input type="date" id="startDate" name="startDate">
+        </div>
+
+        <div>
+            <label for="endDate">End Date</label>
+            <input type="date" id="endDate" name="endDate">
+        </div>
+
+        <div>
+            <label for="bank">Bank</label>
+            <input type="text" id="bank" name="bank">
+        </div>
+
+        <div style="display: flex; align-items: center; justify-content: center; flex-direction: row;">
+            <div>
+                <label for="interestOnAccount">Enter the Interest Accured</label>
+                <input type="number" id="interestOnAccount" name="interestOnAccount">
+            </div>
+            <div>
+                <label for="bankCharges">Bank Charges</label>
+                <input type="number" id="bankCharges" name="bankCharges">
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-success">Account Statements</button>
+    </form>
+</div>
+
+{% endblock %}

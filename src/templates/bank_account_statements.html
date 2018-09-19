@@ -1,0 +1,116 @@
+{% extends "post_login_accounts.html" %}
+{% block content %}
+<style>
+    #cardCategory {
+        border: 5px groove;
+        width: 40%;
+        align-items: center;
+        justify-content: center;
+        display: flex;
+        color: green;
+        padding: 20px;
+    }
+</style>
+
+<div style="display: flex; align-items: center; justify-content: center">
+    <div id="cardCategory">
+    </div>
+</div>
+
+<div style="display: flex; flex-direction: row; justify-content: space-around; align-items: center; margin-top: 10px">
+    <button onclick="downloadRR()">Recoincilliation Report</button>
+</div>
+
+
+<script>
+
+    document.getElementById("cardCategory").innerHTML = "Between: {{start_date}} and {{end_date}} for {{bank}}";
+
+    function downloadRR() {
+    var start_date = "{{start_date}}";
+    var end_date = "{{end_date}}";
+    var bank = "{{bank}}";
+    var doc = new jsPDF();
+    var MD = 'N. Venkatachalam';
+    var source = "/accounts_between_bank/"+"{{start_date}}"+"/"+"{{end_date}}"+"/"+"{{bank}}";
+    $.ajax({
+        type: 'GET',
+        url: source,
+        contentType: "application/json",
+        dataType: 'json',
+        success: function (json) {
+
+            var jsonCleared = json.filter(function (i,n){ return n.cleared==='Yes'; });
+            var jsonNotCleared = json.filter(function (i,n){ return n.cleared==='No'; });
+
+            var aggregated_nature_of_transaction = d3.nest()
+                .key(function (d) {
+                    return d.nature_of_transaction;
+                })
+                .rollup(function (v) {
+                    return d3.sum(v, function(d) { return d.amount });
+                })
+                .entries(jsonCleared);
+
+            var cell1 = 0;
+            var cell2 = 0;
+            var cell3 = "{{interest}}";
+            var cell4 = "{{bank_charges}}";
+
+            for(var i=0; i< aggregated_nature_of_transaction.length; i++) {
+                if (aggregated_nature_of_transaction[i]['key'] === "Debit") {
+                    cell1 = parseInt(aggregated_nature_of_transaction[i]['values']);
+                }
+                else {
+                    cell1 += parseInt(0);
+                }
+
+                if (aggregated_nature_of_transaction[i]['key'] === "Credit") {
+                    cell2 = parseInt(aggregated_nature_of_transaction[i]['values']);
+                }
+                else {
+                    cell2 += parseInt(0);
+                }
+            }
+
+            doc.setFontSize(12);
+
+            doc.text(50, 20, "Bank Reconciliation for the month of "+moment(end_date).format('MM/YYYY')+" - {{bank}}");
+
+            var columns = ["S.No", "Demarcation", "Particulars", "Amount"];
+            var rows = [];
+            rows.push([["I"], ["Opening Balance"], [""], ["0"]]);
+            rows.push([["II"], ["All Receipts"], [""], [cell1]]);
+            rows.push([["III"], ["All Payments"], [""], [cell2]]);
+            rows.push([["IV"], ["Interest on SB A/c"], [""], [cell3]]);
+            rows.push([["V"], ["Bank Charges"], [""], [cell4]]);
+
+            doc.autoTable(columns, rows, {startY: 30});
+
+            doc.setFontSize(8);
+
+            doc.text(30, doc.autoTableEndPosY()+20, "Balance as per Cash Book on "+moment().format('DD.MM.YYYY'));
+
+            var columns1 = ["Cheque Date", "Cheque Number", "Particulars", "Amount", "Transaction"];
+            var rows1 = [];
+
+            for(i=0; i<jsonNotCleared.length; i++) {
+                rows1.push([[jsonNotCleared[i]['cheque_date']], [jsonNotCleared[i]['cheque_number']],
+                    [jsonNotCleared[i]['account_head']], [jsonNotCleared[i]['amount']],
+                    [jsonNotCleared[i]['nature_of_transaction']]]);
+            }
+
+            doc.autoTable(columns1, rows1, {startY: doc.autoTableEndPosY()+40});
+
+            doc.save('Recoincilliation - {{bank}}'+start_date+'to'+end_date+'.pdf')
+
+        },
+        error: function (e) {
+            alert("error");
+        }
+    });
+    }
+
+</script>
+
+{% endblock %}

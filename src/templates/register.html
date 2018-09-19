@@ -1,0 +1,43 @@
+{% extends "pre_login_base.html" %}
+{% block content %}
+
+<!--Form for user registration-->
+<div class="container login-page-form" style="display: flex; flex-direction: row; flex: 1.5; justify-content: center">
+    <form id="register-form" action="/authorize/register" method="post" style="display: flex; flex-direction: column; justify-content: space-around">
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="text" id="email" class="form-control" name="email" placeholder="ramesh@example.com">
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" class="form-control" name="password" placeholder="xxxxx">
+        </div>
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" id="username" class="form-control" name="username" placeholder="ramesh">
+        </div>
+        <div class="form-group">
+            <label for="designation">Designation</label>
+              <select class="form-control" id="designation" name="designation">
+                {% set designation = ['TABCEDCO Staff', 'Bank Staff', 'HQ Staff'] %}
+                {% for ch in designation %}
+                    <option value= "{{ch}}">{{ch}}</option>"
+                {% endfor %}
+              </select>
+        </div>
+        <div class="form-group">
+            <label for="department">Department</label>
+              <select class="form-control" id="department" name="department">
+                {% set designation = ['Loans', 'Accounts', 'HQ Staff'] %}
+                {% for ch in designation %}
+                    <option value= "{{ch}}">{{ch}}</option>"
+                {% endfor %}
+              </select>
+        </div>
+        <div style="justify-content: center; display: flex">
+            <button type="submit" class="btn btn-success">Sign-up</button>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

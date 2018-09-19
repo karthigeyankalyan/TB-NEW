@@ -1,0 +1,162 @@
+{% extends "post_login_loans.html" %}
+{% block content %}
+
+<body>
+    <div style="display: flex; flex-direction: row; justify-content: space-around; align-items: center; margin-top: 10px; margin-bottom: 10px">
+        <div id="filters">
+            <div id="Category">
+                <label for="loanCategory">Loan Category</label>
+                <select class="form-control" id="loanCategory" name="loanCategory">
+                    {% set categories = ['All', 'GTL (General Term Loan)', 'NSS (New-Swarnima Scheme)', 'MCG (Micro-Credit Gents)', 'MSY (Mahila Samriddhi Yojana)'] %}
+                    {% for category in categories %}
+                        <option value= "{{category}}">{{category}}</option>"
+                    {% endfor %}
+                </select>
+            </div>
+            <div id="designation">
+                <label for="uploadedByFilter">Uploaded By Filter</label>
+                <select class="form-control" id="uploadedByFilter" name="uploadedByFilter">
+                    {% set categories = ['All', 'B1 Assistant', 'B2 Assistant', 'B3 Assistant', 'B4 Assistant'] %}
+                    {% for category in categories %}
+                        <option value= "{{category}}">{{category}}</option>"
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+
+        <div id="Search" style="display: flex; flex-direction: column;">
+            <label for="myInput" style="margin-left: 10%">Search by File #:</label>
+            <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for File #.." title="Type in File #">
+        </div>
+    </div>
+
+    <div id="loansList">
+    </div>
+</body>
+
+<script>
+        var source = "/RawLoans/"+"{{stat}}";
+        $.ajax({
+            type: 'GET',
+            url: source,
+            contentType: "application/json",
+            dataType: 'json',
+            success: function (json) {
+                    {
+                        var $accountHead = $("#loanCategory");
+                        console.log(json);
+
+                        $accountHead.each(function() {
+                            if (this.selectedIndex === 0) {
+                                populatePage(json);
+                            }
+                        });
+
+                        $accountHead.change(function () {
+                            var selectedbucket = this.value;
+                            //filter based on  selected year.
+                            if (selectedbucket==="All") {
+                                populatePage(json);
+                            }
+                            else {
+                                selectedAccountHead = jQuery.grep(json, function (account) {
+                                    return account.loan_category === selectedbucket;
+                                });
+                                populatePage(selectedAccountHead);
+                            }
+                        });
+
+                        var $uploadedBy = $("#uploadedByFilter");
+
+                        $uploadedBy.each(function() {
+                            if (this.selectedIndex === 0) {
+                                populatePage(json);
+                            }
+                        });
+
+                        $uploadedBy.change(function () {
+                            var selectedbucket = this.value;
+                            //filter based on  selected year.
+                            if (selectedbucket==="All") {
+                                populatePage(json);
+                            }
+                            else {
+                                selectedDesignation = jQuery.grep(json, function (account) {
+                                    return account.user_name === selectedbucket;
+                                });
+                                populatePage(selectedDesignation);
+                            }
+                        });
+
+                        function populatePage(jsonFunc) {
+                            $("#loansDetails").find("tbody").empty();
+                            var tbl = $("<table class='table table-bordered table-dark' id='loansDetails'/>");
+                            $("#loansList").append(tbl);
+                            var hr = "<tr>";
+                            var th1 = "<th style='text-align:center;vertical-align:middle'>" + "Applicant/SHG Name" + "</th>";
+                            var th2 = "<th style='text-align:center;vertical-align:middle'>" + "File #" + "</th>";
+                            var th3 = "<th style='text-align:center;vertical-align:middle'>" + "Age" + "</th>";
+                            var th4 = "<th style='text-align:center;vertical-align:middle'>" + "District" + "</th>";
+                            var th5 = "<th style='text-align:center;vertical-align:middle'>" + "Bank" + "</th>";
+                            var th6 = "<th style='text-align:center;vertical-align:middle'>" + "Annual Income" + "</th>";
+                            var th7 = "<th style='text-align:center;vertical-align:middle'>" + "Loan Reason" + "</th>";
+                            var th8 = "<th style='text-align:center;vertical-align:middle'>" + "Loan Amount" + "</th>";
+                            var th9 = "<th style='text-align:center;vertical-align:middle'>" + "Uploaded by" + "</th>";
+                            var th10 = "<th style='text-align:center;vertical-align:middle'>" + "Delete Application" + "</th>";
+                            var th11 = "<th style='text-align:center;vertical-align:middle'>" + "Review Application" + "</th>";
+                            $("#loansDetails").append(hr + th1 + th2 + th3 + th4 + th5 + th6 + th7 + th8 + th9 + th10 + th11);
+                            for (var j = 0; j < jsonFunc.length; j++) {
+                                {
+                                    var deletion = '/delete_application/'+jsonFunc[j]["_id"];
+                                    var loan_id = jsonFunc[j]["_id"];
+                                    var url = '/ReviewLoanApplication/'+loan_id;
+                                    if (jsonFunc[j]['loan_category'] === 'GTL (General Term Loan)' || jsonFunc[j]['loan_category'] === 'NSS (New-Swarnima Scheme)') {
+                                        var name = jsonFunc[j]["applicant_name"];
+                                    }
+                                    else {
+                                        name = jsonFunc[j]["shg_name"];
+                                    }
+                                    var row = $('<tr></tr>').html('<td>' + name + '</td>'+
+                                        '<td>'+jsonFunc[j]["ann_loan_id"]+'</td>'+
+                                        '<td>'+jsonFunc[j]["age"]+'</td>'+
+                                        '<td>'+jsonFunc[j]["district"] +'</td>'+
+                                        '<td>'+jsonFunc[j]["bank"] +'</td>'+
+                                        '<td>'+jsonFunc[j]["annual_income"] +'</td>'+
+                                        '<td>'+jsonFunc[j]["loan_reason"] +'</td>'+
+                                        '<td>'+jsonFunc[j]["loan_amount"] +'</td>'+
+                                        '<td>'+jsonFunc[j]["user_name"] +'</td>'+
+                                        '<td><button class="btn btn-default"><a href="'+deletion+'">'+ 'Delete' +'</a></button></td>'+
+                                        '<td><button class="btn btn-default"><a href="' + url + '">'+ 'Review Status' +'</a></button></td>');
+                                    $("#loansDetails").append(row);
+                                }
+                            }
+                        }
+                    }
+                },
+            error: function (e) {
+                alert("error");
+            }
+        });
+
+    function myFunction() {
+        var input, filter, table, tr, td, i;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("loansList");
+        tr = table.getElementsByTagName("tr");
+        console.log(tr.length);
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[1];
+            if (td) {
+                if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+
+</script>
+
+{% endblock %}

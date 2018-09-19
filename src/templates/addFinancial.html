@@ -1,0 +1,241 @@
+{% extends "post_login_loans.html" %}
+{% block content %}
+
+<form id="new-intent" action="/loanFinancial/{{ application_id }}" method="post">
+
+<div style="display: flex; flex-direction: column; align-items: center; flex: 1; justify-content: space-around; margin-top: 10px">
+    <div class="form-group" style="display: block; width: 38%">
+        <label for="loanCategory">Loan Category</label>
+        <select class="form-control" id="loanCategory" name="loanCategory">
+            {% set categories = ['GTL', 'NSS', 'MCL', 'MSY'] %}
+            {% for category in categories %}
+                <option value= "{{category}}">{{category}}</option>"
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="form-group">
+          <label for="district">Select District:</label>
+          <select class="form-control" style="text-align: center;" id="district" name="district">
+            {% set districts = ['Ariyalur', 'Karur', 'Nagapattinam', 'Perambalur',
+              'Pudukkottai', 'Thanjavur', 'Tiruchirappalli','Tiruvarur', 'Dharmapuri',
+              'Coimbatore', 'Erode', 'Krishnagiri', 'Namakkal', 'The Nilgiris', 'Salem',
+              'Tiruppur', 'Dindigul', 'Kanyakumari', 'Madurai', 'Ramanathapuram', 'Sivaganga',
+              'Theni', 'Thoothukudi','Tirunelveli', 'Virudhunagar', 'Chennai', 'Cuddalore', 'Kancheepuram',
+              'Tiruvallur', 'Tiruvannamalai', 'Vellore','Viluppuram'] %}
+
+            {% for district in districts %}
+                <option value= "{{district}}">{{district}}</option>"
+            {% endfor %}
+          </select>
+    </div>
+
+    <div class="form-group">
+        <label for="bank">Enter Bank:</label>
+        <input type="text" name="bank" id="bank">
+
+        <label for="subBank">Enter Sub-Bank:</label>
+        <input type="text" name="subBank" id="subBank">
+    </div>
+
+    <div class="form-group" style="display: flex; flex-direction: row; justify-content: space-between;">
+        <div>
+            <label for="loanAmount">Loan Amount</label>
+            <input type="number" id="loanAmount" name="loanAmount">
+        </div>
+        <div style="margin-left: 10px">
+            <label for="receivedDate">Snaction Date [if Loan Approved]</label>
+            <input type="date" id="receivedDate" name="receivedDate" onchange="populateDates()">
+        </div>
+    </div>
+
+    <div id="demandDetails" class="form-group">
+        <div id="heading" style="display: flex; flex-direction: row; justify-content: space-between;">
+            <h5>Demand #</h5>
+            <h5>Date</h5>
+            <h5>Principal Payable</h5>
+            <h5>Interest Payable</h5>
+        </div>
+    </div>
+
+    <div id="annualloanid" style="display: flex; flex-direction: row; align-items: center; justify-content: center">
+        <label for="loanID">Annual Loan ID</label>
+        <input type="text" name="loanID" id="loanID">
+    </div>
+
+    <button type="submit" class="btn btn-success">Save Application Details</button>
+
+</div>
+</form>
+
+<script>
+    var source = "/loan/"+"{{application_id}}";
+    $.ajax({
+        type: 'GET',
+        url: source,
+        contentType: "application/json",
+        dataType: 'json',
+        success: function (json) {
+                document.getElementById("loanCategory").value = json[0]["loan_category"];
+                document.getElementById("loanID").value = json[0]["ann_loan_id"];
+                document.getElementById("bank").value = json[0]["bank"];
+                document.getElementById("loanAmount").value = json[0]["loan_amount"];
+                document.getElementById("loanID").value = json[0]["ann_loan_id"];
+                var per_installment;
+
+                for (var j = 1; j <= parseInt(json[0]["no_of_demands"]); j++) {
+                    {
+                        var inputSNO = "s"+j;
+                        var inputDateid = "d"+j;
+                        var inputPrincipalDemand = "pd"+j;
+                        var inputInterestDemand = "id"+j;
+                        var row = $('<div></div>').html('<input type="number" onchange="populateDates()" name='+inputSNO+' value='+j+'><input type="date" onchange="populateDates()" id='+inputDateid+' name='+inputDateid+'><input type="number" id='+inputPrincipalDemand+' name='+inputPrincipalDemand+'><input type="number" onchange="populateDates()" id='+inputInterestDemand+' name='+inputInterestDemand+'>');
+                        $("#demandDetails").append(row);
+                    }
+                }
+
+                var principal_paid = 0;
+                var nbc_share = NBCFDCShareCalculator(json[0]['loan_category'], json[0]['loan_amount']);
+                var tabcedco_share = tabcedcoShareCalculator(json[0]['loan_category'], json[0]['loan_amount']);
+
+                if(parseInt(json[0]["no_of_demands"]) === 12) {
+                    for (j = 1; j <= parseInt(json[0]["no_of_demands"]); j++) {
+                            inputSNO = "pd"+j;
+                            var first_installment = tabcedco_share;
+                            per_installment = nbc_share/(parseInt(json[0]["no_of_demands"])-1);
+
+                            if(j === parseInt(json[0]["no_of_demands"])) {
+                                principal_paid += Math.ceil(per_installment);
+                                var deduction = Math.ceil(parseInt(json[0]['loan_amount'])-parseInt(principal_paid));
+                                document.getElementById(inputSNO).value = Math.ceil(parseInt(deduction)+parseInt(per_installment));
+                            }
+
+                            else if(j === 1) {
+                                principal_paid += Math.ceil(first_installment);
+                                deduction = Math.ceil(parseInt(json[0]['loan_amount'])-parseInt(principal_paid));
+                                document.getElementById(inputSNO).value = Math.ceil(parseInt(first_installment));
+                            }
+
+                            else {
+                                principal_paid += Math.ceil(per_installment);
+                                document.getElementById(inputSNO).value = Math.ceil(per_installment);
+                            }
+                        }
+                    }
+                    else {
+                    for (j = 1; j <= parseInt(json[0]["no_of_demands"]); j++) {
+                            inputSNO = "pd"+j;
+                            first_installment = tabcedco_share/2;
+
+                            per_installment = nbc_share/(parseInt(json[0]["no_of_demands"])-2);
+
+                            if(j === parseInt(json[0]["no_of_demands"])) {
+                                principal_paid += Math.ceil(per_installment);
+                                deduction = Math.ceil(parseInt(json[0]['loan_amount'])-parseInt(principal_paid));
+                                document.getElementById(inputSNO).value = Math.ceil(parseInt(deduction)+parseInt(per_installment));
+                            }
+
+                            else if(j === 1 || j === 2) {
+                                principal_paid += Math.ceil(first_installment);
+                                deduction = Math.ceil(parseInt(json[0]['loan_amount'])-parseInt(principal_paid));
+                                document.getElementById(inputSNO).value = Math.ceil(parseInt(first_installment));
+                            }
+
+                            else {
+                                principal_paid += Math.ceil(per_installment);
+                                document.getElementById(inputSNO).value = Math.ceil(per_installment);
+                            }
+                        }
+                }
+        },
+        error: function (e) {
+            alert("error");
+        }
+    });
+
+        /**
+     * @return {number}
+     */
+    function NBCFDCShareCalculator(category, amount) {
+        if (category === 'GTL') {
+            return amount*0.85;
+        }
+        else if (category === 'NSS' || category === 'MSY') {
+            return amount*.95;
+        }
+        else {
+            return amount*.90;
+        }
+    }
+
+    /**
+     * @return {number}
+     */
+    function tabcedcoShareCalculator(category, amount) {
+        if (category === 'GTL') {
+            return amount*0.10;
+        }
+        else if (category === 'NSS' || category === 'MSY') {
+            return amount*0.05;
+        }
+        else {
+            return amount*0.05;
+        }
+    }
+
+
+    function populateDates() {
+            var source = "/loan/"+"{{application_id}}";
+            $.ajax({
+                type: 'GET',
+                url: source,
+                contentType: "application/json",
+                dataType: 'json',
+                success: function (json) {
+                    var sanction_date = document.getElementById("receivedDate").value;
+                    for (var j = 1; j <= parseInt(json[0]["no_of_demands"]); j++) {
+                    inputSNO = "d"+j;
+                        if(j === 1) {
+                        var day = 1;
+                        document.getElementById(inputSNO).value = moment(new Date(moment(sanction_date).format('YYYY'), parseInt(moment(sanction_date).format('MM'))+3, day)).format('YYYY-MM-DD');
+                        }
+                        else {
+                        prevDemand = "d"+(j-1);
+                        var prevDemandDate = document.getElementById(prevDemand).value;
+                        day = 1;
+                        document.getElementById(inputSNO).value = moment(new Date(moment(prevDemandDate).format('YYYY'), parseInt(moment(prevDemandDate).format('MM'))+2, day)).format('YYYY-MM-DD');
+                        }
+                    }
+                    var principle_demand_cumulative = 0;
+                    for (j = 1; j <= parseInt(json[0]["no_of_demands"]); j++) {
+                    inputSNO = "id"+j;
+                    var principalID = "pd"+j;
+                    var dateID = "d"+j;
+                    var demand_date = document.getElementById(dateID).value;
+                        if(j === 1) {
+                            var days = moment(demand_date).diff(moment(sanction_date), 'days');
+                            var principal_demand = document.getElementById(principalID).value;
+                            document.getElementById(inputSNO).value = ((json[0]["roi"] * json[0]["loan_amount"] * days) / (365 * 100)).toFixed(0);
+                        }
+                        else {
+                            var prevDateID = "d"+(j-1);
+                            var prevDemandID = "pd"+(j-1);
+                            principle_demand_cumulative+= parseInt(document.getElementById(prevDemandID).value);
+                            var remaining_amount = json[0]['loan_amount'] - principle_demand_cumulative;
+                            var prev_demand_date = document.getElementById(prevDateID).value;
+                            days = moment(demand_date).diff(moment(prev_demand_date), 'days');
+                            principal_demand = document.getElementById(principalID).value;
+                            document.getElementById(inputSNO).value = ((json[0]["roi"] * remaining_amount * days) / (365 * 100)).toFixed(0);
+                        }
+                    }
+
+                },
+                error: function (e) {
+                    alert("error");
+                }
+            });
+    }
+
+</script>
+
+{% endblock %}

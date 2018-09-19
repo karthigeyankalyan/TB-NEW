@@ -1,0 +1,110 @@
+{% extends "post_login_accounts.html" %}
+{% block content %}
+
+<body>
+
+    <div id="filters">
+        <div id="accountHead">
+            <label for="Head">Account Head</label>
+            <select class="form-control" id="Head" onchange="" name="accountHead">
+                {% set nature = ['ADVANCE TO TUCS LTD.', 'ADVANCE-NEW CATHEDRAL SERVICE STATION', 'ADVANCES', 'AMOUNT DUE FROM CTA', 'AMOUNT PAYABLE TO TAMCO (CAR)', 'AMOUNT RECEIVABLE FROM ELCOT', 'AMOUNT RECEIVABLE FROM NBCFDC', 'AMOUNT RECEIVED FROM GOVT (IRRI)', 'AMOUNT TRANSFERRED TO TAMCO', 'AMT REC FROM NBCFDC FOR EXHIBITION', 'AMT REVD FROM GOVT - JOT (PD A/c)', 'ARREARS PAYABLE', 'BAD AND DOUBTFUL DEBTS', 'BANK CHARGES', 'BANK OF BARODA , MOUNT ROAD BR', 'BOARD MEETING EXPENSE', 'BONUS', 'BOOKS & PERIODICALS', 'Buildings', 'CANCELLATION OF CHEQUE(JOT)', 'COMM OF BACKWARD CLASSES', 'COMPUTER TRAINING', 'COMPUTERS', 'CONTRIBUTION TO EPF & OTHER FUNDS', 'CONVEYANCE CHARGES', 'COST OF FUEL', 'DCCB INT', 'DCCB P.INT', 'DEPRECIATION', 'EDP INTEREST', 'EDP P INT.', 'ELECTRICITY CHARGES', 'EXHIBITION/ADVERTISEMENT EXEPNSES', 'FESTIVAL ADVANCE', 'FILING FEES', 'FIXED DEPOSIT', 'FURNITURE & FITTINGS', 'GRATUITY', 'Gain on sale of assets', 'GROUP INSURANCE SCHEME', 'GUARANTEE COMMISSIN PAYABLE TO TN GOVT', 'GUARANTEE COMMISSION TO T.N. GOVT.', 'Indian Bank T.Nagar Branch', 'INDUSIND BANK, NUNGABAKKAM BR', 'INSURANCE', 'INTEREST ACCRUED ON FD', 'INTEREST ACCRUED ON ML LOAN', 'INTEREST ACCRUED ON SB A/C', 'INTEREST ACCURED BUT NOT DUE ON FD', 'INTEREST FROM TAMCO receivable', 'INTEREST ON FIXED DEPOSIT', 'INTEREST ON SAVING BANK A/C', 'INTEREST PAID TO NBCFDC', 'INTERIM ARREARS', 'INTERNAL AUDIT FEES PAYABLE', 'STATUTORY AUDIT FEES PAYABLE', 'INTEREST ON ML LOAN', 'INTERIM ARREARS', 'INTERNAL AUDIT FEES', 'IOB, MOUNT ROAD', 'ISSUED, SUBSCRIBED AND PAID-UP', 'Karur Vysya Bank Kodambakkam branch', 'LEAVE SALARY', 'LEGAL FEES', 'LOAN FOR SETTING UP OF MOBILE LAUNDRY', 'LOAN FROM NBCFDC (GTL)', 'LOAN FROM NBCFDC (MCS)', 'LOAN FROM NBCFDC (MSY)', 'LOAN HOSTEL -PRINCIPAL', 'LOAN TO AAVIN-PRINCIPAL', 'LOAN TO DCCB (GTL) - PRINCIPAL', 'LOAN TO EDP TRAINED WOMEN - PRINCIPAL', 'LOAN TO HDC-PRINCIPAL', 'LOAN TO ICS (AUTO)-PRINCIPAL (BC)', 'LOAN TO ICS (AUTO)-PRINCIPAL (G)', 'LOAN TO ICS (AUTO)-PRINCIPAL (M)', 'LOAN TO ICS (MML) PRINCIPAL', 'LOAN TO MICRO CREDIT SCHEME-PRINCIPAL', 'LOAN TO NSS -PRINCIPAL', 'LOAN TO PACB (GTL) - PRINCIPAL', 'LOAN TO SUGAR MILL-PRINCIPAL', 'LOAN TO TAICO-PRINCIPAL', 'LOAN TO UCB (GTL) -PRINCIPAL', 'MARGIN ON INTEREST PAYABLE TO SCAS (SC)', 'MAS INT.', 'MAS P.INT', 'MEDICAL EXPENSES', ' MEETING EXPENSE', 'MICRO CREDIT SCHEME INT', 'MICRO CREDIT SCHEME P.INT', 'MLL INT.', 'MLL P.INT', 'MOTOR CAR', 'NEW HEALTH INSURANCE SCHEME', 'NSS INTEREST', 'NSS P.INTEREST', 'OFFICE EQUIPMENT', 'OFFICE EXPENSE', 'OUTSTANDING EXPENSES', 'P.D. A/C - RBI', 'PACB INT', 'PACB P.INT', 'PENAL INTEREST ACCRUED', 'PENSION CONTRIBUTION', 'PETTY CASH', 'POSTAGE EXPENSES', 'PRINTING & STATIONERY', 'PROFEESIONAL FEES', 'PROFIT AND LOSS ACCOUNT', 'PROVISION FOR BAD & DOUDTFUL DEBTIS', 'PROVISION FOR BONUS', 'PROVISION FOR GRATUITY', 'PROVISION FOR LEAVE SALARY', 'Purchase of Telephone', 'REFRESHMENT CHARGES', 'REMUNERATION TO CHARMAN', 'RENT', 'REPAIR & MAINTENANCE', 'SALARIES', 'Sale of Tender Form', 'SERVICE CHARGES', 'SOFTWARE DEVELOPMENT ', 'STAMPS ON HAND', 'STATUTORY AUDIT FEES', 'STIPEND', 'SUBSIDY CHARGES RECEIVABLE FROM GOVT.', 'SUBSIDY RECEIVED FROM GOVT FOR ML', 'SYNDICATE BANK, EGMORE BR', 'TAICO INT', 'TAMCO', 'TAMILNADU STATE APEX CO-OP BANK', 'TAX AUDIT FEES', 'TDS ON BANK DEPOSITS', 'TDS ON RENT', 'TELEPHONE DEPOSIT', 'TELEPHONE CHARGES', 'TRAINING GRANT IN AID FROM NBCFDC', 'TRAVELLING EXPENSE/TTA', 'UCB INT', 'UCB P.INT', 'VEHICLE HIRE CHARGES', 'VEHICLE MAINTANCE', 'WORK IN PROGRESS', 'WAGES'] %}
+
+                {% for nat in nature %}
+                <option value= "{{nat}}">{{nat}}</option>"
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+
+    <div id="creditsList">
+    </div>
+</body>
+
+<script>
+        var source = "/Debit";
+        $.ajax({
+            type: 'GET',
+            url: source,
+            contentType: "application/json",
+            dataType: 'json',
+            success: function (json) {
+                    {
+                        var $accountHead = $("#Head");
+
+                        $accountHead.each(function() {
+                            if (this.selectedIndex === 0) {
+                                populatePage(json);
+                            }
+                        });
+
+                        $accountHead.change(function () {
+                            var selectedbucket = this.value;
+                            //filter based on  selected year.
+                            if (selectedbucket==="All") {
+                                populatePage(json);
+                            }
+                            else {
+                                selectedAccountHead = jQuery.grep(json, function (account) {
+                                    return account.account_head === selectedbucket;
+                                });
+                                populatePage(selectedAccountHead);
+                            }
+                        });
+
+                        function populatePage(jsonFunc) {
+                            $("#creditsDetails").find("tbody").empty();
+                            var tbl = $("<table class='table table-bordered table-dark' id='creditsDetails'/>");
+                            $("#creditsList").append(tbl);
+                            var hr = "<tr>";
+                            var th1 = "<th style='text-align:center;vertical-align:middle'>" + "Invoice Date" + "</th>";
+                            var th2 = "<th style='text-align:center;vertical-align:middle'>" + "Credit/Debit" + "</th>";
+                            var th3 = "<th style='text-align:center;vertical-align:middle'>" + "Account Head" + "</th>";
+                            var th5 = "<th style='text-align:center;vertical-align:middle'>" + "Bank Account" + "</th>";
+                            var th6 = "<th style='text-align:center;vertical-align:middle'>" + "Amount" + "</th>";
+                            var th7 = "<th style='text-align:center;vertical-align:middle'>" + "Uploaded by" + "</th>";
+                            var th8 = "<th style='text-align:center;vertical-align:middle'>" + "Update" + "</th>";
+                            $("#creditsDetails").append(hr + th1 + th2 + th3 + th5 + th6 + th7 + th8);
+                            for (var j = 0; j < jsonFunc.length; j++) {
+                                {
+                                    var url = 'updateReceipt/'+jsonFunc[j]['_id'];
+                                    var row = $('<tr></tr>').html('<td>' +
+                                        moment(jsonFunc[j]["invoice_date"]['$date']).format('YYYY-MM-DD') + '</td>'+
+                                        '<td>'+jsonFunc[j]["nature_of_transaction"]+'</td>'+
+                                        '<td>'+jsonFunc[j]["account_head"] +'</td>'+
+                                        '<td>'+jsonFunc[j]["bank_account"] +'</td>'+
+                                        '<td>'+jsonFunc[j]["amount"] +'</td>'+
+                                        '<td>'+jsonFunc[j]["user_name"] +'</td>'+
+                                        '<td><button><a href="' + url + '">Update Receipt</a></button></td>');
+                                    $("#creditsDetails").append(row);
+                                }
+                            }
+                        }
+                    }
+                },
+            error: function (e) {
+                alert("error");
+            }
+        });
+
+    function myFunction() {
+        var input, filter, table, tr, td, i;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("empList");
+        tr = table.getElementsByTagName("tr");
+        console.log(tr.length);
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+                if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+
+</script>
+
+{% endblock %}

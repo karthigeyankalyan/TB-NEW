@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="JavaScriptLibraryMappings">
+    <file url="file://$PROJECT_DIR$" libraries="{FileSaver, alasql, bootstrap-select, docx, jquery.jexcel, jspdf.debug, jspdf.plugin.autotable, jszip, moment, myexcel, xlsx.core}" />
+    <file url="PROJECT" libraries="{FileSaver, jquery.jexcel, jszip, myexcel}" />
+  </component>
+</project>
