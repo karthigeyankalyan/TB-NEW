@@ -818,7 +818,7 @@
                         doc.text(160, 55, 'Dated: ' + (moment(json[0]['ro_date']).format("DD-MM-YYYY")));
                         doc.text(37, 65, 'Sub:  Tamil Nadu Backward Classes Economic Development Corporation Ltd., Chennai 600008');
                         doc.text(46, 70, 'Disbursement of Loan under ' + json[0]['loan_category'] + ' Payment sanctioned to ' + total_ben_shg_count + ' beneficiaries');
-                        doc.text(46, 75, 'through ' + json[0]["district_bank"] + ' - Final Sanction Order for Rs. ' + sanction_amount + ' - issued - Reg.');
+                        doc.text(46, 75, 'through ' + json[0]["bank"] + ' - Final Sanction Order for Rs. ' + sanction_amount + ' - issued - Reg.');
 
                         doc.text(37, 85, 'Ref:  1. The Deed of Agreement Dated: _______');
                         doc.text(46, 90, '2. The Joint Registrar of Co-Operative Societies, ' + json[0]['district'] + '.');
