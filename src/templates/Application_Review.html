@@ -940,7 +940,7 @@
                         var total_individual_amount = 0;
 
                         for (abc = 0; abc < json.length; abc++) {
-                            total_individual_amount += json[abc]['loan_amount'];
+                            total_individual_amount += parseInt(json[abc]['loan_amount']);
                         }
 
                         var sanctioned_amount = (NBCFDCShareCalculator(json[0]['loan_category'], total_individual_amount)+ tabcedcoShareCalculator(json[0]['loan_category'], total_individual_amount));
@@ -981,7 +981,7 @@
                         columns = ["Name of the beneficiary", "Nature of Business", "Loan Amount"];
                         rows = [];
                         for(i=0; i<json.length; i++) {
-                            rows.push([[json[i]['applicant_name']], [json[i]['loan_reason']], [parseInt(NBCFDCShareCalculator(json[0]['loan_category'], json[0]['loan_amount']))+ parseInt(tabcedcoShareCalculator(json[0]['loan_category'], json[0]['loan_amount']))]]);
+                            rows.push([[json[i]['applicant_name']], [json[i]['loan_reason']], [parseInt(NBCFDCShareCalculator(json[i]['loan_category'], json[i]['loan_amount']))+ parseInt(tabcedcoShareCalculator(json[i]['loan_category'], json[i]['loan_amount']))]]);
                         }
                         rows.push([[''], ['Grand Total'], [sanctioned_amount]]);
 
@@ -1246,7 +1246,7 @@
                         var total_individual_amount = 0;
 
                         for (abc = 0; abc < json.length; abc++) {
-                            total_individual_amount += json[abc]['loan_amount'];
+                            total_individual_amount += parseInt(json[abc]['loan_amount']);
                         }
 
                         var sanctioned_amount = (NBCFDCShareCalculator(json[0]['loan_category'], total_individual_amount)+ tabcedcoShareCalculator(json[0]['loan_category'], total_individual_amount));
@@ -1287,7 +1287,7 @@
                         columns = ["Name of the beneficiary", "Nature of Business", "Loan Amount"];
                         rows = [];
                         for(i=0; i<json.length; i++) {
-                            rows.push([[json[i]['applicant_name']], [json[i]['loan_reason']], [parseInt(NBCFDCShareCalculator(json[0]['loan_category'], json[0]['loan_amount']))+ parseInt(tabcedcoShareCalculator(json[0]['loan_category'], json[0]['loan_amount']))]]);
+                            rows.push([[json[i]['applicant_name']], [json[i]['loan_reason']], [parseInt(NBCFDCShareCalculator(json[i]['loan_category'], json[i]['loan_amount']))+ parseInt(tabcedcoShareCalculator(json[i]['loan_category'], json[i]['loan_amount']))]]);
                         }
                         rows.push([[''], ['Grand Total'], [sanctioned_amount]]);
 

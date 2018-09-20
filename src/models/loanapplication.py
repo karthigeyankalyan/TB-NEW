@@ -10,7 +10,7 @@ class LoanApplication(object):
                  address=None, applicant_name=None, shg_name=None, strength=None, amount_per_member=None,
                  cheque_number=None, sub_bank=None, final_collection_amount=None, _id=None, ro_number=None,
                  amount_yet_to_pay=None, no_of_shgs=None, father_name=None, screening_date=None, loan_number=None,
-                 jr_letter_date=None, jr_letter_number=None, pso_date=None, ro_date=None):
+                 jr_letter_date=None, jr_letter_number=None, pso_date=None, ro_date=None, post_pso_ref_no=None):
         self.applicant_name = applicant_name
         self.father_name = father_name
         self.loan_category = loan_category
@@ -25,6 +25,7 @@ class LoanApplication(object):
         self.loan_reason = loan_reason
         self.jr_letter_number = jr_letter_number
         self.ro_number = ro_number
+        self.post_pso_ref_no = post_pso_ref_no
 
         if jr_letter_date:
             self.jr_letter_date = (datetime.combine(datetime.strptime(jr_letter_date, '%Y-%m-%d').date(),
@@ -72,10 +73,10 @@ class LoanApplication(object):
         self.user_name = user_name
         self.no_of_shgs = no_of_shgs
         self.shg_name = shg_name
-        self.amount_per_member = int(amount_per_member)
-        self.strength = int(strength)
+        self.amount_per_member = amount_per_member if amount_per_member is None else int(amount_per_member)
+        self.strength = strength if strength is None else int(strength)
         print(amount_per_member, strength)
-        self.total_amount = int(amount_per_member)*int(strength)
+        self.total_amount = None if strength is None else int(amount_per_member)*int(strength)
         self.cheque_number = cheque_number
         self.final_collection_amount = final_collection_amount
         self.amount_yet_to_pay = int(loan_amount)
@@ -90,7 +91,7 @@ class LoanApplication(object):
                         caste, bank, loan_reason, loan_amount, received_date, status, status_date, roi, no_of_demands,
                         ann_loan_id, user_id, user_name, loan_id, no_of_shgs, amount_per_member, strength, shg_name,
                         cheque_number, amount_to_pay, father_name, loan_number, jr_letter_date, jr_letter_number,
-                        screening_date, ro_date, pso_date, ro_number):
+                        screening_date, ro_date, pso_date, ro_number, post_pso_ref):
 
         if pso_date:
             pso_date = (datetime.combine(datetime.strptime(pso_date, '%Y-%m-%d').date(),
@@ -138,7 +139,7 @@ class LoanApplication(object):
                                     cheque_number=cheque_number, amount_to_pay=amount_to_pay, father_name=father_name,
                                     loan_number=loan_number, jr_letter_date=jr_letter_date,
                                     jr_letter_number=jr_letter_number, screening_date=screening_date, ro_date=ro_date,
-                                    pso_date=pso_date, ro_number=ro_number)
+                                    pso_date=pso_date, ro_number=ro_number, post_pso_ref=post_pso_ref)
 
     @classmethod
     def update_pend_amount(cls, amount_yet_to_be_paid, loan_id):
@@ -187,6 +188,7 @@ class LoanApplication(object):
             'ro_date': self.ro_date,
             'ro_number': self.ro_number,
             'pso_date': self.pso_date,
+            'post_pso_ref_no': self.post_pso_ref_no,
             '_id': self._id,
         }
 

@@ -511,6 +511,7 @@ def loan_form(user_id):
                 user_name = user.username
                 cheque_number = request.form['chequeNumber']
                 pso_date = request.form['psoDate']
+                ro_ref = request.form['roRef']
                 ro_date = request.form['roDate']
 
                 application = LoanApplication(applicant_name=applicant_name, loan_category=loan_category, age=age,
@@ -524,7 +525,7 @@ def loan_form(user_id):
                                               father_name=applicant_father_name, screening_date=screening_date,
                                               loan_number=loanNumber, jr_letter_date=jr_letter_date,
                                               jr_letter_number=jr_letter_number, pso_date=pso_date,
-                                              ro_date=ro_date)
+                                              ro_date=ro_date, post_pso_ref_no=ro_ref)
 
                 application.save_to_mongo()
 
@@ -562,6 +563,7 @@ def loan_form(user_id):
                 cheque_number = request.form['chequeNumber']
                 ro_date = request.form['roDate']
                 ro_number = request.form['roNumber']
+                ro_ref = request.form['roRef']
 
                 for i in range(int(inv_id)):
                     print(inv_id)
@@ -587,7 +589,8 @@ def loan_form(user_id):
                                                   screening_date=screening_date, loan_number=loanNumber,
                                                   jr_letter_date=jr_letter_date, jr_letter_number=jr_letter_number,
                                                   shg_name=shg_name, amount_per_member=amount_per_member,
-                                                  strength=strength, ro_date=ro_date, ro_number=ro_number)
+                                                  strength=strength, ro_date=ro_date, ro_number=ro_number,
+                                                  post_pso_ref_no=ro_ref)
 
                     application.save_to_mongo()
 
@@ -635,6 +638,7 @@ def add_another_loan_form(_id):
             user_name = user.username
             no_of_beneficiaries = request.form['beneficiaryCount']
             cheque_number = request.form['chequeNumber']
+            ro_ref = request.form['roRef']
 
             application = LoanApplication(applicant_name=applicant_name, loan_category=loan_category, age=age,
                                           gender=gender, address=address, district=district,
@@ -645,7 +649,7 @@ def add_another_loan_form(_id):
                                           sub_bank=sub_bank, roi=roi, no_of_demands=no_of_demands,
                                           father_name=applicant_father_name, screening_date=screening_date,
                                           loan_number=loanNumber, jr_letter_date=jr_letter_date,
-                                          jr_letter_number=jr_letter_number)
+                                          jr_letter_number=jr_letter_number, post_pso_ref_no=ro_ref)
 
             application.save_to_mongo()
 
@@ -719,6 +723,7 @@ def update_loan_form(_id):
                 ro_date = request.form['roDate']
                 ro_number = request.form['roNumber']
                 cheque_number = request.form['chequeNumber']
+                ro_ref = request.form['roRef']
 
                 account_head = "Loan To "+loan_category
                 if status == "Covering Letter":
@@ -746,7 +751,8 @@ def update_loan_form(_id):
                                                 loan_number=loanNumber, screening_date=screening_date,
                                                 jr_letter_number=jr_letter_number, jr_letter_date=jr_letter_date,
                                                 ro_date=ro_date, pso_date=pso_date, amount_per_member=None,
-                                                strength=None, shg_name=None, ro_number=ro_number)
+                                                strength=None, shg_name=None, ro_number=ro_number,
+                                                post_pso_ref=ro_ref)
 
                 return render_template('application_added_update.html', user=user, application_id=_id)
 
@@ -774,6 +780,7 @@ def update_loan_form(_id):
                 cheque_number = request.form['chequeNumber']
                 ro_date = request.form['roDate']
                 ro_number = request.form['roNumber']
+                ro_ref = request.form['roRef']
 
                 for i in range(int(inv_id)):
                     shg_name_string = "sn" + str(i)
@@ -797,7 +804,8 @@ def update_loan_form(_id):
                                                     loan_number=loanNumber, screening_date=screening_date,
                                                     jr_letter_number=jr_letter_number, jr_letter_date=jr_letter_date,
                                                     ro_date=ro_date, pso_date=None, amount_per_member=amount_per_member,
-                                                    strength=strength, shg_name=shg_name, ro_number=ro_number)
+                                                    strength=strength, shg_name=shg_name, ro_number=ro_number,
+                                                    post_pso_ref=ro_ref)
 
                 return render_template('application_added_update.html', application=application, user=user)
 

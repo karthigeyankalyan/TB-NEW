@@ -234,6 +234,10 @@
             <label for="roNumber">RO Number</label>
             <input type="number" id="roNumber" name="roNumber">
         </div>
+        <div>
+            <label for="roRef">RO Reference Number</label>
+            <input type="text" id="roRef" name="roRef">
+        </div>
     </div>
 
     <div class="form-group" style="display: flex; flex-direction: row; justify-content: space-between;">
@@ -314,6 +318,7 @@
                 document.getElementById("jrLetterNumber").value = json[0]["jr_letter_number"];
                 document.getElementById("annualLoanID").value = json[0]["ann_loan_id"];
                 document.getElementById("roNumber").value = json[0]["ro_number"];
+                document.getElementById("roRef").value = json[0]["post_pso_ref"];
                 document.getElementById("receivedDate").value = moment(json[0]["received_date"]['$date']).format("YYYY-MM-DD");
                 document.getElementById("statusDate").value = moment(json[0]["status_date"]['$date']).format("YYYY-MM-DD");
                 document.getElementById("jrLetterDate").value = moment(json[0]["jr_letter_date"]['$date']).format("YYYY-MM-DD");
