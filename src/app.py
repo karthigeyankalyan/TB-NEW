@@ -1524,7 +1524,7 @@ def accounts_between_ledger(start_date, end_date, YON):
 
 
 @app.route('/accounts_between_ledger_accHead/<string:start_date>/<string:end_date>/<string:YON>/<string:HOA>')
-def accounts_between_ledgerHead(start_date, end_date, YON, HOA):
+def accounts_between_ledger_head(start_date, end_date, YON, HOA):
     accounts = []
 
     start = datetime.combine(datetime.strptime(start_date, '%Y-%m-%d').date(),
