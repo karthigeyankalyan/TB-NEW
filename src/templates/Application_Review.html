@@ -814,7 +814,7 @@
                     .entries(json);
 
                         doc.setFontSize(12);
-                        doc.text(150, 20, 'RO#: '+PSO);
+                        doc.text(150, 20, 'RO: '+PSO);
 
                         doc.setFontSize(10);
                         doc.text(30, 30, 'PROCEEDINGS OF THE MANAGING DIRECTOR, TAMIL NADU BACKWARD CLASSES');
@@ -933,7 +933,7 @@
                         PSO = json[0]['ro_number'] + '/' + cat + '/' + (moment(json[0]['received_date']).year() - 2000) + '' + (moment(json[0]['received_date']).year() - 1999);
 
                         doc.setFontSize(12);
-                        doc.text(167, 20, 'RO#: '+PSO);
+                        doc.text(167, 20, 'RO: '+PSO);
 
                         doc.setFontSize(10);
                         doc.text(30, 30, 'PROCEEDINGS OF THE MANAGING DIRECTOR, TAMIL NADU BACKWARD CLASSES');
@@ -1119,7 +1119,7 @@
                 console.log(aggregatedData);
 
                         doc.setFontSize(12);
-                        doc.text(150, 20, 'RO#: '+PSO);
+                        doc.text(150, 20, 'RO: '+PSO);
 
                         doc.setFontSize(10);
                         doc.text(30, 30, 'PROCEEDINGS OF THE MANAGING DIRECTOR, TAMIL NADU BACKWARD CLASSES');
@@ -1238,7 +1238,7 @@
                         PSO = json[0]['ro_number'] + '/' + cat + '/' + (moment(json[0]['received_date']).year() - 2000) + '' + (moment(json[0]['received_date']).year() - 1999);
 
                         doc.setFontSize(12);
-                        doc.text(167, 20, 'RO#: '+PSO);
+                        doc.text(167, 20, 'RO: '+PSO);
 
                         doc.setFontSize(10);
                         doc.text(30, 30, 'PROCEEDINGS OF THE MANAGING DIRECTOR, TAMIL NADU BACKWARD CLASSES');
@@ -1263,7 +1263,7 @@
 
                         doc.text(37, 65, sub);
 
-                        doc.text(37, 85, 'Ref:  1. The Deed of Agreement Dated: _______');
+                        doc.text(37, 85, 'Ref:	1. This office PSO Proc.No.' + json[0]['ann_loan_id'] + '/' + json[0]['district'] + '/0410/2018/' + json[0]['bank']);
                         doc.text(46, 90, '2. Accepted and Signed Memorandum of Agreement-Cum-Provisional');
                         doc.text(50, 95,  'Sanction Order received from, the Lr. No. '+json[0]['post_pso_ref_no']+' Dated:' + (moment(json[0]['ro_date']).format("DD-MM-YYYY")));
 
