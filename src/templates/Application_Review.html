@@ -17,6 +17,11 @@
     <div id="applicationStatus">
     </div>
 
+    <div id="mdName">
+        <label for="mdTBName">MD Name</label>
+        <input type="text" id="mdTBName" name="mdTBName">
+    </div>
+
     <div style="display: flex; flex-direction: row; justify-content: space-around; align-items: center; margin-top: 10px">
         <button onclick="downloadPSOOC()">Download PSO OC</button>
         <button onclick="downloadPSOFC()">Download PSO FC</button>
@@ -48,7 +53,8 @@
 <script>
     function downloadPSOOC() {
     var doc = new jsPDF();
-    var MD = 'N. Venkatachalam';
+//    var MD = 'N. Venkatachalam';
+    var MD = document.getElementById('mdName').value;
     var source = "/getLoansByIdentfierLoans/"+"{{annual_loan_id}}";
     $.ajax({
         type: 'GET',
@@ -246,7 +252,7 @@
                         'funds or any other reason, all legal action shall be immediately initiated by the Bank / Society to enforce and recover all the dues payable. All the' +
                         ' legal/miscellaneous expenses incurred towards the recovery/realization of the dues shall be borne by the Bank / Society.', 170);
                     var pt6 = doc.splitTextToSize('6.   That the Bank / Society shall pay the Penal interest at the rate of 5% in addition to normal rate ' +
-                        'of interest for the defaulted period to TABCEDCO. However, the Bank is at liberty, to collect the Penal interest &quot;in addition ' +
+                        'of interest for the defaulted period to TABCEDCO. However, the Bank is at liberty, to collect the Penal interest in addition ' +
                         'to the normal interest being charged by the Bank” from the beneficiary / beneficiaries in case of default by the beneficiary / beneficiaries ' +
                         'himself/herself/ themselves to the Bank as per Banking norms.', 170);
                     var pt7 = doc.splitTextToSize('7.   That the Society shall be entitled to 3% of the total interest collected depending upon the nature of the scheme ' +
@@ -309,7 +315,8 @@
 
     function downloadPSOFC() {
     var doc = new jsPDF();
-    var MD = 'N. Venkatachalam';
+//    var MD = 'N. Venkatachalam';
+    var MD = document.getElementById('mdName').value;
     var source = "/getLoansByIdentfierLoans/"+"{{annual_loan_id}}";
     $.ajax({
         type: 'GET',
@@ -516,7 +523,7 @@
                         'funds or any other reason, all legal action shall be immediately initiated by the Bank / Society to enforce and recover all the dues payable. All the' +
                         ' legal/miscellaneous expenses incurred towards the recovery/realization of the dues shall be borne by the Bank / Society.', 170);
                     var pt6 = doc.splitTextToSize('6.   That the Bank / Society shall pay the Penal interest at the rate of 5% in addition to normal rate ' +
-                        'of interest for the defaulted period to TABCEDCO. However, the Bank is at liberty, to collect the Penal interest &quot;in addition ' +
+                        'of interest for the defaulted period to TABCEDCO. However, the Bank is at liberty, to collect the Penal interest in addition ' +
                         'to the normal interest being charged by the Bank / Society” from the beneficiary / beneficiaries in case of default by the beneficiary / beneficiaries ' +
                         'himself/herself/ themselves to the Bank as per Banking norms.', 170);
                     var pt7 = doc.splitTextToSize('7.   That the Bank / Society shall be entitled to 3% of the total interest collected depending upon the nature of the scheme ' +
@@ -554,7 +561,7 @@
                     doc.text(25, 30, pt9);
                     doc.text(25, 50, pt10);
                     doc.text(25, 80, concl);
-                    doc.text(150, 110, 'Sd/ ------');
+                    doc.text(150, 110, 'Sd/-' + MD );
                     doc.text(150, 120, 'Managing Director');
 
                     doc.text(25, 150, 'ACCEPTED');
@@ -580,6 +587,8 @@
 
     function downloadSchedule() {
         var source = "/getLoansByIdentfier/"+"{{annual_loan_id}}";
+//    var MD = 'N. Venkatachalam';
+    var MD = document.getElementById('mdName').value;
         $.ajax({
             type: 'GET',
             url: source,
@@ -743,7 +752,8 @@
 
     function downloadROFC() {
     var doc = new jsPDF();
-    var MD = 'N. Venkatachalam';
+//    var MD = 'N. Venkatachalam';
+    var MD = document.getElementById('mdName').value;
     var source = "/getLoansByIdentfierLoans/"+"{{annual_loan_id}}";
     $.ajax({
         type: 'GET',
@@ -1054,7 +1064,8 @@
 
     function downloadROOC() {
     var doc = new jsPDF();
-    var MD = 'N. Venkatachalam';
+//    var MD = 'N. Venkatachalam';
+    var MD = document.getElementById('mdName').value;
     var source = "/getLoansByIdentfierLoans/"+"{{annual_loan_id}}";
     $.ajax({
         type: 'GET',
@@ -1359,7 +1370,8 @@
 
     function downloadCoveringLetter() {
     var doc = new jsPDF();
-    var MD = 'N. Venkatachalam I.A.S';
+//    var MD = 'N. Venkatachalam';
+    var MD = document.getElementById('mdName').value;
     var source = "/loan/"+"{{application_id}}";
     $.ajax({
         type: 'GET',
