@@ -1011,14 +1011,14 @@
 
                         doc.text(34, doc.autoTableEndPosY()+45, PenalInterest);
 
-                        doc.text(25, doc.autoTableEndPosY()+55, '2. Pattern of Finance is as follows');
+                        doc.text(25, doc.autoTableEndPosY()+65, '2. Pattern of Finance is as follows');
 
                         columns1 = ["Share", "Share Amount in Rs.", "Rate of Interest"];
                         rows1 = [];
                         rows1.push([['NBCFDC Share'], [parseInt(NBCFDCShareCalculator(json[0]['loan_category'], json[0]['loan_amount']))], [json[0]['roi']+'%']]);
                         rows1.push([['TABCEDCO Share'], [parseInt(tabcedcoShareCalculator(json[0]['loan_category'], json[0]['loan_amount']))], [json[0]['roi']+'%']]);
 
-                        doc.autoTable(columns1, rows1, {startY: doc.autoTableEndPosY()+60});
+                        doc.autoTable(columns1, rows1, {startY: doc.autoTableEndPosY()+70});
 
                         var AAO = doc.splitTextToSize('3.   The Assistant Accounts Officer , of this Corporation is hereby authorised to draw and disburse ' +
                             'the amount by means of Crossed Account Payee Cheque drawn in favour of the Managing Director, '+json[0]['bank']+', '+json[0]['district']+
@@ -1316,14 +1316,14 @@
 
                         doc.text(34, doc.autoTableEndPosY()+45, PenalInterest);
 
-                        doc.text(25, doc.autoTableEndPosY()+55, '2. Pattern of Finance is as follows');
+                        doc.text(25, doc.autoTableEndPosY()+65, '2. Pattern of Finance is as follows');
 
                         columns1 = ["Share", "Share Amount in Rs.", "Rate of Interest"];
                         rows1 = [];
                         rows1.push([['NBCFDC Share'], [parseInt(NBCFDCShareCalculator(json[0]['loan_category'], json[0]['loan_amount']))], [json[0]['roi']+'%']]);
                         rows1.push([['TABCEDCO Share'], [parseInt(tabcedcoShareCalculator(json[0]['loan_category'], json[0]['loan_amount']))], [json[0]['roi']+'%']]);
 
-                        doc.autoTable(columns1, rows1, {startY: doc.autoTableEndPosY()+60});
+                        doc.autoTable(columns1, rows1, {startY: doc.autoTableEndPosY()+70});
 
                         var AAO = doc.splitTextToSize('3.   The Assistant Accounts Officer , of this Corporation is hereby authorised to draw and disburse ' +
                             'the amount by means of Crossed Account Payee Cheque drawn in favour of the Managing Director, '+json[0]['bank']+', '+json[0]['district']+
