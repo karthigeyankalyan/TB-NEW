@@ -99,12 +99,12 @@
       <file leaf-file-name="Application_Review.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/templates/Application_Review.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="100">
-              <caret line="1137" column="0" lean-forward="false" selection-start-line="1137" selection-start-column="0" selection-end-line="1137" selection-end-column="0" />
+            <state relative-caret-position="423">
+              <caret line="827" column="0" lean-forward="false" selection-start-line="827" selection-start-column="0" selection-end-line="827" selection-end-column="0" />
               <folding>
                 <element signature="e#19493#37578#0" expanded="false" />
                 <element signature="e#37612#46201#0" expanded="false" />
-                <element signature="e#46231#66480#0" expanded="false" />
+                <element signature="e#66383#86243#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -936,12 +936,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/templates/Application_Review.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="1137" column="0" lean-forward="false" selection-start-line="1137" selection-start-column="0" selection-end-line="1137" selection-end-column="0" />
+        <state relative-caret-position="423">
+          <caret line="827" column="0" lean-forward="false" selection-start-line="827" selection-start-column="0" selection-end-line="827" selection-end-column="0" />
           <folding>
             <element signature="e#19493#37578#0" expanded="false" />
             <element signature="e#37612#46201#0" expanded="false" />
-            <element signature="e#46231#66480#0" expanded="false" />
+            <element signature="e#66383#86243#0" expanded="false" />
           </folding>
         </state>
       </provider>
