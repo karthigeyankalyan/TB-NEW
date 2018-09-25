@@ -101,7 +101,7 @@ class Database(object):
                                                                          'strength': strength,
                                                                          'shg_name': shg_name,
                                                                          'ro_number': ro_number,
-                                                                         'post_pso_ref': post_pso_ref,
+                                                                         'post_pso_ref_no': post_pso_ref,
                                                                          'amount_per_member': amount_per_member,
                                                                          'total_amount':
                                                                              int(amount_per_member)*int(strength),
