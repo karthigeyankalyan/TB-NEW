@@ -999,7 +999,11 @@
 
                         doc.text(40, doc.autoTableEndPosY()+5, words);
 
-                        doc.text(25, doc.autoTableEndPosY()+10, 'Condition No 3 of PSO:');
+                        var AttnInvited = doc.splitTextToSize('Attention is also invited to the following conditions ' +
+                            'stipulated in the memorandum of Agreement-cum-Provisional Sanction for strict Adherence.' , 170);
+                        doc.text(25, doc.autoTableEndPosY()+10, AttnInvited);
+
+                        doc.text(25, doc.autoTableEndPosY()+20, 'Condition No 3 of PSO:');
 
                         var ConditionsPt3 = doc.splitTextToSize('The said Bank should disburse the loan amount to the ' +
                             'beneficiary / beneficiaries immediately. At any cost it should disburse the loan within a period of ' +
@@ -1008,26 +1012,26 @@
                             'after disbursement of the loan, should ensure assets creation. Immediately and following asset creation, ' +
                             'TABCEDCO shall be informed of the same in the relevant Form (Form –B).' , 170);
 
-                        doc.text(34, doc.autoTableEndPosY()+15, ConditionsPt3);
+                        doc.text(34, doc.autoTableEndPosY()+25, ConditionsPt3);
 
-                        doc.text(25, doc.autoTableEndPosY()+40, 'Condition No 6:');
+                        doc.text(25, doc.autoTableEndPosY()+50, 'Condition No 6:');
 
                         var PenalInterest = doc.splitTextToSize('1. That the Bank shall pay the Penal interest at the rate of 5% in addition to normal rate of ' +
                             'interest for the defaulted period to TABCEDCO.  However, the Bank is at liberty, to collect the Penal interest ' +
                             'in addition to the normal interest being charged by the Bank” from the beneficiary/beneficiaries in case of default' +
                             ' by the beneficiary/beneficiaries himself/herself/themselves to the Bank as per Banking norms.', 160);
 
-                        doc.text(34, doc.autoTableEndPosY()+45, PenalInterest);
+                        doc.text(34, doc.autoTableEndPosY()+55, PenalInterest);
 
-                        doc.text(25, doc.autoTableEndPosY()+65, '2. Pattern of Finance is as follows');
+                        doc.text(25, doc.autoTableEndPosY()+75, '2. Pattern of Finance is as follows');
 
                         columns1 = ["Share", "Share Amount in Rs.", "Rate of Interest"];
                         rows1 = [];
-                        rows1.push([['NBCFDC Share'], [parseInt(NBCFDCShareCalculator(json[0]['loan_category'], sanctioned_amount))], [json[0]['roi']+'%']]);
-                        rows1.push([['TABCEDCO Share'], [parseInt(tabcedcoShareCalculator(json[0]['loan_category'], sanctioned_amount))], [json[0]['roi']+'%']]);
+                        rows1.push([['NBCFDC Share'], [parseInt(NBCFDCShareCalculator(json[0]['loan_category'], total_individual_amount))], [json[0]['roi']+'%']]);
+                        rows1.push([['TABCEDCO Share'], [parseInt(tabcedcoShareCalculator(json[0]['loan_category'], total_individual_amount))], [json[0]['roi']+'%']]);
                         rows1.push([['Total Amount'], [sanctioned_amount], []]);
 
-                        doc.autoTable(columns1, rows1, {startY: doc.autoTableEndPosY()+70});
+                        doc.autoTable(columns1, rows1, {startY: doc.autoTableEndPosY()+80});
 
                         var AAO = doc.splitTextToSize('3.   The Assistant Accounts Officer , of this Corporation is hereby authorised to draw and disburse ' +
                             'the amount by means of Crossed Account Payee Cheque drawn in favour of the Managing Director, '+json[0]['bank']+', '+json[0]['district']+
@@ -1308,9 +1312,13 @@
 
                         doc.autoTable(columns, rows, {startY: 20});
 
-                        doc.text(40, doc.autoTableEndPosY()+5, words);
+                        doc.text(50, doc.autoTableEndPosY()+5, words);
 
-                        doc.text(25, doc.autoTableEndPosY()+10, 'Condition No 3 of PSO:');
+                        var AttnInvited = doc.splitTextToSize('Attention is also invited to the following conditions ' +
+                            'stipulated in the memorandum of Agreement-cum-Provisional Sanction for strict Adherence.' , 170);
+                        doc.text(25, doc.autoTableEndPosY()+10, AttnInvited);
+
+                        doc.text(25, doc.autoTableEndPosY()+20, 'Condition No 3 of PSO:');
 
                         var ConditionsPt3 = doc.splitTextToSize('The said Bank should disburse the loan amount to the ' +
                             'beneficiary / beneficiaries immediately. At any cost it should disburse the loan within a period of ' +
@@ -1319,26 +1327,26 @@
                             'after disbursement of the loan, should ensure assets creation. Immediately and following asset creation, ' +
                             'TABCEDCO shall be informed of the same in the relevant Form (Form –B).' , 170);
 
-                        doc.text(34, doc.autoTableEndPosY()+15, ConditionsPt3);
+                        doc.text(34, doc.autoTableEndPosY()+25, ConditionsPt3);
 
-                        doc.text(25, doc.autoTableEndPosY()+40, 'Condition No 6:');
+                        doc.text(25, doc.autoTableEndPosY()+50, 'Condition No 6:');
 
                         var PenalInterest = doc.splitTextToSize('1. That the Bank shall pay the Penal interest at the rate of 5% in addition to normal rate of ' +
                             'interest for the defaulted period to TABCEDCO.  However, the Bank is at liberty, to collect the Penal interest ' +
                             'in addition to the normal interest being charged by the Bank” from the beneficiary/beneficiaries in case of default' +
                             ' by the beneficiary/beneficiaries himself/herself/themselves to the Bank as per Banking norms.', 160);
 
-                        doc.text(34, doc.autoTableEndPosY()+45, PenalInterest);
+                        doc.text(34, doc.autoTableEndPosY()+55, PenalInterest);
 
-                        doc.text(25, doc.autoTableEndPosY()+65, '2. Pattern of Finance is as follows');
+                        doc.text(25, doc.autoTableEndPosY()+75, '2. Pattern of Finance is as follows');
 
                         columns1 = ["Share", "Share Amount in Rs.", "Rate of Interest"];
                         rows1 = [];
-                        rows1.push([['NBCFDC Share'], [parseInt(NBCFDCShareCalculator(json[0]['loan_category'], sanctioned_amount))], [json[0]['roi']+'%']]);
-                        rows1.push([['TABCEDCO Share'], [parseInt(tabcedcoShareCalculator(json[0]['loan_category'], sanctioned_amount))], [json[0]['roi']+'%']]);
+                        rows1.push([['NBCFDC Share'], [parseInt(NBCFDCShareCalculator(json[0]['loan_category'], total_individual_amount))], [json[0]['roi']+'%']]);
+                        rows1.push([['TABCEDCO Share'], [parseInt(tabcedcoShareCalculator(json[0]['loan_category'], total_individual_amount))], [json[0]['roi']+'%']]);
                         rows1.push([['Total Amount'], [sanctioned_amount], []]);
 
-                        doc.autoTable(columns1, rows1, {startY: doc.autoTableEndPosY()+70});
+                        doc.autoTable(columns1, rows1, {startY: doc.autoTableEndPosY()+80});
 
                         var AAO = doc.splitTextToSize('3.   The Assistant Accounts Officer , of this Corporation is hereby authorised to draw and disburse ' +
                             'the amount by means of Crossed Account Payee Cheque drawn in favour of the Managing Director, '+json[0]['bank']+', '+json[0]['district']+
@@ -1347,7 +1355,6 @@
                         doc.text(25, doc.autoTableEndPosY()+10, AAO);
                         doc.text(25, doc.autoTableEndPosY()+30, 'The details of schedule of repayment is enclosed.');
 
-                        doc.text(165, doc.autoTableEndPosY() + 35, 'Accepted');
                         doc.text(165, doc.autoTableEndPosY() + 45, 'Managing Director');
 
                         doc.text(40, doc.autoTableEndPosY() + 55, 'To');
