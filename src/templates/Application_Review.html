@@ -777,7 +777,7 @@
             else if(json[0]['loan_category'] === 'MCG (Micro-Credit Gents)') {
                 cat = "MCR";
             }
-            else if(json[0]['loan_category'] === 'MSY (Mahila Samriddhi Yojana)') {
+            else if(json[0]['loan_category'] === 'MSY (Mahila Samridhi Yojana)') {
                 cat = "MSY";
             }
 
@@ -821,16 +821,17 @@
                         doc.text(45, 35, 'ECONOMIC DEVELOPMENT CORPORATION LIMITED, CHENNAI-8.');
 
                         doc.text(65, 45, 'PRESENT: '+ MD +'., I.A.S.');
-                        doc.text(25, 55, 'Proc.No.' + json[0]['ann_loan_id'] + '/' + json[0]['district'] + (moment(json[0]['received_date']).format("DDMM/YYYY")) + json[0]['bank']);
+                        doc.text(25, 55, 'Proc.No.' + json[0]['ann_loan_id'] + '/' + json[0]['district']+ '/' + (moment(json[0]['received_date']).format("DDMM/YYYY")) + json[0]['bank']);
 
-                        doc.text(160, 55, 'Dated: ' + (moment(json[0]['ro_date']).format("DD-MM-YYYY")));
+                        doc.text(160, 55, 'Dated: ' + (moment(json[0]['ro_date']['$date']).format("DD-MM-YYYY")));
                         doc.text(37, 65, 'Sub:  Tamil Nadu Backward Classes Economic Development Corporation Ltd., Chennai 600008.');
                         doc.text(46, 70, 'Disbursement of Loan under ' + json[0]['loan_category'] + ' Payment sanctioned to ' + total_ben_shg_count + ' beneficiaries');
                         doc.text(46, 75, 'through ' + json[0]["bank"] + ' - Final Sanction Order for Rs. ' + sanction_amount + ' - issued - Reg.');
 
                         doc.text(37, 85, 'Ref:  1. The Deed of Agreement Dated: _______');
-                        doc.text(46, 90, '2. Accepted and Signed Memorandum of Agreement-Cum-Provisional Sanction Order received from, the');
-                        doc.text(50, 95,  'Sanction Order received from, the '+json[0]['post_pso_ref_no']);
+                        doc.text(46, 90, '2. Accepted and Signed Memorandum of Agreement-Cum-Provisional Sanction Order');
+                        doc.text(50, 95,  ' received from, the '+json[0]['jr_letter_number']);
+                        doc.text(46, 100, '3. Other Connected Records');
                         doc.text(100, 110, '**********');
 
                         doc.text(25, 120, 'ORDER:');
@@ -841,13 +842,13 @@
                         doc.text(34, 125, pt1);
 
                         var pt2 = doc.splitTextToSize('2.   In the reference 2nd cited,the proposals have been submitted by the Joint Registrar of' +
-                            ' Coop. Societies, ' + json[0]['district'] + ' District, with the recommendation for sanction of' +
+                            ' Co.Op. Societies, ' + json[0]['district'] + ' District, with the recommendation for sanction of' +
                             ' loan as detailed below:', 160);
                         doc.text(34, 145, pt2);
 
                         doc.text(40, 160, 'DETAILS OF LOAN SANCTIONED TO MEMBERS OF SELF HELP GROUP');
 
-                        var columns = ["Name of Bank", "Name of SHG", "# of Beneficiaries", "Loan Amount"];
+                        var columns = ["Name of Bank", "Name of SHG", "No of Beneficiaries", "Loan Amount"];
 
         //          Calculating the total strength
                         var total_strength = 0;
@@ -1092,7 +1093,11 @@
             else if(json[0]['loan_category'] === 'MCG (Micro-Credit Gents)') {
                 cat = "MCR";
             }
-            else if(json[0]['loan_category'] === 'MSY (Mahila Samriddhi Yojana)') {
+            else if(json[0]['loan_category'] === 'MSY (Mahila Samridhi Yojana)') {
+                cat = "MSY";
+            }
+
+            else if(json[0]['loan_category'] === 'MSY (Mahila Samridhi Yojana)') {
                 cat = "MSY";
             }
 
@@ -1136,16 +1141,17 @@
                         doc.text(45, 35, 'ECONOMIC DEVELOPMENT CORPORATION LIMITED, CHENNAI-8.');
 
                         doc.text(65, 45, 'PRESENT: '+ MD +'., I.A.S.');
-                        doc.text(25, 55, 'Proc.No.' + json[0]['ann_loan_id'] + '/' + json[0]['district'] + (moment(json[0]['received_date']).format("DDMM/YYYY")) + json[0]['bank']);
+                        doc.text(25, 55, 'Proc.No.' + json[0]['ann_loan_id'] + '/' + json[0]['district']+ '/' + (moment(json[0]['received_date']).format("DDMM/YYYY")) + json[0]['bank']);
 
-                        doc.text(160, 55, 'Dated: ' + (moment(json[0]['ro_date']).format("DD-MM-YYYY")));
+                        doc.text(160, 55, 'Dated: ' + (moment(json[0]['ro_date']['$date']).format("DD-MM-YYYY")));
                         doc.text(37, 65, 'Sub:  Tamil Nadu Backward Classes Economic Development Corporation Ltd., Chennai 600008.');
                         doc.text(46, 70, 'Disbursement of Loan under ' + json[0]['loan_category'] + ' Payment sanctioned to ' + total_ben_shg_count + ' beneficiaries');
                         doc.text(46, 75, 'through ' + json[0]["bank"] + ' - Final Sanction Order for Rs. ' + sanction_amount + ' - issued - Reg.');
 
                         doc.text(37, 85, 'Ref:  1. The Deed of Agreement Dated: _______');
-                        doc.text(46, 90, '2. Accepted and Signed Memorandum of Agreement-Cum-Provisional Sanction Order received from, the');
-                        doc.text(50, 95,  'Sanction Order received from, the '+json[0]['post_pso_ref_no']);
+                        doc.text(46, 90, '2. Accepted and Signed Memorandum of Agreement-Cum-Provisional Sanction Order');
+                        doc.text(50, 95,  ' received from, the '+json[0]['jr_letter_number']);
+                        doc.text(46, 100, '3. Other Connected Records');
                         doc.text(100, 110, '**********');
 
                         doc.text(25, 120, 'ORDER:');
@@ -1156,13 +1162,13 @@
                         doc.text(34, 125, pt1);
 
                         var pt2 = doc.splitTextToSize('2.   In the reference 2nd cited,the proposals have been submitted by the Joint Registrar of' +
-                            ' Coop. Societies, ' + json[0]['district'] + ' District, with the recommendation for sanction of' +
+                            ' Co.Op. Societies, ' + json[0]['district'] + ' District, with the recommendation for sanction of' +
                             ' loan as detailed below:', 160);
                         doc.text(34, 145, pt2);
 
                         doc.text(40, 160, 'DETAILS OF LOAN SANCTIONED TO MEMBERS OF SELF HELP GROUP');
 
-                        var columns = ["Name of Bank", "Name of SHG", "# of Beneficiaries", "Loan Amount"];
+                        var columns = ["Name of Bank", "Name of SHG", "No of Beneficiaries", "Loan Amount"];
 
         //          Calculating the total strength
                         var total_strength = 0;
@@ -1221,7 +1227,6 @@
                             'Managing Director,' + json[0]['bank'] + ', ' + json[0]['district'] + ' with proper acquittance.', 160);
                         doc.text(34, doc.autoTableEndPosY() + 45, pt6);
 
-                        doc.text(165, doc.autoTableEndPosY() + 65, 'Accepted');
                         doc.text(165, doc.autoTableEndPosY() + 75, 'Managing Director');
 
                         doc.text(40, doc.autoTableEndPosY() + 90, 'To');
