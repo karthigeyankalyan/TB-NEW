@@ -73,7 +73,7 @@
                     else if(json[0]['loan_category'] === 'MCG (Micro-Credit Gents)') {
                         cat = "MCR";
                     }
-                    else if(json[0]['loan_category'] === 'MSY (Mahila Samriddhi Yojana)') {
+                    else if(json[0]['loan_category'] === 'MSY (Mahila Samridhi Yojana)') {
                         cat = "MSY";
                     }
 
@@ -343,7 +343,7 @@
                     else if(json[0]['loan_category'] === 'MCG (Micro-Credit Gents)') {
                         cat = "MCR";
                     }
-                    else if(json[0]['loan_category'] === 'MSY (Mahila Samriddhi Yojana)') {
+                    else if(json[0]['loan_category'] === 'MSY (Mahila Samridhi Yojana)') {
                         cat = "MSY";
                     }
 
@@ -782,9 +782,9 @@
             }
 
             if(json.length !== 0) {
-                    // Checking if the loan category is either Micro Credit or Mahila Samriddhi Yojana
-                    if (json[0]['loan_category'] === 'MCG (Micro-Credit Gents)' || json[0]['loan_category'] === 'MSY (Mahila Samriddhi Yojana)') {
-                        var PSO = json[0]['ro_number'] + '/' + cat + '/' + (moment(json[0]['received_date']).year() - 2000) + '' + (moment(json[0]['received_date']).year() - 1999);
+                    // Checking if the loan category is either Micro Credit or Mahila Samridhi Yojana
+                    if (json[0]['loan_category'] === 'MCG (Micro-Credit Gents)' || json[0]['loan_category'] === 'MSY (Mahila Samridhi Yojana)') {
+                        var PSO = json[0]['ro_number'] + '/' + cat + '/' + (moment(json[0]['received_date']['$date']).year() - 2000) + '' + (moment(json[0]['received_date']['$date']).year() - 1999);
 
                         var total_shg_amount = 0;
                         var total_ben_shg_count = 0;
@@ -821,7 +821,7 @@
                         doc.text(45, 35, 'ECONOMIC DEVELOPMENT CORPORATION LIMITED, CHENNAI-8.');
 
                         doc.text(65, 45, 'PRESENT: '+ MD +'., I.A.S.');
-                        doc.text(25, 55, 'Proc.No.' + json[0]['ann_loan_id'] + '/' + json[0]['district']+ '/' + (moment(json[0]['received_date']).format("DDMM/YYYY")) + json[0]['bank']);
+                        doc.text(25, 55, 'Proc.No.' + json[0]['ann_loan_id'] + '/' + json[0]['district']+ '/' + json[0]['bank']);
 
                         doc.text(160, 55, 'Dated: ' + (moment(json[0]['ro_date']['$date']).format("DD-MM-YYYY")));
                         doc.text(37, 65, 'Sub:  Tamil Nadu Backward Classes Economic Development Corporation Ltd., Chennai 600008.');
@@ -829,8 +829,8 @@
                         doc.text(46, 75, 'through ' + json[0]["bank"] + ' - Final Sanction Order for Rs. ' + sanction_amount + ' - issued - Reg.');
 
                         doc.text(37, 85, 'Ref:  1. The Deed of Agreement Dated: _______');
-                        doc.text(46, 90, '2. Accepted and Signed Memorandum of Agreement-Cum-Provisional Sanction Order');
-                        doc.text(50, 95,  ' received from, the '+json[0]['jr_letter_number']);
+                        doc.text(46, 90, '2. The Joint Registrar of Cooperative Societies ');
+                        doc.text(50, 95,  json[0]['district']+' District '+json[0]['jr_letter_number']+' dated: '+json[0]['jr_letter_date']);
                         doc.text(46, 100, '3. Other Connected Records');
                         doc.text(100, 110, '**********');
 
@@ -873,12 +873,15 @@
                         }
 
                         rows.push([[['Grand Total']], [['']], [[total_strength]], [[sanction_amount]]]);
+
                         doc.autoTable(columns, rows, {startY: 170, endY: 200});
+
+                        doc.text(40, doc.autoTableEndPosY()+5, convertNumberToWords(sanction_amount));
 
                         doc.addPage();
 
-                        var pt3 = doc.splitTextToSize('3. Accordingly sanction is hereby accorded for the payment of Rs.' + sanction_amount + '/-' +
-                            ' to the ' + json[0]['district'] + ' district through the ' + json[0]['bank'] + ' for the disbursement of loan under ' +
+                        var pt3 = doc.splitTextToSize('3. Accordingly sanction is hereby accorded for the payment of Rs.' + sanction_amount + '/-' + convertNumberToWords(sanction_amount)
+                            +' to the ' + json[0]['district'] + ' district through the ' + json[0]['bank'] + ' for the disbursement of loan under ' +
                             json[0]['loan_category'], 160);
 
                         doc.text(34, 30, pt3);
@@ -886,13 +889,11 @@
                         //Assigning Rate of Interest
                         var ROI = json[0]['roi']+'%';
 
-                        var columns1 = ["# of SHGs", "# of beneficiaries", "Rate of Interest", "Loan Amount"];
+                        var columns1 = ["No of SHGs", "No of beneficiaries", "Rate of Interest", "Loan Amount"];
                         var rows1 = [];
                         rows1.push([[json[0]['no_of_shgs']], [total_strength], [ROI], [sanction_amount]]);
 
                         doc.autoTable(columns1, rows1, {startY: 40, endY: 200});
-
-                        doc.text(40, doc.autoTableEndPosY() + 5, 'The details of the above beneficiaries are furnished in Annexure.');
 
                         var pt4 = doc.splitTextToSize('4.  The above loan is sanctioned subject to the conditions stipulated in the' +
                             ' deed of agreement referred to in the reference 1st cited.', 160);
@@ -923,7 +924,7 @@
                         doc.text(49, doc.autoTableEndPosY() + 125, toPt2);
 
                         doc.text(49, doc.autoTableEndPosY() + 135, '3. Payment Voucher/Asst. Accounts Officer.');
-                        doc.text(49, doc.autoTableEndPosY() + 140, '4. B3 Assistant – for follow up action.');
+                        doc.text(49, doc.autoTableEndPosY() + 140, '4. B4 Assistant – for follow up action.');
 
                         doc.save('RO'+PSO+'.pdf')
 
@@ -1102,9 +1103,9 @@
             }
 
             if(json.length !== 0) {
-                    // Checking if the loan category is either Micro Credit or Mahila Samriddhi Yojana
-                    if (json[0]['loan_category'] === 'MCG (Micro-Credit Gents)' || json[0]['loan_category'] === 'MSY (Mahila Samriddhi Yojana)') {
-                        var PSO = json[0]['ro_number'] + '/' + cat + '/' + (moment(json[0]['received_date']).year() - 2000) + '' + (moment(json[0]['received_date']).year() - 1999);
+                    // Checking if the loan category is either Micro Credit or Mahila Samridhi Yojana
+                    if (json[0]['loan_category'] === 'MCG (Micro-Credit Gents)' || json[0]['loan_category'] === 'MSY (Mahila Samridhi Yojana)') {
+                        var PSO = json[0]['ro_number'] + '/' + cat + '/' + (moment(json[0]['received_date']['$date']).year() - 2000) + '' + (moment(json[0]['received_date']['$date']).year() - 1999);
 
                         var total_shg_amount = 0;
                         var total_ben_shg_count = 0;
@@ -1141,7 +1142,7 @@
                         doc.text(45, 35, 'ECONOMIC DEVELOPMENT CORPORATION LIMITED, CHENNAI-8.');
 
                         doc.text(65, 45, 'PRESENT: '+ MD +'., I.A.S.');
-                        doc.text(25, 55, 'Proc.No.' + json[0]['ann_loan_id'] + '/' + json[0]['district']+ '/' + (moment(json[0]['received_date']).format("DDMM/YYYY")) + json[0]['bank']);
+                        doc.text(25, 55, 'Proc.No.' + json[0]['ann_loan_id'] + '/' + json[0]['district']+ '/' + json[0]['bank']);
 
                         doc.text(160, 55, 'Dated: ' + (moment(json[0]['ro_date']['$date']).format("DD-MM-YYYY")));
                         doc.text(37, 65, 'Sub:  Tamil Nadu Backward Classes Economic Development Corporation Ltd., Chennai 600008.');
@@ -1149,8 +1150,8 @@
                         doc.text(46, 75, 'through ' + json[0]["bank"] + ' - Final Sanction Order for Rs. ' + sanction_amount + ' - issued - Reg.');
 
                         doc.text(37, 85, 'Ref:  1. The Deed of Agreement Dated: _______');
-                        doc.text(46, 90, '2. Accepted and Signed Memorandum of Agreement-Cum-Provisional Sanction Order');
-                        doc.text(50, 95,  ' received from, the '+json[0]['jr_letter_number']);
+                        doc.text(46, 90, '2. The Joint Registrar of Cooperative Societies ');
+                        doc.text(50, 95,  json[0]['district']+' District '+json[0]['jr_letter_number']+' dated: '+json[0]['jr_letter_date']);
                         doc.text(46, 100, '3. Other Connected Records');
                         doc.text(100, 110, '**********');
 
@@ -1195,10 +1196,12 @@
                         rows.push([[['Grand Total']], [['']], [[total_strength]], [[sanction_amount]]]);
                         doc.autoTable(columns, rows, {startY: 170, endY: 200});
 
+                        doc.text(40, doc.autoTableEndPosY()+5, convertNumberToWords(sanction_amount));
+
                         doc.addPage();
 
-                        var pt3 = doc.splitTextToSize('3. Accordingly sanction is hereby accorded for the payment of Rs.' + sanction_amount + '/-' +
-                            ' to the ' + json[0]['district'] + ' district through the ' + json[0]['bank'] + ' for the disbursement of loan under ' +
+                        var pt3 = doc.splitTextToSize('3. Accordingly sanction is hereby accorded for the payment of Rs.' + sanction_amount + '/-' + convertNumberToWords(sanction_amount)
+                           + ' to the ' + json[0]['district'] + ' district through the ' + json[0]['bank'] + ' for the disbursement of loan under ' +
                             json[0]['loan_category'], 160);
 
                         doc.text(34, 30, pt3);
@@ -1206,13 +1209,11 @@
                         //Assigning Rate of Interest
                         var ROI = json[0]['roi']+'%';
 
-                        var columns1 = ["# of SHGs", "# of beneficiaries", "Rate of Interest", "Loan Amount"];
+                        var columns1 = ["No of SHGs", "No of beneficiaries", "Rate of Interest", "Loan Amount"];
                         var rows1 = [];
                         rows1.push([[json[0]['no_of_shgs']], [total_strength], [ROI], [sanction_amount]]);
 
                         doc.autoTable(columns1, rows1, {startY: 40, endY: 200});
-
-                        doc.text(40, doc.autoTableEndPosY() + 5, 'The details of the above beneficiaries are furnished in Annexure.');
 
                         var pt4 = doc.splitTextToSize('4.  The above loan is sanctioned subject to the conditions stipulated in the' +
                             ' deed of agreement referred to in the reference 1st cited.', 160);
@@ -1242,7 +1243,7 @@
                         doc.text(49, doc.autoTableEndPosY() + 125, toPt2);
 
                         doc.text(49, doc.autoTableEndPosY() + 135, '3. Payment Voucher/Asst. Accounts Officer.');
-                        doc.text(49, doc.autoTableEndPosY() + 140, '4. B3 Assistant – for follow up action.');
+                        doc.text(49, doc.autoTableEndPosY() + 140, '4. B4 Assistant – for follow up action.');
 
                         doc.save('RO'+PSO+'.pdf')
 
@@ -1402,7 +1403,7 @@
         dataType: 'json',
         success: function (json) {
             console.log(json);
-                // Checking if the loan category is either Micro Credit or Mahila Samriddhi Yojana
+                // Checking if the loan category is either Micro Credit or Mahila Samridhi Yojana
                     var PSO = json[0]['ann_loan_id'] + '/' + json[0]['loan_category'] + '/' + (moment(json[0]['received_date']).year() - 2000) + '' + (moment(json[0]['received_date']).year() - 1999);
 
                     doc.setFontSize(12);
@@ -1502,7 +1503,7 @@
         if (category === 'GTL (General Term Loan)') {
             return amount*0.85;
         }
-        else if (category === 'NSS (New-Swarnima Scheme)' || category === 'MSY (Mahila Samriddhi Yojana)') {
+        else if (category === 'NSS (New-Swarnima Scheme)' || category === 'MSY (Mahila Samridhi Yojana)') {
             return amount*.95;
         }
         else {
@@ -1517,7 +1518,7 @@
         if (category === 'GTL (General Term Loan)') {
             return amount*0.10;
         }
-        else if (category === 'NSS (New-Swarnima Scheme)' || category === 'MSY (Mahila Samriddhi Yojana)') {
+        else if (category === 'NSS (New-Swarnima Scheme)' || category === 'MSY (Mahila Samridhi Yojana)') {
             return amount*0.05;
         }
         else {
@@ -1663,7 +1664,7 @@
                 if (json[0]['loan_category'] === 'GTL (General Term Loan)' || json[0]['loan_category'] === 'NSS (New-Swarnima Scheme)') {
                     document.getElementById("cardSHG").innerHTML = "Applicant Name: "+json[0]['applicant_name'];
                 }
-                else if (json[0]['loan_category'] === 'MCG (Micro-Credit Gents)' || json[0]['loan_category'] === 'MSY (Mahila Samriddhi Yojana)') {
+                else if (json[0]['loan_category'] === 'MCG (Micro-Credit Gents)' || json[0]['loan_category'] === 'MSY (Mahila Samridhi Yojana)') {
                     document.getElementById("cardSHG").innerHTML = "Number of SHGs: "+json[0]['no_of_shgs'];
                 }
 

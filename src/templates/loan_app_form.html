@@ -8,7 +8,7 @@
     <div class="form-group" style="display: block; width: 38%">
         <label for="loanCategory">Loan Category</label>
         <select class="form-control" id="loanCategory" name="loanCategory" onchange="categorySelection(this)">
-            {% set categories = ['GTL (General Term Loan)', 'NSS (New-Swarnima Scheme)', 'MCG (Micro-Credit Gents)', 'MSY (Mahila Samriddhi Yojana)'] %}
+            {% set categories = ['GTL (General Term Loan)', 'NSS (New-Swarnima Scheme)', 'MCG (Micro-Credit Gents)', 'MSY (Mahila Samridhi Yojana)'] %}
             {% for category in categories %}
                 <option value= "{{category}}">{{category}}</option>"
             {% endfor %}
@@ -206,7 +206,7 @@
 
     function categorySelection(that) {
         console.log(that.value);
-        if (that.value === "MCG (Micro-Credit Gents)" || that.value === "MSY (Mahila Samriddhi Yojana)"){
+        if (that.value === "MCG (Micro-Credit Gents)" || that.value === "MSY (Mahila Samridhi Yojana)"){
             document.getElementById("shgDetails").style.display = "flex";
             document.getElementById("shgDetails").style.flexDirection = "column";
             document.getElementById("shgDetails").style.justifyContent = "space-between";
