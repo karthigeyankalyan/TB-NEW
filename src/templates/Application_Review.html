@@ -203,7 +203,7 @@
                         rows.push([[json[iter]['applicant_name'], json[iter]['father_name'], json[iter]['address']], [json[iter]['loan_reason']], [json[iter]['loan_amount']],
                             [parseInt(json[iter]['no_of_demands'])/4], [NBCFDCShareCalculator(json[iter]['loan_category'], json[iter]['loan_amount'])],
                             [json[0]['roi'] + '%'],
-                            [tabcedcoShareCalculator(json[iter]['loan_category'], json[iter]['loan_amount'])], [json[0]['roi'] + '%'],
+                            [tabcedcoShareCalculator(json[iter]['loan_category'], json[iter]['loan_amount'])], [json[iter]['roi'] + '%'],
                             [beneficiaryShareCalculator(json[iter]['loan_category'], json[iter]['loan_amount'])]]);
                     }
 
@@ -474,7 +474,7 @@
                         rows.push([[json[iter]['applicant_name'], json[iter]['father_name'], json[iter]['address']], [json[iter]['loan_reason']], [json[iter]['loan_amount']],
                             [parseInt(json[iter]['no_of_demands'])/4], [NBCFDCShareCalculator(json[iter]['loan_category'], json[iter]['loan_amount'])],
                             [json[0]['roi'] + '%'],
-                            [tabcedcoShareCalculator(json[iter]['loan_category'], json[iter]['loan_amount'])], [json[0]['roi'] + '%'],
+                            [tabcedcoShareCalculator(json[iter]['loan_category'], json[iter]['loan_amount'])], [json[iter]['roi'] + '%'],
                             [beneficiaryShareCalculator(json[iter]['loan_category'], json[iter]['loan_amount'])]]);
                     }
 
@@ -1261,7 +1261,7 @@
                         doc.text(45, 35, 'ECONOMIC DEVELOPMENT CORPORATION LIMITED, CHENNAI-8.');
 
                         doc.text(65, 45, 'PRESENT: '+MD+'.,I.A.S.');
-                        doc.text(25, 55, 'Proc.No.' + json[0]['ann_loan_id'] + '/' + json[0]['district'] + json[0]['bank']);
+                        doc.text(25, 55, 'Proc.No.' + json[0]['ann_loan_id'] + '/' + json[0]['district'] + '/' +json[0]['bank']);
 
                         doc.text(160, 55, 'Dated: ');
 
@@ -1281,7 +1281,7 @@
 
                         doc.text(40, 65, sub);
 
-                        doc.text(40, 85, 'Ref:  1. This office PSO Proc.No.' + json[0]['ann_loan_id'] + '/' + json[0]['district'] + json[0]['bank']);
+                        doc.text(40, 85, 'Ref:  1. This office PSO Proc.No.' + json[0]['ann_loan_id'] + '/' + json[0]['district'] + '/' + json[0]['bank']);
                         doc.text(49, 90, '2. Accepted and Signed Memorandum of Agreement-Cum-Provisional Sanction Order');
                         doc.text(51, 95,  'received from, the '+json[0]['post_pso_ref_no']);
 
@@ -1303,8 +1303,6 @@
                             'be furnished to this Corporation, within a month on receipt of funds from this Corporation.', 160);
                         doc.text(34, 180, ConditionsPt2);
 
-                        doc.addPage();
-
                         doc.text(80, 15, 'Details of Loan Sanctioned');
 
                         columns = ["Name of the beneficiary", "Nature of Business", "Loan Amount"];
@@ -1324,7 +1322,9 @@
                             'stipulated in the memorandum of Agreement-cum-Provisional Sanction for strict Adherence.' , 170);
                         doc.text(25, doc.autoTableEndPosY()+10, AttnInvited);
 
-                        doc.text(25, doc.autoTableEndPosY()+20, 'Condition No 3 of PSO:');
+                        doc.addPage();
+
+                        doc.text(25, 20, 'Condition No 3 of PSO:');
 
                         var ConditionsPt3 = doc.splitTextToSize('The said Bank should disburse the loan amount to the ' +
                             'beneficiary / beneficiaries immediately. At any cost it should disburse the loan within a period of ' +
@@ -1333,18 +1333,18 @@
                             'after disbursement of the loan, should ensure assets creation. Immediately and following asset creation, ' +
                             'TABCEDCO shall be informed of the same in the relevant Form (Form –B).' , 170);
 
-                        doc.text(34, doc.autoTableEndPosY()+25, ConditionsPt3);
+                        doc.text(34, 25, ConditionsPt3);
 
-                        doc.text(25, doc.autoTableEndPosY()+50, 'Condition No 6:');
+                        doc.text(25, 50, 'Condition No 6:');
 
                         var PenalInterest = doc.splitTextToSize('1. That the Bank shall pay the Penal interest at the rate of 5% in addition to normal rate of ' +
                             'interest for the defaulted period to TABCEDCO.  However, the Bank is at liberty, to collect the Penal interest ' +
                             'in addition to the normal interest being charged by the Bank” from the beneficiary/beneficiaries in case of default' +
                             ' by the beneficiary/beneficiaries himself/herself/themselves to the Bank as per Banking norms.', 160);
 
-                        doc.text(34, doc.autoTableEndPosY()+55, PenalInterest);
+                        doc.text(34, 55, PenalInterest);
 
-                        doc.text(25, doc.autoTableEndPosY()+75, '2. Pattern of Finance is as follows');
+                        doc.text(25, 75, '2. Pattern of Finance is as follows');
 
                         columns1 = ["Share", "Share Amount in Rs.", "Rate of Interest"];
                         rows1 = [];
