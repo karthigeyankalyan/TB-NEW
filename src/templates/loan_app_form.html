@@ -322,12 +322,13 @@
         var strength = document.getElementById(strength_tag_id).value;
 
         document.getElementById(total_tag_id).value = parseInt(apm) * parseInt(strength);
+
         total_loan_amount = 0;
-        for(var iter = 0; iter <=i; i ++) {
-            total_loan_amount += document.getElementById("ta"+i).value;
-            total_ben_count += document.getElementById("strength"+i).value;
+        total_ben_count = 0;
+        for(var iter = 0; iter <i; iter ++) {
+            total_loan_amount += parseInt(document.getElementById("ta"+iter).value);
+            total_ben_count += parseInt(document.getElementById("strength"+iter).value);
         }
-        total_ben_count += parseInt(strength);
         document.getElementById("invIDCTR").value = (i);
 
         populateTotals();
