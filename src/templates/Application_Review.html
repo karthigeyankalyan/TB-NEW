@@ -986,7 +986,7 @@
 
                         doc.addPage();
 
-                        doc.text(80, 15, 'Details of Loan Sanctioned');
+                        doc.text(80, 190, 'Details of Loan Sanctioned');
 
                         columns = ["Name of the beneficiary", "Nature of Business", "Loan Amount"];
                         rows = [];
@@ -997,7 +997,7 @@
 
                         var words = convertNumberToWords(sanctioned_amount);
 
-                        doc.autoTable(columns, rows, {startY: 20});
+                        doc.autoTable(columns, rows, {startY: 200});
 
                         doc.text(40, doc.autoTableEndPosY()+5, words);
 
@@ -1303,7 +1303,7 @@
                             'be furnished to this Corporation, within a month on receipt of funds from this Corporation.', 160);
                         doc.text(34, 180, ConditionsPt2);
 
-                        doc.text(80, 15, 'Details of Loan Sanctioned');
+                        doc.text(80, 190, 'Details of Loan Sanctioned');
 
                         columns = ["Name of the beneficiary", "Nature of Business", "Loan Amount"];
                         rows = [];
@@ -1314,7 +1314,7 @@
 
                         var words = convertNumberToWords(sanctioned_amount);
 
-                        doc.autoTable(columns, rows, {startY: 20});
+                        doc.autoTable(columns, rows, {startY: 200});
 
                         doc.text(50, doc.autoTableEndPosY()+5, words);
 
