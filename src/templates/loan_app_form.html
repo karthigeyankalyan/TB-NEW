@@ -321,11 +321,16 @@
         var apm = document.getElementById(amount_tag_id).value;
         var strength = document.getElementById(strength_tag_id).value;
 
-        var total_shg_amount = parseInt(apm)*parseInt(strength);
-        document.getElementById(total_tag_id).value = total_shg_amount;
-        total_loan_amount += total_shg_amount;
+        document.getElementById(total_tag_id).value = parseInt(apm) * parseInt(strength);
+        total_loan_amount = 0;
+        for(var iter = 0; iter <=i; i ++) {
+            total_loan_amount += document.getElementById("ta"+i).value;
+            total_ben_count += document.getElementById("strength"+i).value;
+        }
         total_ben_count += parseInt(strength);
         document.getElementById("invIDCTR").value = (i);
+
+        populateTotals();
     }
 
     function populateTotals() {
