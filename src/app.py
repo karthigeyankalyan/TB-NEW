@@ -867,7 +867,7 @@ def loan_financial_form(_id):
 
                 demand_object.save_to_mongo()
 
-        return render_template('application_added.html',  user=user)
+        return render_template('added.html',  user=user)
 
     else:
         return render_template('login_fail.html')

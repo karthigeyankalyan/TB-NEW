@@ -186,7 +186,7 @@
                     }
 
                     var pso = doc.splitTextToSize('In pursuance of loan requisition received in reference above, the Managing Director, ' +
-                        'TABCEDCO, is pleased to sanction the Term Loan of Rs. ' + (parseInt(total_nbc_share) + parseInt(total_tabcedco_share)) + ' under ' +
+                        'TABCEDCO, is pleased to sanction the Term Loan of Rs. ' + (parseInt(total_nbc_share) + parseInt(total_tabcedco_share)) + convertNumberToWords((parseInt(total_nbc_share) + parseInt(total_tabcedco_share))) + ' under ' +
                         json[0]['loan_category'] + ' to the ' + json[0]['sub_bank'] + ' through ' + json[0]['bank'] + ' to disburse this ' +
                         'amount to the beneficiary/beneficiaries as detailed in the Annexure-I', 165);
 
@@ -255,7 +255,7 @@
                         'of interest for the defaulted period to TABCEDCO. However, the Bank is at liberty, to collect the Penal interest in addition ' +
                         'to the normal interest being charged by the Bank” from the beneficiary / beneficiaries in case of default by the beneficiary / beneficiaries ' +
                         'himself/herself/ themselves to the Bank as per Banking norms.', 170);
-                    var pt7 = doc.splitTextToSize('7.   That the Society shall be entitled to 3% of the total interest collected depending upon the nature of the scheme ' +
+                    var pt7 = doc.splitTextToSize('7.   That the Bank / Society shall be entitled to 3% of the total interest collected depending upon the nature of the scheme ' +
                         'towards service charges for the services rendered by the Bank / Society such as scrutiny, processing of the applications, sanctioning and disbursing ' +
                         'the loan, the recoveries made from the beneficiary / beneficiaries and legal expenses if any incurred, postage and stationery and recovery/collection of' +
                         ' remittance of installment due on the date – irrespective of actual physical recovery being effected or not by which the risk if any, involved in such ' +
@@ -457,7 +457,7 @@
                     doc.text(25, 100, 'PROVISIONAL SANCTION ORDER:');
 
                     var pso = doc.splitTextToSize('In pursuance of loan requisition received in reference above, the Managing Director, ' +
-                        'TABCEDCO, is pleased to sanction the Term Loan of Rs. ' + (parseInt(total_nbc_share) + parseInt(total_tabcedco_share)) + ' under ' +
+                        'TABCEDCO, is pleased to sanction the Term Loan of Rs. ' + (parseInt(total_nbc_share) + ' ' + parseInt(total_tabcedco_share)) + convertNumberToWords((parseInt(total_nbc_share) + parseInt(total_tabcedco_share)))+' under ' +
                         json[0]['loan_category'] + ' to the ' + json[0]['sub_bank'] + ' through ' + json[0]['bank'] + ' to disburse this ' +
                         'amount to the beneficiary/beneficiaries as detailed in the Annexure-I', 165);
 
