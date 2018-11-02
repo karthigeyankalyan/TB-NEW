@@ -398,7 +398,13 @@
 
                     doc.text(37, 120, para1);
 
-                    var paraStr2 = 'Beneficiaries '+ json[0]['applicant_name'] + ' Loan Amount of Rs. '+(total_tabcedco_share+total_nbc_share);
+                    if(json.lemgth === 1) {
+                        var paraStr2 = 'Beneficiaries '+ json[0]['applicant_name'] + ' Loan Amount of Rs. '+(total_tabcedco_share+total_nbc_share);
+                    }
+                    else {
+                        var size = json.length-1;
+                        paraStr2 = 'Beneficiaries '+ json[0]['applicant_name'] + ' & '+ size +' Loan Amount of Rs. '+(total_tabcedco_share+total_nbc_share);
+                    }
 
                     var para2 = doc.splitTextToSize(paraStr2, 160);
 
@@ -434,7 +440,7 @@
                     doc.text(25, 225, toPt2);
 
                     doc.text(25, 235, '3. The Special Officer, ' + json[0]['sub_bank'] + ' ' + json[0]['district']);
-                    doc.text(25, 245, '4. B4 Assistant – for follow up action.');
+                    doc.text(25, 245, '4. B3 Assistant – for follow up action.');
 
                     doc.addPage();
 
@@ -457,7 +463,7 @@
                     doc.text(25, 100, 'PROVISIONAL SANCTION ORDER:');
 
                     var pso = doc.splitTextToSize('In pursuance of loan requisition received in reference above, the Managing Director, ' +
-                        'TABCEDCO, is pleased to sanction the Term Loan of Rs. ' + (parseInt(total_nbc_share) + ' ' + parseInt(total_tabcedco_share)) + convertNumberToWords((parseInt(total_nbc_share) + parseInt(total_tabcedco_share)))+' under ' +
+                        'TABCEDCO, is pleased to sanction the Term Loan of Rs. ' + (parseInt(total_nbc_share) + parseInt(total_tabcedco_share)) + convertNumberToWords((parseInt(total_nbc_share) + parseInt(total_tabcedco_share)))+' under ' +
                         json[0]['loan_category'] + ' to the ' + json[0]['sub_bank'] + ' through ' + json[0]['bank'] + ' to disburse this ' +
                         'amount to the beneficiary/beneficiaries as detailed in the Annexure-I', 165);
 
@@ -561,8 +567,8 @@
                     doc.text(25, 30, pt9);
                     doc.text(25, 50, pt10);
                     doc.text(25, 80, concl);
-                    doc.text(150, 110, 'Sd/-' + MD );
-                    doc.text(150, 120, 'Managing Director');
+                    doc.text(150, 110, 'Sd/- Managing Director' );
+                    doc.text(150, 120, 'For Managing Director');
 
                     doc.text(25, 150, 'ACCEPTED');
 
@@ -595,6 +601,20 @@
             contentType: "application/json",
             dataType: 'json',
             success: function (json) {
+
+            if(json[0]['loan_category'] === 'GTL (General Term Loan)') {
+                var cat = "GTL";
+            }
+            else if(json[0]['loan_category'] === 'NSS (New-Swarnima Scheme)') {
+                cat = "NSS";
+            }
+            else if(json[0]['loan_category'] === 'MCG (Micro-Credit Gents)') {
+                cat = "MCR";
+            }
+            else if(json[0]['loan_category'] === 'MSY (Mahila Samridhi Yojana)') {
+                cat = "MSY";
+            }
+
             if(json.length !== 0) {
                 var distinct_demands = [];
 
@@ -662,52 +682,52 @@
 
                                 var doc = new jsPDF();
                                 doc.setFontSize(10);
-                                doc.text(50, 20, 'TAMILNADU  BACKWARD CLASSES ECONOMIC DEVELOPMENT CORPORATION LTD.,');
-                                doc.text(60, 30, '1/1(1), Mayor Ramanathan Salai East, Egmore, Chennai - 600 008.');
+                                doc.text(50, 15, 'TAMILNADU  BACKWARD CLASSES ECONOMIC DEVELOPMENT CORPORATION LTD.,');
+                                doc.text(60, 20, '1/1(1), Mayor Ramanathan Salai East, Egmore, Chennai - 600 008.');
 
-                                doc.text(30, 45, 'NAME OF THE BANK:');
+                                doc.text(30, 30, '1.    NAME OF THE BANK:');
                                 var bank = uberLoan[0]['sub_bank'];
-                                doc.text(80, 45, bank);
+                                doc.text(80, 30, bank);
 
-                                doc.text(30, 55, 'SCHEME NAME:');
+                                doc.text(30, 37, '2.    SCHEME NAME:');
                                 var scheme = uberLoan[0]['loan_category'];
-                                doc.text(80, 55, scheme);
+                                doc.text(80, 37, scheme);
 
-                                doc.text(150, 55, 'District:');
+                                doc.text(150, 375, 'District:');
                                 var district = uberLoan[0]['district'];
-                                doc.text(165, 55, district);
+                                doc.text(165, 37, district);
 
                                 var NBCShare = NBCFDCShareCalculator(uberLoan[0]['loan_category'], total_loan_amount);
                                 var TabcedcoShare = tabcedcoShareCalculator(uberLoan[0]['loan_category'], total_loan_amount);
 
-                                doc.text(80, 65, 'NBCFDC Share');
-                                doc.text(80, 75, 'Rs. ' + NBCShare);
+                                doc.text(80, 45, 'NBCFDC Share');
+                                doc.text(80, 50, 'Rs. ' + NBCShare);
 
-                                doc.text(150, 65, 'TABCEDCO Share');
-                                doc.text(150, 75, 'Rs. ' + TabcedcoShare);
+                                doc.text(150, 45, 'TABCEDCO Share');
+                                doc.text(150, 50, 'Rs. ' + TabcedcoShare);
 
-                                doc.text(30, 85, 'LOAN AMOUNT:');
-                                doc.text(80, 85, 'Rs. ' + total_loan_amount);
+                                doc.text(30, 57, '3.    LOAN AMOUNT:');
+                                doc.text(80, 57, 'Rs. ' + total_loan_amount);
 
-                                doc.text(30, 95, 'Rate of Interest:');
+                                doc.text(30, 65, '4.    RATE OF INTEREST:');
                                 var roi = uberLoan[0]['roi'];
-                                doc.text(80, 95, roi + '%');
-                                doc.text(150, 95, roi + '%');
+                                doc.text(80, 65, roi + '%');
+                                doc.text(150, 65, roi + '%');
 
-                                doc.text(30, 105, 'Rate of Penal Int:');
-                                doc.text(80, 105, '5%');
-                                doc.text(150, 105, '5%');
+                                doc.text(30, 72, '5.   RATE OF PENAL INTEREST:');
+                                doc.text(80, 72, '5%');
+                                doc.text(150, 72, '5%');
 
-                                doc.text(30, 115, 'RO No.:');
-                                doc.text(80, 115, PSO);
+                                doc.text(30, 80, '6.    RO No.:');
+                                doc.text(80, 80, json[0]['ro_number']);
 
-                                doc.text(30, 125, 'CHEQUE NO. & DATE :');
+                                doc.text(30, 87, '7.    CHEQUE NO. & DATE :');
                                 var chNumber = uberLoan[0]['cheque_number'] + ' Dated: _______';
-                                doc.text(80, 125, chNumber);
+                                doc.text(80, 87, chNumber);
 
-                                doc.text(30, 135, 'No. Of Installments:');
+                                doc.text(30, 95, '8.    No. Of Installments:');
                                 var noInstallments = parseInt(uberLoan[0]['no_of_demands']) + ' Quarters';
-                                doc.text(150, 135, noInstallments);
+                                doc.text(150, 95, noInstallments);
 
                                 columns = ["S. No", "Due Date", "Amount Remaining", "Principal", "Interest", "Total"];
                                 rows = [];
@@ -716,7 +736,7 @@
                                 for (var l = 0; l < parseInt(distinct_demands); l++) {
                                     var totPDemandString = 'totPDem' + (l + 1);
                                     var totIDemandString = 'totIDem' + (l + 1);
-                                    rows.push([[l + 1], [moment(subset[l]['demand_date']['$date']).format('YYYY-MM-DD')],
+                                    rows.push([[l + 1], [moment(subset[l]['demand_date']['$date']).format('DD-MM-YYYY')],
                                         [total_loan_amount],
                                         [subset[totPDemandString]], [subset[totIDemandString]],
                                         [parseInt(subset[totPDemandString]) + parseInt(subset[totIDemandString])]]);
@@ -727,9 +747,9 @@
                                     }
                                 }
                                 rows.push([['Total'], [''], [''], [sum_principal], [sum_interest], [sum_principal + sum_interest]]);
-                                doc.autoTable(columns, rows, {startY: 150});
+                                doc.autoTable(columns, rows, {startY: 110});
 
-                                doc.text(150, doc.autoTableEndPosY() + 20, 'For Managing Director');
+                                doc.text(150, doc.autoTableEndPosY() + 10, 'For Managing Director');
 
                                 doc.save('Payment_Schedule' + PSO + '-' + uberLoan[0]['applicant_name'] + '.pdf')
                             },
@@ -908,7 +928,7 @@
                             'Managing Director,' + json[0]['bank'] + ', ' + json[0]['district'] + ' with proper acquittance.', 160);
                         doc.text(34, doc.autoTableEndPosY() + 45, pt6);
 
-                        doc.text(165, doc.autoTableEndPosY() + 65, 'Sd/-'+ MD);
+                        doc.text(165, doc.autoTableEndPosY() + 65, 'Sd/- Managing Director');
                         doc.text(165, doc.autoTableEndPosY() + 75, 'For Managing Director');
 
                         doc.text(40, doc.autoTableEndPosY() + 90, 'To');
@@ -942,7 +962,7 @@
                         doc.text(45, 35, 'ECONOMIC DEVELOPMENT CORPORATION LIMITED, CHENNAI-8.');
 
                         doc.text(65, 45, 'PRESENT: '+MD+'.,I.A.S.');
-                        doc.text(25, 55, 'Proc.No.' + json[0]['ann_loan_id'] + '/' + json[0]['district'] + json[0]['bank']);
+                        doc.text(25, 55, 'Proc.No.' + json[0]['ann_loan_id'] + '/' + json[0]['district'] + '/' + json[0]['bank']);
 
                         doc.text(160, 55, 'Dated: ' + (moment(json[0]['ro_date']).format("DD-MM-YYYY")));
 
@@ -958,7 +978,7 @@
 
                         var sub = doc.splitTextToSize('Sub:     Tamil Nadu Backward Classes Economic Development Corporation Ltd., Chennai 600008. Disbursement of ' +
                             'Individual Term Loan to ' + json[0]['applicant_name'] + ' and '+ size + ' others. - Final Sanction Order for ' +
-                            'Rs.' + sanctioned_amount + ' - Issued - Reg', 160);
+                            'Rs.' + sanctioned_amount + '/- - Issued - Reg', 160);
 
                         doc.text(40, 65, sub);
 
@@ -970,21 +990,19 @@
 
                         doc.text(25, 120, 'ORDER:');
                         var order = doc.splitTextToSize('In continuation of this office Memorandum of Agreement-cum-Provisional Sanction Order sent in the' +
-                            ' reference 1st cited, sanction is hereby accorded for the payment of Rs.'+sanctioned_amount+' to the '+json[0]['sub_bank']+
+                            ' reference 1st cited, sanction is hereby accorded for the payment of Rs.'+sanctioned_amount+' ('+convertNumberToWords(sanctioned_amount)+') to the '+json[0]['sub_bank']+
                             'through the '+ json[0]['bank'] +' towards the Term Loan under '+json[0]['loan_category']+' Scheme ' +
                             'to the following beneficiary/beneficiaries in accordance with the terms and conditions incorporated in the Memorandum of ' +
                             'Agreement-Cum-Provisional Sanction Order now accepted in the reference 2nd cited and also subject to the conditions noted below.', 160);
                         doc.text(34, 125, order);
 
                         doc.text(25, 160, 'CONDITIONS:');
-                        var ConditionsPt1 = doc.splitTextToSize('1.    The beneficiary beneficiary / beneficiaries belongs to Backward Classes / Most' +
+                        var ConditionsPt1 = doc.splitTextToSize('1.    The beneficiary / beneficiaries belongs to Backward Classes / Most' +
                             'Backward Classes / Denotified Communities and his/their Annual Income is below the prescribed limit and', 160);
                         doc.text(34, 165, ConditionsPt1);
                         var ConditionsPt2 = doc.splitTextToSize('2.    That the  Utilization  certificate  and  asset  creation  certificate  have to ' +
                             'be furnished to this Corporation, within a month on receipt of funds from this Corporation.', 160);
                         doc.text(34, 180, ConditionsPt2);
-
-                        doc.addPage();
 
                         doc.text(80, 190, 'Details of Loan Sanctioned');
 
@@ -1027,13 +1045,13 @@
 
                         doc.text(34, 55, PenalInterest);
 
-                        doc.text(25, 75, '2. Pattern of Finance is as follows');
+                        doc.text(34, 75, '2. Pattern of Finance is as follows');
 
                         columns1 = ["Share", "Share Amount in Rs.", "Rate of Interest"];
                         rows1 = [];
-                        rows1.push([['NBCFDC Share'], [parseInt(NBCFDCShareCalculator(json[0]['loan_category'], total_individual_amount))], [json[0]['roi']+'%']]);
-                        rows1.push([['TABCEDCO Share'], [parseInt(tabcedcoShareCalculator(json[0]['loan_category'], total_individual_amount))], [json[0]['roi']+'%']]);
-                        rows1.push([['Total Amount'], [sanctioned_amount], []]);
+                        rows1.push([['NBCFDC Share'], [(parseInt(NBCFDCShareCalculator(json[0]['loan_category'], total_individual_amount)))+'/-'], [json[0]['roi']+'%']]);
+                        rows1.push([['TABCEDCO Share'], [(parseInt(tabcedcoShareCalculator(json[0]['loan_category'], total_individual_amount))+'/-'], [json[0]['roi']+'%']]);
+                        rows1.push([['Total Amount'], [sanctioned_amount+'/-'], []]);
 
                         doc.autoTable(columns1, rows1, {startY: 80});
 
@@ -1044,7 +1062,7 @@
                         doc.text(25, doc.autoTableEndPosY()+10, AAO);
                         doc.text(25, doc.autoTableEndPosY()+30, 'The details of schedule of repayment is enclosed.');
 
-                        doc.text(165, doc.autoTableEndPosY() + 35, 'Sd/-'+ MD);
+                        doc.text(165, doc.autoTableEndPosY() + 35, 'Sd/- Managing Director');
                         doc.text(165, doc.autoTableEndPosY() + 45, 'For Managing Director');
 
                         doc.text(40, doc.autoTableEndPosY() + 55, 'To');
