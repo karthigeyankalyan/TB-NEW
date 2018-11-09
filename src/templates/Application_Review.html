@@ -465,10 +465,8 @@
 
                     doc.text(25, 100, 'PROVISIONAL SANCTION ORDER:');
 
-                    console.log(total_nbc_share, total_tabcedco_share);
-
                     var pso = doc.splitTextToSize('In pursuance of loan requisition received in reference above, the Managing Director, ' +
-                        'TABCEDCO, is pleased to sanction the Term Loan of Rs. ' + (parseInt(total_nbc_share) + parseInt(total_tabcedco_share)) + convertNumberToWords((parseInt(total_nbc_share) + parseInt(total_tabcedco_share)))+' under ' +
+                        'TABCEDCO, is pleased to sanction the Term Loan of Rs. ' + (total_nbc_share + total_tabcedco_share) + convertNumberToWords((parseInt(total_nbc_share) + parseInt(total_tabcedco_share)))+' under ' +
                         json[0]['loan_category'] + ' to the ' + json[0]['sub_bank'] + ' through ' + json[0]['bank'] + ' to disburse this ' +
                         'amount to the beneficiary/beneficiaries as detailed in the Annexure-I', 165);
 
@@ -606,6 +604,8 @@
             contentType: "application/json",
             dataType: 'json',
             success: function (json) {
+
+                console.log(json);
 
             if(json[0]['loan_category'] === 'GTL (General Term Loan)') {
                 var cat = "GTL";
@@ -987,7 +987,7 @@
 
                         doc.text(40, 65, sub);
 
-                        doc.text(40, 85, 'Ref:  1. This office PSO Proc.No.' + json[0]['ann_loan_id'] + '/' + json[0]['district'] + json[0]['bank']);
+                        doc.text(40, 85, 'Ref:  1. This office PSO Proc.No.' + json[0]['ann_loan_id'] + '/' + json[0]['district'] + '/' + json[0]['bank'] + '/ PSO Dated: ' + moment(json[0]['pso_date']).format("DD-MM-YYYY"));
                         doc.text(49, 90, '2. Accepted and Signed Memorandum of Agreement-Cum-Provisional Sanction Order');
                         doc.text(51, 95,  'received from, the '+json[0]['post_pso_ref_no']);
 
@@ -995,8 +995,8 @@
 
                         doc.text(25, 120, 'ORDER:');
                         var order = doc.splitTextToSize('In continuation of this office Memorandum of Agreement-cum-Provisional Sanction Order sent in the' +
-                            ' reference 1st cited, sanction is hereby accorded for the payment of Rs.'+sanctioned_amount+' ('+convertNumberToWords(sanctioned_amount)+') to the '+json[0]['sub_bank']+
-                            'through the '+ json[0]['bank'] +' towards the Term Loan under '+json[0]['loan_category']+' Scheme ' +
+                            ' reference 1st cited, sanction is hereby accorded for the payment of Rs.'+sanctioned_amount+' '+convertNumberToWords(sanctioned_amount)+' to the '+json[0]['sub_bank']+
+                            ' through the '+ json[0]['bank'] +' towards the Term Loan under '+json[0]['loan_category']+' Scheme ' +
                             'to the following beneficiary/beneficiaries in accordance with the terms and conditions incorporated in the Memorandum of ' +
                             'Agreement-Cum-Provisional Sanction Order now accepted in the reference 2nd cited and also subject to the conditions noted below.', 160);
                         doc.text(34, 125, order);
