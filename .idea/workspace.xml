@@ -34,21 +34,21 @@
       <file leaf-file-name="Application_Review.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/templates/Application_Review.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="197">
-              <caret line="1055" column="0" lean-forward="false" selection-start-line="1055" selection-start-column="0" selection-end-line="1055" selection-end-column="0" />
+            <state relative-caret-position="221">
+              <caret line="327" column="0" lean-forward="false" selection-start-line="327" selection-start-column="0" selection-end-line="327" selection-end-column="0" />
               <folding>
                 <element signature="e#1657#19559#0" expanded="false" />
-                <element signature="e#38213#47356#0" expanded="false" />
-                <element signature="e#68194#88610#0" expanded="false" />
-                <element signature="e#88650#93752#0" expanded="false" />
-                <element signature="e#93758#93793#0" expanded="false" />
-                <element signature="e#93847#94155#0" expanded="false" />
-                <element signature="e#94161#94196#0" expanded="false" />
-                <element signature="e#94252#94562#0" expanded="false" />
-                <element signature="e#94568#94603#0" expanded="false" />
-                <element signature="e#94662#94855#0" expanded="false" />
-                <element signature="e#94913#95209#0" expanded="false" />
-                <element signature="e#95253#97931#0" expanded="false" />
+                <element signature="e#38246#47389#0" expanded="false" />
+                <element signature="e#68227#88643#0" expanded="false" />
+                <element signature="e#88683#93785#0" expanded="false" />
+                <element signature="e#93791#93826#0" expanded="false" />
+                <element signature="e#93880#94188#0" expanded="false" />
+                <element signature="e#94194#94229#0" expanded="false" />
+                <element signature="e#94285#94595#0" expanded="false" />
+                <element signature="e#94601#94636#0" expanded="false" />
+                <element signature="e#94695#94888#0" expanded="false" />
+                <element signature="e#94946#95242#0" expanded="false" />
+                <element signature="e#95286#97964#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -57,7 +57,7 @@
       <file leaf-file-name="loanapplication.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/models/loanapplication.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
+            <state relative-caret-position="134">
               <caret line="180" column="0" lean-forward="true" selection-start-line="180" selection-start-column="0" selection-end-line="180" selection-end-column="0" />
               <folding />
             </state>
@@ -528,12 +528,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/templates/Application_Review.html</url>
-          <line>774</line>
+          <line>777</line>
           <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/templates/Application_Review.html</url>
-          <line>1097</line>
+          <line>1100</line>
           <option name="timeStamp" value="7" />
         </line-breakpoint>
       </breakpoints>
@@ -892,14 +892,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/models/loanapplication.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="180" column="0" lean-forward="true" selection-start-line="180" selection-start-column="0" selection-end-line="180" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/app.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="253">
@@ -908,23 +900,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/models/loanapplication.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="134">
+          <caret line="180" column="0" lean-forward="true" selection-start-line="180" selection-start-column="0" selection-end-line="180" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/templates/Application_Review.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="197">
-          <caret line="1055" column="0" lean-forward="false" selection-start-line="1055" selection-start-column="0" selection-end-line="1055" selection-end-column="0" />
+        <state relative-caret-position="221">
+          <caret line="327" column="0" lean-forward="false" selection-start-line="327" selection-start-column="0" selection-end-line="327" selection-end-column="0" />
           <folding>
             <element signature="e#1657#19559#0" expanded="false" />
-            <element signature="e#38213#47356#0" expanded="false" />
-            <element signature="e#68194#88610#0" expanded="false" />
-            <element signature="e#88650#93752#0" expanded="false" />
-            <element signature="e#93758#93793#0" expanded="false" />
-            <element signature="e#93847#94155#0" expanded="false" />
-            <element signature="e#94161#94196#0" expanded="false" />
-            <element signature="e#94252#94562#0" expanded="false" />
-            <element signature="e#94568#94603#0" expanded="false" />
-            <element signature="e#94662#94855#0" expanded="false" />
-            <element signature="e#94913#95209#0" expanded="false" />
-            <element signature="e#95253#97931#0" expanded="false" />
+            <element signature="e#38246#47389#0" expanded="false" />
+            <element signature="e#68227#88643#0" expanded="false" />
+            <element signature="e#88683#93785#0" expanded="false" />
+            <element signature="e#93791#93826#0" expanded="false" />
+            <element signature="e#93880#94188#0" expanded="false" />
+            <element signature="e#94194#94229#0" expanded="false" />
+            <element signature="e#94285#94595#0" expanded="false" />
+            <element signature="e#94601#94636#0" expanded="false" />
+            <element signature="e#94695#94888#0" expanded="false" />
+            <element signature="e#94946#95242#0" expanded="false" />
+            <element signature="e#95286#97964#0" expanded="false" />
           </folding>
         </state>
       </provider>
