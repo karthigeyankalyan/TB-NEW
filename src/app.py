@@ -1175,7 +1175,7 @@ def get_applications_by_identifier(ann_loan_id):
 def get_application_by_identifier(ann_loan_id):
     loan = []
 
-    loan_dict = Database.find("Demands", {"ann_id": ann_loan_id})
+    loan_dict = Database.find("Demands", {"loan_id": ann_loan_id})
 
     for tran in loan_dict:
         loan.append(tran)
