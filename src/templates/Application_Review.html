@@ -398,7 +398,7 @@
 
                     doc.text(37, 120, para1);
 
-                    if(json.lemgth === 1) {
+                    if(json.length === 1) {
                         var paraStr2 = 'Beneficiaries '+ json[0]['applicant_name'] + ' Loan Amount of Rs. '+(total_tabcedco_share+total_nbc_share);
                     }
                     else {
@@ -461,6 +461,8 @@
                     doc.text(100, 90, '**********');
 
                     doc.text(25, 100, 'PROVISIONAL SANCTION ORDER:');
+
+                    console.log(total_nbc_share, total_tabcedco_share);
 
                     var pso = doc.splitTextToSize('In pursuance of loan requisition received in reference above, the Managing Director, ' +
                         'TABCEDCO, is pleased to sanction the Term Loan of Rs. ' + (parseInt(total_nbc_share) + parseInt(total_tabcedco_share)) + convertNumberToWords((parseInt(total_nbc_share) + parseInt(total_tabcedco_share)))+' under ' +
