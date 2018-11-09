@@ -1052,7 +1052,7 @@
                         columns1 = ["Share", "Share Amount in Rs.", "Rate of Interest"];
                         rows1 = [];
                         rows1.push([['NBCFDC Share'], [(parseInt(NBCFDCShareCalculator(json[0]['loan_category'], total_individual_amount)))+'/-'], [json[0]['roi']+'%']]);
-                        rows1.push([['TABCEDCO Share'], [(parseInt(tabcedcoShareCalculator(json[0]['loan_category'], total_individual_amount))+'/-'], [json[0]['roi']+'%']]);
+                        rows1.push([['TABCEDCO Share'], [(parseInt(tabcedcoShareCalculator(json[0]['loan_category'], total_individual_amount)))+'/-'], [json[0]['roi']+'%']]);
                         rows1.push([['Total Amount'], [sanctioned_amount+'/-'], []]);
 
                         doc.autoTable(columns1, rows1, {startY: 80});
