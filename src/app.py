@@ -830,6 +830,8 @@ def loan_financial_form(_id):
             for result_object in application[0:1]:
                 dem_count = result_object['no_of_demands']
                 roi = result_object['roi']
+                loan_category = result_object['loan_category']
+                sub_bank = result_object['sub_bank']
 
             var_date = []
             var_principal_demand = []
@@ -847,10 +849,8 @@ def loan_financial_form(_id):
                 var_interest_demand.append(request.form[var_form_interest_demand])
                 var_dem_number.append(request.form[var_form_dem_number])
 
-            loan_category = request.form['loanCategory']
             district = request.form['district']
             bank = request.form['bank']
-            sub_bank = request.form['subBank']
             loan_amount = request.form['loanAmount']
             sanction_date = request.form['receivedDate']
             user_id = user._id
