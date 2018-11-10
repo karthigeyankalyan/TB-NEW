@@ -900,12 +900,14 @@
                                 for (var k = 0; k < aggregatedData[i].values[j].values.length; k++) {
                                     if (k === 0) {
                                         rows.push([[aggregatedData[i].key], [[aggregatedData[i].values[j].key]], [[aggregatedData[i].values[j].values[k].values['total_members']]],
+                                            [[aggregatedData[i].values[j].values[k].key]],
                                             [(NBCFDCShareCalculator(json[0]['loan_category'], aggregatedData[i].values[j].values[k].values['total_shg_loan']) +
                                             tabcedcoShareCalculator(json[0]['loan_category'], aggregatedData[i].values[j].values[k].values['total_shg_loan']))]]);
                                         total_strength += parseInt(aggregatedData[i].values[j].values[k].values['total_members']);
                                     }
                                     else {
                                         rows.push([[''], [[aggregatedData[i].values[j].key]], [[aggregatedData[i].values[j].values[k].values['total_members']]],
+                                            [[aggregatedData[i].values[j].values[k].key]],
                                             [(NBCFDCShareCalculator(json[0]['loan_category'], aggregatedData[i].values[j].values[k].values['total_shg_loan']) +
                                             tabcedcoShareCalculator(json[0]['loan_category'], aggregatedData[i].values[j].values[k].values['total_shg_loan']))]]);
                                         total_strength += parseInt(aggregatedData[i].values[j].values[k].values['total_members']);
@@ -1166,6 +1168,9 @@
                     .key(function (d) {
                         return d.shg_name;
                     })
+                    .key(function (d) {
+                        return d.amount_per_member;
+                    })
                     .rollup(
                         function(leaves)
                         {
@@ -1220,17 +1225,21 @@
 
                         for (var i = 0; i < aggregatedData.length; i++) {
                             for (var j = 0; j < aggregatedData[i].values.length; j++) {
-                                if (j === 0) {
-                                    rows.push([[aggregatedData[i].key], [[aggregatedData[i].values[j].key]], [[aggregatedData[i].values[j].values['total_members']]],
-                                        [(NBCFDCShareCalculator(json[0]['loan_category'], aggregatedData[i].values[j].values['total_shg_loan']) +
-                                        tabcedcoShareCalculator(json[0]['loan_category'], aggregatedData[i].values[j].values['total_shg_loan']))]]);
-                                    total_strength += parseInt(aggregatedData[i].values[j].values['total_members']);
-                                }
-                                else {
-                                    rows.push([[''], [[aggregatedData[i].values[j].key]], [[aggregatedData[i].values[j].values['total_members']]],
-                                        [(NBCFDCShareCalculator(json[0]['loan_category'], aggregatedData[i].values[j].values['total_shg_loan']) +
-                                        tabcedcoShareCalculator(json[0]['loan_category'], aggregatedData[i].values[j].values['total_shg_loan']))]]);
-                                    total_strength += parseInt(aggregatedData[i].values[j].values['total_members']);
+                                for (var k = 0; k < aggregatedData[i].values[j].values.length; k++) {
+                                    if (k === 0) {
+                                        rows.push([[aggregatedData[i].key], [[aggregatedData[i].values[j].key]], [[aggregatedData[i].values[j].values[k].values['total_members']]],
+                                            [[aggregatedData[i].values[j].values[k].key]],
+                                            [(NBCFDCShareCalculator(json[0]['loan_category'], aggregatedData[i].values[j].values[k].values['total_shg_loan']) +
+                                            tabcedcoShareCalculator(json[0]['loan_category'], aggregatedData[i].values[j].values[k].values['total_shg_loan']))]]);
+                                        total_strength += parseInt(aggregatedData[i].values[j].values[k].values['total_members']);
+                                    }
+                                    else {
+                                        rows.push([[''], [[aggregatedData[i].values[j].key]], [[aggregatedData[i].values[j].values[k].values['total_members']]],
+                                            [[aggregatedData[i].values[j].values[k].key]],
+                                            [(NBCFDCShareCalculator(json[0]['loan_category'], aggregatedData[i].values[j].values[k].values['total_shg_loan']) +
+                                            tabcedcoShareCalculator(json[0]['loan_category'], aggregatedData[i].values[j].values[k].values['total_shg_loan']))]]);
+                                        total_strength += parseInt(aggregatedData[i].values[j].values[k].values['total_members']);
+                                    }
                                 }
                             }
                         }
