@@ -9,7 +9,7 @@ class Demand(object):
     def __init__(self, loan_id, loan_category, district, district_bank, sub_bank, demand_number=None, demand_date=None,
                  cheque_date=None, cheque_number=None, principal_demand=None, principal_collected=None,
                  penal_interest=None, belated_interest=None, service_charge=None, closing_balance_principal_due=None,
-                 closing_balance_principal_ndue=None, closing_balance_interest_due=None,
+                 closing_balance_principal_ndue=None, closing_balance_interest_due=None, ro_number=None,
                  interest_demand=None, interest_collected=None, loan_amount=None, no_of_demands=None,
                  roi=None, loan_sanction_date=None, user_id=None, user_name=None, ann_id=None, _id=None):
         self.loan_id = loan_id
@@ -43,6 +43,7 @@ class Demand(object):
         self.closing_balance_interest_due = closing_balance_interest_due
         self.loan_amount = loan_amount
         self.roi = roi
+        self.ro_number = ro_number
 
         if loan_sanction_date:
             self.loan_sanction_date = (datetime.combine(datetime.strptime(loan_sanction_date, '%Y-%m-%d').date(),
@@ -92,6 +93,7 @@ class Demand(object):
             "service_charge": self.service_charge,
             "loan_amount": self.loan_amount,
             "roi": self.roi,
+            "ro_number": self.ro_number,
             "closing_balance_principal_due": self.closing_balance_principal_due,
             "closing_balance_principal_ndue": self.closing_balance_principal_ndue,
             "closing_balance_interest_due": self.closing_balance_interest_due,

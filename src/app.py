@@ -826,12 +826,16 @@ def loan_financial_form(_id):
             application = Database.find("loans", {"_id": _id})
 
             dem_count, roi = 0, 0
+            ro_number, bank, district, loan_category, sub_bank = None, None, None, None, None
 
             for result_object in application[0:1]:
                 dem_count = result_object['no_of_demands']
                 roi = result_object['roi']
                 loan_category = result_object['loan_category']
                 sub_bank = result_object['sub_bank']
+                bank = result_object['bank']
+                district = result_object['district']
+                ro_number = result_object['ro_number']
 
             var_date = []
             var_principal_demand = []
@@ -849,8 +853,6 @@ def loan_financial_form(_id):
                 var_interest_demand.append(request.form[var_form_interest_demand])
                 var_dem_number.append(request.form[var_form_dem_number])
 
-            district = request.form['district']
-            bank = request.form['bank']
             loan_amount = request.form['loanAmount']
             sanction_date = request.form['receivedDate']
             user_id = user._id
@@ -863,7 +865,7 @@ def loan_financial_form(_id):
                                        demand_date=var_date[i], principal_demand=var_principal_demand[i],
                                        interest_demand=var_interest_demand[i], loan_id=_id, user_id=user_id,
                                        user_name=user_name, ann_id=loan_id, loan_sanction_date=sanction_date,
-                                       roi=roi, no_of_demands=dem_count)
+                                       roi=roi, no_of_demands=dem_count, ro_number=ro_number)
 
                 demand_object.save_to_mongo()
 

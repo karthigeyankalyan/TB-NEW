@@ -596,6 +596,7 @@
 
     function downloadSchedule() {
         var source = "/getLoansByIdentfier/"+"{{application_id}}";
+        console.log("{{application_id}}");
 //    var MD = 'N. Venkatachalam';
     var MD = document.getElementById('mdName').value;
         $.ajax({
@@ -605,7 +606,13 @@
             dataType: 'json',
             success: function (json) {
 
-                console.log(json);
+            console.log(json[0]['ro_number']);
+
+            if(json[0]['ro_number'] === undefined) {
+                    alert('Update RO Number and Try Again');
+            }
+
+            console.log(json);
 
             if(json[0]['loan_category'] === 'GTL (General Term Loan)') {
                 var cat = "GTL";
@@ -712,23 +719,26 @@
                                 doc.text(150, 50, 'Rs. ' + TabcedcoShare);
 
                                 doc.text(30, 57, '3.    LOAN AMOUNT:');
-                                doc.text(80, 57, 'Rs. ' + total_loan_amount);
+                                doc.text(80, 57, 'Rs. ' + NBCShare+TabcedcoShare);
 
                                 doc.text(30, 65, '4.    RATE OF INTEREST:');
                                 var roi = uberLoan[0]['roi'];
                                 doc.text(80, 65, roi + '%');
                                 doc.text(150, 65, roi + '%');
 
-                                doc.text(30, 72, '5.   RATE OF PENAL INTEREST:');
+                                doc.text(30, 72, '5.   RATE OF PENAL INT.:');
                                 doc.text(80, 72, '5%');
                                 doc.text(150, 72, '5%');
 
                                 doc.text(30, 80, '6.    RO No.:');
-                                doc.text(80, 80, json[0]['ro_number']);
+                                var ro_num = json[0]['ro_number'];
+                                doc.text(80, 80, ro_num);
 
                                 doc.text(30, 87, '7.    CHEQUE NO. & DATE :');
-                                var chNumber = uberLoan[0]['cheque_number'] + ' Dated: _______';
+                                var chNumber = uberLoan[0]['cheque_number'];
                                 doc.text(80, 87, chNumber);
+
+                                doc.text(150, 87, 'Dated: _______');
 
                                 doc.text(30, 95, '8.    No. Of Installments:');
                                 var noInstallments = parseInt(uberLoan[0]['no_of_demands']) + ' Quarters';
@@ -828,6 +838,9 @@
                     .key(function (d) {
                         return d.shg_name;
                     })
+                    .key(function (d) {
+                        return d.amount_per_member;
+                    })
                     .rollup(
                         function(leaves)
                         {
@@ -880,19 +893,23 @@
                         var rows = [];
         //            [[json[0]['bank'], json[0]['shg1'].name, json[0]['shg1'].strength, json[0]['shg1'].amount]]; json[0]['no_of_shgs']
 
+                        console.log(aggregatedData);
+
                         for (var i = 0; i < aggregatedData.length; i++) {
                             for (var j = 0; j < aggregatedData[i].values.length; j++) {
-                                if (j === 0) {
-                                    rows.push([[aggregatedData[i].key], [[aggregatedData[i].values[j].key]], [[aggregatedData[i].values[j].values['total_members']]],
-                                        [(NBCFDCShareCalculator(json[0]['loan_category'], aggregatedData[i].values[j].values['total_shg_loan']) +
-                                        tabcedcoShareCalculator(json[0]['loan_category'], aggregatedData[i].values[j].values['total_shg_loan']))]]);
-                                    total_strength += parseInt(aggregatedData[i].values[j].values['total_members']);
-                                }
-                                else {
-                                    rows.push([[''], [[aggregatedData[i].values[j].key]], [[aggregatedData[i].values[j].values['total_members']]],
-                                        [(NBCFDCShareCalculator(json[0]['loan_category'], aggregatedData[i].values[j].values['total_shg_loan']) +
-                                        tabcedcoShareCalculator(json[0]['loan_category'], aggregatedData[i].values[j].values['total_shg_loan']))]]);
-                                    total_strength += parseInt(aggregatedData[i].values[j].values['total_members']);
+                                for (var j = 0; j < aggregatedData[i].values.length; j++) {
+                                    if (j === 0) {
+                                        rows.push([[aggregatedData[i].key], [[aggregatedData[i].values[j].key]], [[aggregatedData[i].values[j].values['total_members']]],
+                                            [(NBCFDCShareCalculator(json[0]['loan_category'], aggregatedData[i].values[j].values['total_shg_loan']) +
+                                            tabcedcoShareCalculator(json[0]['loan_category'], aggregatedData[i].values[j].values['total_shg_loan']))]]);
+                                        total_strength += parseInt(aggregatedData[i].values[j].values['total_members']);
+                                    }
+                                    else {
+                                        rows.push([[''], [[aggregatedData[i].values[j].key]], [[aggregatedData[i].values[j].values['total_members']]],
+                                            [(NBCFDCShareCalculator(json[0]['loan_category'], aggregatedData[i].values[j].values['total_shg_loan']) +
+                                            tabcedcoShareCalculator(json[0]['loan_category'], aggregatedData[i].values[j].values['total_shg_loan']))]]);
+                                        total_strength += parseInt(aggregatedData[i].values[j].values['total_members']);
+                                    }
                                 }
                             }
                         }
@@ -1420,7 +1437,7 @@
     var doc = new jsPDF();
 //    var MD = 'N. Venkatachalam';
     var MD = document.getElementById('mdName').value;
-    var source = "/loan/"+"{{application_id}}";
+    var source = "/getLoansByIdentfierLoans/"+"{{annual_loan_id}}";
     $.ajax({
         type: 'GET',
         url: source,
@@ -1428,6 +1445,19 @@
         dataType: 'json',
         success: function (json) {
             console.log(json);
+            if(json[0]['loan_category'] === 'GTL (General Term Loan)') {
+                json[0]['loan_category'] = "GTL";
+            }
+            else if(json[0]['loan_category'] === 'NSS (New-Swarnima Scheme)') {
+                json[0]['loan_category'] = "NSS";
+            }
+            else if(json[0]['loan_category'] === 'MCG (Micro-Credit Gents)') {
+                json[0]['loan_category'] = "MCR";
+            }
+            else if(json[0]['loan_category'] === 'MSY (Mahila Samridhi Yojana)') {
+                json[0]['loan_category'] = "MSY";
+            }
+
                 // Checking if the loan category is either Micro Credit or Mahila Samridhi Yojana
                     var PSO = json[0]['ann_loan_id'] + '/' + json[0]['loan_category'] + '/' + (moment(json[0]['received_date']).year() - 2000) + '' + (moment(json[0]['received_date']).year() - 1999);
 
@@ -1435,9 +1465,9 @@
                     doc.text(25, 30, 'DR. '+MD + '., I.A.S');
                     doc.text(25, 35, 'Managing Director');
 
-                    var refNo = 'Proc.No.' + json[0]['ann_loan_id'] + '/' + json[0]['district'] + '/0410/2018/' + json[0]['bank'];
+                    var refNo = 'Proc.No.' + json[0]['ann_loan_id'] + '/' + json[0]['district'] + '/' + json[0]['bank'];
 
-                    doc.text(25, 45, 'Proc.No.' + json[0]['ann_loan_id'] + '/' + json[0]['district'] + '/0410/2018/' + json[0]['bank']);
+                    doc.text(25, 45, 'Proc.No.' + json[0]['ann_loan_id'] + '/' + json[0]['district'] + '/' + json[0]['bank']);
 
                     doc.text(160, 45, 'Dated: _________');
 
@@ -1464,17 +1494,30 @@
                     doc.text(45, 99, ref);
 
                     doc.text(100, 105, '**********');
-                    var sanctioned_amount = (NBCFDCShareCalculator(json[0]['loan_category'], json[0]['loan_amount']) + tabcedcoShareCalculator(json[0]['loan_category'], json[0]['loan_amount']));
+
+                    var sanctioned_amount = 0;
+
+                    for(var i = 0; i<json.length; i++) {
+                        sanctioned_amount += (NBCFDCShareCalculator(json[i]['loan_category'], json[i]['loan_amount']) + tabcedcoShareCalculator(json[i]['loan_category'], json[i]['loan_amount']));
+                    }
 
                     var pt1 = doc.splitTextToSize('1.   In Continuation of this office Sanction Proceedings cited, we are ' +
-                        'enclosing herewith a Cheque bearing No:,'+json[0]['cheque_number']+'Dated:________for '+
-                        sanctioned_amount+'/- drawn on BOB, Chennai-8 along with the proceedings cited. ' +
+                        'enclosing herewith a Cheque bearing No:, '+json[0]['cheque_number']+' Dated:________ for '+
+                        sanctioned_amount+'/- '+ convertNumberToWords(sanctioned_amount) +' drawn on BOB, Chennai-8 along with the proceedings cited. ' +
                         'We request you to send the official receipt for the above amount.', 140);
 
                     doc.text(45, 110, pt1);
 
                     if(json[0]['loan_category'] === 'GTL (General Term Loan)' || json[0]['loan_category'] === 'NSS (New-Swarnima Scheme)') {
-                        var pt2 = doc.splitTextToSize('2.   We request you to disburse the amount to '+json[0]['applicant_name']+
+                        if(json.length === 1) {
+                            var paraStr2 = json[0]['applicant_name'];
+                        }
+                        else {
+                            var size = json.length-1;
+                            paraStr2 = json[0]['applicant_name'] + ' & '+ size +' others';
+                        }
+
+                        var pt2 = doc.splitTextToSize('2.   We request you to disburse the amount to '+paraStr2+
                             ' as per the conditions accepted by them.', 140);
                     }
 
@@ -1485,7 +1528,7 @@
 
                     doc.text(45, 130, pt2);
 
-                    var pt3 = doc.splitTextToSize('3.   Disbursement of Loan to the concerned'+ json[0]['bank']
+                    var pt3 = doc.splitTextToSize('3.   Disbursement of Loan to the concerned '+ json[0]['bank']
                         +' may be informed to this office at the earliest.', 140);
 
                     doc.text(45, 150, pt3);
@@ -1499,7 +1542,7 @@
                     doc.text(160, 200, 'Yours Faithfully,');
                     doc.text(160, 215, 'for Managing Director');
 
-                    doc.text(25, 220, 'Encl. 1. Cheque Number'+json[0]['cheque_number']+' for '+
+                    doc.text(25, 220, 'Encl. 1. Cheque Number: '+json[0]['cheque_number']+' for '+
                         sanctioned_amount+' Dated: ________');
                     doc.text(25, 225, 'Repayment Schedule');
                     doc.text(25, 230, 'Utilisation Certificate');
@@ -1511,7 +1554,7 @@
                         'Manager, TABCEDCO, ' + json[0]['district'], 106);
                     doc.text(25, 250, toPt2);
 
-                    doc.text(25, 260, '3. B3 Assistant – for follow up action.');
+                    doc.text(25, 260, '3. B4 Assistant – for follow up action.');
 
                     doc.save('Covering Letter'+PSO+'.pdf')
         },

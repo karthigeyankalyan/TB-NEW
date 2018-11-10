@@ -105,6 +105,7 @@
                             var th10 = "<th style='text-align:center;vertical-align:middle'>" + "Delete Application" + "</th>";
                             var th11 = "<th style='text-align:center;vertical-align:middle'>" + "Review Application" + "</th>";
                             $("#loansDetails").append(hr + th1 + th2 + th3 + th4 + th5 + th6 + th7 + th8 + th9 + th10 + th11);
+                            console.log(jsonFunc[0]["_id"]);
                             for (var j = 0; j < jsonFunc.length; j++) {
                                 {
                                     var deletion = '/delete_application/'+jsonFunc[j]["_id"];
@@ -116,7 +117,7 @@
                                     else {
                                         name = jsonFunc[j]["shg_name"];
                                     }
-                                    var row = $('<tr></tr>').html('<td>' + name + '</td>'+
+                                    var row = $('<tr></tr>').html('<td>' + jsonFunc[j]["applicant_name"] + '</td>'+
                                         '<td>'+jsonFunc[j]["ann_loan_id"]+'</td>'+
                                         '<td>'+jsonFunc[j]["age"]+'</td>'+
                                         '<td>'+jsonFunc[j]["district"] +'</td>'+
