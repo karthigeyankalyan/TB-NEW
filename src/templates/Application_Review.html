@@ -918,7 +918,13 @@
 
                         rows.push([[['Grand Total']], [['']], [[total_strength]], [[sanction_amount]]]);
 
-                        doc.autoTable(columns, rows, {startY: 170, endY: 200});
+                        doc.autoTable(columns, rows,
+                            {
+                                startY: 170,
+                                endY: 200,
+                                styles: {overflow: 'linebreak', fontSize: 8},
+                                columnStyles: {0: {columnWidth: 40}, 2: {columnWidth: 15}}
+                            });
 
                         doc.text(40, doc.autoTableEndPosY()+5, convertNumberToWords(sanction_amount));
 
