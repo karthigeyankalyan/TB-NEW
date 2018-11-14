@@ -958,8 +958,9 @@
                             'Managing Director,' + json[0]['bank'] + ', ' + json[0]['district'] + ' with proper acquittance.', 160);
                         doc.text(34, doc.autoTableEndPosY() + 45, pt6);
 
-                        doc.text(165, doc.autoTableEndPosY() + 65, 'Sd/- Managing Director');
-                        doc.text(165, doc.autoTableEndPosY() + 75, 'For Managing Director');
+                        doc.text(165, doc.autoTableEndPosY() + 65, 'Sd/-' + MD);
+                        doc.text(165, doc.autoTableEndPosY() + 72, 'Managing Director');
+                        doc.text(165, doc.autoTableEndPosY() + 79, 'For Managing Director');
 
                         doc.text(40, doc.autoTableEndPosY() + 90, 'To');
                         doc.text(40, doc.autoTableEndPosY() + 95, 'The Managing Director');
@@ -1092,8 +1093,9 @@
                         doc.text(25, doc.autoTableEndPosY()+10, AAO);
                         doc.text(25, doc.autoTableEndPosY()+30, 'The details of schedule of repayment is enclosed.');
 
-                        doc.text(165, doc.autoTableEndPosY() + 35, 'Sd/- Managing Director');
-                        doc.text(165, doc.autoTableEndPosY() + 45, 'For Managing Director');
+                        doc.text(165, doc.autoTableEndPosY() + 35, 'Sd/-' + MD);
+                        doc.text(165, doc.autoTableEndPosY() + 42, 'Managing Director');
+                        doc.text(165, doc.autoTableEndPosY() + 49, 'For Managing Director');
 
                         doc.text(40, doc.autoTableEndPosY() + 55, 'To');
                         doc.text(40, doc.autoTableEndPosY() + 60, 'The Managing Director');
@@ -1222,12 +1224,14 @@
 
                         doc.text(40, 160, 'DETAILS OF LOAN SANCTIONED TO MEMBERS OF SELF HELP GROUP');
 
-                        var columns = ["Name of Bank", "Name of SHG", "No of Beneficiaries", "Loan Amount"];
+                        var columns = ["Name of Bank", "Name of SHG", "No of Beneficiaries", "Amount Per Member", "Loan Amount"];
 
         //          Calculating the total strength
                         var total_strength = 0;
                         var rows = [];
         //            [[json[0]['bank'], json[0]['shg1'].name, json[0]['shg1'].strength, json[0]['shg1'].amount]]; json[0]['no_of_shgs']
+
+                        console.log(aggregatedData);
 
                         for (var i = 0; i < aggregatedData.length; i++) {
                             for (var j = 0; j < aggregatedData[i].values.length; j++) {
@@ -1251,7 +1255,14 @@
                         }
 
                         rows.push([[['Grand Total']], [['']], [[total_strength]], [[sanction_amount]]]);
-                        doc.autoTable(columns, rows, {startY: 170, endY: 200});
+
+                        doc.autoTable(columns, rows,
+                            {
+                                startY: 170,
+                                endY: 200,
+                                styles: {overflow: 'linebreak', fontSize: 8},
+                                columnStyles: {0: {columnWidth: 40}, 2: {columnWidth: 15}}
+                            });
 
                         doc.text(40, doc.autoTableEndPosY()+5, convertNumberToWords(sanction_amount));
 
