@@ -321,6 +321,7 @@
         var apm = document.getElementById(amount_tag_id).value;
         var strength = document.getElementById(strength_tag_id).value;
 
+        console.log(total_tag_id, apm, strength);
         document.getElementById(total_tag_id).value = parseInt(apm) * parseInt(strength);
 
         total_loan_amount = 0;
