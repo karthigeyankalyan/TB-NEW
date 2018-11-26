@@ -301,11 +301,19 @@
         var apm = document.getElementById(amount_tag_id).value;
         var strength = document.getElementById(strength_tag_id).value;
 
-        var total_shg_amount = parseInt(apm)*parseInt(strength);
-        document.getElementById(total_tag_id).value = total_shg_amount;
-        total_loan_amount += total_shg_amount;
-        total_ben_count += parseInt(strength);
-        document.getElementById("invIDCTR").value = (j-1);
+        console.log(total_tag_id, apm, strength);
+        document.getElementById(total_tag_id).value = parseInt(apm) * parseInt(strength);
+
+        total_loan_amount = 0;
+        total_ben_count = 0;
+
+        for(var iter = 0; iter <j; iter ++) {
+            total_loan_amount += parseInt(document.getElementById("ta"+iter).value);
+            total_ben_count += parseInt(document.getElementById("strength"+iter).value);
+        }
+        document.getElementById("invIDCTR").value = (j);
+
+        populateTotals();
     }
 
     function populateTotals() {
