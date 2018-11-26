@@ -273,7 +273,7 @@
                 '<input type="text" id='+sb+' name='+sb+'>' +
                 '</div>' +
                 '<div style="display: flex; flex-direction: column;">' +
-                '<input type="text" id='+strength+' name='+strength+'>' +
+                '<input type="text" id='+strength+' name='+strength+' onchange="calculateTotal(this)">' +
                 '</div>' +
                 '<div style="display: flex; flex-direction: column;">' +
                 '<input type="text" id='+amount_pm+' name='+amount_pm+' onchange="calculateTotal(this)">' +
@@ -288,7 +288,7 @@
 
     function calculateTotal(that) {
         var str = that.id;
-        if(i <= 9) {
+        if(j <= 9) {
             var number = str.charAt(str.length-1);
         }
         else {

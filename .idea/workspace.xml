@@ -24,7 +24,7 @@
       <file leaf-file-name="app.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/app.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="11424">
+            <state relative-caret-position="17">
               <caret line="681" column="69" lean-forward="false" selection-start-line="681" selection-start-column="69" selection-end-line="681" selection-end-column="69" />
               <folding />
             </state>
@@ -34,22 +34,22 @@
       <file leaf-file-name="shg_update_loan_app_form.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/templates/shg_update_loan_app_form.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="180" column="0" lean-forward="false" selection-start-line="180" selection-start-column="0" selection-end-line="180" selection-end-column="0" />
+            <state relative-caret-position="508">
+              <caret line="299" column="0" lean-forward="true" selection-start-line="299" selection-start-column="0" selection-end-line="299" selection-end-column="0" />
               <folding>
-                <marker date="1543218200796" expanded="true" signature="7532:7619" ph="..." />
-                <marker date="1543218200796" expanded="true" signature="7682:7720" ph="..." />
-                <marker date="1543218200796" expanded="true" signature="7946:7984" ph="..." />
-                <marker date="1543218200796" expanded="true" signature="8161:8199" ph="..." />
-                <marker date="1543218200796" expanded="true" signature="8396:8434" ph="..." />
-                <marker date="1543218200796" expanded="true" signature="8631:8669" ph="..." />
-                <marker date="1543218200796" expanded="true" signature="8909:8947" ph="..." />
-                <marker date="1543218200796" expanded="true" signature="12095:12182" ph="..." />
-                <marker date="1543218200796" expanded="true" signature="12241:12279" ph="..." />
-                <marker date="1543218200796" expanded="true" signature="12415:12453" ph="..." />
-                <marker date="1543218200796" expanded="true" signature="12577:12615" ph="..." />
-                <marker date="1543218200796" expanded="true" signature="12751:12789" ph="..." />
-                <marker date="1543218200796" expanded="true" signature="12958:12996" ph="..." />
+                <marker date="1543218469136" expanded="true" signature="7532:7619" ph="..." />
+                <marker date="1543218469136" expanded="true" signature="7682:7720" ph="..." />
+                <marker date="1543218469136" expanded="true" signature="7946:7984" ph="..." />
+                <marker date="1543218469136" expanded="true" signature="8161:8199" ph="..." />
+                <marker date="1543218469136" expanded="true" signature="8396:8434" ph="..." />
+                <marker date="1543218469136" expanded="true" signature="8631:8669" ph="..." />
+                <marker date="1543218469136" expanded="true" signature="8909:8947" ph="..." />
+                <marker date="1543218469136" expanded="true" signature="12095:12182" ph="..." />
+                <marker date="1543218469136" expanded="true" signature="12241:12279" ph="..." />
+                <marker date="1543218469136" expanded="true" signature="12415:12453" ph="..." />
+                <marker date="1543218469136" expanded="true" signature="12577:12615" ph="..." />
+                <marker date="1543218469136" expanded="true" signature="12783:12821" ph="..." />
+                <marker date="1543218469136" expanded="true" signature="12990:13028" ph="..." />
               </folding>
             </state>
           </provider>
@@ -58,8 +58,8 @@
       <file leaf-file-name="loan_app_form.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/templates/loan_app_form.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="117">
-              <caret line="241" column="0" lean-forward="true" selection-start-line="241" selection-start-column="0" selection-end-line="242" selection-end-column="0" />
+            <state relative-caret-position="170">
+              <caret line="306" column="0" lean-forward="false" selection-start-line="306" selection-start-column="0" selection-end-line="306" selection-end-column="0" />
               <folding>
                 <marker date="1543215874470" expanded="true" signature="11227:11314" ph="..." />
                 <marker date="1543215874470" expanded="true" signature="11373:11411" ph="..." />
@@ -886,14 +886,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="11424">
-          <caret line="681" column="69" lean-forward="false" selection-start-line="681" selection-start-column="69" selection-end-line="681" selection-end-column="69" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/templates/Application_Review.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
@@ -963,8 +955,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/templates/loan_app_form.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="117">
-          <caret line="241" column="0" lean-forward="true" selection-start-line="241" selection-start-column="0" selection-end-line="242" selection-end-column="0" />
+        <state relative-caret-position="170">
+          <caret line="306" column="0" lean-forward="false" selection-start-line="306" selection-start-column="0" selection-end-line="306" selection-end-column="0" />
           <folding>
             <marker date="1543215874470" expanded="true" signature="11227:11314" ph="..." />
             <marker date="1543215874470" expanded="true" signature="11373:11411" ph="..." />
@@ -984,24 +976,32 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/app.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="681" column="69" lean-forward="false" selection-start-line="681" selection-start-column="69" selection-end-line="681" selection-end-column="69" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/templates/shg_update_loan_app_form.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="180" column="0" lean-forward="false" selection-start-line="180" selection-start-column="0" selection-end-line="180" selection-end-column="0" />
+        <state relative-caret-position="508">
+          <caret line="299" column="0" lean-forward="true" selection-start-line="299" selection-start-column="0" selection-end-line="299" selection-end-column="0" />
           <folding>
-            <marker date="1543218200796" expanded="true" signature="7532:7619" ph="..." />
-            <marker date="1543218200796" expanded="true" signature="7682:7720" ph="..." />
-            <marker date="1543218200796" expanded="true" signature="7946:7984" ph="..." />
-            <marker date="1543218200796" expanded="true" signature="8161:8199" ph="..." />
-            <marker date="1543218200796" expanded="true" signature="8396:8434" ph="..." />
-            <marker date="1543218200796" expanded="true" signature="8631:8669" ph="..." />
-            <marker date="1543218200796" expanded="true" signature="8909:8947" ph="..." />
-            <marker date="1543218200796" expanded="true" signature="12095:12182" ph="..." />
-            <marker date="1543218200796" expanded="true" signature="12241:12279" ph="..." />
-            <marker date="1543218200796" expanded="true" signature="12415:12453" ph="..." />
-            <marker date="1543218200796" expanded="true" signature="12577:12615" ph="..." />
-            <marker date="1543218200796" expanded="true" signature="12751:12789" ph="..." />
-            <marker date="1543218200796" expanded="true" signature="12958:12996" ph="..." />
+            <marker date="1543218469136" expanded="true" signature="7532:7619" ph="..." />
+            <marker date="1543218469136" expanded="true" signature="7682:7720" ph="..." />
+            <marker date="1543218469136" expanded="true" signature="7946:7984" ph="..." />
+            <marker date="1543218469136" expanded="true" signature="8161:8199" ph="..." />
+            <marker date="1543218469136" expanded="true" signature="8396:8434" ph="..." />
+            <marker date="1543218469136" expanded="true" signature="8631:8669" ph="..." />
+            <marker date="1543218469136" expanded="true" signature="8909:8947" ph="..." />
+            <marker date="1543218469136" expanded="true" signature="12095:12182" ph="..." />
+            <marker date="1543218469136" expanded="true" signature="12241:12279" ph="..." />
+            <marker date="1543218469136" expanded="true" signature="12415:12453" ph="..." />
+            <marker date="1543218469136" expanded="true" signature="12577:12615" ph="..." />
+            <marker date="1543218469136" expanded="true" signature="12783:12821" ph="..." />
+            <marker date="1543218469136" expanded="true" signature="12990:13028" ph="..." />
           </folding>
         </state>
       </provider>
