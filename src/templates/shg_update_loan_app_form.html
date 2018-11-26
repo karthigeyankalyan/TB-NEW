@@ -301,7 +301,6 @@
         var apm = document.getElementById(amount_tag_id).value;
         var strength = document.getElementById(strength_tag_id).value;
 
-        console.log(total_tag_id, j, apm, strength);
         document.getElementById(total_tag_id).value = parseInt(apm) * parseInt(strength);
 
         total_loan_amount = 0;
@@ -311,6 +310,9 @@
             total_loan_amount += parseInt(document.getElementById("ta"+iter).value);
             total_ben_count += parseInt(document.getElementById("strength"+iter).value);
         }
+
+        console.log(total_ben_count, total_loan_amount);
+
         document.getElementById("invIDCTR").value = (j);
 
         populateTotals();
