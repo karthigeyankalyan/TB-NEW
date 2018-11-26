@@ -173,6 +173,7 @@
             for(var i=0; i < json.length; i++) {
             var shg_det = $("#shgDetails");
                 var shg_name = "sn"+i;
+                var sb = "sb"+i;
                 var inputSNO = "sno"+i;
                 var amount_pm = "apm"+i;
                 var strength = "strength"+i;
@@ -242,6 +243,7 @@
             var amount_pm = "apm"+i;
             var strength = "strength"+i;
             var total_amount = "ta"+i;
+            var sb = "sb"+i;
             document.getElementById(shg_name).value = json[i]['shg_name'];
             document.getElementById(amount_pm).value = json[i]['amount_per_member'];
             document.getElementById(strength).value = json[i]['strength'];
