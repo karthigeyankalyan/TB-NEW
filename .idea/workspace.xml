@@ -34,22 +34,21 @@
       <file leaf-file-name="shg_update_loan_app_form.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/templates/shg_update_loan_app_form.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="312" column="0" lean-forward="true" selection-start-line="312" selection-start-column="0" selection-end-line="312" selection-end-column="0" />
+            <state relative-caret-position="323">
+              <caret line="196" column="0" lean-forward="false" selection-start-line="196" selection-start-column="0" selection-end-line="196" selection-end-column="0" />
               <folding>
-                <marker date="1543219395981" expanded="true" signature="7532:7619" ph="..." />
-                <marker date="1543219395981" expanded="true" signature="7682:7720" ph="..." />
-                <marker date="1543219395981" expanded="true" signature="7946:7984" ph="..." />
-                <marker date="1543219395981" expanded="true" signature="8161:8199" ph="..." />
-                <marker date="1543219395981" expanded="true" signature="8396:8434" ph="..." />
-                <marker date="1543219395981" expanded="true" signature="8631:8669" ph="..." />
-                <marker date="1543219395981" expanded="true" signature="8909:8947" ph="..." />
-                <marker date="1543219395981" expanded="true" signature="12095:12182" ph="..." />
-                <marker date="1543219395981" expanded="true" signature="12241:12279" ph="..." />
-                <marker date="1543219395981" expanded="true" signature="12415:12453" ph="..." />
-                <marker date="1543219395981" expanded="true" signature="12577:12615" ph="..." />
-                <marker date="1543219395981" expanded="true" signature="12783:12821" ph="..." />
-                <marker date="1543219395981" expanded="true" signature="12990:13028" ph="..." />
+                <marker date="1543220069593" expanded="true" signature="7532:7619" ph="..." />
+                <marker date="1543220069593" expanded="true" signature="7682:7720" ph="..." />
+                <marker date="1543220069593" expanded="true" signature="7946:7984" ph="..." />
+                <marker date="1543220069593" expanded="true" signature="8161:8199" ph="..." />
+                <marker date="1543220069593" expanded="true" signature="8396:8434" ph="..." />
+                <marker date="1543220069593" expanded="true" signature="8940:8978" ph="..." />
+                <marker date="1543220069593" expanded="true" signature="12126:12213" ph="..." />
+                <marker date="1543220069593" expanded="true" signature="12272:12310" ph="..." />
+                <marker date="1543220069593" expanded="true" signature="12446:12484" ph="..." />
+                <marker date="1543220069593" expanded="true" signature="12608:12646" ph="..." />
+                <marker date="1543220069593" expanded="true" signature="12814:12852" ph="..." />
+                <marker date="1543220069593" expanded="true" signature="13021:13059" ph="..." />
               </folding>
             </state>
           </provider>
@@ -986,22 +985,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/templates/shg_update_loan_app_form.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="312" column="0" lean-forward="true" selection-start-line="312" selection-start-column="0" selection-end-line="312" selection-end-column="0" />
+        <state relative-caret-position="323">
+          <caret line="196" column="0" lean-forward="false" selection-start-line="196" selection-start-column="0" selection-end-line="196" selection-end-column="0" />
           <folding>
-            <marker date="1543219395981" expanded="true" signature="7532:7619" ph="..." />
-            <marker date="1543219395981" expanded="true" signature="7682:7720" ph="..." />
-            <marker date="1543219395981" expanded="true" signature="7946:7984" ph="..." />
-            <marker date="1543219395981" expanded="true" signature="8161:8199" ph="..." />
-            <marker date="1543219395981" expanded="true" signature="8396:8434" ph="..." />
-            <marker date="1543219395981" expanded="true" signature="8631:8669" ph="..." />
-            <marker date="1543219395981" expanded="true" signature="8909:8947" ph="..." />
-            <marker date="1543219395981" expanded="true" signature="12095:12182" ph="..." />
-            <marker date="1543219395981" expanded="true" signature="12241:12279" ph="..." />
-            <marker date="1543219395981" expanded="true" signature="12415:12453" ph="..." />
-            <marker date="1543219395981" expanded="true" signature="12577:12615" ph="..." />
-            <marker date="1543219395981" expanded="true" signature="12783:12821" ph="..." />
-            <marker date="1543219395981" expanded="true" signature="12990:13028" ph="..." />
+            <marker date="1543220069593" expanded="true" signature="7532:7619" ph="..." />
+            <marker date="1543220069593" expanded="true" signature="7682:7720" ph="..." />
+            <marker date="1543220069593" expanded="true" signature="7946:7984" ph="..." />
+            <marker date="1543220069593" expanded="true" signature="8161:8199" ph="..." />
+            <marker date="1543220069593" expanded="true" signature="8396:8434" ph="..." />
+            <marker date="1543220069593" expanded="true" signature="8940:8978" ph="..." />
+            <marker date="1543220069593" expanded="true" signature="12126:12213" ph="..." />
+            <marker date="1543220069593" expanded="true" signature="12272:12310" ph="..." />
+            <marker date="1543220069593" expanded="true" signature="12446:12484" ph="..." />
+            <marker date="1543220069593" expanded="true" signature="12608:12646" ph="..." />
+            <marker date="1543220069593" expanded="true" signature="12814:12852" ph="..." />
+            <marker date="1543220069593" expanded="true" signature="13021:13059" ph="..." />
           </folding>
         </state>
       </provider>
