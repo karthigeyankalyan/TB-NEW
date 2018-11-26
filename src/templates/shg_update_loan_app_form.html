@@ -179,22 +179,30 @@
                 var total_amount = "ta"+i;
             var row = $('<div style="display: flex; flex-direction: row; justify-content: space-around; align-items: center;"></div>')
                 .html(
-                    '<div style="display: flex; flex-direction: column;">' +
-                    '<label for='+shg_name+'>SHG Name</label>' +
-                    '<input type="text" id='+shg_name+' name='+shg_name+'>' +
-                    '</div>' +
-                    '<div style="display: flex; flex-direction: column;">' +
-                    '<label for='+strength+'>Strength</label>' +
-                    '<input type="text" id='+strength+' name='+strength+'>' +
-                    '</div>' +
-                    '<div style="display: flex; flex-direction: column;">' +
-                    '<label for='+amount_pm+'>Amount Per Member</label>' +
-                    '<input type="text" id='+amount_pm+' name='+amount_pm+' >' +
-                    '</div>'+
-                    '<div style="display: flex; flex-direction: column;">' +
-                    '<label for='+total_amount+'>Total Amount</label>' +
-                    '<input type="text" id='+total_amount+' name='+total_amount+'>' +
-                    '</div>'
+                '<div style="display: flex; flex-direction: column;">' +
+                '<label for='+inputSNO+'>S.No</label>' +
+                '<input class="amount" type="number" id='+inputSNO+' name='+inputSNO+' value='+(i+1)+'>' +
+                '</div>' +
+                '<div style="display: flex; flex-direction: column;">' +
+                '<label for='+sb+'>Branch</label>' +
+                '<input type="text" id='+sb+' name='+sb+'>' +
+                '</div>' +
+                '<div style="display: flex; flex-direction: column;">' +
+                '<label for='+shg_name+'>SHG Name</label>' +
+                '<input type="text" id='+shg_name+' name='+shg_name+'>' +
+                '</div>' +
+                '<div style="display: flex; flex-direction: column;">' +
+                '<label for='+strength+'>Strength</label>' +
+                '<input type="text" id='+strength+' name='+strength+'>' +
+                '</div>' +
+                '<div style="display: flex; flex-direction: column;">' +
+                '<label for='+amount_pm+'>Amount Per Member</label>' +
+                '<input type="text" id='+amount_pm+' name='+amount_pm+' onchange="calculateTotal(this)">' +
+                '</div>'+
+                '<div style="display: flex; flex-direction: column;">' +
+                '<label for='+total_amount+'>Total Amount</label>' +
+                '<input type="text" id='+total_amount+' name='+total_amount+'>' +
+                '</div>'
                 );
             shg_det.append(row);
             j=i;
@@ -278,7 +286,12 @@
 
     function calculateTotal(that) {
         var str = that.id;
-        var number = str.charAt(str.length-1);
+        if(i <= 9) {
+            var number = str.charAt(str.length-1);
+        }
+        else {
+            number = str.slice(-2);
+        }
         var amount_tag_id = "apm"+number;
         var strength_tag_id = "strength"+number;
         var total_tag_id = "ta"+number;

@@ -325,12 +325,6 @@
                 document.getElementById("screeningDate").value = moment(json[0]["screening_date"]['$date']).format("YYYY-MM-DD");
                 document.getElementById("roDate").value = moment(json[0]["ro_date"]['$date']).format("YYYY-MM-DD");
                 document.getElementById("psoDate").value = moment(json[0]["pso_date"]['$date']).format("YYYY-MM-DD");
-                for(var i=1; i<10; i++){
-                    var shgString = 'shg' + i;
-                    document.getElementsByName("n"+i).value = json[0][shgString].name;
-                    document.getElementsByName("s"+i).value = json[0][shgString].strength;
-                    document.getElementsByName("a"+i).value = json[0][shgString].amount;
-                }
         },
             error: function (e) {
                 alert("error");
