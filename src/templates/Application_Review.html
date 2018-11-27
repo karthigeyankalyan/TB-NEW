@@ -28,6 +28,11 @@
             <input type="text" id="mdNameSign" name="mdNameSign">
         </div>
 
+        <div>
+            <label for="deedDate">Deed of Agreement - Date</label>
+            <input type="date" id="deedDate" name="deedDate">
+        </div>
+
     </div>
 
     <div style="display: flex; flex-direction: row; justify-content: space-around; align-items: center; margin-top: 10px">
@@ -800,6 +805,7 @@
 //    var MD = 'N. Venkatachalam';
     var MD = document.getElementById('mdName').value;
     var MDSign = document.getElementById('mdNameSign').value;
+    var deedDate = document.getElementById('deedDate').value;
     var source = "/getLoansByIdentfierLoans/"+"{{annual_loan_id}}";
     $.ajax({
         type: 'GET',
@@ -877,7 +883,7 @@
                         doc.text(46, 70, 'Disbursement of Loan under ' + json[0]['loan_category'] + ' Payment sanctioned to ' + total_ben_shg_count + ' beneficiaries');
                         doc.text(46, 75, 'through ' + json[0]["bank"] + ' - Final Sanction Order for Rs. ' + sanction_amount + ' - issued - Reg.');
 
-                        doc.text(37, 85, 'Ref:  1. The Deed of Agreement Dated: _______');
+                        doc.text(37, 85, 'Ref:  1. The Deed of Agreement Dated: '+ moment(deedDate).format("DD-MM-YYYY"));
                         doc.text(46, 90, '2. The Joint Registrar of Cooperative Societies ');
                         doc.text(50, 95,  json[0]['district']+' District '+json[0]['jr_letter_number']+' dated: '+moment(json[0]['jr_letter_date']['$date']).format("DD-MM-YYYY"));
                         doc.text(46, 100, '3. Other Connected Records');
@@ -1144,6 +1150,7 @@
     var doc = new jsPDF();
 //    var MD = 'N. Venkatachalam';
     var MD = document.getElementById('mdName').value;
+    var deedDate = document.getElementById('deedDate').value;
     var source = "/getLoansByIdentfierLoans/"+"{{annual_loan_id}}";
     $.ajax({
         type: 'GET',
@@ -1219,7 +1226,7 @@
                         doc.text(46, 70, 'Disbursement of Loan under ' + json[0]['loan_category'] + ' Payment sanctioned to ' + total_ben_shg_count + ' beneficiaries');
                         doc.text(46, 75, 'through ' + json[0]["bank"] + ' - Final Sanction Order for Rs. ' + sanction_amount + ' - issued - Reg.');
 
-                        doc.text(37, 85, 'Ref:  1. The Deed of Agreement Dated: _______');
+                        doc.text(37, 85, 'Ref:  1. The Deed of Agreement Dated: '+ moment(deedDate).format("DD-MM-YYYY"));
                         doc.text(46, 90, '2. The Joint Registrar of Cooperative Societies ');
                         doc.text(50, 95,  json[0]['district']+' District '+json[0]['jr_letter_number']+' dated: '+moment(json[0]['jr_letter_date']['$date']).format("DD-MM-YYYY"));
                         doc.text(46, 100, '3. Other Connected Records');
