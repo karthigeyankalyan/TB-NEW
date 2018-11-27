@@ -330,7 +330,7 @@
 
     function calculateTotal(that) {
         var str = that.id;
-        if(i <= 9) {
+        if(i <= 10) {
             var number = str.charAt(str.length-1);
         }
         else {
@@ -339,6 +339,8 @@
         var amount_tag_id = "apm"+number;
         var strength_tag_id = "strength"+number;
         var total_tag_id = "ta"+number;
+
+        console.log(number);
 
         var apm = document.getElementById(amount_tag_id).value;
         var strength = document.getElementById(strength_tag_id).value;
