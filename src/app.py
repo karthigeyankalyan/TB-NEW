@@ -762,10 +762,20 @@ def update_loan_form(_id):
                 return render_template('application_added_update.html', user=user, application_id=_id)
 
             else:
+                loan_ids = []
+                application = Database.find("loans", {"ann_loan_id": annual_loan_id})
+
+                for result_object in application:
+                    loan_ids.append(result_object['_id'])
+
+                print(len(loan_ids))
+
                 user = User.get_by_email(email)
                 loan_category = request.form['loanCategory']
                 district = request.form['district']
+                bank_district = request.form['bankDistrict']
                 bank = request.form['bankName']
+                sub_bank = request.form['subBank']
                 loan_reason = request.form['loanReason']
                 loanNumber = request.form['loanNumber']
                 loan_amount = request.form['loanAmount']
@@ -785,7 +795,6 @@ def update_loan_form(_id):
                 cheque_number = request.form['chequeNumber']
                 ro_date = request.form['roDate']
                 ro_number = request.form['roNumber']
-                ro_ref = request.form['roRef']
 
                 for i in range(int(inv_id)):
                     shg_name_string = "sn" + str(i)
@@ -804,14 +813,13 @@ def update_loan_form(_id):
                                                     loan_amount=loan_amount, received_date=received_date, status=status,
                                                     status_date=status_date, ann_loan_id=ann_loan_id, user_id=user_id,
                                                     user_name=user_name, no_of_shgs=no_of_shgs, loan_id=_id,
-                                                    cheque_number=cheque_number,
-                                                    roi=roi, no_of_demands=no_of_demands, sub_bank=sub_bank,
-                                                    amount_to_pay=amount_to_pay, father_name=None,
+                                                    cheque_number=cheque_number, roi=roi, no_of_demands=no_of_demands,
+                                                    sub_bank=sub_bank, amount_to_pay=amount_to_pay, father_name=None,
                                                     loan_number=loanNumber, screening_date=screening_date,
-                                                    jr_letter_number=jr_letter_number, jr_letter_date=jr_letter_date,
-                                                    ro_date=ro_date, pso_date=None, amount_per_member=amount_per_member,
-                                                    strength=strength, shg_name=shg_name, ro_number=ro_number,
-                                                    post_pso_ref=ro_ref, bank_district=bank_district)
+                                                    jr_letter_number=jr_letter_number,
+                                                    jr_letter_date=jr_letter_date, ro_date=ro_date, pso_date=None,
+                                                    amount_per_member=amount_per_member, strength=strength, shg_name=shg_name,
+                                                    ro_number=ro_number, bank_district=bank_district, post_pso_ref=None)
 
                 return render_template('application_added_update.html', application=application, user=user)
 

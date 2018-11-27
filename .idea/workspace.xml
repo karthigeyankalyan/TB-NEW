@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="da0bb03c-275f-4eeb-800c-401a339e857e" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app.py" afterPath="$PROJECT_DIR$/src/app.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/common/database.py" afterPath="$PROJECT_DIR$/src/common/database.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/templates/shg_update_loan_app_form.html" afterPath="$PROJECT_DIR$/src/templates/shg_update_loan_app_form.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -13,7 +13,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/TABCEDCO_NEW$app.coverage" NAME="app Coverage Results" MODIFIED="1543302224852" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
+    <SUITE FILE_PATH="coverage/TABCEDCO_NEW$app.coverage" NAME="app Coverage Results" MODIFIED="1543303416556" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
     <SUITE FILE_PATH="coverage/TABCEDCO$app.coverage" NAME="app Coverage Results" MODIFIED="1537271200424" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
@@ -25,21 +25,9 @@
       <file leaf-file-name="app.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/app.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="508">
-              <caret line="865" column="0" lean-forward="false" selection-start-line="865" selection-start-column="0" selection-end-line="865" selection-end-column="0" />
+            <state relative-caret-position="221">
+              <caret line="697" column="0" lean-forward="false" selection-start-line="697" selection-start-column="0" selection-end-line="697" selection-end-column="0" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="another_loan_app_form.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/templates/another_loan_app_form.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="307" column="0" lean-forward="false" selection-start-line="307" selection-start-column="0" selection-end-line="308" selection-end-column="0" />
-              <folding>
-                <element signature="n#style#0;n#div#5;n#div#0;n#form#0;n#!!top" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -47,8 +35,8 @@
       <file leaf-file-name="shg_update_loan_app_form.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/templates/shg_update_loan_app_form.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="261">
-              <caret line="343" column="0" lean-forward="false" selection-start-line="343" selection-start-column="0" selection-end-line="343" selection-end-column="0" />
+            <state relative-caret-position="105">
+              <caret line="290" column="77" lean-forward="false" selection-start-line="290" selection-start-column="77" selection-end-line="290" selection-end-column="77" />
               <folding>
                 <element signature="n#style#0;n#div#1;n#div#0;n#form#0;n#!!top" expanded="true" />
                 <marker date="1543302990965" expanded="true" signature="8622:8709" ph="..." />
@@ -156,8 +144,8 @@
       <file leaf-file-name="loanapplication.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/models/loanapplication.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="117">
-              <caret line="179" column="0" lean-forward="false" selection-start-line="179" selection-start-column="0" selection-end-line="179" selection-end-column="0" />
+            <state relative-caret-position="85">
+              <caret line="8" column="35" lean-forward="false" selection-start-line="8" selection-start-column="32" selection-end-line="8" selection-end-column="35" />
               <folding />
             </state>
           </provider>
@@ -166,8 +154,8 @@
       <file leaf-file-name="database.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/common/database.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="3" column="0" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+            <state relative-caret-position="275">
+              <caret line="21" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -199,6 +187,9 @@
       <find>loan_app</find>
       <find>header</find>
       <find>moment(json[0]['ro_date']).format(&quot;DD-MM-YYYY&quot;)</find>
+      <find>loan</find>
+      <find>ro_ref</find>
+      <find>ann</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -255,8 +246,8 @@
         <option value="$PROJECT_DIR$/src/models/loanapplication.py" />
         <option value="$PROJECT_DIR$/src/templates/another_loan_app_form.html" />
         <option value="$PROJECT_DIR$/src/templates/update_loan_app_form.html" />
-        <option value="$PROJECT_DIR$/src/app.py" />
         <option value="$PROJECT_DIR$/src/templates/shg_update_loan_app_form.html" />
+        <option value="$PROJECT_DIR$/src/app.py" />
         <option value="$PROJECT_DIR$/src/common/database.py" />
       </list>
     </option>
@@ -996,6 +987,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/templates/another_loan_app_form.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="290" column="0" lean-forward="false" selection-start-line="290" selection-start-column="0" selection-end-line="290" selection-end-column="0" />
+          <folding>
+            <element signature="n#style#0;n#div#5;n#div#0;n#form#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/templates/update_loan_app_form.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
@@ -1019,8 +1020,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/templates/shg_update_loan_app_form.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="261">
-          <caret line="343" column="0" lean-forward="false" selection-start-line="343" selection-start-column="0" selection-end-line="343" selection-end-column="0" />
+        <state relative-caret-position="105">
+          <caret line="290" column="77" lean-forward="false" selection-start-line="290" selection-start-column="77" selection-end-line="290" selection-end-column="77" />
           <folding>
             <element signature="n#style#0;n#div#1;n#div#0;n#form#0;n#!!top" expanded="true" />
             <marker date="1543302990965" expanded="true" signature="8622:8709" ph="..." />
@@ -1051,36 +1052,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/templates/another_loan_app_form.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="307" column="0" lean-forward="false" selection-start-line="307" selection-start-column="0" selection-end-line="308" selection-end-column="0" />
-          <folding>
-            <element signature="n#style#0;n#div#5;n#div#0;n#form#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/app.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="508">
-          <caret line="865" column="0" lean-forward="false" selection-start-line="865" selection-start-column="0" selection-end-line="865" selection-end-column="0" />
+        <state relative-caret-position="221">
+          <caret line="697" column="0" lean-forward="false" selection-start-line="697" selection-start-column="0" selection-end-line="697" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/models/loanapplication.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="117">
-          <caret line="179" column="0" lean-forward="false" selection-start-line="179" selection-start-column="0" selection-end-line="179" selection-end-column="0" />
+        <state relative-caret-position="85">
+          <caret line="8" column="35" lean-forward="false" selection-start-line="8" selection-start-column="32" selection-end-line="8" selection-end-column="35" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/common/database.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="3" column="0" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+        <state relative-caret-position="275">
+          <caret line="21" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
           <folding />
         </state>
       </provider>
