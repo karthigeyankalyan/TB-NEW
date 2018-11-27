@@ -395,7 +395,7 @@
                     doc.text(25, 65, 'To');
                     doc.text(25, 70, 'Managing Director/General Manager');
                     doc.text(25, 75, json[0]['bank']);
-                    doc.text(25, 80, json[0]['district']);
+                    doc.text(25, 80, json[0]['bank_district']);
 
                     doc.text(25, 90, 'Sir,');
 
@@ -456,7 +456,7 @@
                         'Manager, TABCEDCO, ' + json[0]['district'], 106);
                     doc.text(25, 225, toPt2);
 
-                    doc.text(25, 235, '3. The Special Officer, ' + json[0]['sub_bank'] + ' ' + json[0]['district']);
+                    doc.text(25, 235, '3. The Special Officer, ' + json[0]['sub_bank'] + ' ' + json[0]['bank_district']);
                     doc.text(25, 245, '4. B3 Assistant – for follow up action.');
 
                     doc.addPage();
@@ -976,7 +976,7 @@
 
                         var pt6 = doc.splitTextToSize('6.  The Assistant Accounts Officer, of this Corporation is hereby authorized ' +
                             'to draw and disburse the amount by means of Crossed Account Payee Demand Draft drawn in favour of the ' +
-                            'Managing Director,' + json[0]['bank'] + ', ' + json[0]['district'] + ' with proper acquittance.', 160);
+                            'Managing Director,' + json[0]['bank'] + ', ' + json[0]['bank_district'] + ' with proper acquittance.', 160);
                         doc.text(34, doc.autoTableEndPosY() + 45, pt6);
 
                         doc.text(165, doc.autoTableEndPosY() + 65, 'Sd/-' + MDSign);
@@ -986,7 +986,7 @@
                         doc.text(40, doc.autoTableEndPosY() + 90, 'To');
                         doc.text(40, doc.autoTableEndPosY() + 95, 'The Managing Director');
                         doc.text(40, doc.autoTableEndPosY() + 100, json[0]['bank']);
-                        doc.text(40, doc.autoTableEndPosY() + 105, json[0]['district']);
+                        doc.text(40, doc.autoTableEndPosY() + 105, json[0]['bank_district']);
 
                         doc.text(40, doc.autoTableEndPosY() + 115, 'Copy to:');
                         doc.text(49, doc.autoTableEndPosY() + 120, '1. The Joint Registrar of Co.Operative Societies, ' + json[0]['district']);
@@ -1108,7 +1108,7 @@
                         doc.autoTable(columns1, rows1, {startY: 80});
 
                         var AAO = doc.splitTextToSize('3.   The Assistant Accounts Officer , of this Corporation is hereby authorised to draw and disburse ' +
-                            'the amount by means of Crossed Account Payee Cheque drawn in favour of the Managing Director, '+json[0]['bank']+', '+json[0]['district']+
+                            'the amount by means of Crossed Account Payee Cheque drawn in favour of the Managing Director, '+json[0]['bank']+', '+json[0]['bank_district']+
                             '  with proper acquittance.', 160);
 
                         doc.text(25, doc.autoTableEndPosY()+10, AAO);
@@ -1121,7 +1121,7 @@
                         doc.text(40, doc.autoTableEndPosY() + 55, 'To');
                         doc.text(40, doc.autoTableEndPosY() + 60, 'The Managing Director');
                         doc.text(40, doc.autoTableEndPosY() + 65, json[0]['bank']);
-                        doc.text(40, doc.autoTableEndPosY() + 70, json[0]['district']);
+                        doc.text(40, doc.autoTableEndPosY() + 70, json[0]['bank_district']);
 
                         doc.text(40, doc.autoTableEndPosY() + 80, 'Copy to:');
                         doc.text(49, doc.autoTableEndPosY() + 85, '1. The Joint Registrar of Co.Operative Societies, ' + json[0]['district']);
@@ -1315,7 +1315,7 @@
 
                         var pt6 = doc.splitTextToSize('6.  The Assistant Accounts Officer, of this Corporation is hereby authorized ' +
                             'to draw and disburse the amount by means of Crossed Account Payee Demand Draft drawn in favour of the ' +
-                            'Managing Director,' + json[0]['bank'] + ', ' + json[0]['district'] + ' with proper acquittance.', 160);
+                            'Managing Director,' + json[0]['bank'] + ', ' + json[0]['bank_district'] + ' with proper acquittance.', 160);
                         doc.text(34, doc.autoTableEndPosY() + 45, pt6);
 
                         doc.text(165, doc.autoTableEndPosY() + 75, 'Managing Director');
@@ -1323,7 +1323,7 @@
                         doc.text(40, doc.autoTableEndPosY() + 90, 'To');
                         doc.text(40, doc.autoTableEndPosY() + 95, 'The Managing Director');
                         doc.text(40, doc.autoTableEndPosY() + 100, json[0]['bank']);
-                        doc.text(40, doc.autoTableEndPosY() + 105, json[0]['district']);
+                        doc.text(40, doc.autoTableEndPosY() + 105, json[0]['bank_district']);
 
                         doc.text(40, doc.autoTableEndPosY() + 115, 'Copy to:');
                         doc.text(49, doc.autoTableEndPosY() + 120, '1. The Joint Registrar of Co.Operative Societies, ' + json[0]['district']);
@@ -1445,7 +1445,7 @@
                         doc.autoTable(columns1, rows1, {startY: 85});
 
                         var AAO = doc.splitTextToSize('3.   The Assistant Accounts Officer , of this Corporation is hereby authorised to draw and disburse ' +
-                            'the amount by means of Crossed Account Payee Cheque drawn in favour of the Managing Director, '+json[0]['bank']+', '+json[0]['district']+
+                            'the amount by means of Crossed Account Payee Cheque drawn in favour of the Managing Director, '+json[0]['bank']+', '+json[0]['bank_district']+
                             '  with proper acquittance.', 160);
 
                         doc.text(25, doc.autoTableEndPosY()+10, AAO);
@@ -1456,7 +1456,7 @@
                         doc.text(40, doc.autoTableEndPosY() + 55, 'To');
                         doc.text(40, doc.autoTableEndPosY() + 60, 'The Managing Director');
                         doc.text(40, doc.autoTableEndPosY() + 65, json[0]['bank']);
-                        doc.text(40, doc.autoTableEndPosY() + 70, json[0]['district']);
+                        doc.text(40, doc.autoTableEndPosY() + 70, json[0]['bank_district']);
 
                         doc.text(40, doc.autoTableEndPosY() + 80, 'Copy to:');
                         doc.text(49, doc.autoTableEndPosY() + 85, '1. The Joint Registrar of Co.Operative Societies, ' + json[0]['district']);
