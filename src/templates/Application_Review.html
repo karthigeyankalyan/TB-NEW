@@ -17,9 +17,17 @@
     <div id="applicationStatus">
     </div>
 
-    <div id="mdTBName">
-        <label for="mdName">MD Name</label>
-        <input type="text" id="mdName" name="mdName">
+    <div id="mdTBName" style="display: flex; flex-direction: row; justify-content: space-around;">
+        <div>
+            <label for="mdName">MD Name</label>
+            <input type="text" id="mdName" name="mdName">
+        </div>
+
+        <div>
+            <label for="mdNameSign">MD Name</label>
+            <input type="text" id="mdNameSign" name="mdNameSign">
+        </div>
+
     </div>
 
     <div style="display: flex; flex-direction: row; justify-content: space-around; align-items: center; margin-top: 10px">
@@ -317,6 +325,7 @@
     var doc = new jsPDF();
 //    var MD = 'N. Venkatachalam';
     var MD = document.getElementById('mdName').value;
+    var MDSign = document.getElementById('mdNameSign').value;
     var source = "/getLoansByIdentfierLoans/"+"{{annual_loan_id}}";
     $.ajax({
         type: 'GET',
@@ -570,8 +579,9 @@
                     doc.text(25, 30, pt9);
                     doc.text(25, 50, pt10);
                     doc.text(25, 80, concl);
-                    doc.text(150, 110, 'Sd/- Managing Director' );
-                    doc.text(150, 120, 'For Managing Director');
+                    doc.text(150, 110, 'Sd/' + MDSign);
+                    doc.text(150, 115, 'Managing Director');
+                    doc.text(150, 125, 'For Managing Director');
 
                     doc.text(25, 150, 'ACCEPTED');
 
@@ -789,6 +799,7 @@
     var doc = new jsPDF();
 //    var MD = 'N. Venkatachalam';
     var MD = document.getElementById('mdName').value;
+    var MDSign = document.getElementById('mdNameSign').value;
     var source = "/getLoansByIdentfierLoans/"+"{{annual_loan_id}}";
     $.ajax({
         type: 'GET',
@@ -958,9 +969,9 @@
                             'Managing Director,' + json[0]['bank'] + ', ' + json[0]['district'] + ' with proper acquittance.', 160);
                         doc.text(34, doc.autoTableEndPosY() + 45, pt6);
 
-                        doc.text(165, doc.autoTableEndPosY() + 65, 'Sd/-' + MD);
-                        doc.text(165, doc.autoTableEndPosY() + 72, 'Managing Director');
-                        doc.text(165, doc.autoTableEndPosY() + 79, 'For Managing Director');
+                        doc.text(165, doc.autoTableEndPosY() + 65, 'Sd/-' + MDSign);
+                        doc.text(165, doc.autoTableEndPosY() + 70, 'Managing Director');
+                        doc.text(165, doc.autoTableEndPosY() + 80, 'For Managing Director');
 
                         doc.text(40, doc.autoTableEndPosY() + 90, 'To');
                         doc.text(40, doc.autoTableEndPosY() + 95, 'The Managing Director');
@@ -1093,9 +1104,9 @@
                         doc.text(25, doc.autoTableEndPosY()+10, AAO);
                         doc.text(25, doc.autoTableEndPosY()+30, 'The details of schedule of repayment is enclosed.');
 
-                        doc.text(165, doc.autoTableEndPosY() + 35, 'Sd/-' + MD);
-                        doc.text(165, doc.autoTableEndPosY() + 42, 'Managing Director');
-                        doc.text(165, doc.autoTableEndPosY() + 49, 'For Managing Director');
+                        doc.text(165, doc.autoTableEndPosY() + 35, 'Sd/-' + MDSign);
+                        doc.text(165, doc.autoTableEndPosY() + 40, 'Managing Director');
+                        doc.text(165, doc.autoTableEndPosY() + 50, 'For Managing Director');
 
                         doc.text(40, doc.autoTableEndPosY() + 55, 'To');
                         doc.text(40, doc.autoTableEndPosY() + 60, 'The Managing Director');
