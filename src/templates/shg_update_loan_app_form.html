@@ -15,9 +15,10 @@
         </select>
     </div>
 
-    <div class="form-group">
+    <div class="form-group" style="display: flex; flex-direction: row; justify-content: space-around;">
+        <div>
           <label for="district">Select District:</label>
-          <select class="form-control" style="text-align: center;" id="district" name="district">
+          <select class="form-control" style="text-align: center;" id="district" name="district" onchange="createNewFields()">
             {% set districts = ['Ariyalur', 'Karur', 'Nagapattinam', 'Perambalur',
               'Pudukkottai', 'Thanjavur', 'Tiruchirappalli','Tiruvarur', 'Dharmapuri',
               'Coimbatore', 'Erode', 'Krishnagiri', 'Namakkal', 'Nilgiris', 'Salem',
@@ -29,6 +30,22 @@
                 <option value= "{{district}}">{{district}}</option>"
             {% endfor %}
           </select>
+        </div>
+        <div>
+          <label for="bankDistrict">Bank District:</label>
+          <select class="form-control" style="text-align: center;" id="bankDistrict" name="bankDistrict">
+            {% set districts = ['Ariyalur', 'Karur', 'Nagapattinam', 'Perambalur',
+              'Pudukkottai', 'Thanjavur', 'Tiruchirappalli','Tiruvarur', 'Dharmapuri',
+              'Coimbatore', 'Erode', 'Krishnagiri', 'Namakkal', 'Nilgiris', 'Salem',
+              'Tiruppur', 'Dindigul', 'Kanyakumari', 'Madurai', 'Ramanathapuram', 'Sivaganga',
+              'Theni', 'Thoothukudi','Tirunelveli', 'Virudhunagar', 'Chennai', 'Cuddalore', 'Kancheepuram',
+              'Tiruvallur', 'Tiruvannamalai', 'Vellore','Viluppuram'] %}
+
+            {% for district in districts %}
+                <option value= "{{district}}">{{district}}</option>"
+            {% endfor %}
+          </select>
+        </div>
     </div>
 
     <div class="form-group" style="display: block; width: 38%">
@@ -228,6 +245,7 @@
         success: function (json){
                 document.getElementById("loanCategory").value = json[0]["loan_category"];
                 document.getElementById("district").value = json[0]["district"];
+                document.getElementById("bankDistrict").value = json[0]["bank_district"];
                 document.getElementById("bankName").value = json[0]["bank"];
                 document.getElementById("subBank").value = json[0]["sub_bank"];
                 document.getElementById("interest").value = json[0]["roi"];

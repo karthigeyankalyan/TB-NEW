@@ -10,7 +10,8 @@ class LoanApplication(object):
                  address=None, applicant_name=None, shg_name=None, strength=None, amount_per_member=None,
                  cheque_number=None, sub_bank=None, final_collection_amount=None, _id=None, ro_number=None,
                  amount_yet_to_pay=None, no_of_shgs=None, father_name=None, screening_date=None, loan_number=None,
-                 jr_letter_date=None, jr_letter_number=None, pso_date=None, ro_date=None, post_pso_ref_no=None):
+                 jr_letter_date=None, jr_letter_number=None, pso_date=None, ro_date=None, post_pso_ref_no=None,
+                 bank_district=None):
         self.applicant_name = applicant_name
         self.father_name = father_name
         self.loan_category = loan_category
@@ -26,6 +27,7 @@ class LoanApplication(object):
         self.jr_letter_number = jr_letter_number
         self.ro_number = ro_number
         self.post_pso_ref_no = post_pso_ref_no
+        self.bank_district = bank_district
 
         if jr_letter_date:
             self.jr_letter_date = (datetime.combine(datetime.strptime(jr_letter_date, '%Y-%m-%d').date(),
@@ -91,7 +93,7 @@ class LoanApplication(object):
                         caste, bank, loan_reason, loan_amount, received_date, status, status_date, roi, no_of_demands,
                         ann_loan_id, user_id, user_name, loan_id, no_of_shgs, amount_per_member, strength, shg_name,
                         cheque_number, amount_to_pay, father_name, loan_number, jr_letter_date, jr_letter_number,
-                        screening_date, ro_date, pso_date, ro_number, post_pso_ref):
+                        screening_date, ro_date, pso_date, ro_number, post_pso_ref, bank_district):
 
         if pso_date:
             pso_date = (datetime.combine(datetime.strptime(pso_date, '%Y-%m-%d').date(),
@@ -139,7 +141,8 @@ class LoanApplication(object):
                                     cheque_number=cheque_number, amount_to_pay=amount_to_pay, father_name=father_name,
                                     loan_number=loan_number, jr_letter_date=jr_letter_date,
                                     jr_letter_number=jr_letter_number, screening_date=screening_date, ro_date=ro_date,
-                                    pso_date=pso_date, ro_number=ro_number, post_pso_ref=post_pso_ref)
+                                    pso_date=pso_date, ro_number=ro_number, post_pso_ref=post_pso_ref,
+                                    bank_district=bank_district)
 
     @classmethod
     def update_pend_amount(cls, amount_yet_to_be_paid, loan_id):
@@ -159,6 +162,7 @@ class LoanApplication(object):
             'gender': self.gender,
             'address': self.address,
             'district': self.district,
+            'bank_district': self.bank_district,
             'caste': self.caste,
             'annual_income': self.annual_income,
             'bank': self.bank,

@@ -490,6 +490,7 @@ def loan_form(user_id):
                 gender = request.form['gender']
                 address = request.form['address']
                 district = request.form['district']
+                bank_district = request.form['bankDistrict']
                 annual_income = request.form['annualIncome']
                 caste = request.form['caste']
                 bank = request.form['bankName']
@@ -540,6 +541,7 @@ def loan_form(user_id):
                 gender = request.form['gender']
                 address = request.form['address']
                 district = request.form['district']
+                bank_district = request.form['bankDistrict']
                 annual_income = request.form['annualIncome']
                 caste = request.form['caste']
                 bank = request.form['bankName']
@@ -590,7 +592,7 @@ def loan_form(user_id):
                                                   jr_letter_date=jr_letter_date, jr_letter_number=jr_letter_number,
                                                   shg_name=shg_name, amount_per_member=amount_per_member,
                                                   strength=strength, ro_date=ro_date, ro_number=ro_number,
-                                                  post_pso_ref_no=ro_ref)
+                                                  post_pso_ref_no=ro_ref, bank_district=bank_district)
 
                     application.save_to_mongo()
 
@@ -617,6 +619,7 @@ def add_another_loan_form(_id):
             gender = request.form['gender']
             address = request.form['address']
             district = request.form['district']
+            bank_district = request.form['bankDistrict']
             annual_income = request.form['annualIncome']
             caste = request.form['caste']
             bank = request.form['bankName']
@@ -649,7 +652,8 @@ def add_another_loan_form(_id):
                                           sub_bank=sub_bank, roi=roi, no_of_demands=no_of_demands,
                                           father_name=applicant_father_name, screening_date=screening_date,
                                           loan_number=loanNumber, jr_letter_date=jr_letter_date,
-                                          jr_letter_number=jr_letter_number, post_pso_ref_no=ro_ref)
+                                          jr_letter_number=jr_letter_number, post_pso_ref_no=ro_ref,
+                                          bank_district=bank_district)
 
             application.save_to_mongo()
 
@@ -700,6 +704,7 @@ def update_loan_form(_id):
                 gender = request.form['gender']
                 address = request.form['address']
                 district = request.form['district']
+                bank_district = request.form['bankDistrict']
                 annual_income = request.form['annualIncome']
                 caste = request.form['caste']
                 bank = request.form['bankName']
@@ -752,7 +757,7 @@ def update_loan_form(_id):
                                                 jr_letter_number=jr_letter_number, jr_letter_date=jr_letter_date,
                                                 ro_date=ro_date, pso_date=pso_date, amount_per_member=None,
                                                 strength=None, shg_name=None, ro_number=ro_number,
-                                                post_pso_ref=ro_ref)
+                                                post_pso_ref=ro_ref, bank_district=bank_district)
 
                 return render_template('application_added_update.html', user=user, application_id=_id)
 
@@ -806,7 +811,7 @@ def update_loan_form(_id):
                                                     jr_letter_number=jr_letter_number, jr_letter_date=jr_letter_date,
                                                     ro_date=ro_date, pso_date=None, amount_per_member=amount_per_member,
                                                     strength=strength, shg_name=shg_name, ro_number=ro_number,
-                                                    post_pso_ref=ro_ref)
+                                                    post_pso_ref=ro_ref, bank_district=bank_district)
 
                 return render_template('application_added_update.html', application=application, user=user)
 

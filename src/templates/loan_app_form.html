@@ -42,7 +42,8 @@
         <input type="text" id="address" name="address" style="display: block; width: 100%">
     </div>
 
-    <div class="form-group">
+    <div class="form-group" style="display: flex; flex-direction: row; justify-content: space-around;">
+        <div>
           <label for="district">Select District:</label>
           <select class="form-control" style="text-align: center;" id="district" name="district" onchange="createNewFields()">
             {% set districts = ['Ariyalur', 'Karur', 'Nagapattinam', 'Perambalur',
@@ -56,6 +57,22 @@
                 <option value= "{{district}}">{{district}}</option>"
             {% endfor %}
           </select>
+        </div>
+        <div>
+          <label for="bankDistrict">Bank District:</label>
+          <select class="form-control" style="text-align: center;" id="bankDistrict" name="bankDistrict">
+            {% set districts = ['Ariyalur', 'Karur', 'Nagapattinam', 'Perambalur',
+              'Pudukkottai', 'Thanjavur', 'Tiruchirappalli','Tiruvarur', 'Dharmapuri',
+              'Coimbatore', 'Erode', 'Krishnagiri', 'Namakkal', 'Nilgiris', 'Salem',
+              'Tiruppur', 'Dindigul', 'Kanyakumari', 'Madurai', 'Ramanathapuram', 'Sivaganga',
+              'Theni', 'Thoothukudi','Tirunelveli', 'Virudhunagar', 'Chennai', 'Cuddalore', 'Kancheepuram',
+              'Tiruvallur', 'Tiruvannamalai', 'Vellore','Viluppuram'] %}
+
+            {% for district in districts %}
+                <option value= "{{district}}">{{district}}</option>"
+            {% endfor %}
+          </select>
+        </div>
     </div>
 
     <div class="form-group" style="display: block; width: 38%" id="personalInfo">
