@@ -196,6 +196,7 @@
                 var strength = "strength"+i;
                 var total_amount = "ta"+i;
                 var delete_entry = "de"+i;
+                if(i === 0) {
             var row = $('<div style="display: flex; flex-direction: row; justify-content: space-around; align-items: center;"></div>')
                 .html(
                 '<div style="display: flex; flex-direction: column;">' +
@@ -223,9 +224,37 @@
                 '<input type="text" id='+total_amount+' name='+total_amount+'>' +
                 '</div>'+
                 '<div style="display: flex; flex-direction: column;">' +
-                '<button id='+delete_entry+' name='+delete_entry+' onclick="removeField(this)">Delete Entry</button>' +
+                '<label for='+delete_entry+'>Delete Entry</label>' +
+                '<button type="button" id='+delete_entry+' name='+delete_entry+' onclick="removeField(this)">Delete Entry</button>' +
                 '</div>'
                 );
+                }
+                else {
+            var row = $('<div style="display: flex; flex-direction: row; justify-content: space-around; align-items: center;"></div>')
+                .html(
+                '<div style="display: flex; flex-direction: column;">' +
+                '<input class="amount" type="number" id='+inputSNO+' name='+inputSNO+' value='+(i+1)+'>' +
+                '</div>' +
+                '<div style="display: flex; flex-direction: column;">' +
+                '<input type="text" id='+sb+' name='+sb+'>' +
+                '</div>' +
+                '<div style="display: flex; flex-direction: column;">' +
+                '<input type="text" id='+shg_name+' name='+shg_name+'>' +
+                '</div>' +
+                '<div style="display: flex; flex-direction: column;">' +
+                '<input type="text" id='+strength+' name='+strength+' onchange="calculateTotal(this)">' +
+                '</div>' +
+                '<div style="display: flex; flex-direction: column;">' +
+                '<input type="text" id='+amount_pm+' name='+amount_pm+' onchange="calculateTotal(this)">' +
+                '</div>'+
+                '<div style="display: flex; flex-direction: column;">' +
+                '<input type="text" id='+total_amount+' name='+total_amount+'>' +
+                '</div>'+
+                '<div style="display: flex; flex-direction: column;">' +
+                '<button type="button" id='+delete_entry+' name='+delete_entry+' onclick="removeField(this)">Delete Entry</button>' +
+                '</div>'
+                );
+                }
             shg_det.append(row);
             j=i;
             }
@@ -285,13 +314,17 @@
 
     function addAnotherField() {
         var shg_name = "sn"+j;
+        var inputSNO = "sno"+j;
         var amount_pm = "apm"+j;
         var sb = "sb"+j;
         var strength = "strength"+j;
         var total_amount = "ta"+j;
-        var delete_entry = "de"+i;
+        var delete_entry = "de"+j;
         var row = $('<div style="display: flex; flex-direction: row; justify-content: space-around; align-items: center;"></div>')
             .html(
+                '<div style="display: flex; flex-direction: column;">' +
+                '<input class="amount" type="number" id='+inputSNO+' name='+inputSNO+' value='+(j+1)+'>' +
+                '</div>' +
                 '<div style="display: flex; flex-direction: column;">' +
                 '<input type="text" id='+shg_name+' name='+shg_name+'>' +
                 '</div>' +
@@ -325,22 +358,28 @@
             number = str.slice(-2);
         }
         var shg_name = "sn"+number;
+        var inputSNO = "sno"+number;
         var amount_pm = "apm"+number;
         var sb = "sb"+number;
         var strength = "strength"+number;
         var total_amount = "ta"+number;
+        var delete_entry = "de"+number;
 
         var elem1 = document.getElementById(shg_name);
         var elem2 = document.getElementById(amount_pm);
         var elem3 = document.getElementById(sb);
         var elem4 = document.getElementById(strength);
         var elem5 = document.getElementById(total_amount);
+        var elem6 = document.getElementById(inputSNO);
+        var elem7 = document.getElementById(delete_entry);
 
         elem1.parentNode.removeChild(elem1);
         elem2.parentNode.removeChild(elem2);
         elem3.parentNode.removeChild(elem3);
         elem4.parentNode.removeChild(elem4);
         elem5.parentNode.removeChild(elem5);
+        elem6.parentNode.removeChild(elem6);
+        elem7.parentNode.removeChild(elem7);
 
         j--;
 
@@ -380,6 +419,9 @@
     }
 
     function populateTotals() {
+
+        console.log(j);
+
         document.getElementById("invIDCTR").value = (j-1);
         document.getElementById('beneficiaryCount').value = total_ben_count;
         document.getElementById('loanAmount').value = total_loan_amount;
