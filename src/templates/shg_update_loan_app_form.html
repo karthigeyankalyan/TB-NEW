@@ -178,6 +178,7 @@
                 var amount_pm = "apm"+i;
                 var strength = "strength"+i;
                 var total_amount = "ta"+i;
+                var delete_entry = "de"+i;
             var row = $('<div style="display: flex; flex-direction: row; justify-content: space-around; align-items: center;"></div>')
                 .html(
                 '<div style="display: flex; flex-direction: column;">' +
@@ -203,6 +204,9 @@
                 '<div style="display: flex; flex-direction: column;">' +
                 '<label for='+total_amount+'>Total Amount</label>' +
                 '<input type="text" id='+total_amount+' name='+total_amount+'>' +
+                '</div>'+
+                '<div style="display: flex; flex-direction: column;">' +
+                '<button id='+delete_entry+' name='+delete_entry+' onclick="removeField(this)">Delete Entry</button>' +
                 '</div>'
                 );
             shg_det.append(row);
@@ -264,9 +268,10 @@
     function addAnotherField() {
         var shg_name = "sn"+j;
         var amount_pm = "apm"+j;
-        var sb = "sb"+i;
+        var sb = "sb"+j;
         var strength = "strength"+j;
         var total_amount = "ta"+j;
+        var delete_entry = "de"+i;
         var row = $('<div style="display: flex; flex-direction: row; justify-content: space-around; align-items: center;"></div>')
             .html(
                 '<div style="display: flex; flex-direction: column;">' +
@@ -283,10 +288,44 @@
                 '</div>'+
                 '<div style="display: flex; flex-direction: column;">' +
                 '<input type="text" id='+total_amount+' name='+total_amount+'>' +
+                '</div>'+
+                '<div style="display: flex; flex-direction: column;">' +
+                '<button id='+delete_entry+' name='+delete_entry+' onclick="removeField(this)">Delete Entry</button>' +
                 '</div>'
+
             );
         $("#shgDetails").append(row);
         j++;
+    }
+
+    function removeField(that) {
+        var str = that.id;
+        if(j <= 9) {
+            var number = str.charAt(str.length-1);
+        }
+        else {
+            number = str.slice(-2);
+        }
+        var shg_name = "sn"+number;
+        var amount_pm = "apm"+number;
+        var sb = "sb"+number;
+        var strength = "strength"+number;
+        var total_amount = "ta"+number;
+
+        var elem1 = document.getElementById(shg_name);
+        var elem2 = document.getElementById(amount_pm);
+        var elem3 = document.getElementById(sb);
+        var elem4 = document.getElementById(strength);
+        var elem5 = document.getElementById(total_amount);
+
+        elem1.parentNode.removeChild(elem1);
+        elem2.parentNode.removeChild(elem2);
+        elem3.parentNode.removeChild(elem3);
+        elem4.parentNode.removeChild(elem4);
+        elem5.parentNode.removeChild(elem5);
+
+        j--;
+
     }
 
     function calculateTotal(that) {
