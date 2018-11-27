@@ -1248,14 +1248,14 @@
                             for (var j = 0; j < aggregatedData[i].values.length; j++) {
                                 for (var k = 0; k < aggregatedData[i].values[j].values.length; k++) {
                                     if (j === 0) {
-                                        rows.push([[aggregatedData[i].key], [k+1], [[aggregatedData[i].values[j].key]], [[aggregatedData[i].values[j].values[k].values['total_members']]],
+                                        rows.push([[aggregatedData[i].key], [j+1], [[aggregatedData[i].values[j].key]], [[aggregatedData[i].values[j].values[k].values['total_members']]],
                                             [[aggregatedData[i].values[j].values[k].key]],
                                             [(NBCFDCShareCalculator(json[0]['loan_category'], aggregatedData[i].values[j].values[k].values['total_shg_loan']) +
                                             tabcedcoShareCalculator(json[0]['loan_category'], aggregatedData[i].values[j].values[k].values['total_shg_loan']))]]);
                                         total_strength += parseInt(aggregatedData[i].values[j].values[k].values['total_members']);
                                     }
                                     else {
-                                        rows.push([[''], [[aggregatedData[i].values[j].key]], [k+1], [[aggregatedData[i].values[j].values[k].values['total_members']]],
+                                        rows.push([[''], [j+1], [[aggregatedData[i].values[j].key]], [[aggregatedData[i].values[j].values[k].values['total_members']]],
                                             [[aggregatedData[i].values[j].values[k].key]],
                                             [(NBCFDCShareCalculator(json[0]['loan_category'], aggregatedData[i].values[j].values[k].values['total_shg_loan']) +
                                             tabcedcoShareCalculator(json[0]['loan_category'], aggregatedData[i].values[j].values[k].values['total_shg_loan']))]]);
