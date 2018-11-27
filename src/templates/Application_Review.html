@@ -906,22 +906,26 @@
 
                         console.log(aggregatedData);
 
+                        var iter = 1;
+
                         for (var i = 0; i < aggregatedData.length; i++) {
                             for (var j = 0; j < aggregatedData[i].values.length; j++) {
                                 for (var k = 0; k < aggregatedData[i].values[j].values.length; k++) {
                                     if (j === 0) {
-                                        rows.push([[aggregatedData[i].key], [j+1], [[aggregatedData[i].values[j].key]], [[aggregatedData[i].values[j].values[k].values['total_members']]],
+                                        rows.push([[aggregatedData[i].key], [iter], [[aggregatedData[i].values[j].key]], [[aggregatedData[i].values[j].values[k].values['total_members']]],
                                             [[aggregatedData[i].values[j].values[k].key]],
                                             [(NBCFDCShareCalculator(json[0]['loan_category'], aggregatedData[i].values[j].values[k].values['total_shg_loan']) +
                                             tabcedcoShareCalculator(json[0]['loan_category'], aggregatedData[i].values[j].values[k].values['total_shg_loan']))]]);
                                         total_strength += parseInt(aggregatedData[i].values[j].values[k].values['total_members']);
+                                        ++iter;
                                     }
                                     else {
-                                        rows.push([[''], [j+1], [[aggregatedData[i].values[j].key]], [[aggregatedData[i].values[j].values[k].values['total_members']]],
+                                        rows.push([[''], [iter], [[aggregatedData[i].values[j].key]], [[aggregatedData[i].values[j].values[k].values['total_members']]],
                                             [[aggregatedData[i].values[j].values[k].key]],
                                             [(NBCFDCShareCalculator(json[0]['loan_category'], aggregatedData[i].values[j].values[k].values['total_shg_loan']) +
                                             tabcedcoShareCalculator(json[0]['loan_category'], aggregatedData[i].values[j].values[k].values['total_shg_loan']))]]);
                                         total_strength += parseInt(aggregatedData[i].values[j].values[k].values['total_members']);
+                                        ++iter;
                                     }
                                 }
                             }
@@ -934,7 +938,7 @@
                                 startY: 170,
                                 endY: 200,
                                 styles: {overflow: 'linebreak', fontSize: 8},
-                                columnStyles: {0: {columnWidth: 40}, 2: {columnWidth: 15}}
+                                columnStyles: {0: {columnWidth: 40}, 1: {columnWidth: 10}}
                             });
 
                         doc.text(40, doc.autoTableEndPosY()+5, convertNumberToWords(sanction_amount));
@@ -1235,7 +1239,7 @@
 
                         doc.text(40, 160, 'DETAILS OF LOAN SANCTIONED TO MEMBERS OF SELF HELP GROUP');
 
-                        var columns = ["Name of Bank", "Name of SHG", "No of Beneficiaries", "Amount Per Member", "Loan Amount"];
+                        var columns = ["Name of Bank", "S.No", "Name of SHG", "No of Beneficiaries", "Amount Per Member", "Loan Amount"];
 
         //          Calculating the total strength
                         var total_strength = 0;
@@ -1272,7 +1276,7 @@
                                 startY: 170,
                                 endY: 200,
                                 styles: {overflow: 'linebreak', fontSize: 8},
-                                columnStyles: {0: {columnWidth: 40}, 2: {columnWidth: 15}}
+                                columnStyles: {0: {columnWidth: 40}, 1: {columnWidth: 10}}
                             });
 
                         doc.text(40, doc.autoTableEndPosY()+5, convertNumberToWords(sanction_amount));
