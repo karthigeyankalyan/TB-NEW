@@ -196,6 +196,8 @@
                 var strength = "strength"+i;
                 var total_amount = "ta"+i;
                 var delete_entry = "de"+i;
+                var lid = "lid"+i;
+
                 if(i === 0) {
             var row = $('<div style="display: flex; flex-direction: row; justify-content: space-around; align-items: center;"></div>')
                 .html(
@@ -226,11 +228,12 @@
                 '<div style="display: flex; flex-direction: column;">' +
                 '<label for='+delete_entry+'>Delete Entry</label>' +
                 '<button type="button" id='+delete_entry+' name='+delete_entry+' onclick="removeField(this)">Delete Entry</button>' +
+                '<input type="text" id='+lid+' name='+lid+'>' +
                 '</div>'
                 );
                 }
                 else {
-            var row = $('<div style="display: flex; flex-direction: row; justify-content: space-around; align-items: center;"></div>')
+            row = $('<div style="display: flex; flex-direction: row; justify-content: space-around; align-items: center;"></div>')
                 .html(
                 '<div style="display: flex; flex-direction: column;">' +
                 '<input class="amount" type="number" id='+inputSNO+' name='+inputSNO+' value='+(i+1)+'>' +
@@ -252,6 +255,7 @@
                 '</div>'+
                 '<div style="display: flex; flex-direction: column;">' +
                 '<button type="button" id='+delete_entry+' name='+delete_entry+' onclick="removeField(this)">Delete Entry</button>' +
+                '<input type="text" id='+lid+' name='+lid+'>' +
                 '</div>'
                 );
                 }
@@ -297,11 +301,13 @@
             var strength = "strength"+i;
             var total_amount = "ta"+i;
             var sb = "sb"+i;
+            var lid = "lid"+i;
             document.getElementById(shg_name).value = json[i]['shg_name'];
             document.getElementById(sb).value = json[i]['sub_bank'];
             document.getElementById(amount_pm).value = json[i]['amount_per_member'];
             document.getElementById(strength).value = json[i]['strength'];
             document.getElementById(total_amount).value = json[i]['total_amount'];
+            document.getElementById(lid).value = json[i]['_id'];
             total_loan_amount += json[i]['total_amount'];
             total_ben_count += json[i]['strength'];
             }
@@ -363,6 +369,8 @@
         var sb = "sb"+number;
         var strength = "strength"+number;
         var total_amount = "ta"+number;
+        var lid = "lid"+i;
+
         var delete_entry = "de"+number;
 
         var elem1 = document.getElementById(shg_name);
@@ -372,6 +380,7 @@
         var elem5 = document.getElementById(total_amount);
         var elem6 = document.getElementById(inputSNO);
         var elem7 = document.getElementById(delete_entry);
+        var elem8 = document.getElementById(lid);
 
         elem1.parentNode.removeChild(elem1);
         elem2.parentNode.removeChild(elem2);
@@ -380,6 +389,7 @@
         elem5.parentNode.removeChild(elem5);
         elem6.parentNode.removeChild(elem6);
         elem7.parentNode.removeChild(elem7);
+        elem8.parentNode.removeChild(elem8);
 
         j--;
 

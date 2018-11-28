@@ -762,14 +762,6 @@ def update_loan_form(_id):
                 return render_template('application_added_update.html', user=user, application_id=_id)
 
             else:
-                loan_ids = []
-                application = Database.find("loans", {"ann_loan_id": annual_loan_id})
-
-                for result_object in application:
-                    loan_ids.append(result_object['_id'])
-
-                print(len(loan_ids))
-
                 user = User.get_by_email(email)
                 loan_category = request.form['loanCategory']
                 district = request.form['district']
@@ -802,10 +794,13 @@ def update_loan_form(_id):
                     strength_string = "strength" + str(i)
                     ta = "ta" + str(i)
                     sb = "sb" + str(i)
+                    lid = "lid" + str(i)
+
                     shg_name = request.form[shg_name_string]
                     amount_per_member = request.form[amount_per_member_string]
                     strength = request.form[strength_string]
                     sub_bank = request.form[sb]
+                    _id = request.form[lid]
 
                     LoanApplication.update_loan_app(applicant_name=None, loan_category=loan_category, age=None,
                                                     gender=None, address=None, district=district,
@@ -818,8 +813,9 @@ def update_loan_form(_id):
                                                     loan_number=loanNumber, screening_date=screening_date,
                                                     jr_letter_number=jr_letter_number,
                                                     jr_letter_date=jr_letter_date, ro_date=ro_date, pso_date=None,
-                                                    amount_per_member=amount_per_member, strength=strength, shg_name=shg_name,
-                                                    ro_number=ro_number, bank_district=bank_district, post_pso_ref=None)
+                                                    amount_per_member=amount_per_member, strength=strength,
+                                                    shg_name=shg_name, ro_number=ro_number, bank_district=bank_district,
+                                                    post_pso_ref=None)
 
                 return render_template('application_added_update.html', application=application, user=user)
 
