@@ -228,7 +228,7 @@
                 '<div style="display: flex; flex-direction: column;">' +
                 '<label for='+delete_entry+'>Delete Entry</label>' +
                 '<button type="button" id='+delete_entry+' name='+delete_entry+' onclick="removeField(this)">Delete Entry</button>' +
-                '<input type="text" id='+lid+' name='+lid+'>' +
+                '<input type="text" id='+lid+' name='+lid+' style="display: none">' +
                 '</div>'
                 );
                 }
@@ -320,6 +320,7 @@
 
     function addAnotherField() {
         console.log(j);
+        j++;
         var shg_name = "sn"+j;
         var inputSNO = "sno"+j;
         var amount_pm = "apm"+j;
@@ -353,7 +354,6 @@
 
             );
         $("#shgDetails").append(row);
-        j++;
     }
 
     function removeField(that) {
