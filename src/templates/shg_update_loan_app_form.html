@@ -319,6 +319,7 @@
     }
 
     function addAnotherField() {
+        console.log(j);
         var shg_name = "sn"+j;
         var inputSNO = "sno"+j;
         var amount_pm = "apm"+j;
@@ -416,7 +417,7 @@
         total_ben_count = 0;
 
         for(var iter = 0; iter <= j; iter ++) {
-            console.log(document.getElementById("strength"+iter).value);
+            console.log(document.getElementById("strength"+iter).value, "strength"+iter);
             total_loan_amount += parseInt(document.getElementById("ta"+iter).value);
             total_ben_count += parseInt(document.getElementById("strength"+iter).value);
         }
