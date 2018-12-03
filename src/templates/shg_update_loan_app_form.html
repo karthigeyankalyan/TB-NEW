@@ -322,12 +322,15 @@
         console.log(j);
         j++;
         var shg_name = "sn"+j;
+        console.log(shg_name);
         var inputSNO = "sno"+j;
         var amount_pm = "apm"+j;
         var sb = "sb"+j;
         var strength = "strength"+j;
         var total_amount = "ta"+j;
         var delete_entry = "de"+j;
+        var lid = "lid"+j;
+
         var row = $('<div style="display: flex; flex-direction: row; justify-content: space-around; align-items: center;"></div>')
             .html(
                 '<div style="display: flex; flex-direction: column;">' +
@@ -350,6 +353,7 @@
                 '</div>'+
                 '<div style="display: flex; flex-direction: column;">' +
                 '<button id='+delete_entry+' name='+delete_entry+' onclick="removeField(this)">Delete Entry</button>' +
+                '<input type="text" id='+lid+' name='+lid+' style="display: none">' +
                 '</div>'
 
             );
@@ -433,7 +437,7 @@
 
         console.log(j);
 
-        document.getElementById("invIDCTR").value = (j-1);
+        document.getElementById("invIDCTR").value = (j);
         document.getElementById('beneficiaryCount').value = total_ben_count;
         document.getElementById('loanAmount').value = total_loan_amount;
     }

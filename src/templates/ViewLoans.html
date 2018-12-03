@@ -91,7 +91,13 @@
                                     var url = '/updateApplication/'+loan_id;
                                     var url1 = '/loanFinancial/'+loan_id;
                                     var url2 = '/ViewDemandsByLoan/'+loan_id;
-                                    var row = $('<tr></tr>').html('<td>' +
+                                    if (jsonFunc[j]['loan_category'] === 'GTL (General Term Loan)' || jsonFunc[j]['loan_category'] === 'NSS (New-Swarnima Scheme)') {
+                                        var name = jsonFunc[j]["applicant_name"];
+                                    }
+                                    else {
+                                        name = jsonFunc[j]["shg_name"];
+                                    }
+                                    var row = $('<tr></tr>').html('<td>' + name + '</td>'+
                                         jsonFunc[j]["applicant_name"] + '</td>'+
                                         '<td>'+jsonFunc[j]["ann_loan_id"] +'</td>'+
                                         '<td>'+jsonFunc[j]["district"] +'</td>'+

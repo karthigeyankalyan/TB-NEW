@@ -788,7 +788,7 @@ def update_loan_form(_id):
                 ro_date = request.form['roDate']
                 ro_number = request.form['roNumber']
 
-                for i in range(int(inv_id)):
+                for i in range(int(inv_id)+1):
                     shg_name_string = "sn" + str(i)
                     amount_per_member_string = "apm" + str(i)
                     strength_string = "strength" + str(i)
@@ -801,7 +801,7 @@ def update_loan_form(_id):
                     strength = request.form[strength_string]
                     sub_bank = request.form[sb]
 
-                    if request.form[lid]:
+                    if request.form[lid] is not None:
                         _id = request.form[lid]
 
                         LoanApplication.update_loan_app(applicant_name=None, loan_category=loan_category, age=None,
