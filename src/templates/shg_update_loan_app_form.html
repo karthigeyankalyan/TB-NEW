@@ -255,7 +255,7 @@
                 '</div>'+
                 '<div style="display: flex; flex-direction: column;">' +
                 '<button type="button" id='+delete_entry+' name='+delete_entry+' onclick="removeField(this)">Delete Entry</button>' +
-                '<input type="text" id='+lid+' name='+lid+' style="display: none">' +
+                '<input type="text" id='+lid+' name='+lid+'>' +
                 '</div>'
                 );
                 }
@@ -321,6 +321,7 @@
     function addAnotherField() {
         console.log(j);
         j++;
+        document.getElementById("invIDCTR").value = (j);
         var shg_name = "sn"+j;
         console.log(shg_name);
         var inputSNO = "sno"+j;
@@ -337,10 +338,10 @@
                 '<input class="amount" type="number" id='+inputSNO+' name='+inputSNO+' value='+(j+1)+'>' +
                 '</div>' +
                 '<div style="display: flex; flex-direction: column;">' +
-                '<input type="text" id='+shg_name+' name='+shg_name+'>' +
+                '<input type="text" id='+sb+' name='+sb+'>' +
                 '</div>' +
                 '<div style="display: flex; flex-direction: column;">' +
-                '<input type="text" id='+sb+' name='+sb+'>' +
+                '<input type="text" id='+shg_name+' name='+shg_name+'>' +
                 '</div>' +
                 '<div style="display: flex; flex-direction: column;">' +
                 '<input type="text" id='+strength+' name='+strength+' onchange="calculateTotal(this)">' +

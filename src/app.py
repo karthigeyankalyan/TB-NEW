@@ -789,6 +789,7 @@ def update_loan_form(_id):
                 ro_number = request.form['roNumber']
 
                 for i in range(int(inv_id)+1):
+                    print(inv_id)
                     shg_name_string = "sn" + str(i)
                     amount_per_member_string = "apm" + str(i)
                     strength_string = "strength" + str(i)
@@ -801,7 +802,7 @@ def update_loan_form(_id):
                     strength = request.form[strength_string]
                     sub_bank = request.form[sb]
 
-                    if request.form[lid] is not None:
+                    if request.form[lid] != "":
                         _id = request.form[lid]
 
                         LoanApplication.update_loan_app(applicant_name=None, loan_category=loan_category, age=None,
@@ -821,13 +822,16 @@ def update_loan_form(_id):
                     else:
                         application = LoanApplication(loan_category=loan_category, district=district, bank=bank,
                                                       loan_reason=loan_reason, loan_amount=loan_amount,
-                                                      received_date=received_date, status=status,
+                                                      received_date=received_date, status=status, shg_name=shg_name,
+                                                      amount_per_member=amount_per_member, strength=strength,
                                                       status_date=status_date, ann_loan_id=ann_loan_id,
                                                       user_id=user_id, user_name=user_name, cheque_number=cheque_number,
                                                       sub_bank=sub_bank, roi=roi, no_of_demands=no_of_demands,
                                                       screening_date=screening_date, loan_number=loanNumber,
                                                       jr_letter_date=jr_letter_date, jr_letter_number=jr_letter_number,
                                                       post_pso_ref_no=None, bank_district=bank_district, caste=None)
+
+                        print(application._id)
 
                         application.save_to_mongo()
 

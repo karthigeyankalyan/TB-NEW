@@ -77,7 +77,6 @@ class LoanApplication(object):
         self.shg_name = shg_name
         self.amount_per_member = amount_per_member if amount_per_member is None else int(amount_per_member)
         self.strength = strength if strength is None else int(strength)
-        print(amount_per_member, strength)
         self.total_amount = None if strength is None else int(amount_per_member)*int(strength)
         self.cheque_number = cheque_number
         self.final_collection_amount = final_collection_amount
