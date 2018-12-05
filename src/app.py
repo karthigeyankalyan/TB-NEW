@@ -829,7 +829,8 @@ def update_loan_form(_id):
                                                       sub_bank=sub_bank, roi=roi, no_of_demands=no_of_demands,
                                                       screening_date=screening_date, loan_number=loanNumber,
                                                       jr_letter_date=jr_letter_date, jr_letter_number=jr_letter_number,
-                                                      post_pso_ref_no=None, bank_district=bank_district, caste=None)
+                                                      post_pso_ref_no=None, bank_district=bank_district, caste=None,
+                                                      ro_date=ro_date, pso_date=None)
 
                         print(application._id)
 
