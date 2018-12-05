@@ -368,8 +368,11 @@
         if(j <= 9) {
             var number = str.charAt(str.length-1);
         }
-        else {
+        else if(j <= 99){
             number = str.slice(-2);
+        }
+        else {
+            number = str.slice(-3);
         }
         var shg_name = "sn"+number;
         var inputSNO = "sno"+number;
@@ -408,8 +411,11 @@
         if(j <= 9) {
             var number = str.charAt(str.length-1);
         }
-        else {
+        else if(j <= 99){
             number = str.slice(-2);
+        }
+        else {
+            number = str.slice(-3);
         }
         var amount_tag_id = "apm"+number;
         var strength_tag_id = "strength"+number;
