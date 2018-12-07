@@ -834,306 +834,310 @@
             }
 
             if(json.length !== 0) {
-                    // Checking if the loan category is either Micro Credit or Mahila Samridhi Yojana
-                    if (json[0]['loan_category'] === 'MCG (Micro-Credit Gents)' || json[0]['loan_category'] === 'MSY (Mahila Samridhi Yojana)') {
-                        var PSO = json[0]['ro_number'] + '/' + cat + '/' + (moment(json[0]['received_date']['$date']).year() - 2000) + '' + (moment(json[0]['received_date']['$date']).year() - 1999);
+                // Checking if the loan category is either Micro Credit or Mahila Samridhi Yojana
+                if (json[0]['loan_category'] === 'MCG (Micro-Credit Gents)' || json[0]['loan_category'] === 'MSY (Mahila Samridhi Yojana)') {
+                    var PSO = json[0]['ro_number'] + '/' + cat + '/' + (moment(json[0]['received_date']['$date']).year() - 2000) + '' + (moment(json[0]['received_date']['$date']).year() - 1999);
 
-                        var total_shg_amount = 0;
-                        var total_ben_shg_count = 0;
+                    var total_shg_amount = 0;
+                    var total_ben_shg_count = 0;
 
-                        for (var abc = 0; abc < json.length; abc++) {
-                            total_shg_amount += json[abc]['total_amount'];
-                            total_ben_shg_count += json[abc]['strength'];
-                        }
+                    for (var abc = 0; abc < json.length; abc++) {
+                        total_shg_amount += json[abc]['total_amount'];
+                        total_ben_shg_count += json[abc]['strength'];
+                    }
 
-                        var sanction_amount = (NBCFDCShareCalculator(json[0]['loan_category'], total_shg_amount)+ tabcedcoShareCalculator(json[0]['loan_category'], total_shg_amount));
+                    var sanction_amount = (NBCFDCShareCalculator(json[0]['loan_category'], total_shg_amount) + tabcedcoShareCalculator(json[0]['loan_category'], total_shg_amount));
 
-                var aggregatedData = d3.nest()
-                    .key(function (d) {
-                        return d.bank+"-"+d.sub_bank;
-                    })
-                    .key(function (d) {
-                        return d.shg_name;
-                    })
-                    .key(function (d) {
-                        return d.amount_per_member;
-                    })
-                    .rollup(
-                        function(leaves)
-                        {
-                            return {
-                                "total_members": d3.sum(leaves, function(d) {return parseInt(d.strength);}),
-                                "total_shg_loan": d3.sum(leaves, function(d) {return parseInt(d.total_amount);})
-                            }
+                    var aggregatedData = d3.nest()
+                        .key(function (d) {
+                            return d.bank + "-" + d.sub_bank;
                         })
-                    .entries(json);
+                        .key(function (d) {
+                            return d.shg_name;
+                        })
+                        .key(function (d) {
+                            return d.amount_per_member;
+                        })
+                        .rollup(
+                            function (leaves) {
+                                return {
+                                    "total_members": d3.sum(leaves, function (d) {
+                                        return parseInt(d.strength);
+                                    }),
+                                    "total_shg_loan": d3.sum(leaves, function (d) {
+                                        return parseInt(d.total_amount);
+                                    })
+                                }
+                            })
+                        .entries(json);
 
-                        doc.setFontSize(12);
-                        doc.text(150, 20, 'RO: '+PSO);
+                    doc.setFontSize(12);
+                    doc.text(150, 20, 'RO: ' + PSO);
 
-                        doc.setFontSize(10);
-                        doc.text(30, 30, 'PROCEEDINGS OF THE MANAGING DIRECTOR, TAMIL NADU BACKWARD CLASSES');
-                        doc.text(45, 35, 'ECONOMIC DEVELOPMENT CORPORATION LIMITED, CHENNAI-8.');
+                    doc.setFontSize(10);
+                    doc.text(30, 30, 'PROCEEDINGS OF THE MANAGING DIRECTOR, TAMIL NADU BACKWARD CLASSES');
+                    doc.text(45, 35, 'ECONOMIC DEVELOPMENT CORPORATION LIMITED, CHENNAI-8.');
 
-                        doc.text(65, 45, 'PRESENT: '+ MD +'., I.A.S.');
-                        doc.text(25, 55, 'Proc.No.' + json[0]['ann_loan_id'] + '/' + json[0]['district']+ '/' + json[0]['bank']);
+                    doc.text(65, 45, 'PRESENT: ' + MD + '., I.A.S.');
+                    doc.text(25, 55, 'Proc.No.' + json[0]['ann_loan_id'] + '/' + json[0]['district'] + '/' + json[0]['bank']);
 
-                        doc.text(160, 55, 'Dated: ' + (moment(json[0]['ro_date']['$date']).format("DD-MM-YYYY")));
-                        doc.text(37, 65, 'Sub:  Tamil Nadu Backward Classes Economic Development Corporation Ltd., Chennai 600008.');
-                        doc.text(46, 70, 'Disbursement of Loan under ' + json[0]['loan_category'] + ' Payment sanctioned to ' + total_ben_shg_count + ' beneficiaries');
-                        doc.text(46, 75, 'through ' + json[0]["bank"] + ' - Final Sanction Order for Rs. ' + sanction_amount + ' - issued - Reg.');
+//                        doc.text(160, 55, 'Dated: ' + (moment(json[0]['ro_date']['$date']).format("DD-MM-YYYY")));
+                    doc.text(37, 65, 'Sub:  Tamil Nadu Backward Classes Economic Development Corporation Ltd., Chennai 600008.');
+                    doc.text(46, 70, 'Disbursement of Loan under ' + json[0]['loan_category'] + ' Payment sanctioned to ' + total_ben_shg_count + ' beneficiaries');
+                    doc.text(46, 75, 'through ' + json[0]["bank"] + ' - Final Sanction Order for Rs. ' + sanction_amount + ' - issued - Reg.');
 
-                        doc.text(37, 85, 'Ref:  1. The Deed of Agreement Dated: '+ moment(deedDate).format("DD-MM-YYYY"));
-                        doc.text(46, 90, '2. The Joint Registrar of Cooperative Societies ');
-                        doc.text(50, 95,  json[0]['district']+' District '+json[0]['jr_letter_number']+' dated: '+moment(json[0]['jr_letter_date']['$date']).format("DD-MM-YYYY"));
-                        doc.text(46, 100, '3. Other Connected Records');
-                        doc.text(100, 110, '**********');
+                    doc.text(37, 85, 'Ref:  1. The Deed of Agreement Dated: ' + moment(deedDate).format("DD-MM-YYYY"));
+                    doc.text(46, 90, '2. The Joint Registrar of Cooperative Societies ');
+                    doc.text(50, 95, json[0]['district'] + ' District ' + json[0]['jr_letter_number'] + ' dated: ' + moment(json[0]['jr_letter_date']['$date']).format("DD-MM-YYYY"));
+                    doc.text(46, 100, '3. Other Connected Records');
+                    doc.text(100, 110, '**********');
 
-                        doc.text(25, 120, 'ORDER:');
-                        var pt1 = doc.splitTextToSize('1.   In the reference 1st cited, ' + json[0]['bank'] + ', ' + json[0]['district'] + ' District ' +
-                            'has entered into an agreement with TABCEDCO for the implementation of ' + json[0]['loan_category'] +
-                            ' so as to benefit the members of Self Help Group (Women)  belonging to Backward/Most Backward Classes' +
-                            ' and De-notified Communities in ' + json[0]['district'] + ' District ', 160);
-                        doc.text(34, 125, pt1);
+                    doc.text(25, 120, 'ORDER:');
+                    var pt1 = doc.splitTextToSize('1.   In the reference 1st cited, ' + json[0]['bank'] + ', ' + json[0]['district'] + ' District ' +
+                        'has entered into an agreement with TABCEDCO for the implementation of ' + json[0]['loan_category'] +
+                        ' so as to benefit the members of Self Help Group (Women)  belonging to Backward/Most Backward Classes' +
+                        ' and De-notified Communities in ' + json[0]['district'] + ' District ', 160);
+                    doc.text(34, 125, pt1);
 
-                        var pt2 = doc.splitTextToSize('2.   In the reference 2nd cited,the proposals have been submitted by the Joint Registrar of' +
-                            ' Co.Op. Societies, ' + json[0]['district'] + ' District, with the recommendation for sanction of' +
-                            ' loan as detailed below:', 160);
-                        doc.text(34, 145, pt2);
+                    var pt2 = doc.splitTextToSize('2.   In the reference 2nd cited,the proposals have been submitted by the Joint Registrar of' +
+                        ' Co.Op. Societies, ' + json[0]['district'] + ' District, with the recommendation for sanction of' +
+                        ' loan as detailed below:', 160);
+                    doc.text(34, 145, pt2);
 
-                        doc.text(40, 160, 'DETAILS OF LOAN SANCTIONED TO MEMBERS OF SELF HELP GROUP');
+                    doc.text(40, 160, 'DETAILS OF LOAN SANCTIONED TO MEMBERS OF SELF HELP GROUP');
 
-                        var columns = ["Name of Bank", "S.No", "Name of SHG", "No of Beneficiaries", "Amount Per Member", "Loan Amount"];
+                    var columns = ["Name of Bank", "S.No", "Name of SHG", "No of Beneficiaries", "Amount Per Member", "Loan Amount"];
 
-        //          Calculating the total strength
-                        var total_strength = 0;
-                        var rows = [];
-        //            [[json[0]['bank'], json[0]['shg1'].name, json[0]['shg1'].strength, json[0]['shg1'].amount]]; json[0]['no_of_shgs']
+                    //          Calculating the total strength
+                    var total_strength = 0;
+                    var rows = [];
+                    //            [[json[0]['bank'], json[0]['shg1'].name, json[0]['shg1'].strength, json[0]['shg1'].amount]]; json[0]['no_of_shgs']
 
-                        console.log(aggregatedData);
+//                        console.log(aggregatedData);
 
-                        var iter = 1;
+                    var iter = 1;
 
-                        for (var i = 0; i < aggregatedData.length; i++) {
-                            for (var j = 0; j < aggregatedData[i].values.length; j++) {
-                                for (var k = 0; k < aggregatedData[i].values[j].values.length; k++) {
-                                    if (j === 0) {
-                                        rows.push([[aggregatedData[i].key], [iter], [[aggregatedData[i].values[j].key]], [[aggregatedData[i].values[j].values[k].values['total_members']]],
-                                            [[aggregatedData[i].values[j].values[k].key]],
-                                            [(NBCFDCShareCalculator(json[0]['loan_category'], aggregatedData[i].values[j].values[k].values['total_shg_loan']) +
-                                            tabcedcoShareCalculator(json[0]['loan_category'], aggregatedData[i].values[j].values[k].values['total_shg_loan']))]]);
-                                        total_strength += parseInt(aggregatedData[i].values[j].values[k].values['total_members']);
-                                        ++iter;
-                                    }
-                                    else {
-                                        rows.push([[''], [iter], [[aggregatedData[i].values[j].key]], [[aggregatedData[i].values[j].values[k].values['total_members']]],
-                                            [[aggregatedData[i].values[j].values[k].key]],
-                                            [(NBCFDCShareCalculator(json[0]['loan_category'], aggregatedData[i].values[j].values[k].values['total_shg_loan']) +
-                                            tabcedcoShareCalculator(json[0]['loan_category'], aggregatedData[i].values[j].values[k].values['total_shg_loan']))]]);
-                                        total_strength += parseInt(aggregatedData[i].values[j].values[k].values['total_members']);
-                                        ++iter;
-                                    }
+                    for (var i = 0; i < aggregatedData.length; i++) {
+                        for (var j = 0; j < aggregatedData[i].values.length; j++) {
+                            for (var k = 0; k < aggregatedData[i].values[j].values.length; k++) {
+                                if (j === 0) {
+                                    console.log(aggregatedData[i].key, j)
+                                    rows.push([[aggregatedData[i].key], [iter], [[aggregatedData[i].values[j].key]], [[aggregatedData[i].values[j].values[k].values['total_members']]],
+                                        [[aggregatedData[i].values[j].values[k].key]],
+                                        [(NBCFDCShareCalculator(json[0]['loan_category'], aggregatedData[i].values[j].values[k].values['total_shg_loan']) +
+                                        tabcedcoShareCalculator(json[0]['loan_category'], aggregatedData[i].values[j].values[k].values['total_shg_loan']))]]);
+                                    total_strength += parseInt(aggregatedData[i].values[j].values[k].values['total_members']);
+                                    ++iter;
+                                }
+                                else {
+                                    rows.push([[''], [iter], [[aggregatedData[i].values[j].key]], [[aggregatedData[i].values[j].values[k].values['total_members']]],
+                                        [[aggregatedData[i].values[j].values[k].key]],
+                                        [(NBCFDCShareCalculator(json[0]['loan_category'], aggregatedData[i].values[j].values[k].values['total_shg_loan']) +
+                                        tabcedcoShareCalculator(json[0]['loan_category'], aggregatedData[i].values[j].values[k].values['total_shg_loan']))]]);
+                                    total_strength += parseInt(aggregatedData[i].values[j].values[k].values['total_members']);
+                                    ++iter;
                                 }
                             }
                         }
-
-                        rows.push([[['Grand Total']], [['']], [[total_strength]], [[sanction_amount]]]);
-
-                        doc.autoTable(columns, rows,
-                            {
-                                startY: 170,
-                                endY: 200,
-                                styles: {overflow: 'linebreak', fontSize: 8},
-                                columnStyles: {0: {columnWidth: 40}, 1: {columnWidth: 10}}
-                            });
-
-                        doc.text(40, doc.autoTableEndPosY()+5, convertNumberToWords(sanction_amount));
-
-                        doc.addPage();
-
-                        var pt3 = doc.splitTextToSize('3. Accordingly sanction is hereby accorded for the payment of Rs.' + sanction_amount + '/-' + convertNumberToWords(sanction_amount)
-                            +' to the ' + ' district through the ' + json[0]['bank'] + ' for the disbursement of loan under ' +
-                            json[0]['loan_category'], 160);
-
-                        doc.text(34, 30, pt3);
-
-                        //Assigning Rate of Interest
-                        var ROI = json[0]['roi']+'%';
-
-                        var columns1 = ["No of SHGs", "No of beneficiaries", "Rate of Interest", "Loan Amount"];
-                        var rows1 = [];
-                        rows1.push([[json[0]['no_of_shgs']], [total_strength], [ROI], [sanction_amount]]);
-
-                        doc.autoTable(columns1, rows1, {startY: 40, endY: 200});
-
-                        var pt4 = doc.splitTextToSize('4.  The above loan is sanctioned subject to the conditions stipulated in the' +
-                            ' deed of agreement referred to in the reference 1st cited.', 160);
-                        doc.text(34, doc.autoTableEndPosY() + 15, pt4);
-
-                        var pt5 = doc.splitTextToSize('5.  The terms and conditions incorporated in the agreement executed between' +
-                            ' the Bank and TABCEDCO will also form part of this sanction order.', 160);
-                        doc.text(34, doc.autoTableEndPosY() + 30, pt5);
-
-                        var pt6 = doc.splitTextToSize('6.  The Assistant Accounts Officer, of this Corporation is hereby authorized ' +
-                            'to draw and disburse the amount by means of Crossed Account Payee Demand Draft drawn in favour of the ' +
-                            'Managing Director,' + json[0]['bank'] + ', ' + json[0]['bank_district'] + ' with proper acquittance.', 160);
-                        doc.text(34, doc.autoTableEndPosY() + 45, pt6);
-
-                        doc.text(165, doc.autoTableEndPosY() + 65, 'Sd/-' + MDSign);
-                        doc.text(165, doc.autoTableEndPosY() + 70, 'Managing Director');
-                        doc.text(165, doc.autoTableEndPosY() + 85, 'For Managing Director');
-
-                        doc.text(40, doc.autoTableEndPosY() + 90, 'To');
-                        doc.text(40, doc.autoTableEndPosY() + 95, 'The Managing Director');
-                        doc.text(40, doc.autoTableEndPosY() + 100, json[0]['bank']);
-                        doc.text(40, doc.autoTableEndPosY() + 105, json[0]['bank_district']);
-
-                        doc.text(40, doc.autoTableEndPosY() + 115, 'Copy to:');
-                        doc.text(49, doc.autoTableEndPosY() + 120, '1. The Joint Registrar of Co.Operative Societies, ' + json[0]['district']);
-
-                        var toPt2 = doc.splitTextToSize('2. The District Backward Classes and Minorities Welfare Officer and Regional ' +
-                            'Manager, TABCEDCO, ' + json[0]['district'], 106);
-                        doc.text(49, doc.autoTableEndPosY() + 125, toPt2);
-
-                        doc.text(49, doc.autoTableEndPosY() + 135, '3. Payment Voucher/Asst. Accounts Officer.');
-                        doc.text(49, doc.autoTableEndPosY() + 140, '4. B4 Assistant – for follow up action.');
-
-                        doc.save('RO'+PSO+'.pdf')
-
                     }
 
-                    // Checking if application is either GTL (General Term Loan) or New Swarnima Scheme
-                    else if (json[0]['loan_category'] === 'GTL (General Term Loan)' || json[0]['loan_category'] === 'NSS (New-Swarnima Scheme)') {
-                        PSO = json[0]['ro_number'] + '/' + cat + '/' + (moment(json[0]['received_date']).year() - 2000) + '' + (moment(json[0]['received_date']).year() - 1999);
+                    rows.push([[['Grand Total']], [['']], [[total_strength]], [[sanction_amount]]]);
 
-                        doc.setFontSize(12);
-                        doc.text(167, 20, 'RO No: '+PSO);
+                    doc.autoTable(columns, rows,
+                        {
+                            startY: 170,
+                            endY: 200,
+                            styles: {overflow: 'linebreak', fontSize: 8},
+                            columnStyles: {0: {columnWidth: 40}, 1: {columnWidth: 10}}
+                        });
 
-                        doc.setFontSize(10);
-                        doc.text(30, 30, 'PROCEEDINGS OF THE MANAGING DIRECTOR, TAMIL NADU BACKWARD CLASSES');
-                        doc.text(45, 35, 'ECONOMIC DEVELOPMENT CORPORATION LIMITED, CHENNAI-8.');
+                    doc.text(40, doc.autoTableEndPosY() + 5, convertNumberToWords(sanction_amount));
 
-                        doc.text(65, 45, 'PRESENT: '+MD+'.,I.A.S.');
-                        doc.text(25, 55, 'Proc.No.' + json[0]['ann_loan_id'] + '/' + json[0]['district'] + '/' + json[0]['bank']);
+                    doc.addPage();
 
-                        doc.text(160, 55, 'Dated: ' + (moment(json[0]['ro_date']['$date']).format("DD-MM-YYYY")));
+                    var pt3 = doc.splitTextToSize('3. Accordingly sanction is hereby accorded for the payment of Rs.' + sanction_amount + '/-' + convertNumberToWords(sanction_amount)
+                        + ' to the ' + ' district through the ' + json[0]['bank'] + ' for the disbursement of loan under ' +
+                        json[0]['loan_category'], 160);
 
-                        var total_individual_amount = 0;
+                    doc.text(34, 30, pt3);
 
-                        for (abc = 0; abc < json.length; abc++) {
-                            total_individual_amount += parseInt(json[abc]['loan_amount']);
-                        }
+                    //Assigning Rate of Interest
+                    var ROI = json[0]['roi'] + '%';
 
-                        var sanctioned_amount = (NBCFDCShareCalculator(json[0]['loan_category'], total_individual_amount)+ tabcedcoShareCalculator(json[0]['loan_category'], total_individual_amount));
+                    var columns1 = ["No of SHGs", "No of beneficiaries", "Rate of Interest", "Loan Amount"];
+                    var rows1 = [];
+                    rows1.push([[json[0]['no_of_shgs']], [total_strength], [ROI], [sanction_amount]]);
 
-                        var size = json.length-1;
+                    doc.autoTable(columns1, rows1, {startY: 40, endY: 200});
 
-                        var sub = doc.splitTextToSize('Sub:     Tamil Nadu Backward Classes Economic Development Corporation Ltd., Chennai 600008. Disbursement of ' +
-                            'Individual Term Loan to ' + json[0]['applicant_name'] + ' and '+ size + ' others. - Final Sanction Order for ' +
-                            'Rs.' + sanctioned_amount + '/- - Issued - Reg', 160);
+                    var pt4 = doc.splitTextToSize('4.  The above loan is sanctioned subject to the conditions stipulated in the' +
+                        ' deed of agreement referred to in the reference 1st cited.', 160);
+                    doc.text(34, doc.autoTableEndPosY() + 15, pt4);
 
-                        doc.text(40, 65, sub);
+                    var pt5 = doc.splitTextToSize('5.  The terms and conditions incorporated in the agreement executed between' +
+                        ' the Bank and TABCEDCO will also form part of this sanction order.', 160);
+                    doc.text(34, doc.autoTableEndPosY() + 30, pt5);
 
-                        doc.text(40, 85, 'Ref:  1. This office PSO Proc.No.' + json[0]['ann_loan_id'] + '/' + json[0]['district'] + '/' + json[0]['bank'] + '/ PSO Dated: ' + moment(json[0]['pso_date']['$date']).format("DD-MM-YYYY"));
-                        doc.text(49, 90, '2. Accepted and Signed Memorandum of Agreement-Cum-Provisional Sanction Order');
-                        doc.text(51, 95,  'received from, the '+json[0]['post_pso_ref_no']);
+                    var pt6 = doc.splitTextToSize('6.  The Assistant Accounts Officer, of this Corporation is hereby authorized ' +
+                        'to draw and disburse the amount by means of Crossed Account Payee Demand Draft drawn in favour of the ' +
+                        'Managing Director,' + json[0]['bank'] + ', ' + json[0]['bank_district'] + ' with proper acquittance.', 160);
+                    doc.text(34, doc.autoTableEndPosY() + 45, pt6);
 
-                        doc.text(100, 110, '**********');
+                    doc.text(165, doc.autoTableEndPosY() + 65, 'Sd/-' + MDSign);
+                    doc.text(165, doc.autoTableEndPosY() + 70, 'Managing Director');
+                    doc.text(165, doc.autoTableEndPosY() + 85, 'For Managing Director');
 
-                        doc.text(25, 120, 'ORDER:');
-                        var order = doc.splitTextToSize('In continuation of this office Memorandum of Agreement-cum-Provisional Sanction Order sent in the' +
-                            ' reference 1st cited, sanction is hereby accorded for the payment of Rs.'+sanctioned_amount+' '+convertNumberToWords(sanctioned_amount)+' to the '+json[0]['sub_bank']+
-                            ' through the '+ json[0]['bank'] +' towards the Term Loan under '+json[0]['loan_category']+' Scheme ' +
-                            'to the following beneficiary/beneficiaries in accordance with the terms and conditions incorporated in the Memorandum of ' +
-                            'Agreement-Cum-Provisional Sanction Order now accepted in the reference 2nd cited and also subject to the conditions noted below.', 160);
-                        doc.text(34, 125, order);
+                    doc.text(40, doc.autoTableEndPosY() + 90, 'To');
+                    doc.text(40, doc.autoTableEndPosY() + 95, 'The Managing Director');
+                    doc.text(40, doc.autoTableEndPosY() + 100, json[0]['bank']);
+                    doc.text(40, doc.autoTableEndPosY() + 105, json[0]['bank_district']);
 
-                        doc.text(25, 160, 'CONDITIONS:');
-                        var ConditionsPt1 = doc.splitTextToSize('1.    The beneficiary / beneficiaries belongs to Backward Classes / Most' +
-                            'Backward Classes / Denotified Communities and his/their Annual Income is below the prescribed limit and', 160);
-                        doc.text(34, 165, ConditionsPt1);
-                        var ConditionsPt2 = doc.splitTextToSize('2.    That the  Utilization  certificate  and  asset  creation  certificate  have to ' +
-                            'be furnished to this Corporation, within a month on receipt of funds from this Corporation.', 160);
-                        doc.text(34, 180, ConditionsPt2);
+                    doc.text(40, doc.autoTableEndPosY() + 115, 'Copy to:');
+                    doc.text(49, doc.autoTableEndPosY() + 120, '1. The Joint Registrar of Co.Operative Societies, ' + json[0]['district']);
 
-                        doc.text(80, 190, 'Details of Loan Sanctioned');
+                    var toPt2 = doc.splitTextToSize('2. The District Backward Classes and Minorities Welfare Officer and Regional ' +
+                        'Manager, TABCEDCO, ' + json[0]['district'], 106);
+                    doc.text(49, doc.autoTableEndPosY() + 125, toPt2);
 
-                        columns = ["Name of the beneficiary", "Nature of Business", "Loan Amount"];
-                        rows = [];
-                        for(i=0; i<json.length; i++) {
-                            rows.push([[json[i]['applicant_name']], [json[i]['loan_reason']], [parseInt(NBCFDCShareCalculator(json[i]['loan_category'], json[i]['loan_amount']))+ parseInt(tabcedcoShareCalculator(json[i]['loan_category'], json[i]['loan_amount']))]]);
-                        }
-                        rows.push([[''], ['Grand Total'], [sanctioned_amount]]);
+                    doc.text(49, doc.autoTableEndPosY() + 135, '3. Payment Voucher/Asst. Accounts Officer.');
+                    doc.text(49, doc.autoTableEndPosY() + 140, '4. B4 Assistant – for follow up action.');
 
-                        var words = convertNumberToWords(sanctioned_amount);
+                    doc.save('RO' + PSO + '.pdf')
 
-                        doc.autoTable(columns, rows, {startY: 200});
+                }
 
-                        doc.text(40, doc.autoTableEndPosY()+5, words);
+                // Checking if application is either GTL (General Term Loan) or New Swarnima Scheme
+                else if (json[0]['loan_category'] === 'GTL (General Term Loan)' || json[0]['loan_category'] === 'NSS (New-Swarnima Scheme)') {
+                    PSO = json[0]['ro_number'] + '/' + cat + '/' + (moment(json[0]['received_date']).year() - 2000) + '' + (moment(json[0]['received_date']).year() - 1999);
 
-                        var AttnInvited = doc.splitTextToSize('Attention is also invited to the following conditions ' +
-                            'stipulated in the memorandum of Agreement-cum-Provisional Sanction for strict Adherence.' , 170);
-                        doc.text(25, doc.autoTableEndPosY()+10, AttnInvited);
+                    doc.setFontSize(12);
+                    doc.text(167, 20, 'RO No: ' + PSO);
 
-                        doc.addPage();
+                    doc.setFontSize(10);
+                    doc.text(30, 30, 'PROCEEDINGS OF THE MANAGING DIRECTOR, TAMIL NADU BACKWARD CLASSES');
+                    doc.text(45, 35, 'ECONOMIC DEVELOPMENT CORPORATION LIMITED, CHENNAI-8.');
 
-                        doc.text(25, 20, 'Condition No 3 of PSO:');
+                    doc.text(65, 45, 'PRESENT: ' + MD + '.,I.A.S.');
+                    doc.text(25, 55, 'Proc.No.' + json[0]['ann_loan_id'] + '/' + json[0]['district'] + '/' + json[0]['bank']);
 
-                        var ConditionsPt3 = doc.splitTextToSize('The said Bank should disburse the loan amount to the ' +
-                            'beneficiary / beneficiaries immediately. At any cost it should disburse the loan within a period of ' +
-                            '30 days, failing which on expiry of the period of 30 days, the Bank shall pay penal interest of 13.5% per ' +
-                            'annum to TABCEDCO along with the undisbursed portion of such amount remaining with the Bank. The Bank, ' +
-                            'after disbursement of the loan, should ensure assets creation. Immediately and following asset creation, ' +
-                            'TABCEDCO shall be informed of the same in the relevant Form (Form –B).' , 170);
+                    doc.text(160, 55, 'Dated: ' + (moment(json[0]['ro_date']['$date']).format("DD-MM-YYYY")));
 
-                        doc.text(34, 25, ConditionsPt3);
+                    var total_individual_amount = 0;
 
-                        doc.text(25, 50, 'Condition No 6:');
+                    for (abc = 0; abc < json.length; abc++) {
+                        total_individual_amount += parseInt(json[abc]['loan_amount']);
+                    }
 
-                        var PenalInterest = doc.splitTextToSize('1. That the Bank shall pay the Penal interest at the rate of 5% in addition to normal rate of ' +
-                            'interest for the defaulted period to TABCEDCO.  However, the Bank is at liberty, to collect the Penal interest ' +
-                            'in addition to the normal interest being charged by the Bank” from the beneficiary/beneficiaries in case of default' +
-                            ' by the beneficiary/beneficiaries himself/herself/themselves to the Bank as per Banking norms.', 160);
+                    var sanctioned_amount = (NBCFDCShareCalculator(json[0]['loan_category'], total_individual_amount) + tabcedcoShareCalculator(json[0]['loan_category'], total_individual_amount));
 
-                        doc.text(34, 55, PenalInterest);
+                    var size = json.length - 1;
 
-                        doc.text(34, 75, '2. Pattern of Finance is as follows');
+                    var sub = doc.splitTextToSize('Sub:     Tamil Nadu Backward Classes Economic Development Corporation Ltd., Chennai 600008. Disbursement of ' +
+                        'Individual Term Loan to ' + json[0]['applicant_name'] + ' and ' + size + ' others. - Final Sanction Order for ' +
+                        'Rs.' + sanctioned_amount + '/- - Issued - Reg', 160);
 
-                        columns1 = ["Share", "Share Amount in Rs.", "Rate of Interest"];
-                        rows1 = [];
-                        rows1.push([['NBCFDC Share'], [(parseInt(NBCFDCShareCalculator(json[0]['loan_category'], total_individual_amount)))+'/-'], [json[0]['roi']+'%']]);
-                        rows1.push([['TABCEDCO Share'], [(parseInt(tabcedcoShareCalculator(json[0]['loan_category'], total_individual_amount)))+'/-'], [json[0]['roi']+'%']]);
-                        rows1.push([['Total Amount'], [sanctioned_amount+'/-'], []]);
+                    doc.text(40, 65, sub);
 
-                        doc.autoTable(columns1, rows1, {startY: 80});
+                    doc.text(40, 85, 'Ref:  1. This office PSO Proc.No.' + json[0]['ann_loan_id'] + '/' + json[0]['district'] + '/' + json[0]['bank'] + '/ PSO Dated: ' + moment(json[0]['pso_date']['$date']).format("DD-MM-YYYY"));
+                    doc.text(49, 90, '2. Accepted and Signed Memorandum of Agreement-Cum-Provisional Sanction Order');
+                    doc.text(51, 95, 'received from, the ' + json[0]['post_pso_ref_no']);
 
-                        var AAO = doc.splitTextToSize('3.   The Assistant Accounts Officer , of this Corporation is hereby authorised to draw and disburse ' +
-                            'the amount by means of Crossed Account Payee Cheque drawn in favour of the Managing Director, '+json[0]['bank']+', '+json[0]['bank_district']+
-                            '  with proper acquittance.', 160);
+                    doc.text(100, 110, '**********');
 
-                        doc.text(25, doc.autoTableEndPosY()+10, AAO);
-                        doc.text(25, doc.autoTableEndPosY()+30, 'The details of schedule of repayment is enclosed.');
+                    doc.text(25, 120, 'ORDER:');
+                    var order = doc.splitTextToSize('In continuation of this office Memorandum of Agreement-cum-Provisional Sanction Order sent in the' +
+                        ' reference 1st cited, sanction is hereby accorded for the payment of Rs.' + sanctioned_amount + ' ' + convertNumberToWords(sanctioned_amount) + ' to the ' + json[0]['sub_bank'] +
+                        ' through the ' + json[0]['bank'] + ' towards the Term Loan under ' + json[0]['loan_category'] + ' Scheme ' +
+                        'to the following beneficiary/beneficiaries in accordance with the terms and conditions incorporated in the Memorandum of ' +
+                        'Agreement-Cum-Provisional Sanction Order now accepted in the reference 2nd cited and also subject to the conditions noted below.', 160);
+                    doc.text(34, 125, order);
 
-                        doc.text(165, doc.autoTableEndPosY() + 35, 'Sd/-' + MDSign);
-                        doc.text(165, doc.autoTableEndPosY() + 40, 'Managing Director');
-                        doc.text(165, doc.autoTableEndPosY() + 55, 'For Managing Director');
+                    doc.text(25, 160, 'CONDITIONS:');
+                    var ConditionsPt1 = doc.splitTextToSize('1.    The beneficiary / beneficiaries belongs to Backward Classes / Most' +
+                        'Backward Classes / Denotified Communities and his/their Annual Income is below the prescribed limit and', 160);
+                    doc.text(34, 165, ConditionsPt1);
+                    var ConditionsPt2 = doc.splitTextToSize('2.    That the  Utilization  certificate  and  asset  creation  certificate  have to ' +
+                        'be furnished to this Corporation, within a month on receipt of funds from this Corporation.', 160);
+                    doc.text(34, 180, ConditionsPt2);
 
-                        doc.text(40, doc.autoTableEndPosY() + 55, 'To');
-                        doc.text(40, doc.autoTableEndPosY() + 60, 'The Managing Director');
-                        doc.text(40, doc.autoTableEndPosY() + 65, json[0]['bank']);
-                        doc.text(40, doc.autoTableEndPosY() + 70, json[0]['bank_district']);
+                    doc.text(80, 190, 'Details of Loan Sanctioned');
 
-                        doc.text(40, doc.autoTableEndPosY() + 80, 'Copy to:');
-                        doc.text(49, doc.autoTableEndPosY() + 85, '1. The Joint Registrar of Co.Operative Societies, ' + json[0]['district']);
+                    columns = ["Name of the beneficiary", "Nature of Business", "Loan Amount"];
+                    rows = [];
+                    for (i = 0; i < json.length; i++) {
+                        rows.push([[json[i]['applicant_name']], [json[i]['loan_reason']], [parseInt(NBCFDCShareCalculator(json[i]['loan_category'], json[i]['loan_amount'])) + parseInt(tabcedcoShareCalculator(json[i]['loan_category'], json[i]['loan_amount']))]]);
+                    }
+                    rows.push([[''], ['Grand Total'], [sanctioned_amount]]);
 
-                        toPt2 = doc.splitTextToSize('2. The District Backward Classes and Minorities Welfare Officer and Regional ' +
-                            'Manager, TABCEDCO, ' + json[0]['district'], 106);
-                        doc.text(49, doc.autoTableEndPosY() + 90, toPt2);
+                    var words = convertNumberToWords(sanctioned_amount);
 
-                        doc.text(49, doc.autoTableEndPosY() + 100, '3. Payment Voucher/Asst. Accounts Officer.');
-                        doc.text(49, doc.autoTableEndPosY() + 105, '4. B3 Assistant – for follow up action.');
+                    doc.autoTable(columns, rows, {startY: 200});
 
-                        doc.save('RO'+PSO+'.pdf')
+                    doc.text(40, doc.autoTableEndPosY() + 5, words);
+
+                    var AttnInvited = doc.splitTextToSize('Attention is also invited to the following conditions ' +
+                        'stipulated in the memorandum of Agreement-cum-Provisional Sanction for strict Adherence.', 170);
+                    doc.text(25, doc.autoTableEndPosY() + 10, AttnInvited);
+
+                    doc.addPage();
+
+                    doc.text(25, 20, 'Condition No 3 of PSO:');
+
+                    var ConditionsPt3 = doc.splitTextToSize('The said Bank should disburse the loan amount to the ' +
+                        'beneficiary / beneficiaries immediately. At any cost it should disburse the loan within a period of ' +
+                        '30 days, failing which on expiry of the period of 30 days, the Bank shall pay penal interest of 13.5% per ' +
+                        'annum to TABCEDCO along with the undisbursed portion of such amount remaining with the Bank. The Bank, ' +
+                        'after disbursement of the loan, should ensure assets creation. Immediately and following asset creation, ' +
+                        'TABCEDCO shall be informed of the same in the relevant Form (Form –B).', 170);
+
+                    doc.text(34, 25, ConditionsPt3);
+
+                    doc.text(25, 50, 'Condition No 6:');
+
+                    var PenalInterest = doc.splitTextToSize('1. That the Bank shall pay the Penal interest at the rate of 5% in addition to normal rate of ' +
+                        'interest for the defaulted period to TABCEDCO.  However, the Bank is at liberty, to collect the Penal interest ' +
+                        'in addition to the normal interest being charged by the Bank” from the beneficiary/beneficiaries in case of default' +
+                        ' by the beneficiary/beneficiaries himself/herself/themselves to the Bank as per Banking norms.', 160);
+
+                    doc.text(34, 55, PenalInterest);
+
+                    doc.text(34, 75, '2. Pattern of Finance is as follows');
+
+                    columns1 = ["Share", "Share Amount in Rs.", "Rate of Interest"];
+                    rows1 = [];
+                    rows1.push([['NBCFDC Share'], [(parseInt(NBCFDCShareCalculator(json[0]['loan_category'], total_individual_amount))) + '/-'], [json[0]['roi'] + '%']]);
+                    rows1.push([['TABCEDCO Share'], [(parseInt(tabcedcoShareCalculator(json[0]['loan_category'], total_individual_amount))) + '/-'], [json[0]['roi'] + '%']]);
+                    rows1.push([['Total Amount'], [sanctioned_amount + '/-'], []]);
+
+                    doc.autoTable(columns1, rows1, {startY: 80});
+
+                    var AAO = doc.splitTextToSize('3.   The Assistant Accounts Officer , of this Corporation is hereby authorised to draw and disburse ' +
+                        'the amount by means of Crossed Account Payee Cheque drawn in favour of the Managing Director, ' + json[0]['bank'] + ', ' + json[0]['bank_district'] +
+                        '  with proper acquittance.', 160);
+
+                    doc.text(25, doc.autoTableEndPosY() + 10, AAO);
+                    doc.text(25, doc.autoTableEndPosY() + 30, 'The details of schedule of repayment is enclosed.');
+
+                    doc.text(165, doc.autoTableEndPosY() + 35, 'Sd/-' + MDSign);
+                    doc.text(165, doc.autoTableEndPosY() + 40, 'Managing Director');
+                    doc.text(165, doc.autoTableEndPosY() + 55, 'For Managing Director');
+
+                    doc.text(40, doc.autoTableEndPosY() + 55, 'To');
+                    doc.text(40, doc.autoTableEndPosY() + 60, 'The Managing Director');
+                    doc.text(40, doc.autoTableEndPosY() + 65, json[0]['bank']);
+                    doc.text(40, doc.autoTableEndPosY() + 70, json[0]['bank_district']);
+
+                    doc.text(40, doc.autoTableEndPosY() + 80, 'Copy to:');
+                    doc.text(49, doc.autoTableEndPosY() + 85, '1. The Joint Registrar of Co.Operative Societies, ' + json[0]['district']);
+
+                    toPt2 = doc.splitTextToSize('2. The District Backward Classes and Minorities Welfare Officer and Regional ' +
+                        'Manager, TABCEDCO, ' + json[0]['district'], 106);
+                    doc.text(49, doc.autoTableEndPosY() + 90, toPt2);
+
+                    doc.text(49, doc.autoTableEndPosY() + 100, '3. Payment Voucher/Asst. Accounts Officer.');
+                    doc.text(49, doc.autoTableEndPosY() + 105, '4. B3 Assistant – for follow up action.');
+
+                    doc.save('RO' + PSO + '.pdf')
                 }
             }
             else {
@@ -1490,6 +1494,7 @@
 //    var MD = 'N. Venkatachalam';
     var MD = document.getElementById('mdName').value;
     var source = "/getLoansByIdentfierLoans/"+"{{annual_loan_id}}";
+
     $.ajax({
         type: 'GET',
         url: source,
