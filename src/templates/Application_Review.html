@@ -851,7 +851,7 @@
                     var iteration1 = 0;
 
                     for(var inf = 0; inf<json.length; inf++) {
-                        if(json[inf]['strength']>0) {
+                        if(parseInt(json[inf]['total_amount'])>0) {
                             console.log(inf, ++iteration1)
                         }
                     }
