@@ -920,8 +920,8 @@
                     for (var i = 0; i < aggregatedData.length; i++) {
                         for (var j = 0; j < aggregatedData[i].values.length; j++) {
                             for (var k = 0; k < aggregatedData[i].values[j].values.length; k++) {
+                                console.log(aggregatedData[i].key, j);
                                 if (j === 0) {
-                                    console.log(aggregatedData[i].key, j)
                                     rows.push([[aggregatedData[i].key], [iter], [[aggregatedData[i].values[j].key]], [[aggregatedData[i].values[j].values[k].values['total_members']]],
                                         [[aggregatedData[i].values[j].values[k].key]],
                                         [(NBCFDCShareCalculator(json[0]['loan_category'], aggregatedData[i].values[j].values[k].values['total_shg_loan']) +
