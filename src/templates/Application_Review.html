@@ -974,7 +974,7 @@
 
                     var columns1 = ["No of SHGs", "No of beneficiaries", "Rate of Interest", "Loan Amount"];
                     var rows1 = [];
-                    rows1.push([[json[0]['no_of_shgs']], [total_strength], [ROI], [sanction_amount]]);
+                    rows1.push([[iter], [total_strength], [ROI], [sanction_amount]]);
 
                     doc.autoTable(columns1, rows1, {startY: 40, endY: 200});
 
