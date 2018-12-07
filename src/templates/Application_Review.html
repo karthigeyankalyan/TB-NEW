@@ -848,6 +848,14 @@
 
                     var sanction_amount = (NBCFDCShareCalculator(json[0]['loan_category'], total_shg_amount) + tabcedcoShareCalculator(json[0]['loan_category'], total_shg_amount));
 
+                    var iteration1 = 0;
+
+                    for(var inf = 0; inf<json.length; inf++) {
+                        if(json[inf]['strength']) {
+                            console.log(inf, ++iteration1)
+                        }
+                    }
+
                     var aggregatedData = d3.nest()
                         .key(function (d) {
                             return d.bank + "-" + d.sub_bank;
