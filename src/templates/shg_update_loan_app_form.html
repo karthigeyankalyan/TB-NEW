@@ -165,6 +165,10 @@
             <label for="invIDCTR">Cheque Number [Update Before Sanction]</label>
             <input type="number" id="invIDCTR" name="invIDCTR">
         </div>
+        <div style="display: none">
+            <label for="delID">Cheque Number [Update Before Sanction]</label>
+            <input type="text" id="delID" name="delID">
+        </div>
     </div>
 
     <button type="submit" class="btn btn-success">Save Application Details</button>
@@ -175,6 +179,7 @@
 <script>
 
     var j = 0;
+    var del_start = false;
     var total_loan_amount = 0;
     var total_ben_count = 0;
 
@@ -292,9 +297,6 @@
                 document.getElementById("statusDate").value = moment(json[0]["status_date"]['$date']).format("YYYY-MM-DD");
                 document.getElementById("jrLetterDate").value = moment(json[0]["jr_letter_date"]['$date']).format("YYYY-MM-DD");
                 document.getElementById("screeningDate").value = moment(json[0]["screening_date"]['$date']).format("YYYY-MM-DD");
-                if(json[0]["ro_date"] !== null) {
-                    document.getElementById("roDate").value = moment(json[0]["ro_date"]['$date']).format("YYYY-MM-DD");
-                }
                 document.getElementById("annualLoanID").value = json[0]["ann_loan_id"];
                 document.getElementById("roNumber").value = json[0]["ro_number"];
             for(var i=0; i < json.length; i++) {
@@ -313,6 +315,9 @@
             total_loan_amount += json[i]['total_amount'];
             total_ben_count += json[i]['strength'];
             }
+                if(json[0]["ro_date"] !== null) {
+                    document.getElementById("roDate").value = moment(json[0]["ro_date"]['$date']).format("YYYY-MM-DD");
+                }
         },
             error: function (e) {
                 alert("error");
@@ -364,6 +369,7 @@
     }
 
     function removeField(that) {
+        updateChecks(that);
         var str = that.id;
         if(j <= 9) {
             var number = str.charAt(str.length-1);
@@ -393,15 +399,14 @@
         var elem7 = document.getElementById(delete_entry);
         var elem8 = document.getElementById(lid);
 
-        elem1.parentNode.removeChild(elem1);
-        elem2.parentNode.removeChild(elem2);
-        elem3.parentNode.removeChild(elem3);
-        elem4.parentNode.removeChild(elem4);
-        elem5.parentNode.removeChild(elem5);
-        elem6.parentNode.removeChild(elem6);
-        elem7.parentNode.removeChild(elem7);
-        elem8.parentNode.removeChild(elem8);
-
+        elem1.parentNode.style.display = "none";
+        elem2.parentNode.style.display = "none";
+        elem3.parentNode.style.display = "none";
+        elem4.parentNode.style.display = "none";
+        elem5.parentNode.style.display = "none";
+        elem6.parentNode.style.display = "none";
+        elem7.parentNode.style.display = "none";
+        elem8.parentNode.style.display = "none";
         j--;
 
     }
@@ -441,6 +446,30 @@
 
         populateTotals();
     }
+
+    function updateChecks(that) {
+        var str = that.id;
+        if(j <= 9) {
+            var number = str.charAt(str.length-1);
+        }
+        else if(j <= 99){
+            number = str.slice(-2);
+        }
+        else {
+            number = str.slice(-3);
+        }
+
+        var lid = "lid"+number;
+
+        if(!del_start) {
+            var deletion_entries = document.getElementById(lid).value;
+        }
+        else {
+            deletion_entries += "|"+document.getElementById(lid).value;
+        }
+        document.getElementById("delID").value = deletion_entries;
+        del_start = true;
+        }
 
     function populateTotals() {
 

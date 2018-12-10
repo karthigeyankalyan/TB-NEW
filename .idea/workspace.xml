@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="da0bb03c-275f-4eeb-800c-401a339e857e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/templates/Application_Review.html" afterPath="$PROJECT_DIR$/src/templates/Application_Review.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app.py" afterPath="$PROJECT_DIR$/src/app.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/common/database.py" afterPath="$PROJECT_DIR$/src/common/database.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/templates/shg_update_loan_app_form.html" afterPath="$PROJECT_DIR$/src/templates/shg_update_loan_app_form.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -12,7 +15,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/TABCEDCO_NEW$app.coverage" NAME="app Coverage Results" MODIFIED="1544204743483" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
+    <SUITE FILE_PATH="coverage/TABCEDCO_NEW$app.coverage" NAME="app Coverage Results" MODIFIED="1544442831602" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
     <SUITE FILE_PATH="coverage/TABCEDCO$app.coverage" NAME="app Coverage Results" MODIFIED="1537271200424" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
@@ -24,18 +27,28 @@
       <file leaf-file-name="app.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/app.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="508">
-              <caret line="835" column="0" lean-forward="false" selection-start-line="835" selection-start-column="0" selection-end-line="835" selection-end-column="0" />
+            <state relative-caret-position="162">
+              <caret line="810" column="0" lean-forward="false" selection-start-line="810" selection-start-column="0" selection-end-line="810" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Application_Review.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="home.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/templates/home.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="17">
+              <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Application_Review.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/templates/Application_Review.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="309">
-              <caret line="996" column="0" lean-forward="true" selection-start-line="996" selection-start-column="0" selection-end-line="996" selection-end-column="0" />
+            <state relative-caret-position="292">
+              <caret line="1003" column="0" lean-forward="true" selection-start-line="1003" selection-start-column="0" selection-end-line="1003" selection-end-column="0" />
               <folding>
                 <element signature="n#style#0;n#div#1;n#!!top" expanded="true" />
                 <element signature="e#2087#19989#0" expanded="false" />
@@ -58,37 +71,40 @@
       <file leaf-file-name="shg_update_loan_app_form.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/templates/shg_update_loan_app_form.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="373" column="0" lean-forward="false" selection-start-line="373" selection-start-column="0" selection-end-line="373" selection-end-column="0" />
+            <state relative-caret-position="190">
+              <caret line="409" column="0" lean-forward="false" selection-start-line="409" selection-start-column="0" selection-end-line="409" selection-end-column="0" />
               <folding>
                 <element signature="n#style#0;n#div#1;n#div#0;n#form#0;n#!!top" expanded="true" />
-                <marker date="1544204412178" expanded="true" signature="8658:8745" ph="..." />
-                <marker date="1544204412178" expanded="true" signature="8808:8846" ph="..." />
-                <marker date="1544204412178" expanded="true" signature="9072:9110" ph="..." />
-                <marker date="1544204412178" expanded="true" signature="9287:9325" ph="..." />
-                <marker date="1544204412178" expanded="true" signature="9522:9560" ph="..." />
-                <marker date="1544204412178" expanded="true" signature="9789:9827" ph="..." />
-                <marker date="1544204412178" expanded="true" signature="10067:10105" ph="..." />
-                <marker date="1544204412178" expanded="true" signature="10317:10355" ph="..." />
-                <marker date="1544204412178" expanded="true" signature="10631:10644" ph="..." />
-                <marker date="1544204412178" expanded="true" signature="10768:10855" ph="..." />
-                <marker date="1544204412178" expanded="true" signature="10918:10956" ph="..." />
-                <marker date="1544204412178" expanded="true" signature="11125:11163" ph="..." />
-                <marker date="1544204412178" expanded="true" signature="11287:11325" ph="..." />
-                <marker date="1544204412178" expanded="true" signature="11461:11499" ph="..." />
-                <marker date="1544204412178" expanded="true" signature="11667:11705" ph="..." />
-                <marker date="1544204412178" expanded="true" signature="11874:11912" ph="..." />
-                <marker date="1544204412178" expanded="true" signature="12055:12093" ph="..." />
-                <marker date="1544204412178" expanded="true" signature="12300:12313" ph="..." />
-                <marker date="1544204412178" expanded="true" signature="16045:16132" ph="..." />
-                <marker date="1544204412178" expanded="true" signature="16191:16229" ph="..." />
-                <marker date="1544204412178" expanded="true" signature="16398:16436" ph="..." />
-                <marker date="1544204412178" expanded="true" signature="16560:16598" ph="..." />
-                <marker date="1544204412178" expanded="true" signature="16734:16772" ph="..." />
-                <marker date="1544204412178" expanded="true" signature="16940:16978" ph="..." />
-                <marker date="1544204412178" expanded="true" signature="17147:17185" ph="..." />
-                <marker date="1544204412178" expanded="true" signature="17328:17366" ph="..." />
-                <marker date="1544204412178" expanded="true" signature="17559:17572" ph="..." />
+                <element signature="e#8213#12787#0" expanded="false" />
+                <element signature="e#15841#17874#0" expanded="false" />
+                <element signature="e#19362#20496#0" expanded="false" />
+                <marker date="1544443186294" expanded="true" signature="8870:8957" ph="..." />
+                <marker date="1544443186294" expanded="true" signature="9020:9058" ph="..." />
+                <marker date="1544443186294" expanded="true" signature="9284:9322" ph="..." />
+                <marker date="1544443186294" expanded="true" signature="9499:9537" ph="..." />
+                <marker date="1544443186294" expanded="true" signature="9734:9772" ph="..." />
+                <marker date="1544443186294" expanded="true" signature="10001:10039" ph="..." />
+                <marker date="1544443186294" expanded="true" signature="10279:10317" ph="..." />
+                <marker date="1544443186294" expanded="true" signature="10529:10567" ph="..." />
+                <marker date="1544443186294" expanded="true" signature="10843:10856" ph="..." />
+                <marker date="1544443186294" expanded="true" signature="10980:11067" ph="..." />
+                <marker date="1544443186294" expanded="true" signature="11130:11168" ph="..." />
+                <marker date="1544443186294" expanded="true" signature="11337:11375" ph="..." />
+                <marker date="1544443186294" expanded="true" signature="11499:11537" ph="..." />
+                <marker date="1544443186294" expanded="true" signature="11673:11711" ph="..." />
+                <marker date="1544443186294" expanded="true" signature="11879:11917" ph="..." />
+                <marker date="1544443186294" expanded="true" signature="12086:12124" ph="..." />
+                <marker date="1544443186294" expanded="true" signature="12267:12305" ph="..." />
+                <marker date="1544443186294" expanded="true" signature="12512:12525" ph="..." />
+                <marker date="1544443186294" expanded="true" signature="16257:16344" ph="..." />
+                <marker date="1544443186294" expanded="true" signature="16403:16441" ph="..." />
+                <marker date="1544443186294" expanded="true" signature="16610:16648" ph="..." />
+                <marker date="1544443186294" expanded="true" signature="16772:16810" ph="..." />
+                <marker date="1544443186294" expanded="true" signature="16946:16984" ph="..." />
+                <marker date="1544443186294" expanded="true" signature="17152:17190" ph="..." />
+                <marker date="1544443186294" expanded="true" signature="17359:17397" ph="..." />
+                <marker date="1544443186294" expanded="true" signature="17540:17578" ph="..." />
+                <marker date="1544443186294" expanded="true" signature="17771:17784" ph="..." />
               </folding>
             </state>
           </provider>
@@ -97,8 +113,8 @@
       <file leaf-file-name="update_loan_app_form.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/templates/update_loan_app_form.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="309">
-              <caret line="324" column="0" lean-forward="false" selection-start-line="324" selection-start-column="0" selection-end-line="324" selection-end-column="0" />
+            <state relative-caret-position="292">
+              <caret line="323" column="0" lean-forward="false" selection-start-line="323" selection-start-column="0" selection-end-line="323" selection-end-column="0" />
               <folding>
                 <element signature="n#style#0;n#div#5;n#div#0;n#form#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#div#9;n#div#0;n#form#0;n#!!top" expanded="true" />
@@ -120,7 +136,7 @@
       <file leaf-file-name="loan_app_form.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/templates/loan_app_form.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="309">
+            <state relative-caret-position="2233">
               <caret line="363" column="10" lean-forward="false" selection-start-line="363" selection-start-column="10" selection-end-line="363" selection-end-column="10" />
               <folding>
                 <element signature="n#style#0;n#div#5;n#div#0;n#form#0;n#!!top" expanded="true" />
@@ -153,10 +169,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="database.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="database.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/common/database.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="54">
+            <state relative-caret-position="37">
               <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
               <folding />
             </state>
@@ -231,7 +247,6 @@
         <option value="$PROJECT_DIR$/src/templates/register.html" />
         <option value="$PROJECT_DIR$/src/templates/post_login_HQ.html" />
         <option value="$PROJECT_DIR$/src/templates/receipt_added.html" />
-        <option value="$PROJECT_DIR$/src/templates/home.html" />
         <option value="$PROJECT_DIR$/src/templates/updateFinancial.html" />
         <option value="$PROJECT_DIR$/src/templates/application_added.html" />
         <option value="$PROJECT_DIR$/src/templates/application_added_update.html" />
@@ -248,10 +263,11 @@
         <option value="$PROJECT_DIR$/src/templates/ViewLoansByCategory.html" />
         <option value="$PROJECT_DIR$/src/templates/ViewLoans.html" />
         <option value="$PROJECT_DIR$/src/models/loanapplication.py" />
+        <option value="$PROJECT_DIR$/src/templates/Application_Review.html" />
+        <option value="$PROJECT_DIR$/src/templates/home.html" />
         <option value="$PROJECT_DIR$/src/app.py" />
         <option value="$PROJECT_DIR$/src/templates/shg_update_loan_app_form.html" />
         <option value="$PROJECT_DIR$/src/common/database.py" />
-        <option value="$PROJECT_DIR$/src/templates/Application_Review.html" />
       </list>
     </option>
   </component>
@@ -848,13 +864,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/templates/home.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="67">
-          <caret line="77" column="6" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="100" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/templates/BetweenDates.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
@@ -953,33 +962,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="508">
-          <caret line="835" column="0" lean-forward="false" selection-start-line="835" selection-start-column="0" selection-end-line="835" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/common/database.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/models/loanapplication.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="309">
-          <caret line="79" column="0" lean-forward="false" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/templates/loan_app_form.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="309">
+        <state relative-caret-position="2233">
           <caret line="363" column="10" lean-forward="false" selection-start-line="363" selection-start-column="10" selection-end-line="363" selection-end-column="10" />
           <folding>
             <element signature="n#style#0;n#div#5;n#div#0;n#form#0;n#!!top" expanded="true" />
@@ -1003,8 +988,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/templates/update_loan_app_form.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="309">
-          <caret line="324" column="0" lean-forward="false" selection-start-line="324" selection-start-column="0" selection-end-line="324" selection-end-column="0" />
+        <state relative-caret-position="292">
+          <caret line="323" column="0" lean-forward="false" selection-start-line="323" selection-start-column="0" selection-end-line="323" selection-end-column="0" />
           <folding>
             <element signature="n#style#0;n#div#5;n#div#0;n#form#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#9;n#div#0;n#form#0;n#!!top" expanded="true" />
@@ -1024,45 +1009,48 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/templates/shg_update_loan_app_form.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="373" column="0" lean-forward="false" selection-start-line="373" selection-start-column="0" selection-end-line="373" selection-end-column="0" />
+        <state relative-caret-position="190">
+          <caret line="409" column="0" lean-forward="false" selection-start-line="409" selection-start-column="0" selection-end-line="409" selection-end-column="0" />
           <folding>
             <element signature="n#style#0;n#div#1;n#div#0;n#form#0;n#!!top" expanded="true" />
-            <marker date="1544204412178" expanded="true" signature="8658:8745" ph="..." />
-            <marker date="1544204412178" expanded="true" signature="8808:8846" ph="..." />
-            <marker date="1544204412178" expanded="true" signature="9072:9110" ph="..." />
-            <marker date="1544204412178" expanded="true" signature="9287:9325" ph="..." />
-            <marker date="1544204412178" expanded="true" signature="9522:9560" ph="..." />
-            <marker date="1544204412178" expanded="true" signature="9789:9827" ph="..." />
-            <marker date="1544204412178" expanded="true" signature="10067:10105" ph="..." />
-            <marker date="1544204412178" expanded="true" signature="10317:10355" ph="..." />
-            <marker date="1544204412178" expanded="true" signature="10631:10644" ph="..." />
-            <marker date="1544204412178" expanded="true" signature="10768:10855" ph="..." />
-            <marker date="1544204412178" expanded="true" signature="10918:10956" ph="..." />
-            <marker date="1544204412178" expanded="true" signature="11125:11163" ph="..." />
-            <marker date="1544204412178" expanded="true" signature="11287:11325" ph="..." />
-            <marker date="1544204412178" expanded="true" signature="11461:11499" ph="..." />
-            <marker date="1544204412178" expanded="true" signature="11667:11705" ph="..." />
-            <marker date="1544204412178" expanded="true" signature="11874:11912" ph="..." />
-            <marker date="1544204412178" expanded="true" signature="12055:12093" ph="..." />
-            <marker date="1544204412178" expanded="true" signature="12300:12313" ph="..." />
-            <marker date="1544204412178" expanded="true" signature="16045:16132" ph="..." />
-            <marker date="1544204412178" expanded="true" signature="16191:16229" ph="..." />
-            <marker date="1544204412178" expanded="true" signature="16398:16436" ph="..." />
-            <marker date="1544204412178" expanded="true" signature="16560:16598" ph="..." />
-            <marker date="1544204412178" expanded="true" signature="16734:16772" ph="..." />
-            <marker date="1544204412178" expanded="true" signature="16940:16978" ph="..." />
-            <marker date="1544204412178" expanded="true" signature="17147:17185" ph="..." />
-            <marker date="1544204412178" expanded="true" signature="17328:17366" ph="..." />
-            <marker date="1544204412178" expanded="true" signature="17559:17572" ph="..." />
+            <element signature="e#8213#12787#0" expanded="false" />
+            <element signature="e#15841#17874#0" expanded="false" />
+            <element signature="e#19362#20496#0" expanded="false" />
+            <marker date="1544443186294" expanded="true" signature="8870:8957" ph="..." />
+            <marker date="1544443186294" expanded="true" signature="9020:9058" ph="..." />
+            <marker date="1544443186294" expanded="true" signature="9284:9322" ph="..." />
+            <marker date="1544443186294" expanded="true" signature="9499:9537" ph="..." />
+            <marker date="1544443186294" expanded="true" signature="9734:9772" ph="..." />
+            <marker date="1544443186294" expanded="true" signature="10001:10039" ph="..." />
+            <marker date="1544443186294" expanded="true" signature="10279:10317" ph="..." />
+            <marker date="1544443186294" expanded="true" signature="10529:10567" ph="..." />
+            <marker date="1544443186294" expanded="true" signature="10843:10856" ph="..." />
+            <marker date="1544443186294" expanded="true" signature="10980:11067" ph="..." />
+            <marker date="1544443186294" expanded="true" signature="11130:11168" ph="..." />
+            <marker date="1544443186294" expanded="true" signature="11337:11375" ph="..." />
+            <marker date="1544443186294" expanded="true" signature="11499:11537" ph="..." />
+            <marker date="1544443186294" expanded="true" signature="11673:11711" ph="..." />
+            <marker date="1544443186294" expanded="true" signature="11879:11917" ph="..." />
+            <marker date="1544443186294" expanded="true" signature="12086:12124" ph="..." />
+            <marker date="1544443186294" expanded="true" signature="12267:12305" ph="..." />
+            <marker date="1544443186294" expanded="true" signature="12512:12525" ph="..." />
+            <marker date="1544443186294" expanded="true" signature="16257:16344" ph="..." />
+            <marker date="1544443186294" expanded="true" signature="16403:16441" ph="..." />
+            <marker date="1544443186294" expanded="true" signature="16610:16648" ph="..." />
+            <marker date="1544443186294" expanded="true" signature="16772:16810" ph="..." />
+            <marker date="1544443186294" expanded="true" signature="16946:16984" ph="..." />
+            <marker date="1544443186294" expanded="true" signature="17152:17190" ph="..." />
+            <marker date="1544443186294" expanded="true" signature="17359:17397" ph="..." />
+            <marker date="1544443186294" expanded="true" signature="17540:17578" ph="..." />
+            <marker date="1544443186294" expanded="true" signature="17771:17784" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/templates/Application_Review.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="309">
-          <caret line="996" column="0" lean-forward="true" selection-start-line="996" selection-start-column="0" selection-end-line="996" selection-end-column="0" />
+        <state relative-caret-position="292">
+          <caret line="1003" column="0" lean-forward="true" selection-start-line="1003" selection-start-column="0" selection-end-line="1003" selection-end-column="0" />
           <folding>
             <element signature="n#style#0;n#div#1;n#!!top" expanded="true" />
             <element signature="e#2087#19989#0" expanded="false" />
@@ -1078,6 +1066,38 @@
             <element signature="e#99662#99958#0" expanded="false" />
             <element signature="e#100002#102680#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/templates/home.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="810" column="0" lean-forward="false" selection-start-line="810" selection-start-column="0" selection-end-line="810" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/models/loanapplication.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="309">
+          <caret line="79" column="0" lean-forward="false" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/database.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="37">
+          <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
