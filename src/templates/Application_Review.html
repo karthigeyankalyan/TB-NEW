@@ -634,6 +634,15 @@
                             }
                         }
 
+                        var cheque_date = moment(json[0]['cheque_date']['$date']).format('DD-MM-YYYY');
+
+                        downloadSHGPDF(json[0]['loan_amount'], no_of_demands=10, cheque_date, json[0]['roi'], json[0]['ann_loan_id']);
+
+                        for (var las = 0; las < loan_amounts.length; las++) {
+                            downloadSHGPDF(loan_amounts[las], no_of_demands=10, cheque_date, json[0]['roi'], loan_amounts[las]);
+                        }
+
+                        function downloadSHGPDF(loan_amount, no_of_demands, cheque_date, roi, PSO) {
                         var doc = new jsPDF();
                         doc.setFontSize(10);
                         doc.text(50, 15, 'TAMILNADU  BACKWARD CLASSES ECONOMIC DEVELOPMENT CORPORATION LTD.,');
@@ -651,8 +660,8 @@
                         var district = json[0]['district'];
                         doc.text(165, 37, district);
 
-                        var NBCShare = NBCFDCShareCalculator(json[0]['loan_category'], parseInt(json[0]['loan_amount']));
-                        var TabcedcoShare = tabcedcoShareCalculator(json[0]['loan_category'], parseInt(json[0]['loan_amount']));
+                        var NBCShare = NBCFDCShareCalculator(json[0]['loan_category'], loan_amount);
+                        var TabcedcoShare = tabcedcoShareCalculator(json[0]['loan_category'], loan_amount);
 
                         doc.text(80, 45, 'NBCFDC Share');
                         doc.text(80, 50, 'Rs. ' + NBCShare);
@@ -661,7 +670,7 @@
                         doc.text(150, 50, 'Rs. ' + TabcedcoShare);
 
                         doc.text(30, 57, '3.    LOAN AMOUNT:');
-                        doc.text(80, 57, 'Rs. ' + parseInt(NBCShare) + parseInt(TabcedcoShare));
+                        doc.text(80, 57, 'Rs. ' + loan_amount);
 
                         doc.text(30, 65, '4.    RATE OF INTEREST:');
                         var roi = json[0]['roi'];
@@ -682,19 +691,10 @@
 
                         doc.text(150, 87, 'Dated: ' + moment(json[0]['cheque_date']['$date']).format('DD-MM-YYYY'));
 
-                        var cheque_date = moment(json[0]['cheque_date']['$date']).format('DD-MM-YYYY');
-
                         doc.text(30, 95, '8.    No. Of Installments:');
                         var noInstallments = parseInt(json[0]['no_of_demands']) + ' Quarters';
                         doc.text(150, 95, noInstallments);
 
-                        downloadSHGPDF(json[0]['loan_amount'], no_of_demands=10, cheque_date, json[0]['roi'], json[0]['ann_loan_id']);
-
-                        for (var las = 0; las < loan_amounts.length; las++) {
-                            downloadSHGPDF(loan_amounts[las], no_of_demands=10, cheque_date, json[0]['roi'], loan_amounts[las]);
-                        }
-
-                        function downloadSHGPDF(loan_amount, no_of_demands, cheque_date, roi, PSO) {
                         columns = ["S. No", "Due Date", "Amount Remaining", "Principal", "Interest", "Total"];
                         rows = [];
 
@@ -708,6 +708,7 @@
                                 var current_demand_date = moment(new Date(moment(cheque_date).format('YYYY'), parseInt(moment(cheque_date).format('MM'))+3, moment(cheque_date).format('DD'))).format('DD-MM-YYYY');
                                 var days = moment(current_demand_date).diff(moment(cheque_date), 'days');
                                 var interest = ((roi) * loan_amount * days) / (365 * 100).toFixed(0);
+                                console.log(current_demand_date, cheque_date, roi, loan_amount, days);
                             }
 
                             else {
