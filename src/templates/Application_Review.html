@@ -705,14 +705,14 @@
 
                         for (var l = 1; l <= no_of_demands; l++) {
                             if (l === 1) {
-                                var current_demand_date = moment(new Date(moment(cheque_date).format('YYYY'), parseInt(moment(cheque_date).format('MM'))+3, moment(cheque_date).format('DD'))).format('DD-MM-YYYY');
+                                var current_demand_date = moment(new Date(moment(cheque_date).format('YYYY'), parseInt(moment(cheque_date).format('MM'))+3, 1)).format('DD-MM-YYYY');
                                 var days = moment(current_demand_date).diff(moment(cheque_date), 'days');
                                 var interest = ((roi) * loan_amount * days) / (365 * 100).toFixed(0);
                                 console.log(current_demand_date, cheque_date, roi, loan_amount, days);
                             }
 
                             else {
-                                current_demand_date = moment(new Date(moment(previous_demand_date).format('YYYY'), parseInt(moment(previous_demand_date).format('MM'))+2, moment(previous_demand_date).format('DD'))).format('DD-MM-YYYY');
+                                current_demand_date = moment(new Date(moment(previous_demand_date).format('YYYY'), parseInt(moment(previous_demand_date).format('MM'))+2, 1)).format('DD-MM-YYYY');
                                 amount_remaining -= principal_per_installment;
                                 interest = (roi * parseInt(amount_remaining) / 400).toFixed(0);
                             }
