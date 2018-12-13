@@ -728,6 +728,7 @@ def update_loan_form(_id):
                 ro_date = request.form['roDate']
                 ro_number = request.form['roNumber']
                 cheque_number = request.form['chequeNumber']
+                cheque_date = request.form['chequeDate']
                 ro_ref = request.form['roRef']
 
                 account_head = "Loan To "+loan_category
@@ -757,7 +758,7 @@ def update_loan_form(_id):
                                                 jr_letter_number=jr_letter_number, jr_letter_date=jr_letter_date,
                                                 ro_date=ro_date, pso_date=pso_date, amount_per_member=None,
                                                 strength=None, shg_name=None, ro_number=ro_number,
-                                                post_pso_ref=ro_ref, bank_district=bank_district)
+                                                post_pso_ref=ro_ref, bank_district=bank_district, cheque_date=cheque_date)
 
                 return render_template('application_added_update.html', user=user, application_id=_id)
 
@@ -785,6 +786,7 @@ def update_loan_form(_id):
                 user_id = user._id
                 user_name = user.username
                 cheque_number = request.form['chequeNumber']
+                cheque_date = request.form['chequeDate']
                 ro_date = request.form['roDate']
                 ro_number = request.form['roNumber']
 
@@ -828,7 +830,7 @@ def update_loan_form(_id):
                                                         jr_letter_date=jr_letter_date, ro_date=ro_date, pso_date=None,
                                                         amount_per_member=amount_per_member, strength=strength,
                                                         shg_name=shg_name, ro_number=ro_number, bank_district=bank_district,
-                                                        post_pso_ref=None)
+                                                        post_pso_ref=None, cheque_date=cheque_date)
                     else:
                         application = LoanApplication(loan_category=loan_category, district=district, bank=bank,
                                                       loan_reason=loan_reason, loan_amount=loan_amount,
@@ -840,9 +842,7 @@ def update_loan_form(_id):
                                                       screening_date=screening_date, loan_number=loanNumber,
                                                       jr_letter_date=jr_letter_date, jr_letter_number=jr_letter_number,
                                                       post_pso_ref_no=None, bank_district=bank_district, caste=None,
-                                                      ro_date=ro_date, pso_date=None)
-
-                        print(application._id)
+                                                      ro_date=ro_date, pso_date=None, cheque_date=cheque_date)
 
                         application.save_to_mongo()
 

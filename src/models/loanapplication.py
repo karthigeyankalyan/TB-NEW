@@ -11,7 +11,7 @@ class LoanApplication(object):
                  cheque_number=None, sub_bank=None, final_collection_amount=None, _id=None, ro_number=None,
                  amount_yet_to_pay=None, no_of_shgs=None, father_name=None, screening_date=None, loan_number=None,
                  jr_letter_date=None, jr_letter_number=None, pso_date=None, ro_date=None, post_pso_ref_no=None,
-                 bank_district=None):
+                 bank_district=None, cheque_date=None):
         self.applicant_name = applicant_name
         self.father_name = father_name
         self.loan_category = loan_category
@@ -34,6 +34,12 @@ class LoanApplication(object):
                                                     datetime.now().time()))
         else:
             self.jr_letter_date = jr_letter_date
+
+        if cheque_date:
+            self.cheque_date = (datetime.combine(datetime.strptime(cheque_date, '%Y-%m-%d').date(),
+                                                 datetime.now().time()))
+        else:
+            self.cheque_date = cheque_date
 
         if pso_date:
             self.pso_date = (datetime.combine(datetime.strptime(pso_date, '%Y-%m-%d').date(),
@@ -92,13 +98,19 @@ class LoanApplication(object):
                         caste, bank, loan_reason, loan_amount, received_date, status, status_date, roi, no_of_demands,
                         ann_loan_id, user_id, user_name, loan_id, no_of_shgs, amount_per_member, strength, shg_name,
                         cheque_number, amount_to_pay, father_name, loan_number, jr_letter_date, jr_letter_number,
-                        screening_date, ro_date, pso_date, ro_number, post_pso_ref, bank_district):
+                        screening_date, ro_date, pso_date, ro_number, post_pso_ref, bank_district, cheque_date):
 
         if pso_date:
             pso_date = (datetime.combine(datetime.strptime(pso_date, '%Y-%m-%d').date(),
                                          datetime.now().time()))
         else:
             pso_date = pso_date
+
+        if cheque_date:
+            cheque_date = (datetime.combine(datetime.strptime(cheque_date, '%Y-%m-%d').date(),
+                                            datetime.now().time()))
+        else:
+            cheque_date = cheque_date
 
         if ro_date:
             ro_date = (datetime.combine(datetime.strptime(ro_date, '%Y-%m-%d').date(),
@@ -141,7 +153,7 @@ class LoanApplication(object):
                                     loan_number=loan_number, jr_letter_date=jr_letter_date,
                                     jr_letter_number=jr_letter_number, screening_date=screening_date, ro_date=ro_date,
                                     pso_date=pso_date, ro_number=ro_number, post_pso_ref=post_pso_ref,
-                                    bank_district=bank_district)
+                                    bank_district=bank_district, cheque_date=cheque_date)
 
     @classmethod
     def update_pend_amount(cls, amount_yet_to_be_paid, loan_id):

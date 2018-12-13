@@ -610,178 +610,302 @@
     }
 
     function downloadSchedule() {
-        var source = "/getLoansByIdentfier/"+"{{application_id}}";
-        console.log("{{application_id}}");
-//    var MD = 'N. Venkatachalam';
-    var MD = document.getElementById('mdName').value;
+
+        var application_identifier = "{{annual_loan_id}}";
+
         $.ajax({
             type: 'GET',
-            url: source,
+            url: "/getLoansByIdentfierLoans/" + application_identifier,
             contentType: "application/json",
             dataType: 'json',
             success: function (json) {
 
-            console.log(json[0]['ro_number']);
+                if (json[0]['cheque_date']) {
+                    if (json[0]['loan_category'] === 'MCG (Micro Credit Gents)' || json[0]['loan_category'] === 'MSY (Mahila Samridhi Yojana)') {
+                        var PSO = json[0]['ann_loan_id'] + '/' + json[0]['loan_category'] + '/' +
+                            (moment(json[0]['received_date']).year() - 2000) + '' +
+                            (moment(json[0]['received_date']).year() - 1999);
 
-            if(json[0]['ro_number'] === undefined) {
-                    alert('Update RO Number and Try Again');
-            }
+                        var loan_amounts = [];
 
-            console.log(json);
-
-            if(json[0]['loan_category'] === 'GTL (General Term Loan)') {
-                var cat = "GTL";
-            }
-            else if(json[0]['loan_category'] === 'NSS (New-Swarnima Scheme)') {
-                cat = "NSS";
-            }
-            else if(json[0]['loan_category'] === 'MCG (Micro-Credit Gents)') {
-                cat = "MCR";
-            }
-            else if(json[0]['loan_category'] === 'MSY (Mahila Samridhi Yojana)') {
-                cat = "MSY";
-            }
-
-            if(json.length !== 0) {
-                var distinct_demands = [];
-
-                for (var i = 0; i < json.length; i++) {
-                    if (distinct_demands.indexOf(parseInt(json[i]['no_of_demands'])) === -1) {
-                        distinct_demands.push(parseInt(json[i]['no_of_demands']));
-                    }
-                }
-
-                for (i = 0; i < distinct_demands.length; i++) {
-                    var subset = [];
-                    for (var j = 0; j < json.length; j++) {
-                        if (parseInt(distinct_demands[i]) === parseInt(json[j]['no_of_demands'])) {
-                            subset.push(json[j]);
-                        }
-                    }
-
-                    for (j = 0; j < subset.length; j++) {
-                        for (var k = 1; k <= parseInt(distinct_demands[i]); k++) {
-                            var totPDemandString = 'totPDem' + k;
-                            var totIDemandString = 'totIDem' + k;
-                            if (parseInt(subset[j]['demand_number']) === k) {
-                                subset[totPDemandString] = 0;
-                                subset[totIDemandString] = 0;
+                        for (var i = 0; i < json.length; i++) {
+                            if (loan_amounts.indexOf(json[i]['amount_per_member']) === -1) {
+                                loan_amounts.push(json[i]['amount_per_member']);
                             }
                         }
-                    }
 
-                    var loan_id = [];
-                    for (j = 0; j < subset.length; j++) {
-                        for (k = 1; k <= parseInt(distinct_demands[i]); k++) {
-                            totPDemandString = 'totPDem' + k;
-                            totIDemandString = 'totIDem' + k;
-                            if (parseInt(subset[j]['demand_number']) === k) {
-                                subset[totPDemandString] += parseInt(subset[j]['principal_demand']);
-                                subset[totIDemandString] += parseInt(subset[j]['interest_demand']);
+                        var doc = new jsPDF();
+                        doc.setFontSize(10);
+                        doc.text(50, 15, 'TAMILNADU  BACKWARD CLASSES ECONOMIC DEVELOPMENT CORPORATION LTD.,');
+                        doc.text(60, 20, '1/1(1), Mayor Ramanathan Salai East, Egmore, Chennai - 600 008.');
+
+                        doc.text(30, 30, '1.    NAME OF THE BANK:');
+                        var bank = json[0]['bank'];
+                        doc.text(80, 30, bank);
+
+                        doc.text(30, 37, '2.    SCHEME NAME:');
+                        var scheme = json[0]['loan_category'];
+                        doc.text(80, 37, scheme);
+
+                        doc.text(150, 375, 'District:');
+                        var district = json[0]['district'];
+                        doc.text(165, 37, district);
+
+                        var NBCShare = NBCFDCShareCalculator(json[0]['loan_category'], parseInt(json[0]['loan_amount']));
+                        var TabcedcoShare = tabcedcoShareCalculator(json[0]['loan_category'], parseInt(json[0]['loan_amount']));
+
+                        doc.text(80, 45, 'NBCFDC Share');
+                        doc.text(80, 50, 'Rs. ' + NBCShare);
+
+                        doc.text(150, 45, 'TABCEDCO Share');
+                        doc.text(150, 50, 'Rs. ' + TabcedcoShare);
+
+                        doc.text(30, 57, '3.    LOAN AMOUNT:');
+                        doc.text(80, 57, 'Rs. ' + NBCShare + TabcedcoShare);
+
+                        doc.text(30, 65, '4.    RATE OF INTEREST:');
+                        var roi = json[0]['roi'];
+                        doc.text(80, 65, roi + '%');
+                        doc.text(150, 65, roi + '%');
+
+                        doc.text(30, 72, '5.   RATE OF PENAL INT.:');
+                        doc.text(80, 72, '5%');
+                        doc.text(150, 72, '5%');
+
+                        doc.text(30, 80, '6.    RO No.:');
+                        var ro_num = json[0]['ro_number'];
+                        doc.text(80, 80, ro_num);
+
+                        doc.text(30, 87, '7.    CHEQUE NO. & DATE :');
+                        var chNumber = json[0]['cheque_number'];
+                        doc.text(80, 87, chNumber);
+
+                        doc.text(150, 87, 'Dated: ' + moment(json[0]['cheque_date']['$date']).format('DD-MM-YYYY'));
+
+                        doc.text(30, 95, '8.    No. Of Installments:');
+                        var noInstallments = parseInt(json[0]['no_of_demands']) + ' Quarters';
+                        doc.text(150, 95, noInstallments);
+
+                        columns = ["S. No", "Due Date", "Amount Remaining", "Principal", "Interest", "Total"];
+                        rows = [];
+
+                        var principal_per_installment = parseInt(json[0]['loan_amount'])/parseInt(json[0]['no_of_demands']);
+                        var amount_remaining = parseInt(json[0]['loan_amount']);
+                        var cheque_date = json[0]['cheque_date']['$date'];
+                        var sum_interest = 0, sum_principal = 0;
+
+                        for (var l = 1; l <= parseInt(json[0]['no_of_demands']); l++) {
+                            if (l === 1) {
+                                var current_demand_date = moment(new Date(moment(cheque_date).format('YYYY'), parseInt(moment(cheque_date).format('MM'))+3, moment(cheque_date).format('DD'))).format('DD-MM-YYYY');
+                                var days = moment(current_demand_date).diff(moment(cheque_date), 'days');
+                                var interest = ((parseInt(json[0]["roi"]) * parseInt(json[0]["loan_amount"]) * days) / (365 * 100)).toFixed(0);
                             }
+
+                            else {
+                                current_demand_date = moment(new Date(moment(current_demand_date).format('YYYY'), parseInt(moment(current_demand_date).format('MM'))+2, moment(current_demand_date).format('DD'))).format('DD-MM-YYYY');
+                                amount_remaining -= principal_per_installment;
+                                interest = ((parseInt(json[0]["roi"]) * parseInt(json[0]["loan_amount"])) / 12).toFixed(0)
+                            }
+
+                            rows.push([[l], [current_demand_date], [amount_remaining],
+                                [principal_per_installment], [interest],
+                                [parseInt(principal_per_installment) + parseInt(interest)]]);
+
+                            sum_principal += parseInt(principal_per_installment);
+                            sum_interest += parseInt(interest);
+
                         }
-                        if (loan_id.indexOf(subset[j]['loan_id']) === -1) {
-                            loan_id.push(subset[j]['loan_id']);
-                        }
+
+                        rows.push([['Total'], [''], [''], [sum_principal], [sum_interest], [sum_principal + sum_interest]]);
+                        doc.autoTable(columns, rows, {startY: 110});
+
+                        doc.text(150, doc.autoTableEndPosY() + 10, 'For Managing Director');
+
+                        doc.save('Payment_Schedule' + PSO + '-' + json[0]['applicant_name'] + '.pdf')
                     }
-
-                    var first_loan_id = loan_id[0];
-                    var total_loan_amount = 0;
-                    for (j = 1; j <= parseInt(distinct_demands[i]); j++) {
-                        totPDemandString = 'totPDem' + j;
-                        totIDemandString = 'totIDem' + j;
-                        total_loan_amount += subset[totPDemandString]
-                    }
-
-                    downlPDF(first_loan_id, total_loan_amount, subset, parseInt(distinct_demands[i]));
-
-                    function downlPDF(first_loan_id, total_loan_amount, subset, distinct_demands) {
+                    else {
+                        var source = "/getLoansByIdentfier/"+"{{application_id}}";
+                        var application_identifier = "{{application_id}}";
+                        var MD = document.getElementById('mdName').value;
                         $.ajax({
                             type: 'GET',
-                            url: "/loan/" + first_loan_id,
+                            url: source,
                             contentType: "application/json",
                             dataType: 'json',
-                            success: function (uberLoan) {
-                                var PSO = uberLoan[0]['ann_loan_id'] + '/' + uberLoan[0]['loan_category'] + '/' +
-                                    // Creating financial Year (For e.g. 1718, 1819)
-                                    (moment(uberLoan[0]['received_date']).year() - 2000) + '' +
-                                    (moment(uberLoan[0]['received_date']).year() - 1999);
+                            success: function (json) {
 
-                                var doc = new jsPDF();
-                                doc.setFontSize(10);
-                                doc.text(50, 15, 'TAMILNADU  BACKWARD CLASSES ECONOMIC DEVELOPMENT CORPORATION LTD.,');
-                                doc.text(60, 20, '1/1(1), Mayor Ramanathan Salai East, Egmore, Chennai - 600 008.');
+                            console.log(json[0]['ro_number']);
 
-                                doc.text(30, 30, '1.    NAME OF THE BANK:');
-                                var bank = uberLoan[0]['sub_bank'];
-                                doc.text(80, 30, bank);
+                            if(json[0]['ro_number'] === undefined) {
+                                    alert('Update RO Number and Try Again');
+                            }
 
-                                doc.text(30, 37, '2.    SCHEME NAME:');
-                                var scheme = uberLoan[0]['loan_category'];
-                                doc.text(80, 37, scheme);
+                            console.log(json);
 
-                                doc.text(150, 375, 'District:');
-                                var district = uberLoan[0]['district'];
-                                doc.text(165, 37, district);
+                            if(json[0]['loan_category'] === 'GTL (General Term Loan)') {
+                                var cat = "GTL";
+                            }
+                            else if(json[0]['loan_category'] === 'NSS (New-Swarnima Scheme)') {
+                                cat = "NSS";
+                            }
+                            else if(json[0]['loan_category'] === 'MCG (Micro-Credit Gents)') {
+                                cat = "MCR";
+                            }
+                            else if(json[0]['loan_category'] === 'MSY (Mahila Samridhi Yojana)') {
+                                cat = "MSY";
+                            }
 
-                                var NBCShare = NBCFDCShareCalculator(uberLoan[0]['loan_category'], total_loan_amount);
-                                var TabcedcoShare = tabcedcoShareCalculator(uberLoan[0]['loan_category'], total_loan_amount);
+                            if(json.length !== 0) {
+                                var distinct_demands = [];
 
-                                doc.text(80, 45, 'NBCFDC Share');
-                                doc.text(80, 50, 'Rs. ' + NBCShare);
-
-                                doc.text(150, 45, 'TABCEDCO Share');
-                                doc.text(150, 50, 'Rs. ' + TabcedcoShare);
-
-                                doc.text(30, 57, '3.    LOAN AMOUNT:');
-                                doc.text(80, 57, 'Rs. ' + NBCShare+TabcedcoShare);
-
-                                doc.text(30, 65, '4.    RATE OF INTEREST:');
-                                var roi = uberLoan[0]['roi'];
-                                doc.text(80, 65, roi + '%');
-                                doc.text(150, 65, roi + '%');
-
-                                doc.text(30, 72, '5.   RATE OF PENAL INT.:');
-                                doc.text(80, 72, '5%');
-                                doc.text(150, 72, '5%');
-
-                                doc.text(30, 80, '6.    RO No.:');
-                                var ro_num = json[0]['ro_number'];
-                                doc.text(80, 80, ro_num);
-
-                                doc.text(30, 87, '7.    CHEQUE NO. & DATE :');
-                                var chNumber = uberLoan[0]['cheque_number'];
-                                doc.text(80, 87, chNumber);
-
-                                doc.text(150, 87, 'Dated: _______');
-
-                                doc.text(30, 95, '8.    No. Of Installments:');
-                                var noInstallments = parseInt(uberLoan[0]['no_of_demands']) + ' Quarters';
-                                doc.text(150, 95, noInstallments);
-
-                                columns = ["S. No", "Due Date", "Amount Remaining", "Principal", "Interest", "Total"];
-                                rows = [];
-                                var sum_principal = 0;
-                                var sum_interest = 0;
-                                for (var l = 0; l < parseInt(distinct_demands); l++) {
-                                    var totPDemandString = 'totPDem' + (l + 1);
-                                    var totIDemandString = 'totIDem' + (l + 1);
-                                    rows.push([[l + 1], [moment(subset[l]['demand_date']['$date']).format('DD-MM-YYYY')],
-                                        [total_loan_amount],
-                                        [subset[totPDemandString]], [subset[totIDemandString]],
-                                        [parseInt(subset[totPDemandString]) + parseInt(subset[totIDemandString])]]);
-                                    sum_principal += parseInt(subset[totPDemandString]);
-                                    sum_interest += parseInt(subset[totIDemandString]);
-                                    if (l !== subset.length - 1) {
-                                        total_loan_amount = parseInt(total_loan_amount) - parseInt(subset[totPDemandString]);
+                                for (var i = 0; i < json.length; i++) {
+                                    if (distinct_demands.indexOf(parseInt(json[i]['no_of_demands'])) === -1) {
+                                        distinct_demands.push(parseInt(json[i]['no_of_demands']));
                                     }
                                 }
-                                rows.push([['Total'], [''], [''], [sum_principal], [sum_interest], [sum_principal + sum_interest]]);
-                                doc.autoTable(columns, rows, {startY: 110});
 
-                                doc.text(150, doc.autoTableEndPosY() + 10, 'For Managing Director');
+                                for (i = 0; i < distinct_demands.length; i++) {
+                                    var subset = [];
+                                    for (var j = 0; j < json.length; j++) {
+                                        if (parseInt(distinct_demands[i]) === parseInt(json[j]['no_of_demands'])) {
+                                            subset.push(json[j]);
+                                        }
+                                    }
 
-                                doc.save('Payment_Schedule' + PSO + '-' + uberLoan[0]['applicant_name'] + '.pdf')
+                                    for (j = 0; j < subset.length; j++) {
+                                        for (var k = 1; k <= parseInt(distinct_demands[i]); k++) {
+                                            var totPDemandString = 'totPDem' + k;
+                                            var totIDemandString = 'totIDem' + k;
+                                            if (parseInt(subset[j]['demand_number']) === k) {
+                                                subset[totPDemandString] = 0;
+                                                subset[totIDemandString] = 0;
+                                            }
+                                        }
+                                    }
+
+                                    var loan_id = [];
+                                    for (j = 0; j < subset.length; j++) {
+                                        for (k = 1; k <= parseInt(distinct_demands[i]); k++) {
+                                            totPDemandString = 'totPDem' + k;
+                                            totIDemandString = 'totIDem' + k;
+                                            if (parseInt(subset[j]['demand_number']) === k) {
+                                                subset[totPDemandString] += parseInt(subset[j]['principal_demand']);
+                                                subset[totIDemandString] += parseInt(subset[j]['interest_demand']);
+                                            }
+                                        }
+                                        if (loan_id.indexOf(subset[j]['loan_id']) === -1) {
+                                            loan_id.push(subset[j]['loan_id']);
+                                        }
+                                    }
+
+                                    var first_loan_id = loan_id[0];
+                                    var total_loan_amount = 0;
+                                    for (j = 1; j <= parseInt(distinct_demands[i]); j++) {
+                                        totPDemandString = 'totPDem' + j;
+                                        totIDemandString = 'totIDem' + j;
+                                        total_loan_amount += subset[totPDemandString]
+                                    }
+
+                                    downlPDF(first_loan_id, application_identifier, total_loan_amount, subset, parseInt(distinct_demands[i]));
+
+                                    function downlPDF(first_loan_id, total_loan_amount, subset, distinct_demands) {
+                                        $.ajax({
+                                            type: 'GET',
+                                            url: "/getLoansByIdentfierLoans/" + application_identifier,
+                                            contentType: "application/json",
+                                            dataType: 'json',
+                                            success: function (uberLoan) {
+                                                var PSO = uberLoan[0]['ann_loan_id'] + '/' + uberLoan[0]['loan_category'] + '/' +
+                                                    // Creating financial Year (For e.g. 1718, 1819)
+                                                    (moment(uberLoan[0]['received_date']).year() - 2000) + '' +
+                                                    (moment(uberLoan[0]['received_date']).year() - 1999);
+
+                                                var doc = new jsPDF();
+                                                doc.setFontSize(10);
+                                                doc.text(50, 15, 'TAMILNADU  BACKWARD CLASSES ECONOMIC DEVELOPMENT CORPORATION LTD.,');
+                                                doc.text(60, 20, '1/1(1), Mayor Ramanathan Salai East, Egmore, Chennai - 600 008.');
+
+                                                doc.text(30, 30, '1.    NAME OF THE BANK:');
+                                                var bank = uberLoan[0]['sub_bank'];
+                                                doc.text(80, 30, bank);
+
+                                                doc.text(30, 37, '2.    SCHEME NAME:');
+                                                var scheme = uberLoan[0]['loan_category'];
+                                                doc.text(80, 37, scheme);
+
+                                                doc.text(150, 375, 'District:');
+                                                var district = uberLoan[0]['district'];
+                                                doc.text(165, 37, district);
+
+                                                var NBCShare = NBCFDCShareCalculator(uberLoan[0]['loan_category'], total_loan_amount);
+                                                var TabcedcoShare = tabcedcoShareCalculator(uberLoan[0]['loan_category'], total_loan_amount);
+
+                                                doc.text(80, 45, 'NBCFDC Share');
+                                                doc.text(80, 50, 'Rs. ' + NBCShare);
+
+                                                doc.text(150, 45, 'TABCEDCO Share');
+                                                doc.text(150, 50, 'Rs. ' + TabcedcoShare);
+
+                                                doc.text(30, 57, '3.    LOAN AMOUNT:');
+                                                doc.text(80, 57, 'Rs. ' + NBCShare+TabcedcoShare);
+
+                                                doc.text(30, 65, '4.    RATE OF INTEREST:');
+                                                var roi = uberLoan[0]['roi'];
+                                                doc.text(80, 65, roi + '%');
+                                                doc.text(150, 65, roi + '%');
+
+                                                doc.text(30, 72, '5.   RATE OF PENAL INT.:');
+                                                doc.text(80, 72, '5%');
+                                                doc.text(150, 72, '5%');
+
+                                                doc.text(30, 80, '6.    RO No.:');
+                                                var ro_num = json[0]['ro_number'];
+                                                doc.text(80, 80, ro_num);
+
+                                                doc.text(30, 87, '7.    CHEQUE NO. & DATE :');
+                                                var chNumber = uberLoan[0]['cheque_number'];
+                                                doc.text(80, 87, chNumber);
+
+                                                doc.text(150, 87, 'Dated: _______');
+
+                                                doc.text(30, 95, '8.    No. Of Installments:');
+                                                var noInstallments = parseInt(uberLoan[0]['no_of_demands']) + ' Quarters';
+                                                doc.text(150, 95, noInstallments);
+
+                                                columns = ["S. No", "Due Date", "Amount Remaining", "Principal", "Interest", "Total"];
+                                                rows = [];
+                                                var sum_principal = 0;
+                                                var sum_interest = 0;
+                                                for (var l = 0; l < parseInt(distinct_demands); l++) {
+                                                    var totPDemandString = 'totPDem' + (l + 1);
+                                                    var totIDemandString = 'totIDem' + (l + 1);
+                                                    rows.push([[l + 1], [moment(subset[l]['demand_date']['$date']).format('DD-MM-YYYY')],
+                                                        [total_loan_amount],
+                                                        [subset[totPDemandString]], [subset[totIDemandString]],
+                                                        [parseInt(subset[totPDemandString]) + parseInt(subset[totIDemandString])]]);
+                                                    sum_principal += parseInt(subset[totPDemandString]);
+                                                    sum_interest += parseInt(subset[totIDemandString]);
+                                                    if (l !== subset.length - 1) {
+                                                        total_loan_amount = parseInt(total_loan_amount) - parseInt(subset[totPDemandString]);
+                                                    }
+                                                }
+                                                rows.push([['Total'], [''], [''], [sum_principal], [sum_interest], [sum_principal + sum_interest]]);
+                                                doc.autoTable(columns, rows, {startY: 110});
+
+                                                doc.text(150, doc.autoTableEndPosY() + 10, 'For Managing Director');
+
+                                                doc.save('Payment_Schedule' + PSO + '-' + uberLoan[0]['applicant_name'] + '.pdf')
+                                            },
+                                            error: function (e) {
+                                                alert("error");
+                                            }
+                                        });
+                                    }
+                                }
+                            }
+                            else {
+                                alert("Update Demands and Try Again!");
+                            }
                             },
                             error: function (e) {
                                 alert("error");
@@ -789,10 +913,9 @@
                         });
                     }
                 }
-            }
-            else {
-                alert("Update Demands and Try Again!");
-            }
+                else{
+                    alert('Update Cheque Sanction Date of Loan Application')
+                }
             },
             error: function (e) {
                 alert("error");

@@ -66,7 +66,7 @@ class Database(object):
                            ann_loan_id, user_id, user_name, shg_name, amount_per_member, strength, no_of_shgs,
                            cheque_number, no_of_demands, sb, amount_to_pay, father_name, loan_number, jr_letter_date,
                            jr_letter_number, screening_date, pso_date, ro_date, ro_number, post_pso_ref,
-                           bank_district):
+                           bank_district, cheque_date):
 
         amount_per_member = 0 if amount_per_member is None else amount_per_member
         strength = 0 if strength is None else strength
@@ -105,6 +105,7 @@ class Database(object):
                                                                          'ro_number': ro_number,
                                                                          'post_pso_ref_no': post_pso_ref,
                                                                          'amount_per_member': amount_per_member,
+                                                                         'cheque_date': cheque_date,
                                                                          'total_amount':
                                                                              int(amount_per_member)*int(strength),
                                                                          'cheque_number': cheque_number,
