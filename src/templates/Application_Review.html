@@ -705,7 +705,7 @@
 
                         for (var l = 1; l <= no_of_demands; l++) {
                             if (l === 1) {
-                                var current_demand_date = moment(new Date(moment(cheque_date).format('YYYY'), parseInt(moment(cheque_date).format('MM'))+3, 1)).format('DD-MM-YYYY');
+                                var current_demand_date = moment(new Date(moment(cheque_date, 'DD-MM-YYYY').format('YYYY'), parseInt(moment(cheque_date, 'DD-MM-YYYY').format('MM'))+3, 1)).format('DD-MM-YYYY');
                                 var days = moment(current_demand_date).diff(moment(cheque_date), 'days');
                                 var interest = ((roi) * loan_amount * days) / (365 * 100).toFixed(0);
                                 console.log(moment(cheque_date, 'DD-MM-YYYY').format('YYYY'));
