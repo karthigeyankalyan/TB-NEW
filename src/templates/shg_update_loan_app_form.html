@@ -236,7 +236,7 @@
                 '</div>'+
                 '<div style="display: flex; flex-direction: column;">' +
                 '<label for='+delete_entry+'>Delete Entry</label>' +
-                '<button type="button" id='+delete_entry+' name='+delete_entry+' onclick="removeField(this)">Delete Entry</button>' +
+                '<button type="button" id='+delete_entry+' name='+delete_entry+' onclick="removeField(this, i+1)">Delete Entry</button>' +
                 '<input type="text" id='+lid+' name='+lid+' style="display: none">' +
                 '</div>'
                 );
@@ -372,13 +372,13 @@
         $("#shgDetails").append(row);
     }
 
-    function removeField(that) {
-        updateChecks(that);
+    function removeField(that, iabc) {
+        updateChecks(that, iabc);
         var str = that.id;
-        if(j <= 9) {
+        if(iabc <= 9) {
             var number = str.charAt(str.length-1);
         }
-        else if(j <= 99){
+        else if(iabc <= 99){
             number = str.slice(-2);
         }
         else {
@@ -451,12 +451,12 @@
         populateTotals();
     }
 
-    function updateChecks(that) {
+    function updateChecks(that, iabc) {
         var str = that.id;
-        if(j <= 9) {
+        if(iabc <= 9) {
             var number = str.charAt(str.length-1);
         }
-        else if(j <= 99){
+        else if(iabc <= 99){
             number = str.slice(-2);
         }
         else {
