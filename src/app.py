@@ -568,7 +568,6 @@ def loan_form(user_id):
                 ro_ref = request.form['roRef']
 
                 for i in range(int(inv_id)):
-                    print(inv_id)
                     shg_name_string = "sn" + str(i)
                     amount_per_member_string = "apm" + str(i)
                     strength_string = "strength" + str(i)
@@ -793,7 +792,6 @@ def update_loan_form(_id):
                 deletion_variable = True
 
                 for i in range(int(inv_id)+1):
-                    print(inv_id)
                     shg_name_string = "sn" + str(i)
                     amount_per_member_string = "apm" + str(i)
                     strength_string = "strength" + str(i)
@@ -811,6 +809,7 @@ def update_loan_form(_id):
                         deletion_array = deletion.split("|")
 
                         for deletion in deletion_array:
+                            print(deletion)
                             LoanApplication.deletefrom_mongo(_id=deletion)
                         deletion_variable = False
 
