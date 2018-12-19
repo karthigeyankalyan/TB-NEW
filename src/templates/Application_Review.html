@@ -673,7 +673,7 @@
                         doc.text(150, 45, 'TABCEDCO Share');
                         doc.text(150, 50, 'Rs. ' + TabcedcoShare);
 
-                        var total_loan_amount = parseInt(NBCShare)+parseInt(TabcedcoShare);
+                        var tla = parseInt(NBCShare)+parseInt(TabcedcoShare);
 
                         doc.text(30, 57, '3.    LOAN AMOUNT:');
                         doc.text(80, 57, 'Rs. ' + total_loan_amount);
@@ -714,7 +714,7 @@
                                 var current_demand_date = moment(new Date(moment(cheque_date, 'DD-MM-YYYY').format('YYYY'), parseInt(moment(cheque_date, 'DD-MM-YYYY').format('MM'))+3, 1)).format('DD-MM-YYYY');
 
                                 if (moment(cheque_date, 'DD-MM-YYYY').format('DD') === 1) {
-                                    interest = (roi * parseInt(total_loan_amount) / 400).toFixed(0);
+                                    interest = (roi * parseInt(tla) / 400).toFixed(0);
                                 }
 
                                 else {
@@ -794,14 +794,18 @@
                             distinct_demands_amounts_only.push(distinct_demands_only[i]+'-'+total_demand_amt)
                         }
 
-                        for (i = 0; i < distinct_demands_amounts_only; i++) {
+                        for (i = 0; i < distinct_demands_amounts_only.length; i++) {
                             res = distinct_demands_amounts_only[i].split("-");
                             demands = parseInt(res[0]);
                             amount = parseInt(res[1]);
-                            downloadGTLPDF(amount, demands, json[0]['cheque_date'], json[0]['roi'], json[0]['ann_loan_id']);
+                            downloadGTLPDF(amount, demands, moment(json[0]['cheque_date']['$date']).format('DD-MM-YYYY'), json[0]['roi'], json[0]['ann_loan_id']);
                         }
 
                         downloadGTLPDF(total_loan_amount, json[0]['no_of_demands'], json[0]['cheque_date'], json[0]['roi'], json[0]['ann_loan_id']);
+
+                        function daysInMonth (month, year) {
+                            return new Date(year, month, 0).getDate();
+                        }
 
                         for (i = 0; i < distinct_demands.length; i++) {
                             res = distinct_demands[i].split("-");
@@ -809,9 +813,7 @@
                             amount = parseInt(res[1]);
                             var roi = parseInt(res[2]);
 
-                            cheque_date = moment(json[0]['cheque_date']['$date']).format('DD-MM-YYYY');
-
-                            downloadGTLPDF(amount, demands, cheque_date, roi, amount+'-'+json[0]['ann_loan_id']);
+                            downloadGTLPDF(amount, demands, moment(json[0]['cheque_date']['$date']).format('DD-MM-YYYY'), roi, amount+'-'+json[0]['ann_loan_id']);
                         }
 
                             function downloadGTLPDF(loan_amount, no_of_demands, cheque_date, roi, PSO) {
@@ -836,15 +838,15 @@
                                 var TabcedcoShare = tabcedcoShareCalculator(json[0]['loan_category'], loan_amount);
 
                                 doc.text(80, 45, 'NBCFDC Share');
-                                doc.text(80, 50, 'Rs. ' + NBCShare);
+                                doc.text(80, 50, 'Rs. ' + Math.ceil(NBCShare));
 
                                 doc.text(150, 45, 'TABCEDCO Share');
-                                doc.text(150, 50, 'Rs. ' + TabcedcoShare);
+                                doc.text(150, 50, 'Rs. ' + Math.ceil(TabcedcoShare));
 
-                                total_loan_amount = parseInt(NBCShare)+parseInt(TabcedcoShare);
+                                var tla = parseInt(Math.ceil(NBCShare))+parseInt(Math.ceil(TabcedcoShare));
 
                                 doc.text(30, 57, '3.    LOAN AMOUNT:');
-                                doc.text(80, 57, 'Rs. ' + total_loan_amount);
+                                doc.text(80, 57, 'Rs. ' + tla);
 
                                 doc.text(30, 65, '4.    RATE OF INTEREST:');
                                 doc.text(80, 65, roi + '%');
@@ -862,7 +864,7 @@
                                 var chNumber = json[0]['cheque_number'];
                                 doc.text(80, 87, chNumber);
 
-                                doc.text(150, 87, 'Dated: ' + moment(cheque_date).format('DD-MM-YYYY'));
+                                doc.text(150, 87, 'Dated: ' + cheque_date);
 
                                 doc.text(30, 95, '8.    No. Of Installments:');
                                 var noInstallments = parseInt(no_of_demands) + ' Quarters';
@@ -871,7 +873,7 @@
                                 columns = ["S. No", "Due Date", "Amount Remaining", "Principal", "Interest", "Total"];
                                 rows = [];
 
-                                if (no_of_demands === 32 || no_of_demands === 20) {
+                                if (parseInt(no_of_demands) === 32 || parseInt(no_of_demands) === 20) {
                                     var tabcedco_installments = TabcedcoShare/2;
                                     var nbcfdc_installments = Math.floor(NBCShare/(no_of_demands-2));
 
@@ -881,9 +883,9 @@
 
                                     for (var l = 1; l <= no_of_demands; l++) {
                                         if (l === 1) {
-                                            var current_demand_date = moment(new Date(moment(cheque_date, 'DD-MM-YYYY').format('YYYY'), parseInt(moment(cheque_date, 'DD-MM-YYYY').format('MM')) + 3, 1)).format('DD-MM-YYYY');
+                                            var current_demand_date = moment(cheque_date, "DD-MM-YYYY").add(4, 'M').startOf('month').format('DD-MM-YYYY');
                                             if (moment(cheque_date, 'DD-MM-YYYY').format('DD') === 1) {
-                                                interest = (roi * parseInt(total_loan_amount) / 400).toFixed(0);
+                                                interest = (roi * parseInt(tla) / 400).toFixed(0);
                                             }
 
                                             else {
@@ -896,43 +898,43 @@
                                                 var regular_nbc_interest = (roi * parseInt(NBCShare) / 400).toFixed(0);
                                                 var regular_tbc_interest = (roi * parseInt(TabcedcoShare) / 400).toFixed(0);
 
-                                                var interest = extra_days_nbc+extra_days_tbc+regular_nbc_interest+regular_tbc_interest;
+                                                var interest = extra_days_nbc+extra_days_tbc+parseInt(regular_nbc_interest)+parseInt(regular_tbc_interest);
                                             }
                                             var principal_per_installment = Math.ceil(tabcedco_installments);
                                         }
 
                                         else if (l ===2) {
-                                            current_demand_date = moment(new Date(moment(cheque_date, 'DD-MM-YYYY').format('YYYY'), parseInt(moment(cheque_date, 'DD-MM-YYYY').format('MM')) + 3, 1)).format('DD-MM-YYYY');
-                                            amount_remaining -= principal_per_installment;
+                                            current_demand_date = moment(previous_demand_date, "DD-MM-YYYY").add(3, 'M').format('DD-MM-YYYY');
+                                            amount_remaining -= Math.ceil(tabcedco_installments);
                                             days = moment(current_demand_date, 'DD-MM-YYYY').diff(moment(cheque_date, 'DD-MM-YYYY'), 'days');
-                                            interest = Math.ceil(((roi) * loan_amount * days) / (365 * 100));
+                                            interest = Math.ceil(((roi) * amount_remaining ) / (400));
                                             principal_per_installment = Math.ceil(tabcedco_installments);
                                         }
 
                                         else if (l ===3) {
-                                            current_demand_date = moment(new Date(moment(cheque_date, 'DD-MM-YYYY').format('YYYY'), parseInt(moment(cheque_date, 'DD-MM-YYYY').format('MM')) + 3, 1)).format('DD-MM-YYYY');
-                                            amount_remaining -= principal_per_installment;
+                                            current_demand_date = moment(previous_demand_date, "DD-MM-YYYY").add(3, 'M').format('DD-MM-YYYY');
+                                            amount_remaining -= Math.ceil(tabcedco_installments);
                                             days = moment(current_demand_date, 'DD-MM-YYYY').diff(moment(cheque_date, 'DD-MM-YYYY'), 'days');
-                                            interest = Math.ceil(((roi) * loan_amount * days) / (365 * 100));
+                                            interest = Math.ceil(((roi) * amount_remaining ) / (400));
                                             principal_per_installment = Math.ceil(nbcfdc_installments);
                                         }
 
                                         else if(l=== no_of_demands) {
-                                            current_demand_date = moment(new Date(moment(previous_demand_date).format('YYYY'), parseInt(moment(previous_demand_date).format('MM')) + 2, 1)).format('DD-MM-YYYY');
+                                            current_demand_date = moment(previous_demand_date, "DD-MM-YYYY").add(3, 'M').format('DD-MM-YYYY');
                                             amount_remaining -= principal_per_installment;
-                                            interest = Math.ceil(((roi) * loan_amount * days) / (365 * 100));
+                                            interest = Math.ceil(((roi) * amount_remaining ) / (400));
                                             principal_per_installment = Math.ceil(amount_remaining);
                                         }
 
                                         else {
-                                            current_demand_date = moment(new Date(moment(previous_demand_date).format('YYYY'), parseInt(moment(previous_demand_date).format('MM')) + 2, 1)).format('DD-MM-YYYY');
+                                            current_demand_date = moment(previous_demand_date, "DD-MM-YYYY").add(3, 'M').format('DD-MM-YYYY');
                                             amount_remaining -= principal_per_installment;
-                                            interest = Math.ceil(((roi) * loan_amount * days) / (365 * 100));
+                                            interest = Math.ceil(((roi) * amount_remaining ) / (400));
                                             principal_per_installment = Math.ceil(nbcfdc_installments);
                                         }
 
-                                        rows.push([[l], [current_demand_date], [amount_remaining],
-                                            [principal_per_installment], [interest],
+                                        rows.push([[l], [current_demand_date], [Math.ceil(amount_remaining)],
+                                            [principal_per_installment], [Math.ceil(interest)],
                                             [parseInt(principal_per_installment) + parseInt(interest)]]);
 
                                         sum_principal += parseInt(principal_per_installment);
@@ -951,8 +953,22 @@
                                     for (l = 1; l <= no_of_demands; l++) {
                                         if (l === 1) {
                                             current_demand_date = moment(new Date(moment(cheque_date, 'DD-MM-YYYY').format('YYYY'), parseInt(moment(cheque_date, 'DD-MM-YYYY').format('MM')) + 3, 1)).format('DD-MM-YYYY');
-                                            days = moment(current_demand_date, 'DD-MM-YYYY').diff(moment(cheque_date, 'DD-MM-YYYY'), 'days');
-                                            interest = ((roi) * loan_amount * days) / (365 * 100).toFixed(0);
+                                            if (moment(cheque_date, 'DD-MM-YYYY').format('DD') === 1) {
+                                                interest = (roi * parseInt(tla) / 400).toFixed(0);
+                                            }
+
+                                            else {
+                                                total_days_in_month = daysInMonth(moment(cheque_date, 'DD-MM-YYYY').format('MM'), moment(cheque_date, 'DD-MM-YYYY').format('YYYY'), moment(cheque_date, 'DD-MM-YYYY').format('DD-MM-YYYY'));
+                                                extra_interest_days = total_days_in_month - moment(cheque_date, 'DD-MM-YYYY').format('DD');
+
+                                                extra_days_nbc = ((roi) * NBCShare * extra_interest_days) / (365 * 100).toFixed(0);
+                                                extra_days_tbc = ((roi) * TabcedcoShare * extra_interest_days) / (365 * 100).toFixed(0);
+
+                                                regular_nbc_interest = (roi * parseInt(NBCShare) / 400).toFixed(0);
+                                                regular_tbc_interest = (roi * parseInt(TabcedcoShare) / 400).toFixed(0);
+
+                                                interest = parseInt(extra_days_nbc+extra_days_tbc+regular_nbc_interest+regular_tbc_interest);
+                                            }
                                             principal_per_installment = Math.ceil(tabcedco_installments);
                                         }
 
@@ -960,24 +976,26 @@
                                             current_demand_date = moment(new Date(moment(cheque_date, 'DD-MM-YYYY').format('YYYY'), parseInt(moment(cheque_date, 'DD-MM-YYYY').format('MM')) + 3, 1)).format('DD-MM-YYYY');
                                             amount_remaining -= tabcedco_installments;
                                             days = moment(current_demand_date, 'DD-MM-YYYY').diff(moment(cheque_date, 'DD-MM-YYYY'), 'days');
-                                            interest = Math.ceil(((roi) * loan_amount * days) / (365 * 100));
+                                            interest = Math.ceil(((roi) * amount_remaining ) / (400));
                                             principal_per_installment = Math.ceil(nbcfdc_installments);
                                         }
 
                                         else if(l=== no_of_demands) {
                                             current_demand_date = moment(new Date(moment(previous_demand_date).format('YYYY'), parseInt(moment(previous_demand_date).format('MM')) + 2, 1)).format('DD-MM-YYYY');
                                             amount_remaining -= principal_per_installment;
-                                            interest = Math.ceil(((roi) * loan_amount * days) / (365 * 100));
+                                            interest = Math.ceil(((roi) * amount_remaining ) / (400));
                                             principal_per_installment = Math.ceil(amount_remaining);
                                         }
                                         else {
                                             current_demand_date = moment(new Date(moment(previous_demand_date).format('YYYY'), parseInt(moment(previous_demand_date).format('MM')) + 2, 1)).format('DD-MM-YYYY');
                                             amount_remaining -= principal_per_installment;
-                                            interest = Math.ceil(((roi) * loan_amount * days) / (365 * 100));
+                                            interest = Math.ceil(((roi) * amount_remaining ) / (400));
                                             principal_per_installment = Math.ceil(nbcfdc_installments);
                                         }
 
-                                        rows.push([[l], [current_demand_date], [amount_remaining],
+                                        interest = interest%1;
+
+                                        rows.push([[l], [current_demand_date], [Math.ceil(amount_remaining)],
                                             [principal_per_installment], [interest],
                                             [parseInt(principal_per_installment) + parseInt(interest)]]);
 
@@ -2018,6 +2036,10 @@
             alert("error");
         }
     });
+
+    function daysInMonth (month, year) {
+        return new Date(year, month, 0).getDate();
+    }
 
 </script>
 
