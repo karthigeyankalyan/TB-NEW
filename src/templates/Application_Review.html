@@ -769,13 +769,10 @@
                         for (i = 0; i < json.length; i++) {
                             if (distinct_demands.indexOf(parseInt(json[i]['no_of_demands'])+'-'+parseInt(json[i]['loan_amount'])+'-'+parseInt(json[i]['roi'])) === -1) {
                                 distinct_demands.push(parseInt(json[i]['no_of_demands'])+'-'+parseInt(json[i]['loan_amount'])+'-'+parseInt(json[i]['roi']));
-                            }
-                            total_loan_amount += parseInt(json[i]['loan_amount']);
-                        }
 
-                        for (i = 0; i < json.length; i++) {
                             if (distinct_demands_only.indexOf(parseInt(json[i]['no_of_demands'])) === -1) {
                                 distinct_demands_only.push(parseInt(json[i]['no_of_demands']));
+                            }
                             }
                             total_loan_amount += parseInt(json[i]['loan_amount']);
                         }
@@ -787,7 +784,10 @@
                                 var demands = parseInt(res[0]);
                                 var amount = parseInt(res[1]);
 
-                                if (distinct_demands[i] === demands) {
+                                var res2 = distinct_demands[i].split("-");
+                                var demands2 = parseInt(res2[0]);
+
+                                if (demands2 === demands) {
                                     total_demand_amt += amount;
                                 }
                             }
@@ -800,8 +800,6 @@
                             amount = parseInt(res[1]);
                             downloadGTLPDF(amount, demands, moment(json[0]['cheque_date']['$date']).format('DD-MM-YYYY'), json[0]['roi'], json[0]['ann_loan_id']);
                         }
-
-                        downloadGTLPDF(total_loan_amount, json[0]['no_of_demands'], json[0]['cheque_date'], json[0]['roi'], json[0]['ann_loan_id']);
 
                         function daysInMonth (month, year) {
                             return new Date(year, month, 0).getDate();
