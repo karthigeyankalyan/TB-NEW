@@ -846,12 +846,13 @@
                                 console.log(demands_group, demands, 456);
                                 console.log(distinct_demands_group);
                                     if (parseInt(demands_group) === demands) {
-                                        no_of_benef = distinct_demands_group[j].values;
-                                        console.log(distinct_demands_group[j].values);
+                                        var no_of_benef2 = distinct_demands_group[j].values;
                                     }
                             }
 
-                            downloadGTLPDF(amount, demands, moment(json[0]['cheque_date']['$date']).format('DD-MM-YYYY'), roi, amount+'-'+json[0]['ann_loan_id'], no_of_benef);
+                            console.log(no_of_benef, no_of_benef2);
+
+                            downloadGTLPDF(amount, demands, moment(json[0]['cheque_date']['$date']).format('DD-MM-YYYY'), roi, amount+'-'+json[0]['ann_loan_id'], no_of_benef2);
                         }
 
                             function downloadGTLPDF(loan_amount, no_of_demands, cheque_date, roi, file_number, no_of_beneficiaries) {
