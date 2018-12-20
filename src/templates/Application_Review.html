@@ -853,7 +853,7 @@
                             downloadGTLPDF(amount, demands, moment(json[0]['cheque_date']['$date']).format('DD-MM-YYYY'), roi, amount+'-'+json[0]['ann_loan_id'], no_of_benef);
                         }
 
-                            function downloadGTLPDF(loan_amount, no_of_demands, cheque_date, roi, PSO, no_of_beneficiaries) {
+                            function downloadGTLPDF(loan_amount, no_of_demands, cheque_date, roi, file_number, no_of_beneficiaries) {
                                 var doc = new jsPDF();
                                 doc.setFontSize(10);
                                 doc.text(50, 15, 'TAMILNADU  BACKWARD CLASSES ECONOMIC DEVELOPMENT CORPORATION LTD.,');
@@ -993,11 +993,12 @@
                                             current_demand_date = moment(new Date(moment(cheque_date, 'DD-MM-YYYY').format('YYYY'), parseInt(moment(cheque_date, 'DD-MM-YYYY').format('MM')) + 3, 1)).format('DD-MM-YYYY');
                                             if (moment(cheque_date, 'DD-MM-YYYY').format('DD') === 1) {
                                                 interest = (roi * parseInt(tla) / 400).toFixed(0);
+                                                console.log(roi, parseInt(tla), interest)
                                             }
 
                                             else {
                                                 total_days_in_month = daysInMonth(moment(cheque_date, 'DD-MM-YYYY').format('MM'), moment(cheque_date, 'DD-MM-YYYY').format('YYYY'), moment(cheque_date, 'DD-MM-YYYY').format('DD-MM-YYYY'));
-                                                extra_interest_days = total_days_in_month - moment(cheque_date, 'DD-MM-YYYY').format('DD');
+                                                extra_interest_days = total_days_in_month - moment(cheque_date, 'DD-MM-YYYY').format('DD') + 1;
 
                                                 extra_days_nbc = ((roi) * NBCShare * extra_interest_days) / (365 * 100).toFixed(0);
                                                 extra_days_tbc = ((roi) * TabcedcoShare * extra_interest_days) / (365 * 100).toFixed(0);
@@ -1006,6 +1007,7 @@
                                                 regular_tbc_interest = (roi * parseInt(TabcedcoShare) / 400).toFixed(0);
 
                                                 interest = parseInt(extra_days_nbc+extra_days_tbc+regular_nbc_interest+regular_tbc_interest);
+                                                console.log(roi, extra_interest_days, NBCShare, TabcedcoShare, interest)
                                             }
                                             principal_per_installment = Math.ceil(tabcedco_installments);
                                         }
@@ -1049,7 +1051,7 @@
 
                                 doc.text(150, doc.autoTableEndPosY() + 10, 'For Managing Director');
 
-                                doc.save('Payment_Schedule' + PSO + '.pdf');
+                                doc.save('Payment_Schedule' + file_number + '.pdf');
                             }
                         }
                 }
