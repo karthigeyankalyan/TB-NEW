@@ -843,14 +843,10 @@
 
                             for (j = 0; j < distinct_demands_group.length; j++) {
                                 demands_group = distinct_demands_group[j].key;
-                                console.log(demands_group, demands, 456);
-                                console.log(distinct_demands_group);
                                     if (parseInt(demands_group) === demands) {
                                         var no_of_benef2 = distinct_demands_group[j].values;
                                     }
                             }
-
-                            console.log(no_of_benef, no_of_benef2);
 
                             downloadGTLPDF(amount, demands, moment(json[0]['cheque_date']['$date']).format('DD-MM-YYYY'), roi, amount+'-'+json[0]['ann_loan_id'], no_of_benef2);
                         }
@@ -1009,7 +1005,6 @@
                                                 regular_tbc_interest = (roi * parseInt(TabcedcoShare) / 400).toFixed(0);
 
                                                 interest = parseInt(extra_days_nbc+extra_days_tbc+regular_nbc_interest+regular_tbc_interest);
-                                                console.log(roi, extra_interest_days, NBCShare, TabcedcoShare, interest)
                                             }
                                             principal_per_installment = Math.ceil(tabcedco_installments);
                                         }
