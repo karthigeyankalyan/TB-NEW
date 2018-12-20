@@ -843,10 +843,9 @@
 
                             for (j = 0; j < distinct_demands_group.length; j++) {
                                 demands_group = distinct_demands_group[j].key;
-                                console.log(demands_group, demands);
-                                    if (demands_group === demands) {
+                                console.log(demands_group, demands, 456);
+                                    if (parseInt(demands_group) === demands) {
                                         no_of_benef = distinct_demands_group[j].values;
-                                        console.log(no_of_benef, 456);
                                     }
                             }
 
