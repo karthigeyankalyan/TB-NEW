@@ -928,7 +928,7 @@
 
                                             else {
                                                 var total_days_in_month = daysInMonth(moment(cheque_date, 'DD-MM-YYYY').format('MM'), moment(cheque_date, 'DD-MM-YYYY').format('YYYY'), moment(cheque_date, 'DD-MM-YYYY').format('DD-MM-YYYY'));
-                                                var extra_interest_days = total_days_in_month - moment(current_demand_date, 'DD-MM-YYYY').format('DD');
+                                                var extra_interest_days = total_days_in_month - moment(cheque_date, 'DD-MM-YYYY').format('DD') + 1;
 
                                                 var extra_days_nbc = ((roi) * NBCShare * extra_interest_days) / (365 * 100).toFixed(0);
                                                 var extra_days_tbc = ((roi) * TabcedcoShare * extra_interest_days) / (365 * 100).toFixed(0);
