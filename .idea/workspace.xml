@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="da0bb03c-275f-4eeb-800c-401a339e857e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/common/database.py" afterPath="$PROJECT_DIR$/src/common/database.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/templates/Application_Review.html" afterPath="$PROJECT_DIR$/src/templates/Application_Review.html" />
     </list>
@@ -14,7 +13,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/TABCEDCO_NEW$app.coverage" NAME="app Coverage Results" MODIFIED="1545287419576" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
+    <SUITE FILE_PATH="coverage/TABCEDCO_NEW$app.coverage" NAME="app Coverage Results" MODIFIED="1545290117214" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
     <SUITE FILE_PATH="coverage/TABCEDCO$app.coverage" NAME="app Coverage Results" MODIFIED="1537271200424" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
@@ -38,24 +37,24 @@
       <file leaf-file-name="Application_Review.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/templates/Application_Review.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="333">
-              <caret line="947" column="0" lean-forward="false" selection-start-line="947" selection-start-column="0" selection-end-line="947" selection-end-column="0" />
+            <state relative-caret-position="214">
+              <caret line="702" column="0" lean-forward="true" selection-start-line="702" selection-start-column="0" selection-end-line="702" selection-end-column="0" />
               <folding>
                 <element signature="n#style#0;n#div#1;n#!!top" expanded="true" />
                 <element signature="e#2087#19989#0" expanded="false" />
                 <element signature="e#20020#38671#0" expanded="false" />
-                <element signature="e#63941#86274#0" expanded="false" />
-                <element signature="e#86304#107992#0" expanded="false" />
-                <element signature="e#108032#114218#0" expanded="false" />
-                <element signature="e#114224#114259#0" expanded="false" />
-                <element signature="e#114313#114621#0" expanded="false" />
-                <element signature="e#114627#114662#0" expanded="false" />
-                <element signature="e#114718#115028#0" expanded="false" />
-                <element signature="e#115034#115069#0" expanded="false" />
-                <element signature="e#115128#115321#0" expanded="false" />
-                <element signature="e#115379#115675#0" expanded="false" />
-                <element signature="e#115719#118397#0" expanded="false" />
-                <element signature="e#118458#120665#0" expanded="false" />
+                <element signature="e#66072#88405#0" expanded="false" />
+                <element signature="e#88435#110123#0" expanded="false" />
+                <element signature="e#110163#116349#0" expanded="false" />
+                <element signature="e#116355#116390#0" expanded="false" />
+                <element signature="e#116444#116752#0" expanded="false" />
+                <element signature="e#116758#116793#0" expanded="false" />
+                <element signature="e#116849#117159#0" expanded="false" />
+                <element signature="e#117165#117200#0" expanded="false" />
+                <element signature="e#117259#117452#0" expanded="false" />
+                <element signature="e#117510#117806#0" expanded="false" />
+                <element signature="e#117850#120528#0" expanded="false" />
+                <element signature="e#120589#122796#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -167,6 +166,16 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="loanapplication.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/models/loanapplication.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-238">
+              <caret line="177" column="0" lean-forward="false" selection-start-line="177" selection-start-column="0" selection-end-line="177" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -341,6 +350,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="TABCEDCO NEW" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="TABCEDCO NEW" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="models" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -923,18 +950,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/models/loanapplication.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="177" column="0" lean-forward="false" selection-start-line="177" selection-start-column="0" selection-end-line="177" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/uwsgi.ini">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/models/loanapplication.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-238">
+          <caret line="177" column="0" lean-forward="false" selection-start-line="177" selection-start-column="0" selection-end-line="177" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1042,24 +1069,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/templates/Application_Review.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="333">
-          <caret line="947" column="0" lean-forward="false" selection-start-line="947" selection-start-column="0" selection-end-line="947" selection-end-column="0" />
+        <state relative-caret-position="214">
+          <caret line="702" column="0" lean-forward="true" selection-start-line="702" selection-start-column="0" selection-end-line="702" selection-end-column="0" />
           <folding>
             <element signature="n#style#0;n#div#1;n#!!top" expanded="true" />
             <element signature="e#2087#19989#0" expanded="false" />
             <element signature="e#20020#38671#0" expanded="false" />
-            <element signature="e#63941#86274#0" expanded="false" />
-            <element signature="e#86304#107992#0" expanded="false" />
-            <element signature="e#108032#114218#0" expanded="false" />
-            <element signature="e#114224#114259#0" expanded="false" />
-            <element signature="e#114313#114621#0" expanded="false" />
-            <element signature="e#114627#114662#0" expanded="false" />
-            <element signature="e#114718#115028#0" expanded="false" />
-            <element signature="e#115034#115069#0" expanded="false" />
-            <element signature="e#115128#115321#0" expanded="false" />
-            <element signature="e#115379#115675#0" expanded="false" />
-            <element signature="e#115719#118397#0" expanded="false" />
-            <element signature="e#118458#120665#0" expanded="false" />
+            <element signature="e#66072#88405#0" expanded="false" />
+            <element signature="e#88435#110123#0" expanded="false" />
+            <element signature="e#110163#116349#0" expanded="false" />
+            <element signature="e#116355#116390#0" expanded="false" />
+            <element signature="e#116444#116752#0" expanded="false" />
+            <element signature="e#116758#116793#0" expanded="false" />
+            <element signature="e#116849#117159#0" expanded="false" />
+            <element signature="e#117165#117200#0" expanded="false" />
+            <element signature="e#117259#117452#0" expanded="false" />
+            <element signature="e#117510#117806#0" expanded="false" />
+            <element signature="e#117850#120528#0" expanded="false" />
+            <element signature="e#120589#122796#0" expanded="false" />
           </folding>
         </state>
       </provider>

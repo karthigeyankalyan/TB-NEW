@@ -697,9 +697,9 @@
 
                         doc.text(150, 87, 'Dated: ' + moment(json[0]['cheque_date']['$date']).format('DD-MM-YYYY'));
 
-                        doc.text(30, 95, '8.    No. Of Installments:');
-                        var noInstallments = parseInt(json[0]['no_of_demands']) + ' Quarters';
-                        doc.text(150, 95, noInstallments);
+                        doc.text(30, 95, '8.    No. Of SHGs:');
+                        var noInstallments = parseInt(json.length) + ' ';
+                        doc.text(80, 95, noInstallments);
 
                         columns = ["S. No", "Due Date", "Amount Remaining", "Principal", "Interest", "Total"];
                         rows = [];
@@ -766,6 +766,24 @@
                         var distinct_demands_only = [];
                         var total_loan_amount = 0;
 
+                        var distinct_demands_group = d3.nest()
+                            .key(function (d) {
+                                return d.no_of_demands;
+                            })
+                            .rollup(function (v) {
+                                return v.length;
+                            })
+                            .entries(json);
+
+                        var distinct_demands_amounts_group = d3.nest()
+                            .key(function (d) {
+                                return d.no_of_demands+'-'+d.loan_amount;
+                            })
+                            .rollup(function (v) {
+                                return v.length;
+                            })
+                            .entries(json);
+
                         for (i = 0; i < json.length; i++) {
                             if (distinct_demands.indexOf(parseInt(json[i]['no_of_demands'])+'-'+parseInt(json[i]['loan_amount'])+'-'+parseInt(json[i]['roi'])) === -1) {
                                 distinct_demands.push(parseInt(json[i]['no_of_demands'])+'-'+parseInt(json[i]['loan_amount'])+'-'+parseInt(json[i]['roi']));
@@ -791,14 +809,26 @@
                                     total_demand_amt += amount;
                                 }
                             }
-                            distinct_demands_amounts_only.push(distinct_demands_only[i]+'-'+total_demand_amt)
+                            distinct_demands_amounts_only.push(distinct_demands_only[i]+'-'+total_demand_amt+'-'+amount)
                         }
 
                         for (i = 0; i < distinct_demands_amounts_only.length; i++) {
                             res = distinct_demands_amounts_only[i].split("-");
                             demands = parseInt(res[0]);
                             amount = parseInt(res[1]);
-                            downloadGTLPDF(amount, demands, moment(json[0]['cheque_date']['$date']).format('DD-MM-YYYY'), json[0]['roi'], json[0]['ann_loan_id']);
+                            var amount_ind = parseInt(res[2]);
+
+                            for (j = 0; j < distinct_demands_amounts_group.length; j++) {
+                                var group = distinct_demands_amounts_group[j].key.split("-");
+                                var demands_group = parseInt(group[0]);
+                                var amount_group = parseInt(group[1]);
+                                    if (demands_group === demands && amount_group === amount_ind) {
+                                        var no_of_benef = distinct_demands_amounts_group[j].values;
+                                        console.log(no_of_benef, 123);
+                                    }
+                            }
+
+                            downloadGTLPDF(amount, demands, moment(json[0]['cheque_date']['$date']).format('DD-MM-YYYY'), json[0]['roi'], json[0]['ann_loan_id'], no_of_benef);
                         }
 
                         function daysInMonth (month, year) {
@@ -811,10 +841,19 @@
                             amount = parseInt(res[1]);
                             var roi = parseInt(res[2]);
 
-                            downloadGTLPDF(amount, demands, moment(json[0]['cheque_date']['$date']).format('DD-MM-YYYY'), roi, amount+'-'+json[0]['ann_loan_id']);
+                            for (j = 0; j < distinct_demands_group.length; j++) {
+                                demands_group = distinct_demands_group[j].key;
+                                console.log(demands_group, demands);
+                                    if (demands_group === demands) {
+                                        no_of_benef = distinct_demands_group[j].values;
+                                        console.log(no_of_benef, 456);
+                                    }
+                            }
+
+                            downloadGTLPDF(amount, demands, moment(json[0]['cheque_date']['$date']).format('DD-MM-YYYY'), roi, amount+'-'+json[0]['ann_loan_id'], no_of_benef);
                         }
 
-                            function downloadGTLPDF(loan_amount, no_of_demands, cheque_date, roi, PSO) {
+                            function downloadGTLPDF(loan_amount, no_of_demands, cheque_date, roi, PSO, no_of_beneficiaries) {
                                 var doc = new jsPDF();
                                 doc.setFontSize(10);
                                 doc.text(50, 15, 'TAMILNADU  BACKWARD CLASSES ECONOMIC DEVELOPMENT CORPORATION LTD.,');
@@ -857,6 +896,7 @@
                                 doc.text(30, 80, '6.    RO No.:');
                                 var ro_num = json[0]['ro_number'];
                                 doc.text(80, 80, ro_num);
+                                doc.text(150, 80, 'PSO Number: ' + PSO);
 
                                 doc.text(30, 87, '7.    CHEQUE NO. & DATE :');
                                 var chNumber = json[0]['cheque_number'];
@@ -864,9 +904,9 @@
 
                                 doc.text(150, 87, 'Dated: ' + cheque_date);
 
-                                doc.text(30, 95, '8.    No. Of Installments:');
-                                var noInstallments = parseInt(no_of_demands) + ' Quarters';
-                                doc.text(150, 95, noInstallments);
+                                doc.text(30, 95, '8.    No. Of Beneficiaries:');
+                                var noInstallments = parseInt(no_of_beneficiaries) + ' ';
+                                doc.text(80, 95, noInstallments);
 
                                 columns = ["S. No", "Due Date", "Amount Remaining", "Principal", "Interest", "Total"];
                                 rows = [];
