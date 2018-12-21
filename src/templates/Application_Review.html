@@ -829,13 +829,14 @@
                             amount = parseInt(res[1]);
                             var amount_ind = parseInt(res[2]);
 
+                            console.log(distinct_demands_amounts_only);
+
                             for (j = 0; j < distinct_demands_amounts_group.length; j++) {
                                 var group = distinct_demands_amounts_group[j].key.split("-");
                                 var demands_group = parseInt(group[0]);
                                 var amount_group = parseInt(group[1]);
                                     if (demands_group === demands && amount_group === amount_ind) {
                                         var no_of_benef = distinct_demands_amounts_group[j].values;
-                                        console.log(no_of_benef, 123);
                                     }
                             }
 
