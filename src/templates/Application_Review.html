@@ -833,7 +833,7 @@
                         }
 
                         for (i = 0; i< distinct_demand_amount.length; i++) {
-                            downloadGTLPDF(distinct_demand_amount[i].values, parseInt(distinct_demand_amount[i].key), moment(json[0]['cheque_date']['$date']).format('DD-MM-YYYY'), json[0]['roi'], json[0]['ann_loan_id'], no_of_benef);
+                            downloadGTLPDF(distinct_demand_amount[i].values, parseInt(distinct_demand_amount[i].key), moment(json[0]['cheque_date']['$date']).format('DD-MM-YYYY'), json[0]['roi'], 123456, no_of_benef);
                         }
 
                         for (i = 0; i < distinct_demands_amounts_only.length; i++) {
