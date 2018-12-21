@@ -1909,7 +1909,7 @@
                     doc.text(160, 215, 'for Managing Director');
 
                     doc.text(25, 220, 'Encl. 1. Cheque Number: '+json[0]['cheque_number']+' for '+
-                        sanctioned_amount+' Dated: '+ json[0]['cheque_date']['$date']);
+                        sanctioned_amount+' Dated: '+ moment(json[0]['cheque_date']['$date']).format('DD-MM-YYYY'));
                     doc.text(25, 225, 'Repayment Schedule');
                     doc.text(25, 230, 'Utilisation Certificate');
 
