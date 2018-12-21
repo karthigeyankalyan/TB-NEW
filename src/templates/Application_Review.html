@@ -786,14 +786,19 @@
                             })
                             .entries(json);
 
+
                         var distinct_demand_amount = d3.nest()
                             .key(function (d) {
                                 return d.no_of_demands;
                             })
                             .rollup(function (v) {
-                                return d3.sum(v, function(d) { return parseInt(d.loan_amount); });
+                                return {
+                                    'total_loan': d3.sum(v, function(d) { return parseInt(d.loan_amount); }),
+                                    'total_members': v.length
+                                }
                             })
                             .entries(json);
+
 
                         var distinct_demands_amounts_group = d3.nest()
                             .key(function (d) {
@@ -831,6 +836,8 @@
                             }
                             distinct_demands_amounts_only.push(distinct_demands_only[i]+'-'+total_demand_amt+'-'+amount)
                         }
+
+                        console.log(distinct_demand_amount);
 
                         for (i = 0; i< distinct_demand_amount.length; i++) {
                             downloadGTLPDF(distinct_demand_amount[i].values, parseInt(distinct_demand_amount[i].key), moment(json[0]['cheque_date']['$date']).format('DD-MM-YYYY'), json[0]['roi'], 123456, no_of_benef);
