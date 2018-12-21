@@ -618,9 +618,22 @@
             dataType: 'json',
             success: function (json) {
 
+                    if(json[0]['loan_category'] === 'GTL (General Term Loan)') {
+                        var cat = "GTL";
+                    }
+                    else if(json[0]['loan_category'] === 'NSS (New-Swarnima Scheme)') {
+                        cat = "NSS";
+                    }
+                    else if(json[0]['loan_category'] === 'MCG (Micro-Credit Gents)') {
+                        cat = "MCR";
+                    }
+                    else if(json[0]['loan_category'] === 'MSY (Mahila Samridhi Yojana)') {
+                        cat = "MSY";
+                    }
+
                 if (json[0]['cheque_date']) {
                     if (json[0]['loan_category'] === 'MCG (Micro-Credit Gents)' || json[0]['loan_category'] === 'MSY (Mahila Samridhi Yojana)') {
-                        var PSO = json[0]['loan_number'] + '/' + json[0]['loan_category'] + '/' +
+                        var PSO = json[0]['loan_number'] + '/' + cat + '/' +
                             (moment(json[0]['received_date']).year() - 2000) + '' +
                             (moment(json[0]['received_date']).year() - 1999);
 
@@ -903,6 +916,8 @@
                                 doc.text(30, 95, '8.    No. Of Beneficiaries:');
                                 var noInstallments = parseInt(no_of_beneficiaries) + ' ';
                                 doc.text(80, 95, noInstallments);
+
+                                console.log(no_of_beneficiaries);
 
                                 columns = ["S. No", "Due Date", "Amount Remaining", "Principal", "Interest", "Total"];
                                 rows = [];
@@ -1785,38 +1800,38 @@
                     var PSO = json[0]['ann_loan_id'] + '/' + json[0]['loan_category'] + '/' + (moment(json[0]['received_date']).year() - 2000) + '' + (moment(json[0]['received_date']).year() - 1999);
 
                     doc.setFontSize(12);
-                    doc.text(25, 30, 'DR. '+MD + '., I.A.S');
-                    doc.text(25, 35, 'Managing Director');
+                    doc.text(25, 50, 'DR. '+MD + '., I.A.S');
+                    doc.text(25, 55, 'Managing Director');
 
                     var refNo = 'Proc.No.' + json[0]['ann_loan_id'] + '/' + json[0]['district'] + '/' + json[0]['bank'];
 
-                    doc.text(25, 45, 'Proc.No.' + json[0]['ann_loan_id'] + '/' + json[0]['district'] + '/' + json[0]['bank']);
+                    doc.text(25, 65, 'Proc.No.' + json[0]['ann_loan_id'] + '/' + json[0]['district'] + '/' + json[0]['bank']);
 
-                    doc.text(160, 45, 'Dated: _________');
+                    doc.text(160, 65, 'Dated: _________');
 
-                    doc.text(25, 55, 'To');
-                    doc.text(25, 60, 'The General Manager,');
+                    doc.text(25, 75, 'To');
+                    doc.text(25, 80, 'The General Manager,');
                     var bank = json[0]['bank'];
-                    doc.text(25, 65, bank);
+                    doc.text(25, 85, bank);
 
                     var district = json[0]['district'];
-                    doc.text(25, 70, district);
+                    doc.text(25, 90, district);
 
                     doc.setFontSize(9);
 
-                    doc.text(25, 80, 'Sir,');
+                    doc.text(25, 100, 'Sir,');
 
                     var sub = doc.splitTextToSize('Sub:  TABCEDCO Loan - Disbursement of Individual Loan- ' +
                         'Cheque,Repayment Schedule and U.C. sent - Reg.', 140);
 
-                    doc.text(45, 90, sub);
+                    doc.text(45, 110, sub);
 
                     var ref = doc.splitTextToSize('Ref: This Office Procs. No. '+ refNo +
                         ' Dated ________ ('+json[0]['loan_category']+')', 140);
 
-                    doc.text(45, 99, ref);
+                    doc.text(45, 119, ref);
 
-                    doc.text(100, 105, '**********');
+                    doc.text(100, 125, '**********');
 
                     var sanctioned_amount = 0;
 
@@ -1829,7 +1844,7 @@
                         sanctioned_amount+'/- '+ convertNumberToWords(sanctioned_amount) +' drawn on BOB, Chennai-8 along with the proceedings cited. ' +
                         'We request you to send the official receipt for the above amount.', 140);
 
-                    doc.text(45, 110, pt1);
+                    doc.text(45, 130, pt1);
 
                     if(json[0]['loan_category'] === 'GTL (General Term Loan)' || json[0]['loan_category'] === 'NSS (New-Swarnima Scheme)') {
                         if(json.length === 1) {
@@ -1849,12 +1864,12 @@
                             ' SHGs as per the conditions accepted by them.', 140);
                     }
 
-                    doc.text(45, 130, pt2);
+                    doc.text(45, 150, pt2);
 
                     var pt3 = doc.splitTextToSize('3.   Disbursement of Loan to the concerned '+ json[0]['bank']
                         +' may be informed to this office at the earliest.', 140);
 
-                    doc.text(45, 150, pt3);
+                    doc.text(45, 160, pt3);
 
                     var pt4 = doc.splitTextToSize('4.   We are also enclosing herewith the repayment schedule, ' +
                         'in order to repay the amount on the respective due dates strictly and we also request you to ' +
@@ -1866,7 +1881,7 @@
                     doc.text(160, 215, 'for Managing Director');
 
                     doc.text(25, 220, 'Encl. 1. Cheque Number: '+json[0]['cheque_number']+' for '+
-                        sanctioned_amount+' Dated: ________');
+                        sanctioned_amount+' Dated: '+ json[0]['cheque_date']['$date']);
                     doc.text(25, 225, 'Repayment Schedule');
                     doc.text(25, 230, 'Utilisation Certificate');
 

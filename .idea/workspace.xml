@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="da0bb03c-275f-4eeb-800c-401a339e857e" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/templates/Application_Review.html" afterPath="$PROJECT_DIR$/src/templates/Application_Review.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -36,25 +37,25 @@
       <file leaf-file-name="Application_Review.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/templates/Application_Review.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="184">
-              <caret line="328" column="29" lean-forward="false" selection-start-line="328" selection-start-column="29" selection-end-line="328" selection-end-column="29" />
+            <state relative-caret-position="323">
+              <caret line="43" column="84" lean-forward="true" selection-start-line="43" selection-start-column="84" selection-end-line="43" selection-end-column="84" />
               <folding>
                 <element signature="n#style#0;n#div#1;n#!!top" expanded="true" />
                 <element signature="e#2087#19989#0" expanded="false" />
                 <element signature="e#20020#38639#0" expanded="false" />
-                <element signature="e#38673#65650#0" expanded="false" />
-                <element signature="e#65680#88013#0" expanded="false" />
-                <element signature="e#88043#109731#0" expanded="false" />
-                <element signature="e#109771#115957#0" expanded="false" />
-                <element signature="e#115963#115998#0" expanded="false" />
-                <element signature="e#116052#116360#0" expanded="false" />
-                <element signature="e#116366#116401#0" expanded="false" />
-                <element signature="e#116457#116767#0" expanded="false" />
-                <element signature="e#116773#116808#0" expanded="false" />
-                <element signature="e#116867#117060#0" expanded="false" />
-                <element signature="e#117118#117414#0" expanded="false" />
-                <element signature="e#117458#120136#0" expanded="false" />
-                <element signature="e#120197#122404#0" expanded="false" />
+                <element signature="e#38673#66284#0" expanded="false" />
+                <element signature="e#66314#88647#0" expanded="false" />
+                <element signature="e#88677#110365#0" expanded="false" />
+                <element signature="e#110405#116619#0" expanded="false" />
+                <element signature="e#116625#116660#0" expanded="false" />
+                <element signature="e#116714#117022#0" expanded="false" />
+                <element signature="e#117028#117063#0" expanded="false" />
+                <element signature="e#117119#117429#0" expanded="false" />
+                <element signature="e#117435#117470#0" expanded="false" />
+                <element signature="e#117529#117722#0" expanded="false" />
+                <element signature="e#117780#118076#0" expanded="false" />
+                <element signature="e#118120#120798#0" expanded="false" />
+                <element signature="e#120859#123066#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -663,8 +664,14 @@
           <line>66</line>
           <option name="timeStamp" value="8" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/templates/Application_Review.html</url>
+          <line>609</line>
+          <properties />
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="10" />
+      <option name="time" value="11" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1086,25 +1093,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/templates/Application_Review.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="328" column="29" lean-forward="false" selection-start-line="328" selection-start-column="29" selection-end-line="328" selection-end-column="29" />
+        <state relative-caret-position="323">
+          <caret line="43" column="84" lean-forward="true" selection-start-line="43" selection-start-column="84" selection-end-line="43" selection-end-column="84" />
           <folding>
             <element signature="n#style#0;n#div#1;n#!!top" expanded="true" />
             <element signature="e#2087#19989#0" expanded="false" />
             <element signature="e#20020#38639#0" expanded="false" />
-            <element signature="e#38673#65650#0" expanded="false" />
-            <element signature="e#65680#88013#0" expanded="false" />
-            <element signature="e#88043#109731#0" expanded="false" />
-            <element signature="e#109771#115957#0" expanded="false" />
-            <element signature="e#115963#115998#0" expanded="false" />
-            <element signature="e#116052#116360#0" expanded="false" />
-            <element signature="e#116366#116401#0" expanded="false" />
-            <element signature="e#116457#116767#0" expanded="false" />
-            <element signature="e#116773#116808#0" expanded="false" />
-            <element signature="e#116867#117060#0" expanded="false" />
-            <element signature="e#117118#117414#0" expanded="false" />
-            <element signature="e#117458#120136#0" expanded="false" />
-            <element signature="e#120197#122404#0" expanded="false" />
+            <element signature="e#38673#66284#0" expanded="false" />
+            <element signature="e#66314#88647#0" expanded="false" />
+            <element signature="e#88677#110365#0" expanded="false" />
+            <element signature="e#110405#116619#0" expanded="false" />
+            <element signature="e#116625#116660#0" expanded="false" />
+            <element signature="e#116714#117022#0" expanded="false" />
+            <element signature="e#117028#117063#0" expanded="false" />
+            <element signature="e#117119#117429#0" expanded="false" />
+            <element signature="e#117435#117470#0" expanded="false" />
+            <element signature="e#117529#117722#0" expanded="false" />
+            <element signature="e#117780#118076#0" expanded="false" />
+            <element signature="e#118120#120798#0" expanded="false" />
+            <element signature="e#120859#123066#0" expanded="false" />
           </folding>
         </state>
       </provider>
