@@ -786,6 +786,15 @@
                             })
                             .entries(json);
 
+                        var distinct_demand_amount = d3.nest()
+                            .key(function (d) {
+                                return d.no_of_demands;
+                            })
+                            .rollup(function (v) {
+                                return d3.sum(v, function(d) { return parseInt(d.loan_amount); });
+                            })
+                            .entries(json);
+
                         var distinct_demands_amounts_group = d3.nest()
                             .key(function (d) {
                                 return d.no_of_demands+'-'+d.loan_amount;
@@ -829,7 +838,7 @@
                             amount = parseInt(res[1]);
                             var amount_ind = parseInt(res[2]);
 
-                            console.log(distinct_demands_amounts_only);
+                            console.log(distinct_demand_amount);
 
                             for (j = 0; j < distinct_demands_amounts_group.length; j++) {
                                 var group = distinct_demands_amounts_group[j].key.split("-");
