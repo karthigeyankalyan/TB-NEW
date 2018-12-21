@@ -832,13 +832,15 @@
                             distinct_demands_amounts_only.push(distinct_demands_only[i]+'-'+total_demand_amt+'-'+amount)
                         }
 
+                        for (i = 0; i< distinct_demand_amount.length; i++) {
+                            downloadGTLPDF(distinct_demand_amount[i].values, parseInt(distinct_demand_amount[i].key), moment(json[0]['cheque_date']['$date']).format('DD-MM-YYYY'), json[0]['roi'], json[0]['ann_loan_id'], no_of_benef);
+                        }
+
                         for (i = 0; i < distinct_demands_amounts_only.length; i++) {
                             res = distinct_demands_amounts_only[i].split("-");
                             demands = parseInt(res[0]);
                             amount = parseInt(res[1]);
                             var amount_ind = parseInt(res[2]);
-
-                            console.log(distinct_demand_amount);
 
                             for (j = 0; j < distinct_demands_amounts_group.length; j++) {
                                 var group = distinct_demands_amounts_group[j].key.split("-");
