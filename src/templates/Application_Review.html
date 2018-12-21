@@ -637,6 +637,10 @@
                             (moment(json[0]['received_date']).year() - 2000) + '' +
                             (moment(json[0]['received_date']).year() - 1999);
 
+                        var RO = json[0]['ro_number'] + '/' + cat + '/' +
+                            (moment(json[0]['received_date']).year() - 2000) + '' +
+                            (moment(json[0]['received_date']).year() - 1999);
+
                         var loan_amounts = [];
 
                         for (var i = 0; i < json.length; i++) {
@@ -922,7 +926,7 @@
                                 doc.text(150, 72, '5%');
 
                                 doc.text(30, 80, '6.    RO No.:');
-                                var ro_num = json[0]['ro_number'];
+                                var ro_num = RO;
                                 doc.text(80, 80, ro_num);
                                 doc.text(150, 80, 'PSO Number: ' + PSO);
 
