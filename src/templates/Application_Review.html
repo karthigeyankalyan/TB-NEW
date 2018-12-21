@@ -668,7 +668,7 @@
                         doc.text(60, 20, '1/1(1), Mayor Ramanathan Salai East, Egmore, Chennai - 600 008.');
 
                         doc.text(30, 30, '1.    NAME OF THE BANK:');
-                        var bank = json[0]['bank'];
+                        var district = json[0]['bank_district']+' District';
                         doc.text(80, 30, bank);
 
                         doc.text(30, 37, '2.    SCHEME NAME:');
@@ -676,7 +676,7 @@
                         doc.text(80, 37, scheme);
 
                         doc.text(150, 375, 'District:');
-                        var district = json[0]['district'];
+                        var district = json[0]['district']+' District';
                         doc.text(165, 37, district);
 
                         var NBCShare = NBCFDCShareCalculator(json[0]['loan_category'], loan_amount);
@@ -711,6 +711,7 @@
                         doc.text(80, 87, chNumber);
 
                         doc.text(150, 87, 'Dated: ' + moment(json[0]['cheque_date']['$date']).format('DD-MM-YYYY'));
+                        doc.text(150, 80, 'File Number: ' + json[0]['ann_loan_id']);
 
                         doc.text(30, 95, '8.    No. Of SHGs:');
                         var noInstallments = parseInt(json.length) + ' ';
@@ -845,10 +846,8 @@
                             distinct_demands_amounts_only.push(distinct_demands_only[i]+'-'+total_demand_amt+'-'+amount)
                         }
 
-                        console.log(distinct_demand_amount);
-
                         for (i = 0; i< distinct_demand_amount.length; i++) {
-                            downloadGTLPDF(distinct_demand_amount[i].values.total_loan, parseInt(distinct_demand_amount[i].key), moment(json[0]['cheque_date']['$date']).format('DD-MM-YYYY'), json[0]['roi'], 123456, distinct_demand_amount[i].values.total_members);
+                            downloadGTLPDF(distinct_demand_amount[i].values.total_loan, parseInt(distinct_demand_amount[i].key), moment(json[0]['cheque_date']['$date']).format('DD-MM-YYYY'), json[0]['roi'], 'demand-consolidated', distinct_demand_amount[i].values.total_members);
                         }
 
                         for (i = 0; i < distinct_demands_amounts_only.length; i++) {
@@ -886,7 +885,7 @@
                                     }
                             }
 
-                            downloadGTLPDF(amount, demands, moment(json[0]['cheque_date']['$date']).format('DD-MM-YYYY'), roi, amount+'-'+json[0]['ann_loan_id'], no_of_benef2);
+                            downloadGTLPDF(amount, demands, moment(json[0]['cheque_date']['$date']).format('DD-MM-YYYY'), roi, amount+'-'+json[0]['ann_loan_id'], no_of_benef2+' (EACH)');
                         }
 
                             function downloadGTLPDF(loan_amount, no_of_demands, cheque_date, roi, file_number, no_of_beneficiaries) {
@@ -904,7 +903,7 @@
                                 doc.text(80, 37, scheme);
 
                                 doc.text(150, 375, 'District:');
-                                var district = json[0]['district'];
+                                var district = json[0]['bank_district']+' District';
                                 doc.text(165, 37, district);
 
                                 var NBCShare = NBCFDCShareCalculator(json[0]['loan_category'], loan_amount);
@@ -934,6 +933,7 @@
 
                                 doc.text(80, 80, ro_num);
                                 doc.text(150, 80, 'PSO Number: ' + PSO);
+                                doc.text(150, 87, 'File Number: ' + json[0]['ann_loan_id']);
 
                                 doc.text(30, 87, '7.    CHEQUE NO. & DATE :');
                                 var chNumber = json[0]['cheque_number'];
@@ -1835,14 +1835,14 @@
 
                     doc.text(25, 65, 'Proc.No.' + json[0]['ann_loan_id'] + '/' + json[0]['district'] + '/' + json[0]['bank']);
 
-                    doc.text(160, 65, 'Dated: _________');
+                    doc.text(160, 65, 'Dated: '+ moment(json[0]['cheque_date']['$date']).format('DD-MM-YYYY'));
 
                     doc.text(25, 75, 'To');
                     doc.text(25, 80, 'The General Manager,');
                     var bank = json[0]['bank'];
                     doc.text(25, 85, bank);
 
-                    var district = json[0]['district'];
+                    var district = json[0]['district']+' District';
                     doc.text(25, 90, district);
 
                     doc.setFontSize(9);
@@ -1855,7 +1855,7 @@
                     doc.text(45, 110, sub);
 
                     var ref = doc.splitTextToSize('Ref: This Office Procs. No. '+ refNo +
-                        ' Dated ________ ('+json[0]['loan_category']+')', 140);
+                        ' Dated : '+moment(json[0]['jr_letter_date']['$date']).format('DD-MM-YYYY')+' ('+json[0]['loan_category']+')', 140);
 
                     doc.text(45, 119, ref);
 
@@ -1868,7 +1868,7 @@
                     }
 
                     var pt1 = doc.splitTextToSize('1.   In Continuation of this office Sanction Proceedings cited, we are ' +
-                        'enclosing herewith a Cheque bearing No:, '+json[0]['cheque_number']+' Dated:________ for '+
+                        'enclosing herewith a Cheque bearing No:, '+json[0]['cheque_number']+' Dated:'+ moment(json[0]['cheque_date']['$date']).format('DD-MM-YYYY') +' for '+
                         sanctioned_amount+'/- '+ convertNumberToWords(sanctioned_amount) +' drawn on BOB, Chennai-8 along with the proceedings cited. ' +
                         'We request you to send the official receipt for the above amount.', 140);
 
