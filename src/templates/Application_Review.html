@@ -339,8 +339,6 @@
         dataType: 'json',
         success: function (json) {
 
-            console.log(json);
-
             if(json.length !== 0) {
 
             try{
@@ -622,7 +620,7 @@
 
                 if (json[0]['cheque_date']) {
                     if (json[0]['loan_category'] === 'MCG (Micro-Credit Gents)' || json[0]['loan_category'] === 'MSY (Mahila Samridhi Yojana)') {
-                        var PSO = json[0]['ann_loan_id'] + '/' + json[0]['loan_category'] + '/' +
+                        var PSO = json[0]['loan_number'] + '/' + json[0]['loan_category'] + '/' +
                             (moment(json[0]['received_date']).year() - 2000) + '' +
                             (moment(json[0]['received_date']).year() - 1999);
 
@@ -757,7 +755,7 @@
                         }
                     }
                     else {
-                        PSO = json[0]['ann_loan_id'] + '/' + json[0]['loan_category'] + '/' +
+                        PSO = json[0]['loan_number'] + '/' + json[0]['loan_category'] + '/' +
                             (moment(json[0]['received_date']).year() - 2000) + '' +
                             (moment(json[0]['received_date']).year() - 1999);
 
@@ -983,7 +981,7 @@
                                 else {
                                     tabcedco_installments = TabcedcoShare;
                                     nbcfdc_installments = Math.floor(NBCShare/(no_of_demands-1));
-                                    amount_remaining = loan_amount;
+                                    amount_remaining = tla;
                                     sum_interest = 0, sum_principal = 0;
 
                                     for (l = 1; l <= no_of_demands; l++) {
