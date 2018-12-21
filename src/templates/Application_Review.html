@@ -638,8 +638,11 @@
                             (moment(json[0]['received_date']).year() - 1999);
 
                         var RO = json[0]['ro_number'] + '/' + cat + '/' +
-                            (moment(json[0]['received_date']).year() - 2000) + '' +
-                            (moment(json[0]['received_date']).year() - 1999);
+                            (moment(json[0]['received_date']['$date']).year() - 2000) + '' +
+                            (moment(json[0]['received_date']['$date']).year() - 1999);
+
+                        console.log(moment(json[0]['received_date']['$date']).year());
+                        console.log(moment(json[0]['received_date']).year());
 
                         var loan_amounts = [];
 
