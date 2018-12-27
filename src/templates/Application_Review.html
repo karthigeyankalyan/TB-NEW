@@ -1855,7 +1855,7 @@
                     doc.text(45, 110, sub);
 
                     var ref = doc.splitTextToSize('Ref: This Office Procs. No. '+ refNo +
-                        ' Dated : '+moment(json[0]['jr_letter_date']['$date']).format('DD-MM-YYYY')+' ('+json[0]['loan_category']+')', 140);
+                        ' Dated : '+moment(json[0]['ro_date']['$date']).format('DD-MM-YYYY')+' ('+json[0]['loan_category']+')', 140);
 
                     doc.text(45, 119, ref);
 
@@ -1864,7 +1864,7 @@
                     var sanctioned_amount = 0;
 
                     for(var i = 0; i<json.length; i++) {
-                        sanctioned_amount += (NBCFDCShareCalculator(json[i]['loan_category'], json[i]['loan_amount']) + tabcedcoShareCalculator(json[i]['loan_category'], json[i]['loan_amount']));
+                        sanctioned_amount += parseInt(json[i]['loan_amount']);
                     }
 
                     var pt1 = doc.splitTextToSize('1.   In Continuation of this office Sanction Proceedings cited, we are ' +
@@ -1874,7 +1874,7 @@
 
                     doc.text(45, 130, pt1);
 
-                    if(json[0]['loan_category'] === 'GTL (General Term Loan)' || json[0]['loan_category'] === 'NSS (New-Swarnima Scheme)') {
+                    if(json[0]['loan_category'] === 'GTL' || json[0]['loan_category'] === 'NSS') {
                         if(json.length === 1) {
                             var paraStr2 = json[0]['applicant_name'];
                         }
