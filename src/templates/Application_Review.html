@@ -1810,7 +1810,18 @@
         contentType: "application/json",
         dataType: 'json',
         success: function (json) {
-            console.log(json);
+
+            var sanctioned_amount = 0;
+
+            for(var i = 0; i<json.length; i++) {
+                loan_amount += parseInt(json[i]['loan_amount']);
+            }
+
+            var NBCShare = NBCFDCShareCalculator(json[0]['loan_category'], loan_amount);
+            var TabcedcoShare = tabcedcoShareCalculator(json[0]['loan_category'], loan_amount);
+
+            sanctioned_amount = parseInt(NBCShare) + parseInt(TabcedcoShare);
+
             if(json[0]['loan_category'] === 'GTL (General Term Loan)') {
                 json[0]['loan_category'] = "GTL";
             }
@@ -1860,12 +1871,6 @@
                     doc.text(45, 119, ref);
 
                     doc.text(100, 125, '**********');
-
-                    var sanctioned_amount = 0;
-
-                    for(var i = 0; i<json.length; i++) {
-                        sanctioned_amount += parseInt(json[i]['loan_amount']);
-                    }
 
                     var pt1 = doc.splitTextToSize('1.   In Continuation of this office Sanction Proceedings cited, we are ' +
                         'enclosing herewith a Cheque bearing No:, '+json[0]['cheque_number']+' Dated:'+ moment(json[0]['cheque_date']['$date']).format('DD-MM-YYYY') +' for '+
