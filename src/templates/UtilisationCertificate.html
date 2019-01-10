@@ -56,7 +56,7 @@
                                         '<td>' +json[j]['bank'] + '</td>'+
                                         '<td>' +json[j]['district'] + '</td>'+
                                         '<td>' +json[j]['ann_loan_id']+'/'+json[j]['loan_category']+'/'+
-                                        (moment(json[0]['received_date']).year() - 2000) + '' +(moment(json[0]['received_date']).year() - 1999)+ '</td>'+
+                                        (moment(json[0]['received_date']['$date']).year() - 2000) + '' +(moment(json[0]['received_date']['$date']).year() - 1999)+ '</td>'+
                                         '<td>' +json[j]['applicant_name'] + '</td>'+
                                         '<td>' +json[j]['loan_reason'] + '</td>'+
                                         '<td>'+json[j]["TABCEDCO_share"]+'</td>'+

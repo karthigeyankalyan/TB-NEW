@@ -95,8 +95,8 @@
 
                     var PSO = json[0]['loan_number'] + '/' + cat + '/' +
                         // Creating financial Year (For e.g. 1718, 1819)
-                        (moment(json[0]['received_date']).year() - 2000) + '' +
-                        (moment(json[0]['received_date']).year() - 1999);
+                        (moment(json[0]['received_date']['$date']).year() - 2000) + '' +
+                        (moment(json[0]['received_date']['$date']).year() - 1999);
 
                     var sanction_amount = (NBCFDCShareCalculator(json[0]['loan_category'], json[0]['loan_amount'])+ tabcedcoShareCalculator(json[0]['loan_category'], json[0]['loan_amount']));
 
@@ -381,8 +381,8 @@
 
                     var PSO = json[0]['loan_number'] + '/' + cat + '/' +
                         // Creating financial Year (For e.g. 1718, 1819)
-                        (moment(json[0]['received_date']).year() - 2000) + '' +
-                        (moment(json[0]['received_date']).year() - 1999);
+                        (moment(json[0]['received_date']['$date']).year() - 2000) + '' +
+                        (moment(json[0]['received_date']['$date']).year() - 1999);
 
                     var sanction_amount = (NBCFDCShareCalculator(json[0]['loan_category'], json[0]['loan_amount'])+ tabcedcoShareCalculator(json[0]['loan_category'], json[0]['loan_amount']));
 
@@ -634,8 +634,8 @@
                 if (json[0]['cheque_date']) {
                     if (json[0]['loan_category'] === 'MCG (Micro-Credit Gents)' || json[0]['loan_category'] === 'MSY (Mahila Samridhi Yojana)') {
                         var PSO = json[0]['loan_number'] + '/' + cat + '/' +
-                            (moment(json[0]['received_date']).year() - 2000) + '' +
-                            (moment(json[0]['received_date']).year() - 1999);
+                            (moment(json[0]['received_date']['$date']).year() - 2000) + '' +
+                            (moment(json[0]['received_date']['$date']).year() - 1999);
 
                         var RO = json[0]['ro_number'] + '/' + cat + '/' +
                             (moment(json[0]['received_date']['$date']).year() - 2000) + '' +
@@ -774,12 +774,12 @@
                     }
                     else {
                         PSO = json[0]['loan_number'] + '/' + cat + '/' +
-                            (moment(json[0]['received_date']).year() - 2000) + '' +
-                            (moment(json[0]['received_date']).year() - 1999);
+                            (moment(json[0]['received_date']['$date']).year() - 2000) + '' +
+                            (moment(json[0]['received_date']['$date']).year() - 1999);
 
                         RO = json[0]['ro_number'] + '/' + cat + '/' +
-                            (moment(json[0]['received_date']).year() - 2000) + '' +
-                            (moment(json[0]['received_date']).year() - 1999);
+                            (moment(json[0]['received_date']['$date']).year() - 2000) + '' +
+                            (moment(json[0]['received_date']['$date']).year() - 1999);
 
                         var distinct_demands = [];
                         var distinct_demands_amounts_only = [];
@@ -1317,7 +1317,7 @@
 
                 // Checking if application is either GTL (General Term Loan) or New Swarnima Scheme
                 else if (json[0]['loan_category'] === 'GTL (General Term Loan)' || json[0]['loan_category'] === 'NSS (New-Swarnima Scheme)') {
-                    PSO = json[0]['ro_number'] + '/' + cat + '/' + (moment(json[0]['received_date']).year() - 2000) + '' + (moment(json[0]['received_date']).year() - 1999);
+                    PSO = json[0]['ro_number'] + '/' + cat + '/' + (moment(json[0]['received_date']['$date']).year() - 2000) + '' + (moment(json[0]['received_date']['$date']).year() - 1999);
 
                     doc.setFontSize(12);
                     doc.text(167, 20, 'RO No: ' + PSO);
@@ -1658,7 +1658,7 @@
 
                     // Checking if application is either GTL (General Term Loan) or New Swarnima Scheme
                     else if (json[0]['loan_category'] === 'GTL (General Term Loan)' || json[0]['loan_category'] === 'NSS (New-Swarnima Scheme)') {
-                        PSO = json[0]['ro_number'] + '/' + cat + '/' + (moment(json[0]['received_date']).year() - 2000) + '' + (moment(json[0]['received_date']).year() - 1999);
+                        PSO = json[0]['ro_number'] + '/' + cat + '/' + (moment(json[0]['received_date']['$date']).year() - 2000) + '' + (moment(json[0]['received_date']['$date']).year() - 1999);
 
                         doc.setFontSize(12);
                         doc.text(167, 20, 'RO No: '+PSO);
@@ -1836,7 +1836,7 @@
             }
 
                 // Checking if the loan category is either Micro Credit or Mahila Samridhi Yojana
-                    var PSO = json[0]['ann_loan_id'] + '/' + json[0]['loan_category'] + '/' + (moment(json[0]['received_date']).year() - 2000) + '' + (moment(json[0]['received_date']).year() - 1999);
+                    var PSO = json[0]['ann_loan_id'] + '/' + json[0]['loan_category'] + '/' + (moment(json[0]['received_date']['$date']).year() - 2000) + '' + (moment(json[0]['received_date']['$date']).year() - 1999);
 
                     doc.setFontSize(12);
                     doc.text(25, 50, 'DR. '+MD + '., I.A.S');
