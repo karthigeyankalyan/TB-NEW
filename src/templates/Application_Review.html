@@ -618,6 +618,8 @@
             dataType: 'json',
             success: function (json) {
 
+                console.log(json);
+
                     if(json[0]['loan_category'] === 'GTL (General Term Loan)') {
                         var cat = "GTL";
                     }

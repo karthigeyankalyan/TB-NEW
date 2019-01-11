@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="da0bb03c-275f-4eeb-800c-401a339e857e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/templates/Application_Review.html" afterPath="$PROJECT_DIR$/src/templates/Application_Review.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/templates/UtilisationCertificate.html" afterPath="$PROJECT_DIR$/src/templates/UtilisationCertificate.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -35,36 +33,36 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Application_Review.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Application_Review.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/templates/Application_Review.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="115">
-              <caret line="98" column="31" lean-forward="false" selection-start-line="98" selection-start-column="31" selection-end-line="98" selection-end-column="31" />
+            <state relative-caret-position="358">
+              <caret line="620" column="34" lean-forward="false" selection-start-line="620" selection-start-column="34" selection-end-line="620" selection-end-column="34" />
               <folding>
                 <element signature="n#style#0;n#div#1;n#!!top" expanded="true" />
+                <element signature="e#2087#20007#0" expanded="false" />
                 <element signature="e#20038#38675#0" expanded="false" />
-                <element signature="e#38709#67948#0" expanded="false" />
-                <element signature="e#67978#90329#0" expanded="false" />
-                <element signature="e#90359#112065#0" expanded="false" />
-                <element signature="e#118581#118616#0" expanded="false" />
-                <element signature="e#118670#118978#0" expanded="false" />
-                <element signature="e#118984#119019#0" expanded="false" />
-                <element signature="e#119075#119385#0" expanded="false" />
-                <element signature="e#119391#119426#0" expanded="false" />
-                <element signature="e#119485#119678#0" expanded="false" />
-                <element signature="e#119736#120032#0" expanded="false" />
-                <element signature="e#120076#122754#0" expanded="false" />
-                <element signature="e#122815#125022#0" expanded="false" />
+                <element signature="e#68014#90365#0" expanded="false" />
+                <element signature="e#90395#112101#0" expanded="false" />
+                <element signature="e#118617#118652#0" expanded="false" />
+                <element signature="e#118706#119014#0" expanded="false" />
+                <element signature="e#119020#119055#0" expanded="false" />
+                <element signature="e#119111#119421#0" expanded="false" />
+                <element signature="e#119427#119462#0" expanded="false" />
+                <element signature="e#119521#119714#0" expanded="false" />
+                <element signature="e#119772#120068#0" expanded="false" />
+                <element signature="e#120112#122790#0" expanded="false" />
+                <element signature="e#122851#125058#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UtilisationCertificate.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="UtilisationCertificate.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/templates/UtilisationCertificate.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="139">
-              <caret line="51" column="0" lean-forward="false" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
+            <state relative-caret-position="34">
+              <caret line="33" column="0" lean-forward="false" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
               <folding>
                 <marker date="1547113395913" expanded="true" signature="2024:2063" ph="..." />
                 <marker date="1547113395913" expanded="true" signature="2138:2177" ph="..." />
@@ -310,8 +308,8 @@
         <option value="$PROJECT_DIR$/src/templates/update_loan_app_form.html" />
         <option value="$PROJECT_DIR$/src/app.py" />
         <option value="$PROJECT_DIR$/src/common/database.py" />
-        <option value="$PROJECT_DIR$/src/templates/Application_Review.html" />
         <option value="$PROJECT_DIR$/src/templates/UtilisationCertificate.html" />
+        <option value="$PROJECT_DIR$/src/templates/Application_Review.html" />
       </list>
     </option>
   </component>
@@ -1101,33 +1099,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/templates/Application_Review.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="98" column="31" lean-forward="false" selection-start-line="98" selection-start-column="31" selection-end-line="98" selection-end-column="31" />
-          <folding>
-            <element signature="n#style#0;n#div#1;n#!!top" expanded="true" />
-            <element signature="e#20038#38675#0" expanded="false" />
-            <element signature="e#38709#67948#0" expanded="false" />
-            <element signature="e#67978#90329#0" expanded="false" />
-            <element signature="e#90359#112065#0" expanded="false" />
-            <element signature="e#118581#118616#0" expanded="false" />
-            <element signature="e#118670#118978#0" expanded="false" />
-            <element signature="e#118984#119019#0" expanded="false" />
-            <element signature="e#119075#119385#0" expanded="false" />
-            <element signature="e#119391#119426#0" expanded="false" />
-            <element signature="e#119485#119678#0" expanded="false" />
-            <element signature="e#119736#120032#0" expanded="false" />
-            <element signature="e#120076#122754#0" expanded="false" />
-            <element signature="e#122815#125022#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/templates/UtilisationCertificate.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="139">
-          <caret line="51" column="0" lean-forward="false" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
+        <state relative-caret-position="34">
+          <caret line="33" column="0" lean-forward="false" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
           <folding>
             <marker date="1547113395913" expanded="true" signature="2024:2063" ph="..." />
             <marker date="1547113395913" expanded="true" signature="2138:2177" ph="..." />
@@ -1137,6 +1112,29 @@
             <marker date="1547113395913" expanded="true" signature="2611:2650" ph="..." />
             <marker date="1547113395913" expanded="true" signature="2738:2777" ph="..." />
             <marker date="1547113395913" expanded="true" signature="2861:2900" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/templates/Application_Review.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="358">
+          <caret line="620" column="34" lean-forward="false" selection-start-line="620" selection-start-column="34" selection-end-line="620" selection-end-column="34" />
+          <folding>
+            <element signature="n#style#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="e#2087#20007#0" expanded="false" />
+            <element signature="e#20038#38675#0" expanded="false" />
+            <element signature="e#68014#90365#0" expanded="false" />
+            <element signature="e#90395#112101#0" expanded="false" />
+            <element signature="e#118617#118652#0" expanded="false" />
+            <element signature="e#118706#119014#0" expanded="false" />
+            <element signature="e#119020#119055#0" expanded="false" />
+            <element signature="e#119111#119421#0" expanded="false" />
+            <element signature="e#119427#119462#0" expanded="false" />
+            <element signature="e#119521#119714#0" expanded="false" />
+            <element signature="e#119772#120068#0" expanded="false" />
+            <element signature="e#120112#122790#0" expanded="false" />
+            <element signature="e#122851#125058#0" expanded="false" />
           </folding>
         </state>
       </provider>
