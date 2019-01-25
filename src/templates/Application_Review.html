@@ -730,17 +730,17 @@
                         for (var l = 1; l <= no_of_demands; l++) {
                             if (l === 1) {
                                 var current_demand_date = moment(cheque_date, "DD-MM-YYYY").add(4, 'M').startOf('month').format('DD-MM-YYYY');
-
-                                if (moment(cheque_date, 'DD-MM-YYYY').format('DD') === 1) {
-                                    current_demand_date = moment(cheque_date, "DD-MM-YYYY").add(3, 'M').startOf('month').format('DD-MM-YYYY');
-                                    var interest_nbc = (roi * parseInt(NBCShare) / 400).toFixed(0);
-                                    var interest_tbc = (roi * parseInt(TabcedcoShare) / 400).toFixed(0);
-                                    interest = parseInt(interest_nbc+interest_tbc);
-                                }
-
-                                else {
+//
+//                                if (moment(cheque_date, 'DD-MM-YYYY').format('DD') === 1) {
+//                                    current_demand_date = moment(cheque_date, "DD-MM-YYYY").add(3, 'M').startOf('month').format('DD-MM-YYYY');
+//                                    var interest_nbc = (roi * parseInt(NBCShare) / 400).toFixed(0);
+//                                    var interest_tbc = (roi * parseInt(TabcedcoShare) / 400).toFixed(0);
+//                                    interest = parseInt(interest_nbc+interest_tbc);
+//                                }
+//
+//                                else {
                                     var total_days_in_month = daysInMonth(moment(cheque_date, 'DD-MM-YYYY').format('MM'), moment(cheque_date, 'DD-MM-YYYY').format('YYYY'), moment(cheque_date, 'DD-MM-YYYY').format('DD-MM-YYYY'));
-                                    var extra_interest_days = total_days_in_month - moment(cheque_date, 'DD-MM-YYYY').format('DD');
+                                    var extra_interest_days = total_days_in_month - moment(cheque_date, 'DD-MM-YYYY').format('DD') + 1;
 
                                     var extra_days_nbc = ((roi) * NBCShare * extra_interest_days) / (365 * 100).toFixed(0);
                                     var extra_days_tbc = ((roi) * TabcedcoShare * extra_interest_days) / (365 * 100).toFixed(0);
@@ -750,7 +750,7 @@
 
                                     var interest = extra_days_nbc+extra_days_tbc+regular_nbc_interest+regular_tbc_interest;
                                 }
-                            }
+//                            }
 
                             else {
                                 current_demand_date = moment(previous_demand_date, "DD-MM-YYYY").add(3, 'M').format('DD-MM-YYYY');
