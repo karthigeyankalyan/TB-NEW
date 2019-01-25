@@ -729,9 +729,10 @@
 
                         for (var l = 1; l <= no_of_demands; l++) {
                             if (l === 1) {
-                                var current_demand_date = moment(new Date(moment(cheque_date, 'DD-MM-YYYY').format('YYYY'), parseInt(moment(cheque_date, 'DD-MM-YYYY').format('MM'))+3, 1)).format('DD-MM-YYYY');
+                                var current_demand_date = moment(cheque_date, "DD-MM-YYYY").add(4, 'M').startOf('month').format('DD-MM-YYYY');
 
                                 if (moment(cheque_date, 'DD-MM-YYYY').format('DD') === 1) {
+                                    current_demand_date = moment(cheque_date, "DD-MM-YYYY").add(3, 'M').startOf('month').format('DD-MM-YYYY');
                                     var interest_nbc = (roi * parseInt(NBCShare) / 400).toFixed(0);
                                     var interest_tbc = (roi * parseInt(TabcedcoShare) / 400).toFixed(0);
                                     interest = parseInt(interest_nbc+interest_tbc);
@@ -752,7 +753,7 @@
                             }
 
                             else {
-                                current_demand_date = moment(new Date(moment(previous_demand_date).format('YYYY'), parseInt(moment(previous_demand_date).format('MM'))+2, 1)).format('DD-MM-YYYY');
+                                current_demand_date = moment(previous_demand_date, "DD-MM-YYYY").add(3, 'M').format('DD-MM-YYYY');
                                 amount_remaining -= principal_per_installment;
                                 interest = (roi * parseInt(amount_remaining) / 400).toFixed(0);
                             }
@@ -765,7 +766,6 @@
                             sum_interest += parseInt(interest);
 
                             previous_demand_date = current_demand_date;
-
                         }
 
                         rows.push([['Total'], [''], [''], [sum_principal], [sum_interest], [sum_principal + sum_interest]]);
