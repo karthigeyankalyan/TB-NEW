@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="da0bb03c-275f-4eeb-800c-401a339e857e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/templates/Application_Review.html" afterPath="$PROJECT_DIR$/src/templates/Application_Review.html" />
-    </list>
+    <list default="true" id="da0bb03c-275f-4eeb-800c-401a339e857e" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -36,24 +34,24 @@
       <file leaf-file-name="Application_Review.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/templates/Application_Review.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="750" column="142" lean-forward="false" selection-start-line="750" selection-start-column="142" selection-end-line="750" selection-end-column="142" />
+            <state relative-caret-position="391">
+              <caret line="751" column="0" lean-forward="false" selection-start-line="751" selection-start-column="0" selection-end-line="751" selection-end-column="0" />
               <folding>
                 <element signature="n#style#0;n#div#1;n#!!top" expanded="true" />
                 <element signature="e#2087#20007#0" expanded="false" />
                 <element signature="e#20038#38675#0" expanded="false" />
-                <element signature="e#68270#90621#0" expanded="false" />
-                <element signature="e#90651#112357#0" expanded="false" />
-                <element signature="e#112397#118867#0" expanded="false" />
-                <element signature="e#118873#118908#0" expanded="false" />
-                <element signature="e#118962#119270#0" expanded="false" />
-                <element signature="e#119276#119311#0" expanded="false" />
-                <element signature="e#119367#119677#0" expanded="false" />
-                <element signature="e#119683#119718#0" expanded="false" />
-                <element signature="e#119777#119970#0" expanded="false" />
-                <element signature="e#120028#120324#0" expanded="false" />
-                <element signature="e#120368#123046#0" expanded="false" />
-                <element signature="e#123107#125314#0" expanded="false" />
+                <element signature="e#68281#90632#0" expanded="false" />
+                <element signature="e#90662#112368#0" expanded="false" />
+                <element signature="e#112408#118878#0" expanded="false" />
+                <element signature="e#118884#118919#0" expanded="false" />
+                <element signature="e#118973#119281#0" expanded="false" />
+                <element signature="e#119287#119322#0" expanded="false" />
+                <element signature="e#119378#119688#0" expanded="false" />
+                <element signature="e#119694#119729#0" expanded="false" />
+                <element signature="e#119788#119981#0" expanded="false" />
+                <element signature="e#120039#120335#0" expanded="false" />
+                <element signature="e#120379#123057#0" expanded="false" />
+                <element signature="e#123118#125325#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -1119,24 +1117,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/templates/Application_Review.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="750" column="142" lean-forward="false" selection-start-line="750" selection-start-column="142" selection-end-line="750" selection-end-column="142" />
+        <state relative-caret-position="391">
+          <caret line="751" column="0" lean-forward="false" selection-start-line="751" selection-start-column="0" selection-end-line="751" selection-end-column="0" />
           <folding>
             <element signature="n#style#0;n#div#1;n#!!top" expanded="true" />
             <element signature="e#2087#20007#0" expanded="false" />
             <element signature="e#20038#38675#0" expanded="false" />
-            <element signature="e#68270#90621#0" expanded="false" />
-            <element signature="e#90651#112357#0" expanded="false" />
-            <element signature="e#112397#118867#0" expanded="false" />
-            <element signature="e#118873#118908#0" expanded="false" />
-            <element signature="e#118962#119270#0" expanded="false" />
-            <element signature="e#119276#119311#0" expanded="false" />
-            <element signature="e#119367#119677#0" expanded="false" />
-            <element signature="e#119683#119718#0" expanded="false" />
-            <element signature="e#119777#119970#0" expanded="false" />
-            <element signature="e#120028#120324#0" expanded="false" />
-            <element signature="e#120368#123046#0" expanded="false" />
-            <element signature="e#123107#125314#0" expanded="false" />
+            <element signature="e#68281#90632#0" expanded="false" />
+            <element signature="e#90662#112368#0" expanded="false" />
+            <element signature="e#112408#118878#0" expanded="false" />
+            <element signature="e#118884#118919#0" expanded="false" />
+            <element signature="e#118973#119281#0" expanded="false" />
+            <element signature="e#119287#119322#0" expanded="false" />
+            <element signature="e#119378#119688#0" expanded="false" />
+            <element signature="e#119694#119729#0" expanded="false" />
+            <element signature="e#119788#119981#0" expanded="false" />
+            <element signature="e#120039#120335#0" expanded="false" />
+            <element signature="e#120379#123057#0" expanded="false" />
+            <element signature="e#123118#125325#0" expanded="false" />
           </folding>
         </state>
       </provider>
