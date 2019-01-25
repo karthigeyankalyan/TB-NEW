@@ -748,9 +748,7 @@
                                     var regular_nbc_interest = (roi * parseInt(NBCShare) / 400).toFixed(0);
                                     var regular_tbc_interest = (roi * parseInt(TabcedcoShare) / 400).toFixed(0);
 
-                                    console.log(NBCShare, TabcedcoShare, roi, extra_interest_days, extra_days_nbc, extra_days_tbc, regular_nbc_interest, regular_tbc_interest);
-
-                                    var interest = extra_days_nbc+extra_days_tbc+regular_nbc_interest+regular_tbc_interest;
+                                    var interest = extra_days_nbc+extra_days_tbc+parseInt(regular_nbc_interest)+parseInt(regular_tbc_interest);
                                 }
 //                            }
 
