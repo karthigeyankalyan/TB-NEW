@@ -693,7 +693,7 @@
                         var tla = parseInt(NBCShare)+parseInt(TabcedcoShare);
 
                         doc.text(30, 57, '3.    LOAN AMOUNT:');
-                        doc.text(80, 57, 'Rs. ' + total_loan_amount);
+                        doc.text(80, 57, 'Rs. ' + tla);
 
                         doc.text(30, 65, '4.    RATE OF INTEREST:');
                         var roi = json[0]['roi'];
@@ -1819,10 +1819,13 @@
 
             for(var i = 0; i<json.length; i++) {
                 loan_amount += parseInt(json[i]['loan_amount']);
+                console.log(loan_amount, json[i]['loan_amount']);
             }
 
             var NBCShare = NBCFDCShareCalculator(json[0]['loan_category'], loan_amount);
             var TabcedcoShare = tabcedcoShareCalculator(json[0]['loan_category'], loan_amount);
+
+            console.log(loan_amount);
 
             sanctioned_amount = parseInt(NBCShare) + parseInt(TabcedcoShare);
 
