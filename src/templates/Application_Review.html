@@ -1816,14 +1816,21 @@
         dataType: 'json',
         success: function (json) {
 
-            var loan_amount = parseInt(json[0]['loan_amount']);
+            var loan_amount = 0;
+
+            console.log(json);
+
+            for(var i = 0; i<json.length; i++) {
+                loan_amount += parseInt(json[i]['loan_amount']);
+                console.log(loan_amount, json[i]['loan_amount']);
+            }
 
             var NBCShare = NBCFDCShareCalculator(json[0]['loan_category'], loan_amount);
             var TabcedcoShare = tabcedcoShareCalculator(json[0]['loan_category'], loan_amount);
 
             console.log(loan_amount);
 
-            var sanctioned_amount = parseInt(NBCShare) + parseInt(TabcedcoShare);
+            sanctioned_amount = parseInt(NBCShare) + parseInt(TabcedcoShare);
 
             if(json[0]['loan_category'] === 'GTL (General Term Loan)') {
                 json[0]['loan_category'] = "GTL";
