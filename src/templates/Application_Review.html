@@ -1816,13 +1816,20 @@
         dataType: 'json',
         success: function (json) {
 
+            if (json[0]['loan_category'] === 'GTL (General Term Loan)' || json[0]['loan_category'] === 'NSS (New-Swarnima Scheme)') {
+                var loan_variable = 'loan_amount';
+            }
+            else {
+                loan_variable = 'total_amount';
+            }
+
             var loan_amount = 0;
 
             console.log(json);
 
             for(var i = 0; i<json.length; i++) {
-                loan_amount += parseInt(json[i]['loan_amount']);
-                console.log(loan_amount, json[i]['loan_amount']);
+                loan_amount += parseInt(json[i][loan_variable]);
+                console.log(loan_amount, json[i][loan_variable]);
             }
 
             var NBCShare = NBCFDCShareCalculator(json[0]['loan_category'], loan_amount);
