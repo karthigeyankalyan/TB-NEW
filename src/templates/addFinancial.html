@@ -136,7 +136,7 @@
             var TabcedcoShare = tabcedcoShareCalculator(json[0]['loan_category'], amount);
 
             var cheque_date = moment(json[0]['cheque_date']['$date']).format('DD-MM-YYYY');
-            var roi = moment(json[0]['roi']);
+            var roi = parseInt(json[0]['roi']);
 
             if (cat === 'MSY' || cat === 'MCR') {
                 for (var l = 1; l <= no_of_demands; l++) {
