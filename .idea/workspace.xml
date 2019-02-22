@@ -83,13 +83,13 @@
       <file leaf-file-name="addFinancial.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/templates/addFinancial.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="398" column="0" lean-forward="false" selection-start-line="398" selection-start-column="0" selection-end-line="398" selection-end-column="0" />
+            <state relative-caret-position="491">
+              <caret line="240" column="0" lean-forward="false" selection-start-line="240" selection-start-column="0" selection-end-line="240" selection-end-column="0" />
               <folding>
-                <element signature="e#19903#19938#0" expanded="false" />
-                <element signature="e#19992#20300#0" expanded="false" />
-                <element signature="e#20306#20341#0" expanded="false" />
-                <element signature="e#20397#20707#0" expanded="false" />
+                <element signature="e#20655#20690#0" expanded="false" />
+                <element signature="e#20744#21052#0" expanded="false" />
+                <element signature="e#21058#21093#0" expanded="false" />
+                <element signature="e#21149#21459#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -1078,13 +1078,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/templates/addFinancial.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="398" column="0" lean-forward="false" selection-start-line="398" selection-start-column="0" selection-end-line="398" selection-end-column="0" />
+        <state relative-caret-position="491">
+          <caret line="240" column="0" lean-forward="false" selection-start-line="240" selection-start-column="0" selection-end-line="240" selection-end-column="0" />
           <folding>
-            <element signature="e#19903#19938#0" expanded="false" />
-            <element signature="e#19992#20300#0" expanded="false" />
-            <element signature="e#20306#20341#0" expanded="false" />
-            <element signature="e#20397#20707#0" expanded="false" />
+            <element signature="e#20655#20690#0" expanded="false" />
+            <element signature="e#20744#21052#0" expanded="false" />
+            <element signature="e#21058#21093#0" expanded="false" />
+            <element signature="e#21149#21459#0" expanded="false" />
           </folding>
         </state>
       </provider>

@@ -185,6 +185,7 @@
                             current_demand_date = moment(cheque_date, "DD-MM-YYYY").add(4, 'M').startOf('month').format('DD-MM-YYYY');
                             if (moment(cheque_date, 'DD-MM-YYYY').format('DD') === 1) {
                                 interest = (roi * parseInt(tla) / 400).toFixed(0);
+                                console.log(interest, l);
                             }
 
                             else {
@@ -197,7 +198,9 @@
                                 regular_tbc_interest = (roi * parseInt(TabcedcoShare) / 400).toFixed(0);
 
                                 interest = extra_days_nbc+extra_days_tbc+parseInt(regular_nbc_interest)+parseInt(regular_tbc_interest);
-                            }
+
+                                console.log(extra_days_nbc, extra_days_tbc, parseInt(regular_nbc_interest), parseInt(regular_tbc_interest));                            }
+
                             principal_per_installment = Math.ceil(tabcedco_installments);
                         }
 
@@ -207,6 +210,7 @@
                             var days = moment(current_demand_date, 'DD-MM-YYYY').diff(moment(cheque_date, 'DD-MM-YYYY'), 'days');
                             interest = Math.ceil(((roi) * amount_remaining ) / (400));
                             principal_per_installment = Math.ceil(tabcedco_installments);
+                            console.log(extra_days_nbc, extra_days_tbc, parseInt(regular_nbc_interest), parseInt(regular_tbc_interest));
                         }
 
                         else if (l ===3) {
@@ -215,6 +219,7 @@
                             days = moment(current_demand_date, 'DD-MM-YYYY').diff(moment(cheque_date, 'DD-MM-YYYY'), 'days');
                             interest = Math.ceil(((roi) * amount_remaining ) / (400));
                             principal_per_installment = Math.ceil(nbcfdc_installments);
+                                console.log(extra_days_nbc, extra_days_tbc, parseInt(regular_nbc_interest), parseInt(regular_tbc_interest));
                         }
 
                         else if(l=== no_of_demands) {
@@ -222,6 +227,7 @@
                             amount_remaining -= principal_per_installment;
                             interest = Math.ceil(((roi) * amount_remaining ) / (400));
                             principal_per_installment = Math.ceil(amount_remaining);
+                            console.log(interest, l);
                         }
 
                         else {
@@ -229,6 +235,7 @@
                             amount_remaining -= principal_per_installment;
                             interest = Math.ceil(((roi) * amount_remaining ) / (400));
                             principal_per_installment = Math.ceil(nbcfdc_installments);
+                            console.log(interest, l);
                         }
 
                         sum_principal += parseInt(principal_per_installment);
@@ -269,6 +276,7 @@
                                 regular_tbc_interest = (roi * parseInt(TabcedcoShare) / 400).toFixed(0);
 
                                 interest = extra_days_nbc+extra_days_tbc+parseInt(regular_nbc_interest)+parseInt(regular_tbc_interest);
+                                console.log(interest, l);
                             }
                             principal_per_installment = Math.ceil(tabcedco_installments);
                         }
@@ -279,6 +287,7 @@
                             days = moment(current_demand_date, 'DD-MM-YYYY').diff(moment(cheque_date, 'DD-MM-YYYY'), 'days');
                             interest = Math.ceil(((roi) * amount_remaining ) / (400));
                             principal_per_installment = Math.ceil(nbcfdc_installments);
+                            console.log(interest, l);
                         }
 
                         else if(l=== no_of_demands) {
@@ -293,6 +302,7 @@
                             amount_remaining -= principal_per_installment;
                             interest = Math.ceil(((roi) * amount_remaining ) / (400));
                             principal_per_installment = Math.ceil(nbcfdc_installments);
+                            console.log(interest, l);
                         }
 
                         rows.push([[l], [current_demand_date], [Math.ceil(amount_remaining)],
