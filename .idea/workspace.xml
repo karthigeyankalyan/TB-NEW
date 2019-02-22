@@ -36,8 +36,8 @@
       <file leaf-file-name="Application_Review.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/templates/Application_Review.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-4796">
-              <caret line="674" column="0" lean-forward="false" selection-start-line="674" selection-start-column="0" selection-end-line="674" selection-end-column="0" />
+            <state relative-caret-position="279">
+              <caret line="2146" column="0" lean-forward="false" selection-start-line="2146" selection-start-column="0" selection-end-line="2149" selection-end-column="0" />
               <folding>
                 <element signature="n#style#0;n#div#1;n#!!top" expanded="true" />
                 <element signature="e#2087#20007#0" expanded="false" />
@@ -83,8 +83,8 @@
       <file leaf-file-name="addFinancial.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/templates/addFinancial.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="287">
-              <caret line="120" column="36" lean-forward="true" selection-start-line="120" selection-start-column="36" selection-end-line="120" selection-end-column="36" />
+            <state relative-caret-position="255">
+              <caret line="398" column="0" lean-forward="false" selection-start-line="398" selection-start-column="0" selection-end-line="398" selection-end-column="0" />
               <folding>
                 <element signature="e#19903#19938#0" expanded="false" />
                 <element signature="e#19992#20300#0" expanded="false" />
@@ -130,7 +130,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>rev</find>
       <find>This office PSO Pro</find>
       <find>Review</find>
       <find>loan_fina</find>
@@ -160,6 +159,7 @@
       <find>ann_loan</find>
       <find>popu</find>
       <find>addFinan</find>
+      <find>days</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -1035,8 +1035,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/templates/Application_Review.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4796">
-          <caret line="674" column="0" lean-forward="false" selection-start-line="674" selection-start-column="0" selection-end-line="674" selection-end-column="0" />
+        <state relative-caret-position="279">
+          <caret line="2146" column="0" lean-forward="false" selection-start-line="2146" selection-start-column="0" selection-end-line="2149" selection-end-column="0" />
           <folding>
             <element signature="n#style#0;n#div#1;n#!!top" expanded="true" />
             <element signature="e#2087#20007#0" expanded="false" />
@@ -1078,8 +1078,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/templates/addFinancial.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="287">
-          <caret line="120" column="36" lean-forward="true" selection-start-line="120" selection-start-column="36" selection-end-line="120" selection-end-column="36" />
+        <state relative-caret-position="255">
+          <caret line="398" column="0" lean-forward="false" selection-start-line="398" selection-start-column="0" selection-end-line="398" selection-end-column="0" />
           <folding>
             <element signature="e#19903#19938#0" expanded="false" />
             <element signature="e#19992#20300#0" expanded="false" />
