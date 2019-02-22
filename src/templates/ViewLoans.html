@@ -88,8 +88,9 @@
                             for (var j = 0; j < jsonFunc.length; j++) {
                                 {
                                     var loan_id = jsonFunc[j]["_id"];
+                                    var ann_loan_id = jsonFunc[j]["ann_loan_id"];
                                     var url = '/updateApplication/'+loan_id;
-                                    var url1 = '/loanFinancial/'+loan_id;
+                                    var url1 = '/loanFinancial/'+ann_loan_id;
                                     var url2 = '/ViewDemandsByLoan/'+loan_id;
                                     if (jsonFunc[j]['loan_category'] === 'GTL (General Term Loan)' || jsonFunc[j]['loan_category'] === 'NSS (New-Swarnima Scheme)') {
                                         var name = jsonFunc[j]["applicant_name"];

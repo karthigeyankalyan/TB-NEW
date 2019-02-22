@@ -69,104 +69,311 @@
 </form>
 
 <script>
-    var source = "/loan/"+"{{application_id}}";
+    var source = "/getLoansByIdentfierLoans/"+"{{application_id}}";
     $.ajax({
         type: 'GET',
         url: source,
         contentType: "application/json",
         dataType: 'json',
         success: function (json) {
-                document.getElementById("loanCategory").value = json[0]["loan_category"];
-                document.getElementById("district").value = json[0]["district"];
-                document.getElementById("loanID").value = json[0]["ann_loan_id"];
-                document.getElementById("bank").value = json[0]["bank"];
-                document.getElementById("subBank").value = json[0]["sub_bank"];
-                document.getElementById("loanAmount").value = json[0]["loan_amount"];
-                document.getElementById("loanID").value = json[0]["ann_loan_id"];
-                var per_installment;
+            console.log(json);
 
-                if(json[0]['ro_number'] === undefined) {
-                    alert('Update RO Number and Add Financial');
+            if(json[0]['loan_category'] === 'GTL (General Term Loan)') {
+                var cat = "GTL";
+            }
+            else if(json[0]['loan_category'] === 'NSS (New-Swarnima Scheme)') {
+                cat = "NSS";
+            }
+            else if(json[0]['loan_category'] === 'MCG (Micro-Credit Gents)') {
+                cat = "MCR";
+            }
+            else if(json[0]['loan_category'] === 'MSY (Mahila Samridhi Yojana)') {
+                cat = "MSY";
+            }
+
+            document.getElementById("loanCategory").value = json[0]["loan_category"];
+            document.getElementById("district").value = json[0]["district"];
+            document.getElementById("loanID").value = json[0]["ann_loan_id"];
+            document.getElementById("bank").value = json[0]["bank"];
+            document.getElementById("subBank").value = json[0]["sub_bank"];
+            document.getElementById("loanAmount").value = json[0]["loan_amount"];
+            document.getElementById("loanID").value = json[0]["ann_loan_id"];
+            var per_installment;
+
+            if(json[0]['ro_number'] === undefined) {
+                alert('Update RO Number and Add Financial');
+            }
+
+            for (var j = 1; j <= parseInt(json[0]["no_of_demands"]); j++) {
+                {
+                    var inputSNO = "s"+j;
+                    var inputDateid = "d"+j;
+                    var inputPrincipalDemand = "pd"+j;
+                    var inputInterestDemand = "id"+j;
+                    var row = $('<div></div>').html('<input type="number" onchange="populateDates()" name='+inputSNO+' value='+j+'><input type="date" onchange="populateDates()" id='+inputDateid+' name='+inputDateid+'><input type="number" id='+inputPrincipalDemand+' name='+inputPrincipalDemand+'><input type="number" onchange="populateDates()" id='+inputInterestDemand+' name='+inputInterestDemand+'>');
+                    $("#demandDetails").append(row);
                 }
+            }
 
-                for (var j = 1; j <= parseInt(json[0]["no_of_demands"]); j++) {
-                    {
-                        var inputSNO = "s"+j;
-                        var inputDateid = "d"+j;
-                        var inputPrincipalDemand = "pd"+j;
-                        var inputInterestDemand = "id"+j;
-                        var row = $('<div></div>').html('<input type="number" onchange="populateDates()" name='+inputSNO+' value='+j+'><input type="date" onchange="populateDates()" id='+inputDateid+' name='+inputDateid+'><input type="number" id='+inputPrincipalDemand+' name='+inputPrincipalDemand+'><input type="number" onchange="populateDates()" id='+inputInterestDemand+' name='+inputInterestDemand+'>');
-                        $("#demandDetails").append(row);
-                    }
+            var amount = 0;
+
+            if (cat === 'GTL' || cat === 'NSS') {
+                for ( var i = 0; i <= json.length; i++) {
+                    amount += json[i]['loan_amount'];
                 }
+            }
+            else {
+                amount +=  json[0]['loan_amount'];
+            }
 
-                var principal_paid = 0;
-                var nbc_share = NBCFDCShareCalculator(json[0]['loan_category'], json[0]['loan_amount']);
-                var tabcedco_share = tabcedcoShareCalculator(json[0]['loan_category'], json[0]['loan_amount']);
+            var no_of_demands = json[0]['no_of_demands'];
 
-                if(parseInt(json[0]["no_of_demands"]) === 12) {
-                    for (j = 1; j <= parseInt(json[0]["no_of_demands"]); j++) {
-                            inputSNO = "pd"+j;
-                            var first_installment = tabcedco_share;
-                            per_installment = nbc_share/(parseInt(json[0]["no_of_demands"])-1);
+            var principal_per_installment = amount/no_of_demands;
+            var amount_remaining = amount;
+            var sum_interest = 0, sum_principal = 0;
 
-                            if(j === parseInt(json[0]["no_of_demands"])) {
-                                principal_paid += Math.ceil(per_installment);
-                                var deduction = Math.ceil(parseInt(json[0]['loan_amount'])-parseInt(principal_paid));
-                                document.getElementById(inputSNO).value = Math.ceil(parseInt(deduction)+parseInt(per_installment));
-                            }
+            var NBCShare = NBCFDCShareCalculator(json[0]['loan_category'], amount);
+            var TabcedcoShare = tabcedcoShareCalculator(json[0]['loan_category'], amount);
 
-                            else if(j === 1) {
-                                principal_paid += Math.ceil(first_installment);
-                                deduction = Math.ceil(parseInt(json[0]['loan_amount'])-parseInt(principal_paid));
-                                document.getElementById(inputSNO).value = Math.ceil(parseInt(first_installment));
-                            }
+            var cheque_date = moment(json[0]['cheque_date']['$date']).format('DD-MM-YYYY');
+            var roi = moment(json[0]['roi']);
 
-                            else {
-                                principal_paid += Math.ceil(per_installment);
-                                document.getElementById(inputSNO).value = Math.ceil(per_installment);
-                            }
-                        }
+            if (cat === 'MSY' || cat === 'MCR') {
+                for (var l = 1; l <= no_of_demands; l++) {
+                    if (l === 1) {
+                        var current_demand_date = moment(cheque_date, "DD-MM-YYYY").add(4, 'M').startOf('month').format('DD-MM-YYYY');
+                        var total_days_in_month = daysInMonth(moment(cheque_date, 'DD-MM-YYYY').format('MM'), moment(cheque_date, 'DD-MM-YYYY').format('YYYY'), moment(cheque_date, 'DD-MM-YYYY').format('DD-MM-YYYY'));
+                        var extra_interest_days = total_days_in_month - moment(cheque_date, 'DD-MM-YYYY').format('DD') + 1;
+
+                        var extra_days_nbc = ((roi) * NBCShare * extra_interest_days) / (365 * 100).toFixed(0);
+                        var extra_days_tbc = ((roi) * TabcedcoShare * extra_interest_days) / (365 * 100).toFixed(0);
+
+                        var regular_nbc_interest = (roi * parseInt(NBCShare) / 400).toFixed(0);
+                        var regular_tbc_interest = (roi * parseInt(TabcedcoShare) / 400).toFixed(0);
+                        var interest = Math.ceil(extra_days_nbc+extra_days_tbc+parseInt(regular_nbc_interest)+parseInt(regular_tbc_interest));
                     }
+
                     else {
-                    for (j = 1; j <= parseInt(json[0]["no_of_demands"]); j++) {
-                            inputSNO = "pd"+j;
-                            first_installment = tabcedco_share/2;
+                        current_demand_date = moment(previous_demand_date, "DD-MM-YYYY").add(3, 'M').format('DD-MM-YYYY');
+                        amount_remaining -= principal_per_installment;
+                        interest = (roi * parseInt(amount_remaining) / 400).toFixed(0);
+                    }
 
-                            per_installment = nbc_share/(parseInt(json[0]["no_of_demands"])-2);
 
-                            if(j === parseInt(json[0]["no_of_demands"])) {
-                                principal_paid += Math.ceil(per_installment);
-                                deduction = Math.ceil(parseInt(json[0]['loan_amount'])-parseInt(principal_paid));
-                                document.getElementById(inputSNO).value = Math.ceil(parseInt(deduction)+parseInt(per_installment));
-                            }
+                    document.getElementById('pd'+l).value = principal_per_installment;
+                    document.getElementById('id'+l).value = interest;
+                    document.getElementById('d'+l).value = moment(current_demand_date, "DD-MM-YYYY").format("YYYY-MM-DD");
 
-                            else if(j === 1 || j === 2) {
-                                principal_paid += Math.ceil(first_installment);
-                                deduction = Math.ceil(parseInt(json[0]['loan_amount'])-parseInt(principal_paid));
-                                document.getElementById(inputSNO).value = Math.ceil(parseInt(first_installment));
+                    sum_principal += parseInt(principal_per_installment);
+                    sum_interest += parseInt(interest);
+
+                    var previous_demand_date = current_demand_date;
+                }
+            }
+
+            else {
+                if (parseInt(no_of_demands) === 32 || parseInt(no_of_demands) === 20) {
+                    var tabcedco_installments = TabcedcoShare/2;
+                    var nbcfdc_installments = Math.floor(NBCShare/(no_of_demands-2));
+
+                    amount_remaining = NBCShare+TabcedcoShare;
+                    var tla = NBCShare+TabcedcoShare;
+                    sum_interest = 0, sum_principal = 0;
+
+                    for (l = 1; l <= no_of_demands; l++) {
+                        if (l === 1) {
+                            current_demand_date = moment(cheque_date, "DD-MM-YYYY").add(4, 'M').startOf('month').format('DD-MM-YYYY');
+                            if (moment(cheque_date, 'DD-MM-YYYY').format('DD') === 1) {
+                                interest = (roi * parseInt(tla) / 400).toFixed(0);
                             }
 
                             else {
-                                principal_paid += Math.ceil(per_installment);
-                                document.getElementById(inputSNO).value = Math.ceil(per_installment);
+                                total_days_in_month = daysInMonth(moment(cheque_date, 'DD-MM-YYYY').format('MM'), moment(cheque_date, 'DD-MM-YYYY').format('YYYY'), moment(cheque_date, 'DD-MM-YYYY').format('DD-MM-YYYY'));
+                                extra_interest_days = total_days_in_month - moment(cheque_date, 'DD-MM-YYYY').format('DD') + 1;
+                                extra_days_nbc = ((roi) * NBCShare * extra_interest_days) / (365 * 100).toFixed(0);
+                                extra_days_tbc = ((roi) * TabcedcoShare * extra_interest_days) / (365 * 100).toFixed(0);
+
+                                regular_nbc_interest = (roi * parseInt(NBCShare) / 400).toFixed(0);
+                                regular_tbc_interest = (roi * parseInt(TabcedcoShare) / 400).toFixed(0);
+
+                                interest = extra_days_nbc+extra_days_tbc+parseInt(regular_nbc_interest)+parseInt(regular_tbc_interest);
                             }
+                            principal_per_installment = Math.ceil(tabcedco_installments);
                         }
+
+                        else if (l ===2) {
+                            current_demand_date = moment(previous_demand_date, "DD-MM-YYYY").add(3, 'M').format('DD-MM-YYYY');
+                            amount_remaining -= Math.ceil(tabcedco_installments);
+                            var days = moment(current_demand_date, 'DD-MM-YYYY').diff(moment(cheque_date, 'DD-MM-YYYY'), 'days');
+                            interest = Math.ceil(((roi) * amount_remaining ) / (400));
+                            principal_per_installment = Math.ceil(tabcedco_installments);
+                        }
+
+                        else if (l ===3) {
+                            current_demand_date = moment(previous_demand_date, "DD-MM-YYYY").add(3, 'M').format('DD-MM-YYYY');
+                            amount_remaining -= Math.ceil(tabcedco_installments);
+                            days = moment(current_demand_date, 'DD-MM-YYYY').diff(moment(cheque_date, 'DD-MM-YYYY'), 'days');
+                            interest = Math.ceil(((roi) * amount_remaining ) / (400));
+                            principal_per_installment = Math.ceil(nbcfdc_installments);
+                        }
+
+                        else if(l=== no_of_demands) {
+                            current_demand_date = moment(previous_demand_date, "DD-MM-YYYY").add(3, 'M').format('DD-MM-YYYY');
+                            amount_remaining -= principal_per_installment;
+                            interest = Math.ceil(((roi) * amount_remaining ) / (400));
+                            principal_per_installment = Math.ceil(amount_remaining);
+                        }
+
+                        else {
+                            current_demand_date = moment(previous_demand_date, "DD-MM-YYYY").add(3, 'M').format('DD-MM-YYYY');
+                            amount_remaining -= principal_per_installment;
+                            interest = Math.ceil(((roi) * amount_remaining ) / (400));
+                            principal_per_installment = Math.ceil(nbcfdc_installments);
+                        }
+
+                        sum_principal += parseInt(principal_per_installment);
+                        sum_interest += parseInt(interest);
+
+                        previous_demand_date = current_demand_date;
+
+                        document.getElementById('pd'+l).value = principal_per_installment;
+                        document.getElementById('id'+l).value = interest;
+                        document.getElementById('d'+l).value = moment(current_demand_date, "DD-MM-YYYY").format("YYYY-MM-DD");
+                    }
                 }
+
+                else {
+                    tabcedco_installments = TabcedcoShare;
+                    nbcfdc_installments = Math.floor(NBCShare/(no_of_demands-1));
+
+                    amount_remaining = NBCShare+TabcedcoShare;
+                    tla = NBCShare+TabcedcoShare;
+
+                    sum_interest = 0, sum_principal = 0;
+
+                    for (l = 1; l <= no_of_demands; l++) {
+                        if (l === 1) {
+                            current_demand_date = moment(cheque_date, "DD-MM-YYYY").add(4, 'M').startOf('month').format('DD-MM-YYYY');
+                            if (moment(cheque_date, 'DD-MM-YYYY').format('DD') === 1) {
+                                interest = (roi * parseInt(tla) / 400).toFixed(0);
+                            }
+
+                            else {
+                                total_days_in_month = daysInMonth(moment(cheque_date, 'DD-MM-YYYY').format('MM'), moment(cheque_date, 'DD-MM-YYYY').format('YYYY'), moment(cheque_date, 'DD-MM-YYYY').format('DD-MM-YYYY'));
+                                extra_interest_days = total_days_in_month - moment(cheque_date, 'DD-MM-YYYY').format('DD') + 1;
+
+                                extra_days_nbc = ((roi) * NBCShare * extra_interest_days) / (365 * 100).toFixed(0);
+                                extra_days_tbc = ((roi) * TabcedcoShare * extra_interest_days) / (365 * 100).toFixed(0);
+
+                                regular_nbc_interest = (roi * parseInt(NBCShare) / 400).toFixed(0);
+                                regular_tbc_interest = (roi * parseInt(TabcedcoShare) / 400).toFixed(0);
+
+                                interest = extra_days_nbc+extra_days_tbc+parseInt(regular_nbc_interest)+parseInt(regular_tbc_interest);
+                            }
+                            principal_per_installment = Math.ceil(tabcedco_installments);
+                        }
+
+                        else if (l === 2) {
+                            current_demand_date = moment(previous_demand_date, "DD-MM-YYYY").add(3, 'M').format('DD-MM-YYYY');
+                            amount_remaining -= tabcedco_installments;
+                            days = moment(current_demand_date, 'DD-MM-YYYY').diff(moment(cheque_date, 'DD-MM-YYYY'), 'days');
+                            interest = Math.ceil(((roi) * amount_remaining ) / (400));
+                            principal_per_installment = Math.ceil(nbcfdc_installments);
+                        }
+
+                        else if(l=== no_of_demands) {
+                            current_demand_date = moment(previous_demand_date, "DD-MM-YYYY").add(3, 'M').format('DD-MM-YYYY');
+                            amount_remaining -= principal_per_installment;
+                            interest = Math.ceil(((roi) * amount_remaining ) / (400));
+                            principal_per_installment = Math.ceil(amount_remaining);
+                        }
+
+                        else {
+                            current_demand_date = moment(previous_demand_date, "DD-MM-YYYY").add(3, 'M').format('DD-MM-YYYY');
+                            amount_remaining -= principal_per_installment;
+                            interest = Math.ceil(((roi) * amount_remaining ) / (400));
+                            principal_per_installment = Math.ceil(nbcfdc_installments);
+                        }
+
+                        rows.push([[l], [current_demand_date], [Math.ceil(amount_remaining)],
+                            [principal_per_installment], [Math.ceil(interest)],
+                            [parseInt(principal_per_installment) + parseInt(interest)]]);
+
+                        sum_principal += parseInt(principal_per_installment);
+                        sum_interest += parseInt(interest);
+                        previous_demand_date = current_demand_date;
+
+                        document.getElementById('pd'+l).value = principal_per_installment;
+                        document.getElementById('id'+l).value = interest;
+                        document.getElementById('d'+l).value = moment(current_demand_date, "DD-MM-YYYY").format("YYYY-MM-DD");
+
+                    }
+                }
+            }
+
+//                if(parseInt(json[0]["no_of_demands"]) === 12) {
+//                    for (j = 1; j <= parseInt(json[0]["no_of_demands"]); j++) {
+//                        inputSNO = "pd"+j;
+//                        var first_installment = tabcedco_share;
+//                        per_installment = nbc_share/(parseInt(json[0]["no_of_demands"])-1);
+//
+//                        if(j === parseInt(json[0]["no_of_demands"])) {
+//                            principal_paid += Math.ceil(per_installment);
+//                            var deduction = Math.ceil(parseInt(json[0]['loan_amount'])-parseInt(principal_paid));
+//                            document.getElementById(inputSNO).value = Math.ceil(parseInt(deduction)+parseInt(per_installment));
+//                        }
+//
+//                        else if(j === 1) {
+//                            principal_paid += Math.ceil(first_installment);
+//                            deduction = Math.ceil(parseInt(json[0]['loan_amount'])-parseInt(principal_paid));
+//                            document.getElementById(inputSNO).value = Math.ceil(parseInt(first_installment));
+//                        }
+//
+//                        else {
+//                            principal_paid += Math.ceil(per_installment);
+//                            document.getElementById(inputSNO).value = Math.ceil(per_installment);
+//                        }
+//                    }
+//                }
+//                else {
+//                    for (j = 1; j <= parseInt(json[0]["no_of_demands"]); j++) {
+//                        inputSNO = "pd"+j;
+//                        first_installment = tabcedco_share/2;
+//
+//                        per_installment = nbc_share/(parseInt(json[0]["no_of_demands"])-2);
+//
+//                        if(j === parseInt(json[0]["no_of_demands"])) {
+//                            principal_paid += Math.ceil(per_installment);
+//                            deduction = Math.ceil(parseInt(json[0]['loan_amount'])-parseInt(principal_paid));
+//                            document.getElementById(inputSNO).value = Math.ceil(parseInt(deduction)+parseInt(per_installment));
+//                        }
+//
+//                        else if(j === 1 || j === 2) {
+//                            principal_paid += Math.ceil(first_installment);
+//                            deduction = Math.ceil(parseInt(json[0]['loan_amount'])-parseInt(principal_paid));
+//                            document.getElementById(inputSNO).value = Math.ceil(parseInt(first_installment));
+//                        }
+//
+//                        else {
+//                            principal_paid += Math.ceil(per_installment);
+//                            document.getElementById(inputSNO).value = Math.ceil(per_installment);
+//                        }
+//                    }
+//                }
         },
         error: function (e) {
             alert("error");
         }
     });
 
-        /**
+    /**
      * @return {number}
      */
     function NBCFDCShareCalculator(category, amount) {
-        if (category === 'GTL') {
+        if (category === 'GTL (General Term Loan)') {
             return amount*0.85;
         }
-        else if (category === 'NSS' || category === 'MSY') {
+        else if (category === 'NSS (New-Swarnima Scheme)' || category === 'MSY (Mahila Samridhi Yojana)') {
             return amount*.95;
         }
         else {
@@ -178,10 +385,10 @@
      * @return {number}
      */
     function tabcedcoShareCalculator(category, amount) {
-        if (category === 'GTL') {
+        if (category === 'GTL (General Term Loan)') {
             return amount*0.10;
         }
-        else if (category === 'NSS' || category === 'MSY') {
+        else if (category === 'NSS (New-Swarnima Scheme)' || category === 'MSY (Mahila Samridhi Yojana)') {
             return amount*0.05;
         }
         else {
@@ -189,57 +396,57 @@
         }
     }
 
-
     function populateDates() {
-            var source = "/loan/"+"{{application_id}}";
-            $.ajax({
-                type: 'GET',
-                url: source,
-                contentType: "application/json",
-                dataType: 'json',
-                success: function (json) {
-                    var sanction_date = document.getElementById("receivedDate").value;
-                    for (var j = 1; j <= parseInt(json[0]["no_of_demands"]); j++) {
-                    inputSNO = "d"+j;
-                        if(j === 1) {
-                        var day = 1;
-                        document.getElementById(inputSNO).value = moment(new Date(moment(sanction_date).format('YYYY'), parseInt(moment(sanction_date).format('MM'))+3, day)).format('YYYY-MM-DD');
-                        }
-                        else {
-                        prevDemand = "d"+(j-1);
-                        var prevDemandDate = document.getElementById(prevDemand).value;
-                        day = 1;
-                        document.getElementById(inputSNO).value = moment(new Date(moment(prevDemandDate).format('YYYY'), parseInt(moment(prevDemandDate).format('MM'))+2, day)).format('YYYY-MM-DD');
-                        }
-                    }
-                    var principle_demand_cumulative = 0;
-                    for (j = 1; j <= parseInt(json[0]["no_of_demands"]); j++) {
-                    inputSNO = "id"+j;
-                    var principalID = "pd"+j;
-                    var dateID = "d"+j;
-                    var demand_date = document.getElementById(dateID).value;
-                        if(j === 1) {
-                            var days = moment(demand_date).diff(moment(sanction_date), 'days');
-                            var principal_demand = document.getElementById(principalID).value;
-                            document.getElementById(inputSNO).value = ((json[0]["roi"] * json[0]["loan_amount"] * days) / (365 * 100)).toFixed(0);
-                        }
-                        else {
-                            var prevDateID = "d"+(j-1);
-                            var prevDemandID = "pd"+(j-1);
-                            principle_demand_cumulative+= parseInt(document.getElementById(prevDemandID).value);
-                            var remaining_amount = json[0]['loan_amount'] - principle_demand_cumulative;
-                            var prev_demand_date = document.getElementById(prevDateID).value;
-                            days = moment(demand_date).diff(moment(prev_demand_date), 'days');
-                            principal_demand = document.getElementById(principalID).value;
-                            document.getElementById(inputSNO).value = ((json[0]["roi"] * remaining_amount * days) / (365 * 100)).toFixed(0);
-                        }
-                    }
-
-                },
-                error: function (e) {
-                    alert("error");
-                }
-            });
+        console.log(123);
+//            var source = "/loan/"+"{{application_id}}";
+//            $.ajax({
+//                type: 'GET',
+//                url: source,
+//                contentType: "application/json",
+//                dataType: 'json',
+//                success: function (json) {
+//                    var sanction_date = document.getElementById("receivedDate").value;
+//                    for (var j = 1; j <= parseInt(json[0]["no_of_demands"]); j++) {
+//                    inputSNO = "d"+j;
+//                        if(j === 1) {
+//                        var day = 1;
+//                        document.getElementById(inputSNO).value = moment(new Date(moment(sanction_date).format('YYYY'), parseInt(moment(sanction_date).format('MM'))+3, day)).format('YYYY-MM-DD');
+//                        }
+//                        else {
+//                        prevDemand = "d"+(j-1);
+//                        var prevDemandDate = document.getElementById(prevDemand).value;
+//                        day = 1;
+//                        document.getElementById(inputSNO).value = moment(new Date(moment(prevDemandDate).format('YYYY'), parseInt(moment(prevDemandDate).format('MM'))+2, day)).format('YYYY-MM-DD');
+//                        }
+//                    }
+//                    var principle_demand_cumulative = 0;
+//                    for (j = 1; j <= parseInt(json[0]["no_of_demands"]); j++) {
+//                    inputSNO = "id"+j;
+//                    var principalID = "pd"+j;
+//                    var dateID = "d"+j;
+//                    var demand_date = document.getElementById(dateID).value;
+//                        if(j === 1) {
+//                            var days = moment(demand_date).diff(moment(sanction_date), 'days');
+//                            var principal_demand = document.getElementById(principalID).value;
+//                            document.getElementById(inputSNO).value = ((json[0]["roi"] * json[0]["loan_amount"] * days) / (365 * 100)).toFixed(0);
+//                        }
+//                        else {
+//                            var prevDateID = "d"+(j-1);
+//                            var prevDemandID = "pd"+(j-1);
+//                            principle_demand_cumulative+= parseInt(document.getElementById(prevDemandID).value);
+//                            var remaining_amount = json[0]['loan_amount'] - principle_demand_cumulative;
+//                            var prev_demand_date = document.getElementById(prevDateID).value;
+//                            days = moment(demand_date).diff(moment(prev_demand_date), 'days');
+//                            principal_demand = document.getElementById(principalID).value;
+//                            document.getElementById(inputSNO).value = ((json[0]["roi"] * remaining_amount * days) / (365 * 100)).toFixed(0);
+//                        }
+//                    }
+//
+//                },
+//                error: function (e) {
+//                    alert("error");
+//                }
+//            });
     }
 
 </script>
