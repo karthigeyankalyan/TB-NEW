@@ -197,11 +197,12 @@
                                 regular_nbc_interest = (roi * parseInt(NBCShare) / 400).toFixed(0);
                                 regular_tbc_interest = (roi * parseInt(TabcedcoShare) / 400).toFixed(0);
 
-                                interest = extra_days_nbc+extra_days_tbc+parseInt(regular_nbc_interest)+parseInt(regular_tbc_interest);
+                                interest = extra_days_nbc + extra_days_tbc + parseInt(regular_nbc_interest) + parseInt(regular_tbc_interest);
 
                                 console.log(cheque_date, NBCShare, TabcedcoShare, extra_interest_days);
 
-                            principal_per_installment = Math.ceil(tabcedco_installments);
+                                principal_per_installment = Math.ceil(tabcedco_installments);
+                            }
                         }
 
                         else if (l ===2) {
