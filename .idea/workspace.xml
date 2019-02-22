@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="da0bb03c-275f-4eeb-800c-401a339e857e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/templates/addFinancial.html" afterPath="$PROJECT_DIR$/src/templates/addFinancial.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -84,13 +83,13 @@
       <file leaf-file-name="addFinancial.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/templates/addFinancial.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="440">
-              <caret line="189" column="0" lean-forward="true" selection-start-line="189" selection-start-column="0" selection-end-line="189" selection-end-column="0" />
+            <state relative-caret-position="423">
+              <caret line="201" column="0" lean-forward="false" selection-start-line="201" selection-start-column="0" selection-end-line="201" selection-end-column="0" />
               <folding>
-                <element signature="e#20007#20042#0" expanded="false" />
-                <element signature="e#20096#20404#0" expanded="false" />
-                <element signature="e#20410#20445#0" expanded="false" />
-                <element signature="e#20501#20811#0" expanded="false" />
+                <element signature="e#19941#19976#0" expanded="false" />
+                <element signature="e#20030#20338#0" expanded="false" />
+                <element signature="e#20344#20379#0" expanded="false" />
+                <element signature="e#20435#20745#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -1015,13 +1014,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/templates/addFinancial.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
-          <caret line="189" column="0" lean-forward="true" selection-start-line="189" selection-start-column="0" selection-end-line="189" selection-end-column="0" />
+        <state relative-caret-position="423">
+          <caret line="201" column="0" lean-forward="false" selection-start-line="201" selection-start-column="0" selection-end-line="201" selection-end-column="0" />
           <folding>
-            <element signature="e#20007#20042#0" expanded="false" />
-            <element signature="e#20096#20404#0" expanded="false" />
-            <element signature="e#20410#20445#0" expanded="false" />
-            <element signature="e#20501#20811#0" expanded="false" />
+            <element signature="e#19941#19976#0" expanded="false" />
+            <element signature="e#20030#20338#0" expanded="false" />
+            <element signature="e#20344#20379#0" expanded="false" />
+            <element signature="e#20435#20745#0" expanded="false" />
           </folding>
         </state>
       </provider>
