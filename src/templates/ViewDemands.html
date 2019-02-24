@@ -118,8 +118,8 @@
                                 }
 
                                 var demand_id = json[j]["_id"];
-                                var url = '/updateDemand/'+demand_id+'/'+penal_plus_belated;
                                 var penal_plus_belated = parseInt(json[j]["belated_interest"]) + parseInt(json[j]["penal_interest"]);
+                                var url = '/updateDemand/'+demand_id+'/'+penal_plus_belated;
                                 var row = $('<tr></tr>').html('<td>' +
                                     +json[j]["demand_number"] +'</td>'+
                                     '<td>'+json[j]["demand_date"]+'</td>'+
