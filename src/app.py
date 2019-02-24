@@ -1097,7 +1097,7 @@ def all_demands_view(loan_id):
 @app.route('/rawDemandsByLoan/<string:loan_id>')
 def raw_demands_by_loan_id(loan_id):
     loan = []
-    loan_dict = Database.find("Demands", {"loan_id": loan_id})
+    loan_dict = Database.find("Demands", {"ann_id": loan_id})
 
     for tran in loan_dict:
         loan.append(tran)
