@@ -861,7 +861,7 @@ def loan_financial_form(_id):
 
         else:
             user = User.get_by_email(email)
-            application = Database.find("loans", {"_id": _id})
+            application = Database.find("loans", {"ann_loan_id": _id})
 
             dem_count, roi = 0, 0
             ro_number, bank, district, loan_category, sub_bank = None, None, None, None, None
