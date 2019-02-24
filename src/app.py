@@ -880,6 +880,8 @@ def loan_financial_form(_id):
             var_interest_demand = []
             var_dem_number = []
 
+            print(dem_count)
+
             for i in range(int(dem_count)):
                 var_form_date = "d"+str(i+1)
                 var_form_principal_demand = "pd"+str(i+1)
@@ -897,6 +899,8 @@ def loan_financial_form(_id):
             user_name = user.username
             loan_id = request.form['loanID']
 
+            demand_object = None
+
             for i in range(int(dem_count)):
                 demand_object = Demand(loan_category=loan_category, district_bank=bank, sub_bank=sub_bank,
                                        district=district, loan_amount=loan_amount, demand_number=var_dem_number[i],
@@ -907,7 +911,7 @@ def loan_financial_form(_id):
 
                 demand_object.save_to_mongo()
 
-        return render_template('added.html',  user=user)
+        return render_template('added.html',  user=user, demand=demand_object)
 
     else:
         return render_template('login_fail.html')
