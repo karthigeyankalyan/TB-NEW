@@ -3,16 +3,6 @@
 
 <form id="new-intent" action="/updateDemand/{{ demand_id }}" method="post">
 <div style="display: flex; flex-direction: column; align-items: center; flex: 1; justify-content: space-around; margin-top: 10px">
-    <div class="form-group" style="display: block; width: 38%">
-        <label for="loanCategory">Loan Category</label>
-        <select class="form-control" id="loanCategory" name="loanCategory">
-            {% set categories = ['GTL', 'NSS', 'MCL', 'MSY'] %}
-            {% for category in categories %}
-                <option value= "{{category}}">{{category}}</option>"
-            {% endfor %}
-        </select>
-    </div>
-
     <div class="form-group">
           <label for="district">Select District:</label>
           <select class="form-control" style="text-align: center;" id="district" name="district">
@@ -31,22 +21,11 @@
 
     <div class="form-group" style="display: flex; justify-content: space-between; align-items: center; flex-direction: row">
         <label for="bank">Enter Bank:</label>
-        <select class="form-control" style="margin-left: 5px;flex: 4" id="bank" name="bank">
-            {% set nature = ['KVB', 'IOB', 'CUB', 'SBI', 'SBI Egmore', 'Indian Bank Saidapet'] %}
-
-            {% for nat in nature %}
-                <option value= "{{nat}}">{{nat}}</option>"
-            {% endfor %}
-        </select>
+        <input type="text" id="bank" name="bank">
 
         <label for="subBank">Enter Sub-Bank:</label>
-        <select class="form-control" style="margin-left: 5px; flex: 4" id="subBank" name="subBank">
-            {% set nature = ['KVB', 'IOB', 'CUB', 'SBI', 'SBI Egmore', 'Indian Bank Saidapet'] %}
+        <input type="text" id="subBank" name="subBank">
 
-            {% for nat in nature %}
-                <option value= "{{nat}}">{{nat}}</option>"
-            {% endfor %}
-        </select>
     </div>
 
     <div class="form-group" style="display: flex; flex-direction: row; justify-content: space-between;">
@@ -83,7 +62,7 @@
 
     <div id="annualloanid" style="display: flex; flex-direction: row; align-items: center; justify-content: center">
         <label for="loanID">Annual Loan ID</label>
-        <input type="number" name="loanID" id="loanID">
+        <input type="text" name="loanID" id="loanID">
     </div>
 
     <button type="submit" class="btn btn-success">Save Application Details</button>
@@ -101,7 +80,7 @@
         dataType: 'json',
         success: function (json) {
             console.log(json);
-                document.getElementById("loanCategory").value = json[0]["loan_category"];
+                document.getElementById("district").value = json[0]["district"];
                 document.getElementById("bank").value = json[0]["district_bank"];
                 document.getElementById("subBank").value = json[0]["sub_bank"];
                 document.getElementById("loanAmount").value = json[0]["loan_amount"];

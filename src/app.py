@@ -917,8 +917,9 @@ def loan_financial_form(_id):
         return render_template('login_fail.html')
 
 
-@app.route('/updateDemand/<string:_id>/<string:late_interest>', methods=['POST', 'GET'])
-def update_loan_financial_form(_id, late_interest):
+@app.route('/updateDemand/<string:_id>/<string:late_interest>/<string:belated_int>/<string:penal_int>',
+           methods=['POST', 'GET'])
+def update_loan_financial_form(_id, late_interest, belated_int, penal_int):
     email = session['email']
     if email is not None:
         if request.method == 'GET':
@@ -1026,21 +1027,20 @@ def update_loan_financial_form(_id, late_interest):
                     penal_interest_current_demand = 0
                     belated_interest_current_demand = 0
 
-                penal_interest = penal_interest_old_due+penal_interest_current_demand
-                belated_interest = belated_interest_old_due+belated_interest_current_demand
+                late_interest += belated_interest_old_due+penal_interest_old_due
 
-            if (chequeAmount - (penal_interest+belated_interest)) >= interest_demand:
+            if (chequeAmount - late_interest) >= interest_demand:
                 interest_collected = interest_demand
             else:
-                interest_collected = chequeAmount - (penal_interest+belated_interest)
+                interest_collected = chequeAmount - late_interest
             closing_balance_interest_due = interest_demand-interest_collected
 
-            if (chequeAmount - (penal_interest+belated_interest+interest_collected)) > 0:
-                principal_collected = chequeAmount - (penal_interest+belated_interest+interest_collected)
+            if (chequeAmount - (late_interest+interest_collected)) > 0:
+                principal_collected = chequeAmount - (late_interest+interest_collected)
             else:
                 principal_collected = 0
 
-            principal_collected1 = principal_collected - (penal_interest+belated_interest)
+            principal_collected1 = principal_collected - late_interest
             closing_balance_principal_due = principal_demand-principal_collected1
             closing_balance_principal_ndue = opening_balance_principal_ndue-original_principal_demand
             service_charge = (3/roi)*interest_collected
@@ -1054,7 +1054,7 @@ def update_loan_financial_form(_id, late_interest):
                 loan_category = result_object['loan_category']
                 dem_count = result_object['no_of_demands']
 
-            amount_yet_to_pay_loan = (closing_balance_interest_due+closing_balance_principal_due+penal_interest+belated_interest)-(principal_collected1+interest_collected)
+            amount_yet_to_pay_loan = (closing_balance_interest_due+closing_balance_principal_due+late_interest)-(principal_collected1+interest_collected)
             update_amount = pending_amount+amount_yet_to_pay_loan
 
             Demand.update_demand(demand_id=_id, demand_number=demand_number, demand_date=demand_date1,
@@ -1063,7 +1063,7 @@ def update_loan_financial_form(_id, late_interest):
                                  closing_balance_interest_due=closing_balance_interest_due,
                                  closing_balance_principal_due=closing_balance_principal_due,
                                  closing_balance_principal_ndue=closing_balance_principal_ndue,
-                                 penal_interest=penal_interest, belated_interest=belated_interest,
+                                 penal_interest=penal_int, belated_interest=belated_int,
                                  service_charge=service_charge, no_of_demands=dem_count)
 
             LoanApplication.update_pend_amount(amount_yet_to_be_paid=int(update_amount), loan_id=loan_id)
@@ -1071,7 +1071,7 @@ def update_loan_financial_form(_id, late_interest):
             account = Account(invoice_date=cheque_date1.strftime('%Y-%m-%d'), nature_of_transaction="Credit",
                               amount=loan_amount, loan_id=loan_id, user_id=user._id, user_name=user.username,
                               depositing_bank=sub_bank, adjustment_voucher="No", ledger="Sub",
-                              interest=belated_interest+interest_collected, penal_interest=penal_interest,
+                              interest=belated_int+interest_collected, penal_interest=penal_int,
                               service_charge=service_charge, principal=principal_collected,
                               cheque_date=cheque_date)
             account.save_to_mongo()
