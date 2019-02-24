@@ -917,8 +917,8 @@ def loan_financial_form(_id):
         return render_template('login_fail.html')
 
 
-@app.route('/updateDemand/<string:_id>', methods=['POST', 'GET'])
-def update_loan_financial_form(_id):
+@app.route('/updateDemand/<string:_id>/<string:late_interest>', methods=['POST', 'GET'])
+def update_loan_financial_form(_id, late_interest):
     email = session['email']
     if email is not None:
         if request.method == 'GET':
@@ -936,11 +936,11 @@ def update_loan_financial_form(_id):
                 demand_number = int(result_object['demand_number'])
                 roi = int(result_object['roi'])
                 principal_demand = int(result_object['principal_demand'])
+                interest_demand = int(result_object['interest_demand'])
                 loan_amount = int(result_object['loan_amount'])
 
             if demand_number == 1:
-                days = (demand_date-lsd).days
-                interest_demand = (days*loan_amount*roi)/(365*100)
+                total_interest_demand = interest_demand+int(late_interest)
             else:
                 demand_numberm1 = demand_number-1
                 demandm1 = Database.find("Demands", {"demand_number": str(demand_numberm1)})
@@ -950,13 +950,12 @@ def update_loan_financial_form(_id):
                     interest_due = result_object['closing_balance_interest_due']
                     demandm1_date = result_object['demand_date']
                     days = (demand_date-demandm1_date).days
-                    interest_demand = (days*principal_for_interest*roi)/(365*100)
 
             principal_demand += principal_due
-            interest_demand += interest_due
+            total_interest_demand = interest_demand + interest_due + late_interest
 
             return render_template('updateFinancial.html', user=user, demand_id=_id,
-                                   total_principal_demand=principal_demand, total_interest_demand=interest_demand)
+                                   total_principal_demand=principal_demand, total_interest_demand=total_interest_demand)
 
         else:
             user = User.get_by_email(email)
