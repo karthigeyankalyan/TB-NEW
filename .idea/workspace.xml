@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="da0bb03c-275f-4eeb-800c-401a339e857e" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/templates/ViewDemands.html" afterPath="$PROJECT_DIR$/src/templates/ViewDemands.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/templates/addFinancial.html" afterPath="$PROJECT_DIR$/src/templates/addFinancial.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -63,7 +65,7 @@
         <entry file="file://$PROJECT_DIR$/src/templates/ViewLoans.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="2414">
-              <caret line="142" column="0" lean-forward="true" selection-start-line="142" selection-start-column="0" selection-end-line="142" selection-end-column="0" />
+              <caret line="142" column="0" lean-forward="false" selection-start-line="142" selection-start-column="0" selection-end-line="142" selection-end-column="0" />
               <folding>
                 <marker date="1550821717513" expanded="true" signature="3663:3702" ph="..." />
                 <marker date="1550821717513" expanded="true" signature="3786:3825" ph="..." />
@@ -80,16 +82,38 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="addFinancial.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="addFinancial.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/templates/addFinancial.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="350">
-              <caret line="139" column="0" lean-forward="true" selection-start-line="139" selection-start-column="0" selection-end-line="139" selection-end-column="0" />
+            <state relative-caret-position="372">
+              <caret line="202" column="0" lean-forward="true" selection-start-line="202" selection-start-column="0" selection-end-line="202" selection-end-column="0" />
               <folding>
-                <element signature="e#19988#20023#0" expanded="false" />
-                <element signature="e#20077#20385#0" expanded="false" />
-                <element signature="e#20391#20426#0" expanded="false" />
-                <element signature="e#20482#20792#0" expanded="false" />
+                <element signature="e#19889#19924#0" expanded="false" />
+                <element signature="e#19978#20286#0" expanded="false" />
+                <element signature="e#20292#20327#0" expanded="false" />
+                <element signature="e#20383#20693#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ViewDemands.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/templates/ViewDemands.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="272">
+              <caret line="16" column="34" lean-forward="false" selection-start-line="16" selection-start-column="34" selection-end-line="16" selection-end-column="34" />
+              <folding>
+                <marker date="1551032739497" expanded="true" signature="5326:5365" ph="..." />
+                <marker date="1551032739497" expanded="true" signature="5444:5483" ph="..." />
+                <marker date="1551032739497" expanded="true" signature="5560:5599" ph="..." />
+                <marker date="1551032739497" expanded="true" signature="5676:5715" ph="..." />
+                <marker date="1551032739497" expanded="true" signature="5792:5831" ph="..." />
+                <marker date="1551032739497" expanded="true" signature="5913:5952" ph="..." />
+                <marker date="1551032739497" expanded="true" signature="6032:6071" ph="..." />
+                <marker date="1551032739497" expanded="true" signature="6150:6189" ph="..." />
+                <marker date="1551032739497" expanded="true" signature="6267:6306" ph="..." />
+                <marker date="1551032739497" expanded="true" signature="6389:6428" ph="..." />
+                <marker date="1551032739497" expanded="true" signature="9385:9400" ph="..." />
               </folding>
             </state>
           </provider>
@@ -205,7 +229,6 @@
         <option value="$PROJECT_DIR$/src/templates/application_added.html" />
         <option value="$PROJECT_DIR$/src/templates/application_added_update.html" />
         <option value="$PROJECT_DIR$/src/templates/deleted.html" />
-        <option value="$PROJECT_DIR$/src/templates/ViewDemands.html" />
         <option value="$PROJECT_DIR$/src/templates/application_addedv2.html" />
         <option value="$PROJECT_DIR$/src/templates/TrailBalanceSheet.html" />
         <option value="$PROJECT_DIR$/src/templates/added.html" />
@@ -223,6 +246,7 @@
         <option value="$PROJECT_DIR$/src/templates/ViewLoans.html" />
         <option value="$PROJECT_DIR$/src/templates/Application_Review.html" />
         <option value="$PROJECT_DIR$/src/templates/addFinancial.html" />
+        <option value="$PROJECT_DIR$/src/templates/ViewDemands.html" />
       </list>
     </option>
   </component>
@@ -576,7 +600,7 @@
     <frame x="1" y="1" width="1364" height="726" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29371166" sideWeight="0.4942717" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29831287" sideWeight="0.4942717" order="1" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -840,13 +864,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/templates/ViewDemands.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-997">
-          <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/lib/pycharm.jar!/resources/html5-schema/html5/common.rnc">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="123">
@@ -996,7 +1013,7 @@
     <entry file="file://$PROJECT_DIR$/src/templates/ViewLoans.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2414">
-          <caret line="142" column="0" lean-forward="true" selection-start-line="142" selection-start-column="0" selection-end-line="142" selection-end-column="0" />
+          <caret line="142" column="0" lean-forward="false" selection-start-line="142" selection-start-column="0" selection-end-line="142" selection-end-column="0" />
           <folding>
             <marker date="1550821717513" expanded="true" signature="3663:3702" ph="..." />
             <marker date="1550821717513" expanded="true" signature="3786:3825" ph="..." />
@@ -1014,13 +1031,33 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/templates/addFinancial.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="139" column="0" lean-forward="true" selection-start-line="139" selection-start-column="0" selection-end-line="139" selection-end-column="0" />
+        <state relative-caret-position="372">
+          <caret line="202" column="0" lean-forward="true" selection-start-line="202" selection-start-column="0" selection-end-line="202" selection-end-column="0" />
           <folding>
-            <element signature="e#19988#20023#0" expanded="false" />
-            <element signature="e#20077#20385#0" expanded="false" />
-            <element signature="e#20391#20426#0" expanded="false" />
-            <element signature="e#20482#20792#0" expanded="false" />
+            <element signature="e#19889#19924#0" expanded="false" />
+            <element signature="e#19978#20286#0" expanded="false" />
+            <element signature="e#20292#20327#0" expanded="false" />
+            <element signature="e#20383#20693#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/templates/ViewDemands.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="34" lean-forward="false" selection-start-line="16" selection-start-column="34" selection-end-line="16" selection-end-column="34" />
+          <folding>
+            <marker date="1551032739497" expanded="true" signature="5326:5365" ph="..." />
+            <marker date="1551032739497" expanded="true" signature="5444:5483" ph="..." />
+            <marker date="1551032739497" expanded="true" signature="5560:5599" ph="..." />
+            <marker date="1551032739497" expanded="true" signature="5676:5715" ph="..." />
+            <marker date="1551032739497" expanded="true" signature="5792:5831" ph="..." />
+            <marker date="1551032739497" expanded="true" signature="5913:5952" ph="..." />
+            <marker date="1551032739497" expanded="true" signature="6032:6071" ph="..." />
+            <marker date="1551032739497" expanded="true" signature="6150:6189" ph="..." />
+            <marker date="1551032739497" expanded="true" signature="6267:6306" ph="..." />
+            <marker date="1551032739497" expanded="true" signature="6389:6428" ph="..." />
+            <marker date="1551032739497" expanded="true" signature="9385:9400" ph="..." />
           </folding>
         </state>
       </provider>

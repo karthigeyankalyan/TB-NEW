@@ -14,6 +14,7 @@
             contentType: "application/json",
             dataType: 'json',
             success: function (json) {
+                console.log(json);
                     {
                         if (json[0]['closing_balance_principal_due'] === null) {
                                 json[0]['opening_balance_principal_due'] = 0;
