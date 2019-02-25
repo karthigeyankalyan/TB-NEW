@@ -117,7 +117,7 @@
                                     json[j]["closing_balance_interest_due"] = parseInt(json[j]["closing_balance_interest_due"]).toFixed(2);
                                 }
 
-                                if (moment(json[j]["cheque_date"]['$date'])) {
+                                if (moment(json[j]["cheque_date"]['$date']) !== null) {
                                     var cheque_date = moment(json[j]["cheque_date"]['$date']).format('YYYY-MM-DD');
                                 }
                                 else {
