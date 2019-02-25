@@ -1037,7 +1037,7 @@ def update_loan_financial_form(_id, late_interest, belated_int, penal_int):
                 interest_collected = int(interest_demand)+int(penal)+int(belated)
             else:
                 interest_collected = int(chequeAmount) - (int(penal)+int(belated))
-            closing_balance_interest_due = int(interest_demand)-int(interest_collected)
+            closing_balance_interest_due = int(interest_demand)+int(penal)+int(belated)-int(interest_collected)
 
             if (chequeAmount - (int(penal)+int(belated)+int(interest_collected))) >= 0:
                 principal_collected = int(chequeAmount) - (int(penal)+int(belated)+int(interest_collected))
