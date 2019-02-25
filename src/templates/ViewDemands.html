@@ -118,7 +118,7 @@
                                 }
 
                                 console.log(json);
-                                console.log(moment(json[j]["demand_date"]['$date'].format('YYYY-MM-DD')),moment().format('YYYY-MM-DD'));
+                                console.log(moment(json[j]["demand_date"].format('YYYY-MM-DD')),moment().format('YYYY-MM-DD'));
 
                                 if (moment(json[j]["demand_date"]['$date']).isAfter(moment())) {
                                     var cheque_date = moment(json[j]["cheque_date"]['$date']).format('YYYY-MM-DD');
