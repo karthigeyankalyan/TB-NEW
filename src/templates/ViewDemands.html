@@ -93,28 +93,28 @@
                                     json[j]["belated_interest"] = json[j]["belated_interest"];
                                 }
                                 else {
-                                    json[j]["belated_interest"] = json[j]["belated_interest"].toFixed(2);
+                                    json[j]["belated_interest"] = parseInt(json[j]["belated_interest"]).toFixed(2);
                                 }
 
                                 if (json[j]["penal_interest"] === null){
                                     json[j]["penal_interest"] = json[j]["penal_interest"];
                                 }
                                 else {
-                                    json[j]["penal_interest"] = json[j]["penal_interest"].toFixed(2);
+                                    json[j]["penal_interest"] = parseInt(json[j]["penal_interest"]).toFixed(2);
                                 }
 
                                 if (json[j]["closing_balance_principal_due"] === null){
                                     json[j]["closing_balance_principal_due"] = json[j]["closing_balance_principal_due"];
                                 }
                                 else {
-                                    json[j]["closing_balance_principal_due"] = json[j]["closing_balance_principal_due"].toFixed(2);
+                                    json[j]["closing_balance_principal_due"] = parseInt(json[j]["closing_balance_principal_due"]).toFixed(2);
                                 }
 
                                 if (json[j]["closing_balance_interest_due"] === null){
                                     json[j]["closing_balance_interest_due"] = json[j]["closing_balance_interest_due"];
                                 }
                                 else {
-                                    json[j]["closing_balance_interest_due"] = json[j]["closing_balance_interest_due"].toFixed(2);
+                                    json[j]["closing_balance_interest_due"] = parseInt(json[j]["closing_balance_interest_due"]).toFixed(2);
                                 }
 
                                 var demand_id = json[j]["_id"];
