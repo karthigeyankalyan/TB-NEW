@@ -1055,8 +1055,8 @@ def update_loan_financial_form(_id, late_interest, belated_int, penal_int):
                 loan_category = result_object['loan_category']
                 dem_count = result_object['no_of_demands']
 
-            amount_yet_to_pay_loan = (closing_balance_interest_due+closing_balance_principal_due+late_interest)-(principal_collected1+interest_collected)
-            update_amount = pending_amount+amount_yet_to_pay_loan
+            amount_yet_to_pay_loan = (int(closing_balance_interest_due)+int(closing_balance_principal_due)+int(late_interest))-(int(principal_collected1)+int(interest_collected))
+            update_amount = int(pending_amount)+int(amount_yet_to_pay_loan)
 
             Demand.update_demand(demand_id=_id, demand_number=demand_number, demand_date=demand_date1,
                                  cheque_number=cheque_number, cheque_date=cheque_date1,
@@ -1072,7 +1072,7 @@ def update_loan_financial_form(_id, late_interest, belated_int, penal_int):
             account = Account(invoice_date=cheque_date1.strftime('%Y-%m-%d'), nature_of_transaction="Credit",
                               amount=loan_amount, loan_id=loan_id, user_id=user._id, user_name=user.username,
                               depositing_bank=sub_bank, adjustment_voucher="No", ledger="Sub",
-                              interest=belated_int+interest_collected, penal_interest=penal_int,
+                              interest=int(belated_int)+int(interest_collected), penal_interest=penal_int,
                               service_charge=service_charge, principal=principal_collected,
                               cheque_date=cheque_date)
             account.save_to_mongo()
