@@ -120,7 +120,7 @@
                                 console.log(json);
                                 console.log(moment(json[j]["demand_date"]).isAfter(moment()));
 
-                                if (moment(json[j]["demand_date"]).isAfter(moment())) {
+                                if (moment().isAfter(moment(json[j]["demand_date"]))) {
                                     var cheque_date = moment(json[j]["cheque_date"]).format('YYYY-MM-DD');
                                 }
                                 else {
