@@ -1072,7 +1072,7 @@ def update_loan_financial_form(_id, late_interest, belated_int, penal_int):
             account = Account(invoice_date=cheque_date1.strftime('%Y-%m-%d'), nature_of_transaction="Credit",
                               amount=loan_amount, loan_id=loan_id, user_id=user._id, user_name=user.username,
                               depositing_bank=sub_bank, adjustment_voucher="No", ledger="Sub",
-                              interest=int(belated_int)+int(interest_collected), penal_interest=penal_int,
+                              interest=float(belated_int)+float(interest_collected), penal_interest=penal_int,
                               service_charge=service_charge, principal=principal_collected,
                               cheque_date=cheque_date)
             account.save_to_mongo()
