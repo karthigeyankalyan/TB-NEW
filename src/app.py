@@ -956,7 +956,8 @@ def update_loan_financial_form(_id, late_interest, belated_int, penal_int):
             total_interest_demand = int(interest_demand) + int(interest_due) + int(late_interest)
 
             return render_template('updateFinancial.html', user=user, demand_id=_id,
-                                   total_principal_demand=principal_demand, total_interest_demand=total_interest_demand)
+                                   total_principal_demand=principal_demand, total_interest_demand=total_interest_demand,
+                                   late_interest=late_interest, belated_int=belated_int, penal_int=penal_int)
 
         else:
             user = User.get_by_email(email)

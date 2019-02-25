@@ -1,7 +1,7 @@
 {% extends "post_login_loans.html" %}
 {% block content %}
 
-<form id="new-intent" action="/updateDemand/{{ demand_id }}" method="post">
+<form id="new-intent" action="/updateDemand/{{ demand_id }}/{{late_interest}}/{{belated_int}}/{{penal_int}}" method="post">
 <div style="display: flex; flex-direction: column; align-items: center; flex: 1; justify-content: space-around; margin-top: 10px">
     <div class="form-group">
           <label for="district">Select District:</label>
