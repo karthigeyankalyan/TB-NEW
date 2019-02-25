@@ -117,13 +117,20 @@
                                     json[j]["closing_balance_interest_due"] = parseInt(json[j]["closing_balance_interest_due"]).toFixed(2);
                                 }
 
+                                if (moment(json[j]["cheque_date"]['$date'])) {
+                                    var cheque_date = moment(json[j]["cheque_date"]['$date']).format('YYYY-MM-DD');
+                                }
+                                else {
+                                    cheque_date = 'Due Date Not Yet Crossed'
+                                }
+
                                 var demand_id = json[j]["_id"];
                                 var penal_plus_belated = parseInt(json[j]["belated_interest"]) + parseInt(json[j]["penal_interest"]);
                                 var url = '/updateDemand/'+demand_id+'/'+penal_plus_belated+'/'+json[j]["belated_interest"]+'/'+json[j]["penal_interest"];
                                 var row = $('<tr></tr>').html('<td>' +
                                     +json[j]["demand_number"] +'</td>'+
                                     '<td>'+json[j]["demand_date"]+'</td>'+
-                                    '<td>'+moment(json[j]["cheque_date"]['$date']).format('YYYY-MM-DD')+'</td>'+
+                                    '<td>'++'</td>'+
                                     '<td>'+json[j]["loan_amount"]+'</td>'+
                                     '<td>'+json[j]["belated_interest"]+'</td>'+
                                     '<td>'+json[j]["penal_interest"]+'</td>'+
