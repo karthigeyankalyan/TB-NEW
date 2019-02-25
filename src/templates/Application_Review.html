@@ -758,14 +758,14 @@
                                     var regular_nbc_interest = (roi * parseInt(NBCShare) / 400).toFixed(0);
                                     var regular_tbc_interest = (roi * parseInt(TabcedcoShare) / 400).toFixed(0);
 
-                                    var interest = Math.ceil(extra_days_nbc+extra_days_tbc+parseInt(regular_nbc_interest)+parseInt(regular_tbc_interest));
+                                    var interest = Math.round(extra_days_nbc+extra_days_tbc+parseInt(regular_nbc_interest)+parseInt(regular_tbc_interest));
                                 }
 //                            }
 
                             else {
                                 current_demand_date = moment(previous_demand_date, "DD-MM-YYYY").add(3, 'M').format('DD-MM-YYYY');
                                 amount_remaining -= principal_per_installment;
-                                interest = (roi * parseInt(amount_remaining) / 400).toFixed(0);
+                                interest = Math.round((roi * parseInt(amount_remaining) / 400));
                             }
 
                             rows.push([[l], [current_demand_date], [amount_remaining],

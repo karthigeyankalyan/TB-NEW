@@ -122,8 +122,8 @@
                 var penal = (delay * total_demand * 5) / (365 * 100);
                 var belated = (delay * total_demand * parseInt(json[0]['roi'])) / (365 * 100);
 
-                document.getElementById("penalInterest").value = penal;
-                document.getElementById("belatedInterest").value = belated;
+                document.getElementById("penalInterest").value = Math.ceil(penal);
+                document.getElementById("belatedInterest").value = Math.ceil(belated);
             },
             error: function (e) {
                 alert("The Loan Application does not exist");

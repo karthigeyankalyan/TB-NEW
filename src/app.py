@@ -968,6 +968,8 @@ def update_loan_financial_form(_id, late_interest, belated_int, penal_int):
             cheque_date = request.form['chequeDate']
             principal_demand = int(request.form['demandPrincipalPayable'])
             interest_demand = int(request.form['demandInterestPayable'])
+            penal = int(request.form['penalInterest'])
+            belated = int(request.form['belatedInterest'])
             chequeAmount = int(request.form['totalChequeAmount'])
 
             demand_date1 = (datetime.combine(datetime.strptime(demand_date, '%Y-%m-%d').date(),
@@ -1031,18 +1033,18 @@ def update_loan_financial_form(_id, late_interest, belated_int, penal_int):
 
                 late_interest += belated_interest_old_due+penal_interest_old_due
 
-            if (int(chequeAmount) - int(late_interest)) >= interest_demand:
-                interest_collected = interest_demand
+            if (int(chequeAmount) - int(penal)+int(belated)) >= interest_demand:
+                interest_collected = int(interest_demand)+int(penal)+int(belated)
             else:
-                interest_collected = int(chequeAmount) - int(late_interest)
+                interest_collected = int(chequeAmount) - (int(penal)+int(belated))
             closing_balance_interest_due = int(interest_demand)-int(interest_collected)
 
-            if (chequeAmount - (int(late_interest)+int(interest_collected))) > 0:
-                principal_collected = int(chequeAmount) - (int(late_interest)+int(interest_collected))
+            if (chequeAmount - (int(penal)+int(belated)+int(interest_collected))) >= 0:
+                principal_collected = int(chequeAmount) - (int(penal)+int(belated)+int(interest_collected))
             else:
                 principal_collected = 0
 
-            principal_collected1 = int(principal_collected) - int(late_interest)
+            principal_collected1 = int(principal_collected) - (int(penal)+int(belated))
             closing_balance_principal_due = int(principal_demand)-int(principal_collected1)
             closing_balance_principal_ndue = int(opening_balance_principal_ndue)-int(original_principal_demand)
             service_charge = (3/roi)*int(interest_collected)
@@ -1055,7 +1057,8 @@ def update_loan_financial_form(_id, late_interest, belated_int, penal_int):
                 pending_amount = int(result_object['amount_yet_to_pay'])
                 dem_count = result_object['no_of_demands']
 
-            amount_yet_to_pay_loan = (int(closing_balance_interest_due)+int(closing_balance_principal_due)+int(late_interest))-(int(principal_collected1)+int(interest_collected))
+            amount_yet_to_pay_loan = (int(closing_balance_interest_due)+int(closing_balance_principal_due)+int(penal)+
+                                      int(belated))-(int(principal_collected1)+int(interest_collected))
             update_amount = int(pending_amount)+int(amount_yet_to_pay_loan)
 
             Demand.update_demand(demand_id=_id, demand_number=demand_number, demand_date=demand_date1,
@@ -1064,7 +1067,7 @@ def update_loan_financial_form(_id, late_interest, belated_int, penal_int):
                                  closing_balance_interest_due=closing_balance_interest_due,
                                  closing_balance_principal_due=closing_balance_principal_due,
                                  closing_balance_principal_ndue=closing_balance_principal_ndue,
-                                 penal_interest=penal_int, belated_interest=belated_int,
+                                 penal_interest=penal, belated_interest=belated,
                                  service_charge=service_charge, no_of_demands=dem_count)
 
             LoanApplication.update_pend_amount(amount_yet_to_be_paid=int(update_amount), loan_id=loan_id)
