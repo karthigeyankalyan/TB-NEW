@@ -956,7 +956,8 @@ def update_loan_financial_form(_id, late_interest, belated_int, penal_int):
             total_interest_demand = int(interest_demand) + int(interest_due) + int(late_interest)
 
             return render_template('updateFinancial.html', user=user, demand_id=_id,
-                                   total_principal_demand=principal_demand, total_interest_demand=total_interest_demand,
+                                   total_principal_demand=principal_demand,
+                                   total_interest_demand=total_interest_demand-(int(belated_int)+int(penal_int)),
                                    late_interest=late_interest, belated_int=belated_int, penal_int=penal_int)
 
         else:
@@ -1046,7 +1047,7 @@ def update_loan_financial_form(_id, late_interest, belated_int, penal_int):
             closing_balance_principal_ndue = int(opening_balance_principal_ndue)-int(original_principal_demand)
             service_charge = (3/roi)*int(interest_collected)
 
-            demand = Database.find("loans", {"_id": loan_id})
+            demand = Database.find("loans", {"ann_loan_id": loan_id})
             pending_amount = 0
             loan_category, dem_count = None, None
 

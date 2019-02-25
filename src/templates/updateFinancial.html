@@ -43,20 +43,24 @@
         <div id="heading" style="display: flex; flex-direction: column; justify-content: space-between;">
             <h6>Demand #</h6>
             <h6>Demand Date</h6>
+            <h6>Cheque Received Date</h6>
             <h6>Principal Payable</h6>
             <h6>Interest Payable</h6>
+            <h6>Penal Interest</h6>
+            <h6>Belated Interest</h6>
             <h6>Total Cheque Amount</h6>
             <h6>Cheque #</h6>
-            <h6>Cheque Received Date</h6>
         </div>
         <div id="inputForm" style="display: flex; flex-direction: column; justify-content: space-between;">
             <input type="number" name="demandNumber" id="demandNumber">
             <input type="date" name="demandDate" id="demandDate">
+            <input type="Date" name="chequeDate" id="chequeDate" onchange="populateInterest()">
             <input type="number" name="demandPrincipalPayable" id="demandPrincipalPayable">
             <input type="number" name="demandInterestPayable" id="demandInterestPayable">
+            <input type="number" name="penalInterest" id="penalInterest">
+            <input type="number" name="belatedInterest" id="belatedInterest">
             <input type="number" name="totalChequeAmount" id="totalChequeAmount">
-            <input type="number" name="chequeNumber" id="chequeNumber">
-            <input type="Date" name="chequeDate" id="chequeDate">
+            <input type="text" name="chequeNumber" id="chequeNumber">
         </div>
     </div>
 
@@ -99,6 +103,34 @@
             alert("The Loan Application does not exist");
         }
     });
+
+    function populateInterest() {
+        var source = "/demand/" + "{{demand_id}}";
+        $.ajax({
+            type: 'GET',
+            url: source,
+            contentType: "application/json",
+            dataType: 'json',
+            success: function (json) {
+                var cheque_date = document.getElementById('chequeDate').value;
+                var demand_date = document.getElementById('demandDate').value;
+
+                console.log(cheque_date, demand_date);
+                var total_demand = parseInt("{{total_interest_demand}}") + parseInt("{{total_principal_demand}}");
+
+                var delay = moment(cheque_date).diff(moment(demand_date), 'days');
+                var penal = (delay * total_demand * 5) / (365 * 100);
+                var belated = (delay * total_demand * parseInt(json[i]['roi'])) / (365 * 100);
+
+                document.getElementById("penalInterest").value = penal;
+                document.getElementById("belatedInterest").value = belated;
+            },
+            error: function (e) {
+                alert("The Loan Application does not exist");
+            }
+        });
+    }
+
 </script>
 
 {% endblock %}
