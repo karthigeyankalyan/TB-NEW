@@ -1080,7 +1080,7 @@ def update_loan_financial_form(_id, late_interest, belated_int, penal_int):
                               cheque_date=cheque_date)
             account.save_to_mongo()
 
-            return render_template('application_added.html', user=user)
+            return render_template('added.html', user=user)
 
     else:
         return render_template('login_fail.html')
