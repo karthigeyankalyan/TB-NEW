@@ -1052,7 +1052,6 @@ def update_loan_financial_form(_id, late_interest, belated_int, penal_int):
 
             for result_object in demand[0:1]:
                 pending_amount = int(result_object['amount_yet_to_pay'])
-                loan_category = result_object['loan_category']
                 dem_count = result_object['no_of_demands']
 
             amount_yet_to_pay_loan = (int(closing_balance_interest_due)+int(closing_balance_principal_due)+int(late_interest))-(int(principal_collected1)+int(interest_collected))
