@@ -1030,21 +1030,21 @@ def update_loan_financial_form(_id, late_interest, belated_int, penal_int):
 
                 late_interest += belated_interest_old_due+penal_interest_old_due
 
-            if (chequeAmount - late_interest) >= interest_demand:
+            if (int(chequeAmount) - int(late_interest)) >= interest_demand:
                 interest_collected = interest_demand
             else:
-                interest_collected = chequeAmount - late_interest
-            closing_balance_interest_due = interest_demand-interest_collected
+                interest_collected = int(chequeAmount) - int(late_interest)
+            closing_balance_interest_due = int(interest_demand)-int(interest_collected)
 
-            if (chequeAmount - (late_interest+interest_collected)) > 0:
-                principal_collected = chequeAmount - (late_interest+interest_collected)
+            if (chequeAmount - (int(late_interest)+int(interest_collected))) > 0:
+                principal_collected = int(chequeAmount) - (int(late_interest)+int(interest_collected))
             else:
                 principal_collected = 0
 
-            principal_collected1 = principal_collected - late_interest
-            closing_balance_principal_due = principal_demand-principal_collected1
-            closing_balance_principal_ndue = opening_balance_principal_ndue-original_principal_demand
-            service_charge = (3/roi)*interest_collected
+            principal_collected1 = int(principal_collected) - int(late_interest)
+            closing_balance_principal_due = int(principal_demand)-int(principal_collected1)
+            closing_balance_principal_ndue = int(opening_balance_principal_ndue)-int(original_principal_demand)
+            service_charge = (3/roi)*int(interest_collected)
 
             demand = Database.find("loans", {"_id": loan_id})
             pending_amount = 0
