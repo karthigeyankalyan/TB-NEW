@@ -768,8 +768,8 @@
                                 interest = Math.round((roi * parseInt(amount_remaining) / 400));
                             }
 
-                            rows.push([[l], [current_demand_date], [amount_remaining],
-                                [principal_per_installment], [interest],
+                            rows.push([[l], [current_demand_date], [Math.round(amount_remaining)],
+                                [Math.round(principal_per_installment)], [interest],
                                 [parseInt(principal_per_installment) + parseInt(interest)]]);
 
                             sum_principal += parseInt(principal_per_installment);
@@ -924,10 +924,10 @@
                                 var TabcedcoShare = tabcedcoShareCalculator(json[0]['loan_category'], loan_amount);
 
                                 doc.text(80, 45, 'NBCFDC Share');
-                                doc.text(80, 50, 'Rs. ' + Math.ceil(NBCShare));
+                                doc.text(80, 50, 'Rs. ' + Math.round(NBCShare));
 
                                 doc.text(150, 45, 'TABCEDCO Share');
-                                doc.text(150, 50, 'Rs. ' + Math.ceil(TabcedcoShare));
+                                doc.text(150, 50, 'Rs. ' + Math.round(TabcedcoShare));
 
                                 var tla = parseInt(Math.ceil(NBCShare))+parseInt(Math.ceil(TabcedcoShare));
 
