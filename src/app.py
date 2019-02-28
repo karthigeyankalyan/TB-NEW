@@ -939,7 +939,7 @@ def update_loan_financial_form(_id, late_interest, belated_int, penal_int):
                 principal_demand = int(result_object['principal_demand'])
                 interest_demand = int(result_object['interest_demand'])
                 loan_amount = int(result_object['loan_amount'])
-                loan_id = int(result_object['loan_id'])
+                loan_id = result_object['loan_id']
 
             if demand_number == 1:
                 total_interest_demand = interest_demand+int(late_interest)
