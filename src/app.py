@@ -927,7 +927,7 @@ def update_loan_financial_form(_id, late_interest, belated_int, penal_int):
 
             demandm1 = None
             demand = Database.find("Demands", {"_id": _id})
-            lsd, demand_date, chequem1_date = None, None, None
+            loan_id, lsd, demand_date, chequem1_date = None, None, None, None
             loan_amount = 0
             roi, principal_demand, interest_demand, interest_due, principal_due, demand_number = 0, 0, 0, 0, 0, 0
 
@@ -939,12 +939,15 @@ def update_loan_financial_form(_id, late_interest, belated_int, penal_int):
                 principal_demand = int(result_object['principal_demand'])
                 interest_demand = int(result_object['interest_demand'])
                 loan_amount = int(result_object['loan_amount'])
+                loan_id = int(result_object['loan_id'])
 
             if demand_number == 1:
                 total_interest_demand = interest_demand+int(late_interest)
             else:
                 demand_numberm1 = demand_number-1
-                demandm1 = Database.find("Demands", {"demand_number": str(demand_numberm1)})
+                demandm1 = Database.find("Demands", {"$and": [{"demand_number": str(demand_numberm1)},
+                                                              {"loan_id": loan_id}]})
+
                 for result_object in demandm1[0:1]:
                     principal_due = result_object['closing_balance_principal_due']
                     principal_for_interest = result_object['closing_balance_principal_ndue']
