@@ -1034,6 +1034,7 @@ def update_loan_financial_form(_id, late_interest, belated_int, penal_int):
                     penal_interest_current_demand = 0
                     belated_interest_current_demand = 0
 
+                late_interest = int(late_interest)
                 late_interest += float(belated_interest_old_due)+float(penal_interest_old_due)
 
             if (int(chequeAmount) - int(penal)+int(belated)) >= interest_demand:
