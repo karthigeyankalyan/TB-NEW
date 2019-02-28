@@ -952,7 +952,7 @@ def update_loan_financial_form(_id, late_interest, belated_int, penal_int):
                     demandm1_date = result_object['demand_date']
                     days = (demand_date-demandm1_date).days
 
-            principal_demand += principal_due
+            principal_demand += int(principal_due)
             total_interest_demand = int(interest_demand) + int(interest_due) + int(late_interest)
 
             return render_template('updateFinancial.html', user=user, demand_id=_id,
