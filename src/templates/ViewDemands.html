@@ -182,7 +182,7 @@
                     var cheque_amount = json[j]['principal_collected'] + json[j]['interest_collected'] +
                         parseInt(json[j]['penal_interest']) + parseInt(json[j]['belated_interest']);
 
-                    var AAO = doc.splitTextToSize('Received with thanks from ' + json[j]['district_bank'] + cheque_amount + ' Rs. ( ' + convertNumberToWords(cheque_amount) +
+                    var AAO = doc.splitTextToSize('Received with thanks from ' + json[j]['district_bank'] + ' ' + cheque_amount + ' Rs. ( ' + convertNumberToWords(cheque_amount) +
                         ' ) vide DD/Cheque No. ' + json[j]['cheque_number'] + 'Dated: ' + json[j]['cheque_date'], 160);
 
                     doc.text(25, 65, AAO);
