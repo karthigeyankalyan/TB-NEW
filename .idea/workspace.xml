@@ -24,8 +24,8 @@
       <file leaf-file-name="app.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/app.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="89">
-              <caret line="1065" column="118" lean-forward="true" selection-start-line="1065" selection-start-column="118" selection-end-line="1065" selection-end-column="118" />
+            <state relative-caret-position="123">
+              <caret line="1067" column="75" lean-forward="true" selection-start-line="1067" selection-start-column="75" selection-end-line="1067" selection-end-column="75" />
               <folding>
                 <element signature="e#0#29#0" expanded="true" />
               </folding>
@@ -1003,8 +1003,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/app.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="89">
-          <caret line="1065" column="118" lean-forward="true" selection-start-line="1065" selection-start-column="118" selection-end-line="1065" selection-end-column="118" />
+        <state relative-caret-position="123">
+          <caret line="1067" column="75" lean-forward="true" selection-start-line="1067" selection-start-column="75" selection-end-line="1067" selection-end-column="75" />
           <folding>
             <element signature="e#0#29#0" expanded="true" />
           </folding>
