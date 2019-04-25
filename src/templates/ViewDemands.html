@@ -185,7 +185,8 @@
                     doc.text(25, 65, 'Received with thanks from ' + json[j]['district_bank'] + cheque_amount + ' Rs. ( ' + convertNumberToWords(cheque_amount) +
                         ' ) vide DD/Cheque No. ' + json[j]['cheque_number'] + 'Dated: ' + json[j]['cheque_date']);
 
-                    columns = ["Bank", "Ro #", "Code", "Principal", "Interest", "Penal", "Belated", "Service Charge", "Total"];
+                    var columns = ["Bank", "Ro #", "Code", "Principal", "Interest", "Penal", "Belated", "Service Charge", "Total"];
+                    var rows=[];
 
                     rows.push([[json[j]['district_bank']], json[j]['ann_id'], json[j]['loan_category'], [json[j]['principal_collected']],
                         [json[j]['interest_collected']], [parseInt(json[j]['penal_interest'])], [parseInt(json[j]['belated_interest'])],
@@ -193,7 +194,7 @@
 
                     doc.autoTable(columns, rows, {startY: 90});
 
-                    table_end = doc.autoTableEndPosY();
+                    var table_end = doc.autoTableEndPosY();
 
                     doc.text(25, doc.autoTableEndPosY() + 10, 'Prepared By:');
                     doc.text(85, doc.autoTableEndPosY() + 10, 'Authorized Signatory');
