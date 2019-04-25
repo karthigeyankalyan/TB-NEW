@@ -1057,6 +1057,7 @@ def update_loan_financial_form(_id, late_interest, belated_int, penal_int):
             demand = Database.find("loans", {"ann_loan_id": loan_id})
             pending_amount = 0
             loan_category, dem_count = None, None
+            no_of_apps = demand.length
 
             for result_object in demand[0:1]:
                 pending_amount = int(result_object['amount_yet_to_pay'])
@@ -1065,6 +1066,7 @@ def update_loan_financial_form(_id, late_interest, belated_int, penal_int):
             amount_yet_to_pay_loan = (int(closing_balance_interest_due)+int(closing_balance_principal_due)+int(penal)+
                                       int(belated))-(int(principal_collected1)+int(interest_collected))
             update_amount = int(pending_amount)+int(amount_yet_to_pay_loan)
+            update_amount = update_amount / int(no_of_apps)
 
             Demand.update_demand(demand_id=_id, demand_number=demand_number, demand_date=demand_date1,
                                  cheque_number=cheque_number, cheque_date=cheque_date1,
