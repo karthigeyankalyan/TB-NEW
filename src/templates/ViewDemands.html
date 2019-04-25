@@ -139,7 +139,7 @@
                                     '<td>'+json[j]["closing_balance_interest_due"]+'</td>'+
                                     '<td><button class="btn btn-default"><a href="' + url + '">'+ 'Update Demand' +'</a></button></td>'+
                                     '<td style="font-size: 10px">'+json[j]["Remarks"]+'</td>'+
-                                    '<td><button onclick="downloadReceipt("'+json[j]+'")" class="btn btn-default">'+ 'Download Receipt' +'</button></td>');
+                                    '<td><button onclick="downloadReceipt('+json[j]+')" class="btn btn-default">'+ 'Download Receipt' +'</button></td>');
                                 $("#demandDetails").append(row);
                             }
                         }
