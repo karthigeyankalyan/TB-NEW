@@ -119,11 +119,11 @@
 
             if (cat === 'GTL' || cat === 'NSS') {
                 for ( var i = 0; i < json.length; i++) {
-                    amount += json[i]['loan_amount'];
+                    amount += parseInt(json[i]['loan_amount']);
                 }
             }
             else {
-                amount +=  json[0]['loan_amount'];
+                amount +=  parseInt(json[0]['loan_amount']);
             }
 
             var no_of_demands = json[0]['no_of_demands'];
@@ -173,9 +173,9 @@
 
             else {
                 if (parseInt(no_of_demands) === 32 || parseInt(no_of_demands) === 20) {
-                    console.log(TabcedcoShare, NBCShare);
-                    var tabcedco_installments = TabcedcoShare/2;
-                    var nbcfdc_installments = Math.floor(NBCShare/(no_of_demands-2));
+                    var tabcedco_installments = parseInt(TabcedcoShare)/2;
+                    var nbcfdc_installments = Math.floor(parseInt(NBCShare)/(no_of_demands-2));
+                    console.log(tabcedco_installments, nbcfdc_installments);
 
                     amount_remaining = NBCShare+TabcedcoShare;
                     var tla = NBCShare+TabcedcoShare;
@@ -186,7 +186,6 @@
                             current_demand_date = moment(cheque_date, "DD-MM-YYYY").add(4, 'M').startOf('month').format('DD-MM-YYYY');
                             if (moment(cheque_date, 'DD-MM-YYYY').format('DD') === 1) {
                                 interest = (roi * parseInt(tla) / 400).toFixed(0);
-                                console.log(cheque_date, tla, roi);
                             }
 
                             else {
@@ -211,7 +210,6 @@
                             var days = moment(current_demand_date, 'DD-MM-YYYY').diff(moment(cheque_date, 'DD-MM-YYYY'), 'days');
                             interest = Math.ceil(((roi) * amount_remaining ) / (400));
                             principal_per_installment = Math.ceil(tabcedco_installments);
-                            console.log(principal_per_installment, l);
                         }
 
                         else if (l ===3) {
@@ -220,7 +218,6 @@
                             days = moment(current_demand_date, 'DD-MM-YYYY').diff(moment(cheque_date, 'DD-MM-YYYY'), 'days');
                             interest = Math.ceil(((roi) * amount_remaining ) / (400));
                             principal_per_installment = Math.ceil(nbcfdc_installments);
-                            console.log(principal_per_installment, l);
                         }
 
                         else if(l=== no_of_demands) {
@@ -228,7 +225,6 @@
                             amount_remaining -= principal_per_installment;
                             interest = Math.ceil(((roi) * amount_remaining ) / (400));
                             principal_per_installment = Math.ceil(amount_remaining);
-                            console.log(principal_per_installment, l);
                         }
 
                         else {
@@ -236,7 +232,6 @@
                             amount_remaining -= principal_per_installment;
                             interest = Math.ceil(((roi) * amount_remaining ) / (400));
                             principal_per_installment = Math.ceil(nbcfdc_installments);
-                            console.log(principal_per_installment, l);
                         }
 
                         sum_principal += parseInt(principal_per_installment);
