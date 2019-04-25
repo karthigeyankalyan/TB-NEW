@@ -1069,7 +1069,7 @@ def update_loan_financial_form(_id, late_interest, belated_int, penal_int):
 
             Demand.update_demand(demand_id=_id, demand_number=demand_number, demand_date=demand_date1,
                                  cheque_number=cheque_number, cheque_date=cheque_date1,
-                                 principal_collected=principal_collected1, interest_collected=interest_collected,
+                                 principal_collected=principal_collected, interest_collected=interest_collected,
                                  closing_balance_interest_due=closing_balance_interest_due,
                                  closing_balance_principal_due=closing_balance_principal_due,
                                  closing_balance_principal_ndue=closing_balance_principal_ndue,
