@@ -125,7 +125,6 @@
                                     cheque_date = 'Due Date Not Yet Crossed'
                                 }
 
-                                var array = json[j];
                                 var demand_id = json[j]["_id"];
                                 var penal_plus_belated = parseInt(json[j]["belated_interest"]) + parseInt(json[j]["penal_interest"]);
                                 var url = '/updateDemand/'+demand_id+'/'+penal_plus_belated+'/'+json[j]["belated_interest"]+'/'+json[j]["penal_interest"];
@@ -140,7 +139,7 @@
                                     '<td>'+json[j]["closing_balance_interest_due"]+'</td>'+
                                     '<td><button class="btn btn-default"><a href="' + url + '">'+ 'Update Demand' +'</a></button></td>'+
                                     '<td style="font-size: 10px">'+json[j]["Remarks"]+'</td>'+
-                                    '<td><button onclick="downloadReceipt('+array+')" class="btn btn-default">'+ 'Download Receipt' +'</button></td>');
+                                    '<td><button onclick="downloadReceipt('+j+')" class="btn btn-default">'+ 'Download Receipt' +'</button></td>');
                                 $("#demandDetails").append(row);
                             }
                         }
@@ -151,55 +150,68 @@
             }
         });
 
-        function downloadReceipt(json) {
-            if (json['penal_interest']) {
+        function downloadReceipt(j) {
+        var source = "/rawDemandsByLoan/{{loan_id}}";
+        $.ajax({
+            type: 'GET',
+            url: source,
+            contentType: "application/json",
+            dataType: 'json',
+            success: function (json) {
+                if (json['penal_interest']) {
 
-                if (json['loan_category'] === 'GTL (General Term Loan)') {
-                    json['loan_category'] = "GTL";
+                    if (json[j]['loan_category'] === 'GTL (General Term Loan)') {
+                        json[j]['loan_category'] = "GTL";
+                    }
+                    else if (json[j]['loan_category'] === 'NSS (New-Swarnima Scheme)') {
+                        json[j]['loan_category'] = "NSS";
+                    }
+                    else if (json[j]['loan_category'] === 'MCG (Micro-Credit Gents)') {
+                        json[j]['loan_category'] = "MCR";
+                    }
+                    else if (json[j]['loan_category'] === 'MSY (Mahila Samridhi Yojana)') {
+                        json[j]['loan_category'] = "MSY";
+                    }
+
+                    // Checking if the loan category is either Micro Credit or Mahila Samridhi Yojana
+
+                    doc.setFontSize(12);
+                    doc.text(75, 50, 'Receipt');
+
+                    var cheque_amount = json[j]['principal_collected'] + json[j]['interest_collected'] +
+                        parseInt(json[j]['penal_interest']) + parseInt(json[j]['belated_interest']);
+
+                    doc.text(25, 65, 'Received with thanks from ' + json[j]['district_bank'] + cheque_amount + ' Rs. ( ' + convertNumberToWords(cheque_amount) +
+                        ' ) vide DD/Cheque No. ' + json[j]['cheque_number'] + 'Dated: ' + json[j]['cheque_date']);
+
+                    columns = ["Bank", "Ro #", "Code", "Principal", "Interest", "Penal", "Belated", "Service Charge", "Total"];
+
+                    rows.push([[json[j]['district_bank']], json[j]['ann_id'], json[j]['loan_category'], [json[j]['principal_collected']],
+                        [json[j]['interest_collected']], [parseInt(json[j]['penal_interest'])], [parseInt(json[j]['belated_interest'])],
+                        [json[j]['service_charge']], [cheque_amount]]);
+
+                    doc.autoTable(columns, rows, {startY: 90});
+
+                    table_end = doc.autoTableEndPosY();
+
+                    doc.text(25, doc.autoTableEndPosY() + 10, 'Prepared By:');
+                    doc.text(85, doc.autoTableEndPosY() + 10, 'Authorized Signatory');
+
+                    doc.text(25, table_end+30, 'To');
+                    doc.text(25, table_end+35, 'The Special Officer / Secretary,');
+                    var bank = json[j]['district_bank'];
+                    doc.text(25, table_end+40, bank);
+                    doc.text(25, table_end+45, json[j]['district']);
+
+                    doc.save('Receipt ' + json[j]['ann_id'] + '.pdf');
+
                 }
-                else if (json['loan_category'] === 'NSS (New-Swarnima Scheme)') {
-                    json['loan_category'] = "NSS";
-                }
-                else if (json['loan_category'] === 'MCG (Micro-Credit Gents)') {
-                    json['loan_category'] = "MCR";
-                }
-                else if (json['loan_category'] === 'MSY (Mahila Samridhi Yojana)') {
-                    json['loan_category'] = "MSY";
-                }
-
-                // Checking if the loan category is either Micro Credit or Mahila Samridhi Yojana
-
-                doc.setFontSize(12);
-                doc.text(75, 50, 'Receipt');
-
-                var cheque_amount = json['principal_collected'] + json['interest_collected'] +
-                    parseInt(json['penal_interest']) + parseInt(json['belated_interest']);
-
-                doc.text(25, 65, 'Received with thanks from ' + json['district_bank'] + cheque_amount + ' Rs. ( ' + convertNumberToWords(cheque_amount) +
-                    ' ) vide DD/Cheque No. ' + json['cheque_number'] + 'Dated: ' + json['cheque_date']);
-
-                columns = ["Bank", "Ro #", "Code", "Principal", "Interest", "Penal", "Belated", "Service Charge", "Total"];
-
-                rows.push([[json['district_bank']], json['ann_id'], json['loan_category'], [json['principal_collected']],
-                    [json['interest_collected']], [parseInt(json['penal_interest'])], [parseInt(json['belated_interest'])],
-                    [json['service_charge']], [cheque_amount]]);
-
-                doc.autoTable(columns, rows, {startY: 90});
-
-                table_end = doc.autoTableEndPosY();
-
-                doc.text(25, doc.autoTableEndPosY() + 10, 'Prepared By:');
-                doc.text(85, doc.autoTableEndPosY() + 10, 'Authorized Signatory');
-
-                doc.text(25, table_end+30, 'To');
-                doc.text(25, table_end+35, 'The Special Officer / Secretary,');
-                var bank = json['district_bank'];
-                doc.text(25, table_end+40, bank);
-                doc.text(25, table_end+45, json['district']);
-
-                doc.save('Receipt ' + json['ann_id'] + '.pdf');
-
+                },
+            error: function (e) {
+                alert("error");
             }
+        });
+
         }
 
 
