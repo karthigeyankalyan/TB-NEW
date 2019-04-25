@@ -182,8 +182,10 @@
                     var cheque_amount = json[j]['principal_collected'] + json[j]['interest_collected'] +
                         parseInt(json[j]['penal_interest']) + parseInt(json[j]['belated_interest']);
 
-                    doc.text(25, 65, 'Received with thanks from ' + json[j]['district_bank'] + cheque_amount + ' Rs. ( ' + convertNumberToWords(cheque_amount) +
-                        ' ) vide DD/Cheque No. ' + json[j]['cheque_number'] + 'Dated: ' + json[j]['cheque_date']);
+                    var AAO = doc.splitTextToSize('Received with thanks from ' + json[j]['district_bank'] + cheque_amount + ' Rs. ( ' + convertNumberToWords(cheque_amount) +
+                        ' ) vide DD/Cheque No. ' + json[j]['cheque_number'] + 'Dated: ' + json[j]['cheque_date'], 160);
+
+                    doc.text(25, 65, AAO);
 
                     var columns = ["Bank", "Ro #", "Code", "Principal", "Interest", "Penal", "Belated", "Service Charge", "Total"];
                     var rows=[];
@@ -192,7 +194,12 @@
                         [json[j]['interest_collected']], [parseInt(json[j]['penal_interest'])], [parseInt(json[j]['belated_interest'])],
                         [json[j]['service_charge']], [cheque_amount]]);
 
-                    doc.autoTable(columns, rows, {startY: 90});
+                    doc.autoTable(columns, rows,
+                        {
+                            startY: 90,
+                            styles: {overflow: 'linebreak', fontSize: 8},
+                            columnStyles: {0: {columnWidth: 30}, 1: {columnWidth: 30}}
+                        });
 
                     var table_end = doc.autoTableEndPosY();
 
