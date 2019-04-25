@@ -125,6 +125,7 @@
                                     cheque_date = 'Due Date Not Yet Crossed'
                                 }
 
+                                var array = json[j];
                                 var demand_id = json[j]["_id"];
                                 var penal_plus_belated = parseInt(json[j]["belated_interest"]) + parseInt(json[j]["penal_interest"]);
                                 var url = '/updateDemand/'+demand_id+'/'+penal_plus_belated+'/'+json[j]["belated_interest"]+'/'+json[j]["penal_interest"];
@@ -139,7 +140,7 @@
                                     '<td>'+json[j]["closing_balance_interest_due"]+'</td>'+
                                     '<td><button class="btn btn-default"><a href="' + url + '">'+ 'Update Demand' +'</a></button></td>'+
                                     '<td style="font-size: 10px">'+json[j]["Remarks"]+'</td>'+
-                                    '<td><button onclick="downloadReceipt('+j+')" class="btn btn-default">'+ 'Download Receipt' +'</button></td>');
+                                    '<td><button onclick="downloadReceipt('+array+')" class="btn btn-default">'+ 'Download Receipt' +'</button></td>');
                                 $("#demandDetails").append(row);
                             }
                         }
@@ -150,8 +151,7 @@
             }
         });
 
-        function downloadReceipt(j) {
-            console.log(j);
+        function downloadReceipt(json) {
             if (json['penal_interest']) {
 
                 if (json['loan_category'] === 'GTL (General Term Loan)') {
