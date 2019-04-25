@@ -135,8 +135,8 @@ class Database(object):
 
     @staticmethod
     def update_pending_amount(collection, query, amount_yet_to_be_paid):
-        return Database.DATABASE[collection].update_one(query, {'$set':
-                                                                {"amount_yet_to_pay": amount_yet_to_be_paid}}, True)
+        return Database.DATABASE[collection].update_many(query,
+                                                         {'$set': {"amount_yet_to_pay": amount_yet_to_be_paid}}, True)
 
     @staticmethod
     def delete_from_mongo(collection, query):

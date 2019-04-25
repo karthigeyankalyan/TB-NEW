@@ -1050,7 +1050,7 @@ def update_loan_financial_form(_id, late_interest, belated_int, penal_int):
                 principal_collected = 0
 
             principal_collected1 = int(principal_collected) - (int(penal)+int(belated))
-            closing_balance_principal_due = int(principal_demand)-int(principal_collected1)
+            closing_balance_principal_due = int(principal_demand)-int(principal_collected)
             closing_balance_principal_ndue = int(opening_balance_principal_ndue)-int(original_principal_demand)
             service_charge = (3/roi)*int(interest_collected)
 

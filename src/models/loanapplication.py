@@ -157,7 +157,7 @@ class LoanApplication(object):
 
     @classmethod
     def update_pend_amount(cls, amount_yet_to_be_paid, loan_id):
-        Database.update_pending_amount(collection='loans', query={'_id': loan_id},
+        Database.update_pending_amount(collection='loans', query={'ann_loan_id': loan_id},
                                        amount_yet_to_be_paid=amount_yet_to_be_paid)
 
     @classmethod
