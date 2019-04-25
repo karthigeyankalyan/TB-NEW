@@ -173,6 +173,7 @@
 
             else {
                 if (parseInt(no_of_demands) === 32 || parseInt(no_of_demands) === 20) {
+                    console.log(TabcedcoShare, NBCShare);
                     var tabcedco_installments = TabcedcoShare/2;
                     var nbcfdc_installments = Math.floor(NBCShare/(no_of_demands-2));
 
@@ -197,9 +198,10 @@
                                 regular_nbc_interest = (roi * parseInt(NBCShare) / 400).toFixed(0);
                                 regular_tbc_interest = (roi * parseInt(TabcedcoShare) / 400).toFixed(0);
 
-                                interest = Math.ceil(extra_days_nbc + extra_days_tbc + parseInt(regular_nbc_interest) + parseInt(regular_tbc_interest));
+                                interest = Math.ceil(parseInt(extra_days_nbc) + parseInt(extra_days_tbc) + parseInt(regular_nbc_interest) + parseInt(regular_tbc_interest));
 
                                 principal_per_installment = Math.ceil(tabcedco_installments);
+                                console.log(principal_per_installment);
                             }
                         }
 
@@ -209,6 +211,7 @@
                             var days = moment(current_demand_date, 'DD-MM-YYYY').diff(moment(cheque_date, 'DD-MM-YYYY'), 'days');
                             interest = Math.ceil(((roi) * amount_remaining ) / (400));
                             principal_per_installment = Math.ceil(tabcedco_installments);
+                            console.log(principal_per_installment, l);
                         }
 
                         else if (l ===3) {
@@ -217,6 +220,7 @@
                             days = moment(current_demand_date, 'DD-MM-YYYY').diff(moment(cheque_date, 'DD-MM-YYYY'), 'days');
                             interest = Math.ceil(((roi) * amount_remaining ) / (400));
                             principal_per_installment = Math.ceil(nbcfdc_installments);
+                            console.log(principal_per_installment, l);
                         }
 
                         else if(l=== no_of_demands) {
@@ -224,6 +228,7 @@
                             amount_remaining -= principal_per_installment;
                             interest = Math.ceil(((roi) * amount_remaining ) / (400));
                             principal_per_installment = Math.ceil(amount_remaining);
+                            console.log(principal_per_installment, l);
                         }
 
                         else {
@@ -231,6 +236,7 @@
                             amount_remaining -= principal_per_installment;
                             interest = Math.ceil(((roi) * amount_remaining ) / (400));
                             principal_per_installment = Math.ceil(nbcfdc_installments);
+                            console.log(principal_per_installment, l);
                         }
 
                         sum_principal += parseInt(principal_per_installment);
