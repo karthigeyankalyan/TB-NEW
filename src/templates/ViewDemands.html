@@ -152,6 +152,7 @@
 
         function downloadReceipt(j) {
         var source = "/rawDemandsByLoan/{{loan_id}}";
+        var doc = new jsPDF();
         $.ajax({
             type: 'GET',
             url: source,
