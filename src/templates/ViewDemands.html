@@ -177,20 +177,28 @@
                     // Checking if the loan category is either Micro Credit or Mahila Samridhi Yojana
 
                     doc.setFontSize(12);
-                    doc.text(75, 50, 'Receipt');
+                    doc.text(30, 25, 'TAMILNADU BACKWARD CLASSES ECONOMIC DEVELOPMENT CORPORATION LTD');
+
+                    doc.setFontSize(10);
+                    doc.text(40, 30, '1/1 (1) Mayor Ramanathan Salai (East) Gendu Reddy Subway, Egmore, Chennai - 600008');
+                    doc.text(40, 35, 'Phone Office: 044-28190122, 044-28190146');
+                    doc.text(160, 35, 'Email: tabcedco@gmail.com');
+
+                    doc.setFontSize(12);
+                    doc.text(75, 50, 'RECEIPT');
 
                     var cheque_amount = json[j]['principal_collected'] + json[j]['interest_collected'] +
                         parseInt(json[j]['penal_interest']) + parseInt(json[j]['belated_interest']);
 
                     var AAO = doc.splitTextToSize('Received with thanks from ' + json[j]['district_bank'] + ' ' + cheque_amount + ' Rs. ( ' + convertNumberToWords(cheque_amount) +
-                        ' ) vide DD/Cheque No. ' + json[j]['cheque_number'] + 'Dated: ' + json[j]['cheque_date'], 160);
+                        ' ) vide DD/Cheque No. ' + json[j]['cheque_number'] + 'Dated: ' + json[j]['cheque_date']['$date'], 160);
 
                     doc.text(25, 65, AAO);
 
                     var columns = ["Bank", "Ro #", "Code", "Principal", "Interest", "Penal", "Belated", "Service Charge", "Total"];
                     var rows=[];
 
-                    rows.push([[json[j]['district_bank']], json[j]['ann_id'], json[j]['loan_category'], [json[j]['principal_collected']],
+                    rows.push([[json[j]['district_bank']], json[j]['ro_number'], json[j]['loan_category'], [json[j]['principal_collected']],
                         [json[j]['interest_collected']], [parseInt(json[j]['penal_interest'])], [parseInt(json[j]['belated_interest'])],
                         [json[j]['service_charge']], [cheque_amount]]);
 

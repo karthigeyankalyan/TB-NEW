@@ -1049,6 +1049,10 @@ def update_loan_financial_form(_id, late_interest, belated_int, penal_int):
             else:
                 principal_collected = 0
 
+            if float(belated_int) < 0:
+                belated_int = 0
+                penal_int = 0
+
             principal_collected1 = int(principal_collected) - (int(penal)+int(belated))
             closing_balance_principal_due = int(principal_demand)-int(principal_collected)
             closing_balance_principal_ndue = int(opening_balance_principal_ndue)-int(original_principal_demand)
