@@ -1264,7 +1264,7 @@ def get_applications_by_identifier(ann_loan_id):
 
 
 @app.route('/getLoansByIdentfiernRO/<string:ann_loan_id>/<string:ro_number>')
-def get_applications_by_identifier(ann_loan_id, ro_number):
+def get_applications_by_identifier_ro(ann_loan_id, ro_number):
     loan = []
 
     loan_dict = Database.find("loans", {"ann_loan_id": ann_loan_id,
