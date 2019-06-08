@@ -1109,7 +1109,7 @@ def loan_demands_view(loan_id, ro_number):
 
 
 @app.route('/demands_by_cheque/<string:_id>')
-def loan_demands_view(_id):
+def download_receipt_by_cheque(_id):
     email = session['email']
     user = User.get_by_email(email)
 
