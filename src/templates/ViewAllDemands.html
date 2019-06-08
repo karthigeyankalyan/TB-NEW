@@ -122,7 +122,7 @@
         tr = table.getElementsByTagName("tr");
         console.log(tr.length);
         for (i = 0; i < tr.length; i++) {
-            td = tr[i].getElementsByTagName("td")[0];
+            td = tr[i].getElementsByTagName("td")[1];
             if (td) {
                 if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
                     tr[i].style.display = "";
@@ -160,7 +160,7 @@
                     cheque_amount += parseInt(json[j]['cheque_amount']);
                 }
 
-                var AAO = doc.splitTextToSize('Received with thanks from ' + json[j]['district_bank'] + ' ' + cheque_amount + ' Rs. ( ' + convertNumberToWords(cheque_amount) +
+                var AAO = doc.splitTextToSize('Received with thanks from ' + json[0]['district_bank'] + ' ' + cheque_amount + ' Rs. ( ' + convertNumberToWords(cheque_amount) +
                     ' ) vide DD/Cheque No. ' + json[j]['cheque_number'] + 'Dated: ' + moment(json[j]['cheque_date']['$date']).format('DD/MM/YYYY'), 160);
 
                 doc.text(25, 65, AAO);
