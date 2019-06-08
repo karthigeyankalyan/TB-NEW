@@ -30,6 +30,8 @@
 
                 var cheque_amount = 0;
 
+                console.log(json);
+
                 for(var j = 0; j < json.length; j++) {
                     cheque_amount += parseInt(json[j]['cheque_amount']);
                 }
@@ -66,6 +68,7 @@
                         rows.push([[json[j]['district_bank']], loan_id, cat, [Math.floor(principal)],
                             [json[j]['interest_collected']], [parseInt(json[j]['penal_interest'])], [parseInt(json[j]['belated_interest'])],
                             [Math.floor(json[j]['service_charge'])], [json[j]['cheque_amount']], [total]]);
+                        console.log(j);
 
                     }
                     else {
