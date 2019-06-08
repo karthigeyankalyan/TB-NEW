@@ -1077,7 +1077,7 @@ def update_loan_financial_form(_id, late_interest, belated_int, penal_int):
                                  closing_balance_interest_due=closing_balance_interest_due,
                                  closing_balance_principal_due=closing_balance_principal_due,
                                  closing_balance_principal_ndue=closing_balance_principal_ndue,
-                                 penal_interest=penal, belated_interest=belated,
+                                 penal_interest=penal, belated_interest=belated, cheque_amount=chequeAmount,
                                  service_charge=service_charge, no_of_demands=dem_count)
 
             LoanApplication.update_pend_amount(amount_yet_to_be_paid=int(update_amount), loan_id=loan_id)

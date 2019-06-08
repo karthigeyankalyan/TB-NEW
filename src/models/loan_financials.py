@@ -71,7 +71,8 @@ class Demand(object):
                                service_charge=service_charge, no_of_demands=no_of_demands,
                                closing_balance_principal_due=closing_balance_principal_due,
                                closing_balance_principal_ndue=closing_balance_principal_ndue,
-                               closing_balance_interest_due=closing_balance_interest_due)
+                               closing_balance_interest_due=closing_balance_interest_due,
+                               cheque_amount=cheque_amount)
 
     def json(self):
         return {
