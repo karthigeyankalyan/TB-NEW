@@ -1076,7 +1076,7 @@ def update_loan_financial_form(_id, late_interest, belated_int, penal_int):
                                  cheque_number=cheque_number, cheque_date=cheque_date1,
                                  principal_collected=principal_collected, interest_collected=interest_collected,
                                  closing_balance_interest_due=closing_balance_interest_due,
-                                 closing_balance_principal_due=closing_balance_principal_due,
+                                 closing_balance_principal_due=closing_balance_principal_due-service_charge,
                                  closing_balance_principal_ndue=closing_balance_principal_ndue,
                                  penal_interest=penal, belated_interest=belated, cheque_amount=chequeAmount,
                                  service_charge=service_charge, no_of_demands=dem_count)
