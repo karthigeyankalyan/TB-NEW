@@ -175,7 +175,6 @@
                 if (parseInt(no_of_demands) === 32 || parseInt(no_of_demands) === 20) {
                     var tabcedco_installments = parseInt(TabcedcoShare)/2;
                     var nbcfdc_installments = Math.floor(parseInt(NBCShare)/(no_of_demands-2));
-                    console.log(tabcedco_installments, nbcfdc_installments);
 
                     amount_remaining = NBCShare+TabcedcoShare;
                     var tla = NBCShare+TabcedcoShare;
@@ -200,7 +199,6 @@
                                 interest = Math.ceil(parseInt(extra_days_nbc) + parseInt(extra_days_tbc) + parseInt(regular_nbc_interest) + parseInt(regular_tbc_interest));
 
                                 principal_per_installment = Math.ceil(tabcedco_installments);
-                                console.log(principal_per_installment);
                             }
                         }
 
@@ -225,7 +223,6 @@
                             amount_remaining -= principal_per_installment;
                             interest = Math.ceil(((roi) * amount_remaining ) / (400));
                             principal_per_installment = Math.ceil(amount_remaining);
-                            console.log(principal_per_installment);
                         }
 
                         else {
@@ -241,6 +238,7 @@
                         previous_demand_date = current_demand_date;
 
                         document.getElementById('pd'+l).value = principal_per_installment;
+                        console.log(principal_per_installment, l);
                         document.getElementById('id'+l).value = interest;
                         document.getElementById('d'+l).value = moment(current_demand_date, "DD-MM-YYYY").format("YYYY-MM-DD");
                     }
@@ -292,7 +290,6 @@
                             amount_remaining -= principal_per_installment;
                             interest = Math.ceil(((roi) * amount_remaining ) / (400));
                             principal_per_installment = Math.ceil(amount_remaining);
-                            console.log(principal_per_installment);
                         }
 
                         else {
@@ -307,6 +304,7 @@
                         previous_demand_date = current_demand_date;
 
                         document.getElementById('pd'+l).value = principal_per_installment;
+                        console.log(principal_per_installment, l);
                         document.getElementById('id'+l).value = interest;
                         document.getElementById('d'+l).value = moment(current_demand_date, "DD-MM-YYYY").format("YYYY-MM-DD");
 
