@@ -163,7 +163,7 @@
                 console.log(json);
 
                 var AAO = doc.splitTextToSize('Received with thanks from ' + json[0]['district_bank'] + ' ' + cheque_amount + ' Rs. ( ' + convertNumberToWords(cheque_amount) +
-                    ' ) vide DD/Cheque No. ' + json[j]['cheque_number'] + 'Dated: ' + moment(json[j]['cheque_date']['$date']).format('DD/MM/YYYY'), 160);
+                    ' ) vide DD/Cheque No. ' + json[0]['cheque_number'] + 'Dated: ' + moment(json[0]['cheque_date']['$date']).format('DD/MM/YYYY'), 160);
 
                 doc.text(25, 65, AAO);
 
