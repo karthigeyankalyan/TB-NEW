@@ -46,16 +46,16 @@
       <file leaf-file-name="ViewAllDemands.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/templates/ViewAllDemands.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="66">
-              <caret line="136" column="35" lean-forward="false" selection-start-line="136" selection-start-column="35" selection-end-line="136" selection-end-column="35" />
+            <state relative-caret-position="170">
+              <caret line="99" column="0" lean-forward="false" selection-start-line="99" selection-start-column="0" selection-end-line="99" selection-end-column="0" />
               <folding>
-                <element signature="e#11296#13974#0" expanded="false" />
-                <marker date="1559987205759" expanded="true" signature="4222:4261" ph="..." />
-                <marker date="1559987205759" expanded="true" signature="4340:4379" ph="..." />
-                <marker date="1559987205759" expanded="true" signature="4455:4494" ph="..." />
-                <marker date="1559987205759" expanded="true" signature="4577:4616" ph="..." />
-                <marker date="1559987205759" expanded="true" signature="4697:4736" ph="..." />
-                <marker date="1559987205759" expanded="true" signature="4819:4858" ph="..." />
+                <element signature="e#11291#13969#0" expanded="false" />
+                <marker date="1559987346493" expanded="true" signature="4222:4261" ph="..." />
+                <marker date="1559987346493" expanded="true" signature="4340:4379" ph="..." />
+                <marker date="1559987346493" expanded="true" signature="4455:4494" ph="..." />
+                <marker date="1559987346493" expanded="true" signature="4577:4616" ph="..." />
+                <marker date="1559987346493" expanded="true" signature="4697:4736" ph="..." />
+                <marker date="1559987346493" expanded="true" signature="4819:4858" ph="..." />
               </folding>
             </state>
           </provider>
@@ -64,8 +64,8 @@
       <file leaf-file-name="loan_financials.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/models/loan_financials.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="392">
-              <caret line="98" column="0" lean-forward="false" selection-start-line="98" selection-start-column="0" selection-end-line="98" selection-end-column="0" />
+            <state relative-caret-position="304">
+              <caret line="101" column="0" lean-forward="false" selection-start-line="101" selection-start-column="0" selection-end-line="101" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -922,14 +922,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/models/loan_financials.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="392">
-          <caret line="98" column="0" lean-forward="false" selection-start-line="98" selection-start-column="0" selection-end-line="98" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/templates/ViewLoans.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1326">
@@ -997,18 +989,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/models/loan_financials.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="101" column="0" lean-forward="false" selection-start-line="101" selection-start-column="0" selection-end-line="101" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/templates/ViewAllDemands.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="136" column="35" lean-forward="false" selection-start-line="136" selection-start-column="35" selection-end-line="136" selection-end-column="35" />
+        <state relative-caret-position="170">
+          <caret line="99" column="0" lean-forward="false" selection-start-line="99" selection-start-column="0" selection-end-line="99" selection-end-column="0" />
           <folding>
-            <element signature="e#11296#13974#0" expanded="false" />
-            <marker date="1559987205759" expanded="true" signature="4222:4261" ph="..." />
-            <marker date="1559987205759" expanded="true" signature="4340:4379" ph="..." />
-            <marker date="1559987205759" expanded="true" signature="4455:4494" ph="..." />
-            <marker date="1559987205759" expanded="true" signature="4577:4616" ph="..." />
-            <marker date="1559987205759" expanded="true" signature="4697:4736" ph="..." />
-            <marker date="1559987205759" expanded="true" signature="4819:4858" ph="..." />
+            <element signature="e#11291#13969#0" expanded="false" />
+            <marker date="1559987346493" expanded="true" signature="4222:4261" ph="..." />
+            <marker date="1559987346493" expanded="true" signature="4340:4379" ph="..." />
+            <marker date="1559987346493" expanded="true" signature="4455:4494" ph="..." />
+            <marker date="1559987346493" expanded="true" signature="4577:4616" ph="..." />
+            <marker date="1559987346493" expanded="true" signature="4697:4736" ph="..." />
+            <marker date="1559987346493" expanded="true" signature="4819:4858" ph="..." />
           </folding>
         </state>
       </provider>
