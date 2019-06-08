@@ -125,6 +125,11 @@
                                     cheque_date = 'Due Date Not Yet Crossed'
                                 }
 
+                                if (json[j]["belated_interest"] < 0) {
+                                    json[j]["belated_interest"] = 0;
+                                    json[j]["penal_interest"] = 0;
+                                }
+
                                 var demand_id = json[j]["_id"];
                                 var penal_plus_belated = parseInt(json[j]["belated_interest"]) + parseInt(json[j]["penal_interest"]);
                                 var url = '/updateDemand/'+demand_id+'/'+penal_plus_belated+'/'+json[j]["belated_interest"]+'/'+json[j]["penal_interest"];
