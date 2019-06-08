@@ -98,8 +98,8 @@
                                     var loan_id = jsonFunc[j]["ro_number"];
                                     var ann_loan_id = jsonFunc[j]["ann_loan_id"];
                                     var cheque_number = jsonFunc[j]["cheque_number"];
-                                    var row = $('<tr></tr>').html('<td>' + loan_id +
-                                        '</td>'+ ann_loan_id + '</td>'+
+                                    var row = $('<tr></tr>').html('<td>' + loan_id + '</td>'+
+                                        '<td>'+ ann_loan_id + '</td>'+
                                         '<td>'+jsonFunc[j]["demand_number"] +'</td>'+
                                         '<td>'+ moment(jsonFunc[j]["demand_date"]).format("DD-MM-YYYY") +'</td>'+
                                         '<td>'+jsonFunc[j]["cheque_number"] +'</td>'+
@@ -134,6 +134,7 @@
     }
 
         function downloadReceipt(cheque_number) {
+        console.log(cheque_number);
         var source = "/raw_demands_by_cheque_number/{{cheque_number}}";
         var doc = new jsPDF();
         $.ajax({
