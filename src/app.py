@@ -1096,13 +1096,13 @@ def update_loan_financial_form(_id, late_interest, belated_int, penal_int):
         return render_template('login_fail.html')
 
 
-@app.route('/ViewDemandsByLoan/<string:loan_id>')
-def loan_demands_view(loan_id):
+@app.route('/ViewDemandsByLoan/<string:loan_id>/<string:ro_number>')
+def loan_demands_view(loan_id, ro_number):
     email = session['email']
     user = User.get_by_email(email)
 
     if email is not None:
-        return render_template('ViewDemands.html', user=user, loan_id=loan_id)
+        return render_template('ViewDemands.html', user=user, loan_id=loan_id, ro_number=ro_number)
     else:
         return render_template('login_fail.html', user=user)
 
@@ -1118,10 +1118,11 @@ def all_demands_view():
         return render_template('login_fail.html', user=user)
 
 
-@app.route('/rawDemandsByLoan/<string:loan_id>')
-def raw_demands_by_loan_id(loan_id):
+@app.route('/rawDemandsByLoan/<string:loan_id>/<string:ro_number>')
+def raw_demands_by_loan_id(loan_id, ro_number):
     loan = []
-    loan_dict = Database.find("Demands", {"ann_id": loan_id})
+    loan_dict = Database.find("Demands", {"ann_id": loan_id,
+                                          "ro_number": ro_number})
 
     for tran in loan_dict:
         loan.append(tran)
