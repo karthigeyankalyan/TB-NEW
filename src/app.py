@@ -1107,6 +1107,17 @@ def all_demands_view(loan_id):
         return render_template('login_fail.html', user=user)
 
 
+@app.route('/view_all_demands')
+def all_demands_view():
+    email = session['email']
+    user = User.get_by_email(email)
+
+    if email is not None:
+        return render_template('ViewAllDemands.html', user=user)
+    else:
+        return render_template('login_fail.html', user=user)
+
+
 @app.route('/rawDemandsByLoan/<string:loan_id>')
 def raw_demands_by_loan_id(loan_id):
     loan = []
@@ -1118,6 +1129,30 @@ def raw_demands_by_loan_id(loan_id):
     single_loan = json.dumps(loan, default=json_util.default)
 
     return single_loan
+
+
+@app.route('/raw_demands')
+def get_raw_all_demands():
+    all_credit = []
+    all_credit_dict = Database.find("Demands", {})
+    for tran in all_credit_dict:
+        all_credit.append(tran)
+
+    all_credits = json.dumps(all_credit, default=json_util.default)
+
+    return all_credits
+
+
+@app.route('/raw_demands_by_cheque_number/<string:cheque_number>')
+def get_raw_receipt(cheque_number):
+    all_credit = []
+    all_credit_dict = Database.find("Demands", {"cheque_number": cheque_number})
+    for tran in all_credit_dict:
+        all_credit.append(tran)
+
+    all_credits = json.dumps(all_credit, default=json_util.default)
+
+    return all_credits
 
 
 @app.route('/raw_receipt/<string:_id>')
