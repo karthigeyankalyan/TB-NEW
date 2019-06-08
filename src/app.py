@@ -1108,6 +1108,17 @@ def loan_demands_view(loan_id, ro_number):
         return render_template('login_fail.html', user=user)
 
 
+@app.route('/demands_by_cheque/<string:_id>')
+def loan_demands_view(_id):
+    email = session['email']
+    user = User.get_by_email(email)
+
+    if email is not None:
+        return render_template('receipt_download_by_cheque.html', user=user, loan_id=_id)
+    else:
+        return render_template('login_fail.html', user=user)
+
+
 @app.route('/view_all_demands')
 def all_demands_view():
     email = session['email']
