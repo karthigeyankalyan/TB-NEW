@@ -135,7 +135,7 @@
 
         function downloadReceipt(cheque_number) {
         console.log(cheque_number);
-        var source = "/raw_demands_by_cheque_number/{{cheque_number}}";
+        var source = "/raw_demands_by_cheque_number/"+cheque_number;
         var doc = new jsPDF();
         $.ajax({
             type: 'GET',
