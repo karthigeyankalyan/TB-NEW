@@ -191,7 +191,7 @@
                         var principal = json[j]['principal_collected'] + json[j]['service_charge'];
                         var total = parseInt(json[j]['principal_collected']) + parseInt(json['interest_collected']) + parseInt(json['interest_collected']) + parseInt(json['belated_interest']) + parseInt(json['penal_interest']) - parseInt(json[j]['service_charge']);
 
-                        rows.push([[json[j]['district_bank']], json[j]['ro_number'], json[j]['loan_category'], [principal],
+                        rows.push([[json[j]['district_bank']], json[j]['ro_number'], cat, [principal],
                             [json[j]['interest_collected']], [parseInt(json[j]['penal_interest'])], [parseInt(json[j]['belated_interest'])],
                             [json[j]['service_charge']], [json[j]['cheque_amount']], [total]]);
 
@@ -206,7 +206,7 @@
                             {
                                 startY: 90,
                                 styles: {overflow: 'linebreak', fontSize: 8},
-                                columnStyles: {0: {columnWidth: 30}, 1: {columnWidth: 30}}
+                                columnStyles: {0: {columnWidth: 30}, 1: {columnWidth: 30}, 2: {columnWidth: 10}}
                             });
 
                         var table_end = doc.autoTableEndPosY();
