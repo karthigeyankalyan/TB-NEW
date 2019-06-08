@@ -46,6 +46,7 @@
             contentType: "application/json",
             dataType: 'json',
             success: function (json) {
+                console.log(json);
                     if(json[0]['loan_category'] === 'GTL (General Term Loan)') {
                         var cat = "GTL";
                     }
@@ -95,7 +96,7 @@
                             $("#loansDetails").append(hr + th1 + th2 + th3 + th4 + th5 + th6);
                             for (var j = 0; j < jsonFunc.length; j++) {
                                 {
-                                    var loan_id = jsonFunc[j]["loan_id"] + "/" + cat + (moment(json[0]['received_date']['$date']).year() - 2000) + '' + (moment(json[0]['received_date']['$date']).year() - 1999);
+                                    var loan_id = jsonFunc[j]["ro_number"];
                                     var ann_loan_id = jsonFunc[j]["ann_id"];
                                     var cheque_number = jsonFunc[j]["cheque_number"];
                                     var row = $('<tr></tr>').html('<td>' + loan_id + '</td>'+
@@ -189,7 +190,7 @@
 
                         var principal = json[j]['principal_collected'] + json[j]['service_charge'];
                         var total = parseInt(json[j]['principal_collected']) + parseInt(json['interest_collected']) + parseInt(json['interest_collected']) + parseInt(json['belated_interest']) + parseInt(json['penal_interest']) - parseInt(json[j]['service_charge']);
-                        var loan_id = jsonFunc[j]["loan_id"] + "/" + cat + (moment(json[0]['received_date']['$date']).year() - 2000) + '' + (moment(json[0]['received_date']['$date']).year() - 1999);
+                        var loan_id = json[j]["ro_number"];
 
                         rows.push([[json[j]['district_bank']], loan_id, cat, [Math.floor(principal)],
                             [json[j]['interest_collected']], [parseInt(json[j]['penal_interest'])], [parseInt(json[j]['belated_interest'])],
