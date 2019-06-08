@@ -104,7 +104,7 @@
                                         '<td>'+jsonFunc[j]["demand_number"] +'</td>'+
                                         '<td>'+ moment(jsonFunc[j]["demand_date"]).format("DD-MM-YYYY") +'</td>'+
                                         '<td>'+jsonFunc[j]["cheque_number"] +'</td>'+
-                                        '<td><button onclick="downloadReceipt('+cheque_number+')" class="btn btn-default">'+ 'Download Receipt' +'</button></td>');
+                                        '<td><button onclick="downloadReceipt('+jsonFunc[j]["cheque_number"]+')" class="btn btn-default">'+ 'Download Receipt' +'</button></td>');
                                     $("#loansDetails").append(row);
                                 }
                             }
