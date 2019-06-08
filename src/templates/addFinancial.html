@@ -285,7 +285,7 @@
                             principal_per_installment = Math.ceil(nbcfdc_installments);
                         }
 
-                        else if(l=== no_of_demands) {
+                        else if(l=== parseInt(no_of_demands)) {
                             current_demand_date = moment(previous_demand_date, "DD-MM-YYYY").add(3, 'M').format('DD-MM-YYYY');
                             amount_remaining -= principal_per_installment;
                             interest = Math.ceil(((roi) * amount_remaining ) / (400));
