@@ -1,7 +1,7 @@
 {% extends "post_login_loans.html" %}
 {% block content %}
 
-<form id="new-intent" action="/loanFinancial/{{ application_id }}" method="post">
+<form id="new-intent" action="/loanFinancial/{{ application_id }}/{{ ro_number }}" method="post">
 
 <div style="display: flex; flex-direction: column; align-items: center; flex: 1; justify-content: space-around; margin-top: 10px">
     <div class="form-group" style="display: block; width: 38%">
@@ -69,7 +69,7 @@
 </form>
 
 <script>
-    var source = "/getLoansByIdentfierLoans/"+"{{application_id}}";
+    var source = "/getLoansByIdentfiernRO/"+"{{application_id}}";
     $.ajax({
         type: 'GET',
         url: source,

@@ -851,13 +851,13 @@ def update_loan_form(_id):
         return render_template('login_fail.html')
 
 
-@app.route('/loanFinancial/<string:_id>', methods=['POST', 'GET'])
-def loan_financial_form(_id):
+@app.route('/loanFinancial/<string:_id>/<string:ro_number>', methods=['POST', 'GET'])
+def loan_financial_form(_id, ro_number):
     email = session['email']
     if email is not None:
         if request.method == 'GET':
             user = User.get_by_email(email)
-            return render_template('addFinancial.html', user=user, application_id=_id)
+            return render_template('addFinancial.html', user=user, application_id=_id, ro_number=ro_number)
 
         else:
             user = User.get_by_email(email)
@@ -1254,6 +1254,21 @@ def get_applications_by_identifier(ann_loan_id):
     loan = []
 
     loan_dict = Database.find("loans", {"ann_loan_id": ann_loan_id})
+
+    for tran in loan_dict:
+        loan.append(tran)
+
+    single_loan = json.dumps(loan, default=json_util.default)
+
+    return single_loan
+
+
+@app.route('/getLoansByIdentfiernRO/<string:ann_loan_id>/<string:ro_number>')
+def get_applications_by_identifier(ann_loan_id, ro_number):
+    loan = []
+
+    loan_dict = Database.find("loans", {"ann_loan_id": ann_loan_id,
+                                        "ro_number": ro_number})
 
     for tran in loan_dict:
         loan.append(tran)
