@@ -168,7 +168,7 @@
                 doc.text(25, 65, AAO);
 
                 for(j = 0; j < json.length; j++) {
-                    if (json[j]['penal_interest']) {
+                    if (json[j]['penal_interest'] !== null) {
                         if(json[0]['loan_category'] === 'GTL (General Term Loan)') {
                             var cat = "GTL";
                         }
