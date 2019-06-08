@@ -34,8 +34,6 @@
                     cheque_amount += parseInt(json[j]['cheque_amount']);
                 }
 
-                console.log(json, cheque_amount);
-
                 var AAO = doc.splitTextToSize('Received with thanks from ' + json[0]['district_bank'] + ' ' + cheque_amount + ' Rs. ( ' + convertNumberToWords(cheque_amount) +
                     ' ) vide DD/Cheque No. ' + json[0]['cheque_number'] + ' Dated: ' + moment(json[0]['cheque_date']['$date']).format('DD/MM/YYYY'), 160);
 
@@ -43,23 +41,23 @@
 
                 for(j = 0; j < json.length; j++) {
                     if (json[j]['penal_interest'] !== null) {
-                        if(json[0]['loan_category'] === 'GTL (General Term Loan)') {
+                        if (json[0]['loan_category'] === 'GTL (General Term Loan)') {
                             var cat = "GTL";
                         }
-                        else if(json[0]['loan_category'] === 'NSS (New-Swarnima Scheme)') {
+                        else if (json[0]['loan_category'] === 'NSS (New-Swarnima Scheme)') {
                             cat = "NSS";
                         }
-                        else if(json[0]['loan_category'] === 'MCG (Micro-Credit Gents)') {
+                        else if (json[0]['loan_category'] === 'MCG (Micro-Credit Gents)') {
                             cat = "MCR";
                         }
-                        else if(json[0]['loan_category'] === 'MSY (Mahila Samridhi Yojana)') {
+                        else if (json[0]['loan_category'] === 'MSY (Mahila Samridhi Yojana)') {
                             cat = "MSY";
                         }
 
                         // Checking if the loan category is either Micro Credit or Mahila Samridhi Yojana
 
                         var columns = ["Bank", "Ro #", "Code", "Principal", "Interest", "Penal", "Belated", "Service Charge", "Total"];
-                        var rows=[];
+                        var rows = [];
 
                         var principal = json[j]['principal_collected'] + json[j]['service_charge'];
                         var total = parseInt(json[j]['principal_collected']) + parseInt(json['interest_collected']) + parseInt(json['interest_collected']) + parseInt(json['belated_interest']) + parseInt(json['penal_interest']) - parseInt(json[j]['service_charge']);
@@ -73,6 +71,7 @@
                     else {
                         alert('Demand not yet updated!');
                     }
+                }
                         rows.push([["-"], ["-"], ["-"], ["-"],
                             ["-"], ["-"], ["-"], ["-"], [cheque_amount]]);
 
@@ -95,7 +94,6 @@
                         doc.text(25, table_end+45, json[j]['district']);
 
                         doc.save('Receipt ' + json[j]['ann_id'] + '.pdf');
-                }
             },
             error: function (e) {
                 alert("error");
