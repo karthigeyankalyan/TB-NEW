@@ -95,7 +95,7 @@
                             $("#loansDetails").append(hr + th1 + th2 + th3 + th4 + th5 + th6);
                             for (var j = 0; j < jsonFunc.length; j++) {
                                 {
-                                    var loan_id = jsonFunc[j]["ro_number"];
+                                    var loan_id = jsonFunc[j]["loan_id"] + "/" + cat + (moment(json[0]['received_date']['$date']).year() - 2000) + '' + (moment(json[0]['received_date']['$date']).year() - 1999);
                                     var ann_loan_id = jsonFunc[j]["ann_id"];
                                     var cheque_number = jsonFunc[j]["cheque_number"];
                                     var row = $('<tr></tr>').html('<td>' + loan_id + '</td>'+
@@ -182,7 +182,6 @@
                             cat = "MSY";
                         }
 
-                        var loan_id = json[j]["ro_number"];
                         // Checking if the loan category is either Micro Credit or Mahila Samridhi Yojana
 
                         var columns = ["Bank", "Ro #", "Code", "Principal", "Interest", "Penal", "Belated", "Service Charge", "Total"];
@@ -190,8 +189,9 @@
 
                         var principal = json[j]['principal_collected'] + json[j]['service_charge'];
                         var total = parseInt(json[j]['principal_collected']) + parseInt(json['interest_collected']) + parseInt(json['interest_collected']) + parseInt(json['belated_interest']) + parseInt(json['penal_interest']) - parseInt(json[j]['service_charge']);
+                        var loan_id = jsonFunc[j]["loan_id"] + "/" + cat + (moment(json[0]['received_date']['$date']).year() - 2000) + '' + (moment(json[0]['received_date']['$date']).year() - 1999);
 
-                        rows.push([[json[j]['district_bank']], json[j]['ro_number'], cat, [Math.floor(principal)],
+                        rows.push([[json[j]['district_bank']], loan_id, cat, [Math.floor(principal)],
                             [json[j]['interest_collected']], [parseInt(json[j]['penal_interest'])], [parseInt(json[j]['belated_interest'])],
                             [Math.floor(json[j]['service_charge'])], [json[j]['cheque_amount']], [total]]);
 
