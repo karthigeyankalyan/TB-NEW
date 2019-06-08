@@ -29,8 +29,8 @@
         </div>
 
         <div id="Search" style="display: flex; flex-direction: column;">
-            <label for="myInput" style="margin-left: 10%">Search by File Number:</label>
-            <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
+            <label for="myInput" style="margin-left: 10%">Search by Cheque Number:</label>
+            <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for cheque" title="Type in a name">
         </div>
     </div>
 
@@ -122,7 +122,7 @@
         tr = table.getElementsByTagName("tr");
         console.log(tr.length);
         for (i = 0; i < tr.length; i++) {
-            td = tr[i].getElementsByTagName("td")[1];
+            td = tr[i].getElementsByTagName("td")[4];
             if (td) {
                 if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
                     tr[i].style.display = "";
