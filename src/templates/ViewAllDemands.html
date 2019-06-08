@@ -160,10 +160,10 @@
                     cheque_amount += parseInt(json[j]['cheque_amount']);
                 }
 
-                console.log(json);
+                console.log(json, cheque_amount);
 
                 var AAO = doc.splitTextToSize('Received with thanks from ' + json[0]['district_bank'] + ' ' + cheque_amount + ' Rs. ( ' + convertNumberToWords(cheque_amount) +
-                    ' ) vide DD/Cheque No. ' + json[0]['cheque_number'] + 'Dated: ' + moment(json[0]['cheque_date']['$date']).format('DD/MM/YYYY'), 160);
+                    ' ) vide DD/Cheque No. ' + json[0]['cheque_number'] + ' Dated: ' + moment(json[0]['cheque_date']['$date']).format('DD/MM/YYYY'), 160);
 
                 doc.text(25, 65, AAO);
 
@@ -189,10 +189,11 @@
                         var rows=[];
 
                         var principal = json[j]['principal_collected'] + json[j]['service_charge'];
+                        var total = parseInt(json[j]['principal_collected']) + parseInt(json['interest_collected']) + parseInt(json['interest_collected']) + parseInt(json['belated_interest']) + parseInt(json['penal_interest']) - parseInt(json[j]['service_charge']);
 
                         rows.push([[json[j]['district_bank']], json[j]['ro_number'], json[j]['loan_category'], [principal],
                             [json[j]['interest_collected']], [parseInt(json[j]['penal_interest'])], [parseInt(json[j]['belated_interest'])],
-                            [json[j]['service_charge']], [json[j]['cheque_amount']]]);
+                            [json[j]['service_charge']], [json[j]['cheque_amount']], [total]]);
 
                     }
                     else {
