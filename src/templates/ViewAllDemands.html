@@ -99,6 +99,7 @@
                                     var loan_id = jsonFunc[j]["ro_number"];
                                     var ann_loan_id = jsonFunc[j]["ann_id"];
                                     var cheque_number = jsonFunc[j]["cheque_number"];
+                                    console.log(cheque_number, j);
                                     var row = $('<tr></tr>').html('<td>' + loan_id + '</td>'+
                                         '<td>'+ ann_loan_id + '</td>'+
                                         '<td>'+jsonFunc[j]["demand_number"] +'</td>'+
@@ -135,7 +136,6 @@
     }
 
         function downloadReceipt(cheque_number) {
-        console.log(cheque_number);
         var source = "/raw_demands_by_cheque_number/"+cheque_number;
         var doc = new jsPDF();
         $.ajax({
@@ -144,9 +144,6 @@
             contentType: "application/json",
             dataType: 'json',
             success: function (json) {
-
-                console.log(json, cheque_number);
-
                 doc.setFontSize(12);
                 doc.text(30, 25, 'TAMILNADU BACKWARD CLASSES ECONOMIC DEVELOPMENT CORPORATION LTD');
                 doc.setFontSize(10);
