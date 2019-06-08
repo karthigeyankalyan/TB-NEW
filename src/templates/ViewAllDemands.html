@@ -185,7 +185,9 @@
                         var columns = ["Bank", "Ro #", "Code", "Principal", "Interest", "Penal", "Belated", "Service Charge", "Total"];
                         var rows=[];
 
-                        rows.push([[json[j]['district_bank']], json[j]['ro_number'], json[j]['loan_category'], [json[j]['principal_collected']],
+                        var principal = json[j]['principal_collected'] + json[j]['service_charge'];
+
+                        rows.push([[json[j]['district_bank']], json[j]['ro_number'], json[j]['loan_category'], [principal],
                             [json[j]['interest_collected']], [parseInt(json[j]['penal_interest'])], [parseInt(json[j]['belated_interest'])],
                             [json[j]['service_charge']], [json[j]['cheque_amount']]]);
 

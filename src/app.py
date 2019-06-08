@@ -1097,7 +1097,7 @@ def update_loan_financial_form(_id, late_interest, belated_int, penal_int):
 
 
 @app.route('/ViewDemandsByLoan/<string:loan_id>')
-def all_demands_view(loan_id):
+def loan_demands_view(loan_id):
     email = session['email']
     user = User.get_by_email(email)
 
@@ -1144,7 +1144,7 @@ def get_raw_all_demands():
 
 
 @app.route('/raw_demands_by_cheque_number/<string:cheque_number>')
-def get_raw_receipt(cheque_number):
+def get_raw_receipt_by_cheque(cheque_number):
     all_credit = []
     all_credit_dict = Database.find("Demands", {"cheque_number": cheque_number})
     for tran in all_credit_dict:
