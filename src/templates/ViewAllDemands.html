@@ -160,6 +160,8 @@
                     cheque_amount += parseInt(json[j]['cheque_amount']);
                 }
 
+                console.log(json);
+
                 var AAO = doc.splitTextToSize('Received with thanks from ' + json[0]['district_bank'] + ' ' + cheque_amount + ' Rs. ( ' + convertNumberToWords(cheque_amount) +
                     ' ) vide DD/Cheque No. ' + json[j]['cheque_number'] + 'Dated: ' + moment(json[j]['cheque_date']['$date']).format('DD/MM/YYYY'), 160);
 
