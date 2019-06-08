@@ -41,6 +41,9 @@
 
                 doc.text(25, 65, AAO);
 
+                var columns = ["Bank", "Ro #", "Code", "Principal", "Interest", "Penal", "Belated", "Service Charge", "Total"];
+                var rows = [];
+
                 for(j = 0; j < json.length; j++) {
                     if (json[j]['penal_interest'] !== null) {
                         if (json[0]['loan_category'] === 'GTL (General Term Loan)') {
@@ -57,10 +60,6 @@
                         }
 
                         // Checking if the loan category is either Micro Credit or Mahila Samridhi Yojana
-
-                        var columns = ["Bank", "Ro #", "Code", "Principal", "Interest", "Penal", "Belated", "Service Charge", "Total"];
-                        var rows = [];
-
                         var principal = json[j]['principal_collected'] + json[j]['service_charge'];
                         var total = parseInt(json[j]['principal_collected']) + parseInt(json['interest_collected']) + parseInt(json['interest_collected']) + parseInt(json['belated_interest']) + parseInt(json['penal_interest']) - parseInt(json[j]['service_charge']);
                         var loan_id = json[j]["ro_number"];
