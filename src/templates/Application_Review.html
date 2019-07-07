@@ -861,7 +861,7 @@
                         }
 
                         for (i = 0; i< distinct_demand_amount.length; i++) {
-                            console.log(distinct_demand_amount[i].values.total_loan);
+                            console.log(distinct_demand_amount);
                             downloadGTLPDF(distinct_demand_amount[i].values.total_loan, parseInt(distinct_demand_amount[i].key), moment(json[0]['cheque_date']['$date']).format('DD-MM-YYYY'), json[0]['roi'], 'demand-consolidated', distinct_demand_amount[i].values.total_members);
                         }
 
