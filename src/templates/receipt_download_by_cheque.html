@@ -29,10 +29,22 @@
                 doc.text(75, 50, 'RECEIPT');
 
                 var cheque_amount = 0;
+                var total_principal = 0;
+                var total_interest = 0;
+                var total_penal = 0;
+                var total_belated = 0;
+                var total_service = 0;
 
                 console.log(json);
 
                 for(var j = 0; j < json.length; j++) {
+                    principal = json[j]['principal_collected'] + json[j]['service_charge'];
+
+                    cheque_amount += parseInt(json[j]['cheque_amount']);
+                    total_principal += parseInt(principal);
+                    total_interest += parseInt(json[j]['interest_collected']);
+                    total_penal += parseInt(json[j]['cheque_amount']);
+                    total_service += parseInt(json[j]['service_charge']);
                     cheque_amount += parseInt(json[j]['cheque_amount']);
                 }
 
@@ -74,8 +86,8 @@
                         alert('Demand not yet updated!');
                     }
                 }
-                        rows.push([["-"], ["-"], ["-"], ["-"],
-                            ["-"], ["-"], ["-"], ["-"], [cheque_amount]]);
+                        rows.push([["-"], ["-"], [total_principal], [total_interest],
+                            [total_penal], [total_belated], [total_service], ["-"], [cheque_amount]]);
 
                         doc.autoTable(columns, rows,
                             {
