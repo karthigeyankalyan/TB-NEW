@@ -97,11 +97,10 @@
                                 columnStyles: {0: {columnWidth: 30}, 1: {columnWidth: 30}}
                             });
 
-                        doc.autoTable({
-                            didParseCell: function (data) {
-                                var rows = data.table.body;
-                                if (data.row.index === rows.length - 1) {
-                                    data.cell.styles.fillColor = [239, 154, 154];
+                        doc.autoTable(rows, {
+                            drawCell: function (rows) {
+                                if (rows.index === rows.length - 1) {
+                                    doc.setFontStyle('bold');
                                 }
                             }
                         });
