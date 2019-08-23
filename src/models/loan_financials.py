@@ -74,6 +74,10 @@ class Demand(object):
                                closing_balance_interest_due=closing_balance_interest_due,
                                cheque_amount=cheque_amount)
 
+    @classmethod
+    def deletefrom_mongo(cls, _id):
+        Database.delete_from_mongo(collection='Demands', query={'_id': _id})
+
     def json(self):
         return {
             "loan_id": self.loan_id,

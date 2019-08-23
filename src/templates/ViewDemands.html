@@ -133,6 +133,7 @@
                                 var demand_id = json[j]["_id"];
                                 var penal_plus_belated = parseInt(json[j]["belated_interest"]) + parseInt(json[j]["penal_interest"]);
                                 var url = '/updateDemand/'+demand_id+'/'+penal_plus_belated+'/'+json[j]["belated_interest"]+'/'+json[j]["penal_interest"];
+                                var url1 = '/delete_demand/'+demand_id;
                                 var row = $('<tr></tr>').html('<td>' +
                                     +json[j]["demand_number"] +'</td>'+
                                     '<td>'+json[j]["demand_date"]+'</td>'+
@@ -144,7 +145,7 @@
                                     '<td>'+json[j]["closing_balance_interest_due"]+'</td>'+
                                     '<td><button class="btn btn-default"><a href="' + url + '">'+ 'Update Demand' +'</a></button></td>'+
                                     '<td style="font-size: 10px">'+json[j]["Remarks"]+'</td>'+
-                                    '<td><button onclick="downloadReceipt('+j+')" class="btn btn-default">'+ 'Download Receipt' +'</button></td>');
+                                    '<td><button class="btn btn-default"><a href="' + url1 + '">'+ 'Delete Demand' +'</a></button></td>');
                                 $("#demandDetails").append(row);
                             }
                         }

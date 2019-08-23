@@ -1190,6 +1190,16 @@ def delete_application(_id):
     return render_template('deleted.html', user=user)
 
 
+@app.route('/delete_demand/<string:_id>')
+def delete_demand(_id):
+    email = session['email']
+    user = User.get_by_email(email)
+
+    LoanApplication.deletefrom_mongo(_id=_id)
+
+    return render_template('deleted.html', user=user)
+
+
 @app.route('/Credit')
 def get_credits():
     all_credit = []
