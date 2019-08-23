@@ -43,9 +43,9 @@
                     cheque_amount += parseInt(json[j]['cheque_amount']);
                     total_principal += parseInt(principal);
                     total_interest += parseInt(json[j]['interest_collected']);
-                    total_penal += parseInt(json[j]['cheque_amount']);
+                    total_penal += parseInt(json[j]['penal_interest']);
+                    total_belated += parseInt(json[j]['belated_interest']);
                     total_service += parseInt(json[j]['service_charge']);
-                    cheque_amount += parseInt(json[j]['cheque_amount']);
                 }
 
                 var AAO = doc.splitTextToSize('Received with thanks from ' + json[0]['district_bank'] + ' ' + cheque_amount + ' Rs. ( ' + convertNumberToWords(cheque_amount) +
