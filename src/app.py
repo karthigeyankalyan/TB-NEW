@@ -1195,7 +1195,7 @@ def delete_demand(_id):
     email = session['email']
     user = User.get_by_email(email)
 
-    LoanApplication.deletefrom_mongo(_id=_id)
+    Demand.deletefrom_mongo(_id=_id)
 
     return render_template('deleted.html', user=user)
 
