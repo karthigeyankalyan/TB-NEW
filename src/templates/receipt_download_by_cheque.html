@@ -87,6 +87,8 @@
                     }
                 }
 
+                var last_row = json.length-1;
+
                         rows.push([["-"], ["-"], ["-"], [total_principal], [total_interest],
                             [total_penal], [total_belated], [total_service], [cheque_amount]]);
 
@@ -95,15 +97,8 @@
                                 startY: 90,
                                 styles: {overflow: 'linebreak', fontSize: 8},
                                 columnStyles: {0: {columnWidth: 30}, 1: {columnWidth: 30}}
+                                rowStyles: {last_row: {fontStyle: 'bold'}}
                             });
-
-                        doc.autoTable(rows, {
-                            drawCell: function (rows) {
-                                if (rows.index === rows.length - 1) {
-                                    doc.setFontStyle('bold');
-                                }
-                            }
-                        });
 
                         var table_end = doc.autoTableEndPosY();
                         doc.text(25, doc.autoTableEndPosY() + 10, 'Prepared By:');
