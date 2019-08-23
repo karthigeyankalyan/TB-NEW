@@ -1242,7 +1242,7 @@ def raw_all_applications_seat_wise(profile):
 
     stat = profile.replace("_", " ")
 
-    all_loans_dict = Database.find("loans", {"user_name": profile})
+    all_loans_dict = Database.find("loans", {"user_name": stat})
     for tran in all_loans_dict:
         all_loans.append(tran)
 
