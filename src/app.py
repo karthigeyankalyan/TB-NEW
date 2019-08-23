@@ -1239,6 +1239,9 @@ def raw_all_applications():
 @app.route('/RawLoanApplications/SeatWise/<string:profile>')
 def raw_all_applications_seat_wise(profile):
     all_loans = []
+
+    stat = profile.replace("_", " ")
+
     all_loans_dict = Database.find("loans", {"user_name": profile})
     for tran in all_loans_dict:
         all_loans.append(tran)
