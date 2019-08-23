@@ -1236,6 +1236,18 @@ def raw_all_applications():
     return all_loan
 
 
+@app.route('/RawLoanApplications/SeatWise/<string:profile>')
+def raw_all_applications_seat_wise(profile):
+    all_loans = []
+    all_loans_dict = Database.find("loans", {"user_name": profile})
+    for tran in all_loans_dict:
+        all_loans.append(tran)
+
+    all_loan = json.dumps(all_loans, default=json_util.default)
+
+    return all_loan
+
+
 @app.route('/RawLoans/<string:status>')
 def raw_applications(status):
     all_loans = []
@@ -1349,13 +1361,13 @@ def credit_view():
         return render_template('login_fail.html', user=user)
 
 
-@app.route('/ViewAllLoanApplications')
-def all_loans_view():
+@app.route('/ViewAllLoanApplications/<string:profile>')
+def all_loans_view(profile):
     email = session['email']
     user = User.get_by_email(email)
 
     if email is not None:
-        return render_template('ViewLoans.html', user=user)
+        return render_template('ViewLoans.html', user=user, profile=profile)
     else:
         return render_template('login_fail.html', user=user)
 
