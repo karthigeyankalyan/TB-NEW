@@ -98,6 +98,11 @@
                             {
                                 startY: 90,
                                 styles: {overflow: 'linebreak', fontSize: 8},
+                                drawRow: function (row, data) {
+                                    if (row.index === data.table.rows.length - 1) {
+                                        doc.setFontStyle('bold');
+                                    }
+                                },
                                 columnStyles: {0: {columnWidth: 30}, 1: {columnWidth: 30}}
                             });
 
