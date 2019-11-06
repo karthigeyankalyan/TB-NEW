@@ -41,7 +41,7 @@
                             if(json[i]['demand_date']) {
                                 console.log(json[i]['demand_date']);
                                 if(moment(json[i]['demand_date']).isBefore(moment()) && json[i]['principal_collected'] === null) {
-                                    console.log();
+                                    console.log(moment(json[i]['demand_date']).isBefore(moment()), json[i]['principal_collected'] === null);
                                     json[i]['cheque_date'] = moment();
                                     json[i]['Total Principal Demand'] = parseInt(json[i]['principal_demand'])+parseInt(json[i]['opening_balance_principal_due']);
                                     json[i]['Total Interest Demand'] = parseInt(json[i]['interest_demand'])+parseInt(json[i]['opening_balance_interest_due']);
@@ -80,8 +80,8 @@
                                     if(json[i]['demand_number'] === 1) {
                                         delay = moment().diff(moment(json[i]['demand_date']), 'days');
                                         json[i]['delay'] = delay;
-                                        json[i]['penal_interest'] = 0;
-                                        json[i]['belated_interest'] = 0;
+                                        json[i]['penal_interest'] = (delay*json[i]['Total Demand']*5)/(365*100);
+                                        json[i]['belated_interest'] = (delay*json[i]['Total Demand']*parseInt(json[i]['roi']))/(365*100);
                                     }
                                     else {
                                         json[i]['opening_balance_due'] = json[i]['opening_balance_principal_due']+json[i]['opening_balance_interest_due'];
@@ -91,9 +91,9 @@
                                         json[i]['belated_interest_old'] = (delay_old*json[i]['opening_balance_due']*parseInt(json[i]['roi']))/(365*100);
 
                                         delay = moment().diff(moment(json[i]['demand_date']), 'days');
-                                        json[i]['penal_interest'] = 0;
+                                        json[i]['penal_interest'] = (delay*json[i]['Total Demand']*5)/(365*100);
                                         json[i]['delay'] = delay;
-                                        json[i]['belated_interest'] = 0;
+                                        json[i]['belated_interest'] = (delay*json[i]['Total Demand']*parseInt(json[i]['roi']))/(365*100);
 
                                         json[i]['penal_interest'] += json[i]['penal_interest_old'];
                                         json[i]['belated_interest'] += json[i]['belated_interest_old'];
