@@ -16,14 +16,15 @@
             success: function (json) {
                 console.log(json);
                     {
-                        if (json[0]['closing_balance_principal_due'] === null) {
-                                json[0]['opening_balance_principal_due'] = 0;
-                                json[0]['opening_balance_interest_due'] = 0;
-                                json[0]['opening_balance_principal_ndue'] = parseInt(json[0]['loan_amount']);
-                        }
 
                         for(var i = 0; i<json.length; i++) {
                             json[i]['demand_number'] = parseInt(json[i]['demand_number']);
+                            if (i === 0 ) {
+                                    json[0]['opening_balance_principal_due'] = 0;
+                                    json[0]['opening_balance_interest_due'] = 0;
+                                    json[0]['opening_balance_principal_ndue'] = parseInt(json[0]['loan_amount']);
+                            }
+
                             if (i !== 0 ) {
                                 json[i]['opening_balance_principal_due'] = parseInt(json[i-1]['closing_balance_principal_due']);
                                 json[i]['opening_balance_interest_due'] = parseInt(json[i-1]['closing_balance_interest_due']);
