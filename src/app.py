@@ -962,6 +962,10 @@ def update_loan_financial_form(_id, late_interest, belated_int, penal_int, p_due
                 principal_for_interest = p_ndue
                 interest_due = i_due
 
+            if penal_int is None:
+                penal_int = 0
+                belated_int = 0
+
             principal_demand += float(principal_due)
             total_interest_demand = float(interest_demand) + float(interest_due) + float(late_interest)
 
