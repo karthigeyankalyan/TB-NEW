@@ -38,7 +38,7 @@
                                 json[i]["demand_date"] = moment(json[i]["demand_date"]['$date']).format('YYYY-MM-DD');
                             }
 
-                            if(moment(json[i]['demand_date']).isValid()) {
+                            if(json[i]['demand_date']) {
                                 if(moment(json[i]['demand_date']).isBefore(moment()) && json[i]['principal_collected'] === null) {
                                     json[i]['cheque_date'] = moment();
                                     json[i]['Total Principal Demand'] = parseInt(json[i]['principal_demand'])+parseInt(json[i]['opening_balance_principal_due']);
