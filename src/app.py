@@ -918,9 +918,10 @@ def loan_financial_form(_id, ro_number):
         return render_template('login_fail.html')
 
 
-@app.route('/updateDemand/<string:_id>/<string:late_interest>/<string:belated_int>/<string:penal_int>',
+@app.route('/updateDemand/<string:_id>/<string:late_interest>/<string:belated_int>/<string:penal_int>/'
+           '<string:p_due>/<string:p_ndue>/<string:i_due>',
            methods=['POST', 'GET'])
-def update_loan_financial_form(_id, late_interest, belated_int, penal_int):
+def update_loan_financial_form(_id, late_interest, belated_int, penal_int, p_due, p_ndue, i_due):
     email = session['email']
     if email is not None:
         if request.method == 'GET':
@@ -930,7 +931,7 @@ def update_loan_financial_form(_id, late_interest, belated_int, penal_int):
             demand = Database.find("Demands", {"_id": _id})
             loan_id, lsd, demand_date, chequem1_date = None, None, None, None
             loan_amount = 0
-            roi, principal_demand, interest_demand, interest_due, principal_due, demand_number = 0, 0, 0, 0, 0, 0
+            roi, principal_demand, interest_demand, interest_due, principal_due, demand_number, principal_for_interest = 0, 0, 0, 0, 0, 0, 0
 
             for result_object in demand[0:1]:
                 lsd = result_object['loan_sanction_date']
@@ -955,6 +956,11 @@ def update_loan_financial_form(_id, late_interest, belated_int, penal_int):
                     interest_due = result_object['closing_balance_interest_due']
                     demandm1_date = result_object['demand_date']
                     days = (demand_date-demandm1_date).days
+
+            if principal_due is None:
+                principal_due = p_due
+                principal_for_interest = p_ndue
+                interest_due = i_due
 
             principal_demand += int(principal_due)
             total_interest_demand = int(interest_demand) + int(interest_due) + int(late_interest)
