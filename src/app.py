@@ -962,8 +962,8 @@ def update_loan_financial_form(_id, late_interest, belated_int, penal_int, p_due
                 principal_for_interest = p_ndue
                 interest_due = i_due
 
-            principal_demand += int(principal_due)
-            total_interest_demand = int(interest_demand) + int(interest_due) + int(late_interest)
+            principal_demand += float(principal_due)
+            total_interest_demand = float(interest_demand) + float(interest_due) + float(late_interest)
 
             return render_template('updateFinancial.html', user=user, demand_id=_id,
                                    total_principal_demand=principal_demand,
