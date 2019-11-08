@@ -32,6 +32,12 @@
             <label for="myInput" style="margin-left: 10%">Search by Cheque Number:</label>
             <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for cheque" title="Type in a name">
         </div>
+
+        <div id="SearchRO#" style="display: flex; flex-direction: column;">
+            <label for="myInput" style="margin-left: 10%">Search by RO Number:</label>
+            <input type="text" id="myInputRO" onkeyup="myFunctionRO()" placeholder="Search for RO" title="Type in a name">
+        </div>
+
     </div>
 
     <div id="loansList">
@@ -135,6 +141,24 @@
         }
     }
 
+    function myFunctionRO() {
+        var input, filter, table, tr, td, i;
+        input = document.getElementById("myInputRO");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("loansList");
+        tr = table.getElementsByTagName("tr");
+        console.log(tr.length);
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+                if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
 </script>
 
 {% endblock %}

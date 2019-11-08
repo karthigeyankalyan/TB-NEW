@@ -113,6 +113,23 @@ class Database(object):
                                                                              amount_to_pay}}, True)
 
     @staticmethod
+    def update_application_similar(collection, query, sb, jr_letter_date, jr_letter_number, screening_date, pso_date,
+                                   ro_date, ro_number, post_pso_ref, bank_district, cheque_date, received_date):
+
+        return Database.DATABASE[collection].update_one(query, {'$set': {'bank_district': bank_district,
+                                                                         'sub_bank': sb,
+                                                                         'received_date': received_date,
+                                                                         'screening_date': screening_date,
+                                                                         'jr_letter_date': jr_letter_date,
+                                                                         'pso_date': pso_date,
+                                                                         'ro_date': ro_date,
+                                                                         'jr_letter_number': jr_letter_number,
+                                                                         'ro_number': ro_number,
+                                                                         'post_pso_ref_no': post_pso_ref,
+                                                                         'cheque_date': cheque_date
+                                                                         }}, True)
+
+    @staticmethod
     def update_demand(collection, query, demand_number, demand_date, cheque_number, cheque_date, principal_collected,
                       interest_collected, penal_interest, belated_interest, service_charge, no_of_demands, cheque_amount,
                       closing_balance_principal_due, closing_balance_principal_ndue, closing_balance_interest_due):

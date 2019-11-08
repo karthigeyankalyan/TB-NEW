@@ -740,14 +740,17 @@ def update_loan_form(_id):
 
                 application = Database.find("loans", {"_id": _id})
                 amount_to_pay = 0
+                annual_loan_id = None
 
                 for result_object in application[0:1]:
                     amount_to_pay = result_object['amount_yet_to_pay']
+                    annual_loan_id = result_object['ann_loan_id']
 
                 LoanApplication.update_loan_app(applicant_name=applicant_name, loan_category=loan_category, age=age,
                                                 gender=gender, address=address, district=district,
                                                 annual_income=annual_income,
-                                                caste=caste, bank=bank, loan_reason=loan_reason, loan_amount=loan_amount,
+                                                caste=caste, bank=bank, loan_reason=loan_reason,
+                                                loan_amount=loan_amount,
                                                 received_date=received_date, status=status, status_date=status_date,
                                                 ann_loan_id=ann_loan_id, user_id=user_id, user_name=user_name,
                                                 no_of_shgs=no_of_shgs, loan_id=_id, cheque_number=cheque_number,
@@ -757,7 +760,22 @@ def update_loan_form(_id):
                                                 jr_letter_number=jr_letter_number, jr_letter_date=jr_letter_date,
                                                 ro_date=ro_date, pso_date=pso_date, amount_per_member=None,
                                                 strength=None, shg_name=None, ro_number=ro_number,
-                                                post_pso_ref=ro_ref, bank_district=bank_district, cheque_date=cheque_date)
+                                                post_pso_ref=ro_ref, bank_district=bank_district,
+                                                cheque_date=cheque_date)
+
+                application_also_update = Database.find("loans", {"ann_loan_id": annual_loan_id})
+
+                for result_object in application_also_update:
+                    identifier_similar_id = result_object['_id']
+                    received_date = result_object['received_date']
+
+                    LoanApplication.update_loan_app_similar(loan_id=identifier_similar_id, sub_bank=sub_bank,
+                                                            screening_date=screening_date,
+                                                            jr_letter_number=jr_letter_number,
+                                                            jr_letter_date=jr_letter_date,
+                                                            ro_date=ro_date, pso_date=pso_date, ro_number=ro_number,
+                                                            post_pso_ref=ro_ref, bank_district=bank_district,
+                                                            cheque_date=cheque_date, received_date=received_date)
 
                 return render_template('application_added_update.html', user=user, application_id=_id)
 
@@ -809,7 +827,6 @@ def update_loan_form(_id):
                         deletion_array = deletion.split("|")
 
                         for deletion in deletion_array:
-                            print(deletion)
                             LoanApplication.deletefrom_mongo(_id=deletion)
                         deletion_variable = False
 

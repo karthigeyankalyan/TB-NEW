@@ -198,8 +198,15 @@
                         total_tabcedco_share += parseInt(json[iter]['tabcedco_share']);
                     }
 
+                    var res=(parseInt(total_nbc_share)+parseInt(total_tabcedco_share)).toString();
+                    var lastThree = res.substring(res.length-3);
+                    var otherNumbers = res.substring(0,res.length-3);
+                    if(otherNumbers !== '')
+                        lastThree = ',' + lastThree;
+                    res = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree;
+
                     var pso = doc.splitTextToSize('In pursuance of loan requisition received in reference above, the Managing Director, ' +
-                        'TABCEDCO, is pleased to sanction the Term Loan of Rs. ' + (parseInt(total_nbc_share) + parseInt(total_tabcedco_share)) + convertNumberToWords((parseInt(total_nbc_share) + parseInt(total_tabcedco_share))) + ' under ' +
+                        'TABCEDCO, is pleased to sanction the Term Loan of Rs. ' + res + convertNumberToWords((parseInt(total_nbc_share) + parseInt(total_tabcedco_share))) + ' under ' +
                         json[0]['loan_category'] + ' to the ' + json[0]['sub_bank'] + ' through ' + json[0]['bank'] + ' to disburse this ' +
                         'amount to the beneficiary/beneficiaries as detailed in the Annexure-I', 165);
 
@@ -413,12 +420,19 @@
 
                     doc.text(37, 120, para1);
 
+                    var res=(parseInt(total_nbc_share)+parseInt(total_tabcedco_share)).toString();
+                    var lastThree = res.substring(res.length-3);
+                    var otherNumbers = res.substring(0,res.length-3);
+                    if(otherNumbers !== '')
+                        lastThree = ',' + lastThree;
+                    res = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree;
+
                     if(json.length === 1) {
-                        var paraStr2 = 'Beneficiaries '+ json[0]['applicant_name'] + ' Loan Amount of Rs. '+(total_tabcedco_share+total_nbc_share);
+                        var paraStr2 = 'Beneficiaries '+ json[0]['applicant_name'] + ' Loan Amount of Rs. '+res;
                     }
                     else {
                         var size = json.length-1;
-                        paraStr2 = 'Beneficiaries '+ json[0]['applicant_name'] + ' & '+ size +' Loan Amount of Rs. '+(total_tabcedco_share+total_nbc_share);
+                        paraStr2 = 'Beneficiaries '+ json[0]['applicant_name'] + ' & '+ size +' Loan Amount of Rs. '+res;
                     }
 
                     var para2 = doc.splitTextToSize(paraStr2, 160);
@@ -478,7 +492,7 @@
                     doc.text(25, 100, 'PROVISIONAL SANCTION ORDER:');
 
                     var pso = doc.splitTextToSize('In pursuance of loan requisition received in reference above, the Managing Director, ' +
-                        'TABCEDCO, is pleased to sanction the Term Loan of Rs. ' + (total_nbc_share + total_tabcedco_share) + convertNumberToWords((parseInt(total_nbc_share) + parseInt(total_tabcedco_share)))+' under ' +
+                        'TABCEDCO, is pleased to sanction the Term Loan of Rs. ' + res + convertNumberToWords((parseInt(total_nbc_share) + parseInt(total_tabcedco_share)))+' under ' +
                         json[0]['loan_category'] + ' to the ' + json[0]['sub_bank'] + ' through ' + json[0]['bank'] + ' to disburse this ' +
                         'amount to the beneficiary/beneficiaries as detailed in the Annexure-I', 165);
 
@@ -676,7 +690,7 @@
                         doc.text(60, 20, '1/1(1), Mayor Ramanathan Salai East, Egmore, Chennai - 600 008.');
 
                         doc.text(30, 30, '1.    NAME OF THE BANK:');
-                        var bank = json[0]['bank_district']+' District';
+                        var bank = json[0]['bank_district']+' District ' + json[0]['sub_bank'];
                         doc.text(80, 30, bank);
 
                         doc.text(30, 37, '2.    SCHEME NAME:');
@@ -910,7 +924,7 @@
                                 doc.text(60, 20, '1/1(1), Mayor Ramanathan Salai East, Egmore, Chennai - 600 008.');
 
                                 doc.text(30, 30, '1.    NAME OF THE BANK:');
-                                var bank = json[0]['bank'];
+                                var bank = json[0]['bank'] + ' ' + json[0]['sub_bank'];
                                 doc.text(80, 30, bank);
 
                                 doc.text(30, 37, '2.    SCHEME NAME:');
@@ -1279,7 +1293,14 @@
 
                     doc.addPage();
 
-                    var pt3 = doc.splitTextToSize('3. Accordingly sanction is hereby accorded for the payment of Rs.' + sanction_amount + '/-' + convertNumberToWords(sanction_amount)
+                    var res=sanction_amount.toString();
+                    var lastThree = res.substring(res.length-3);
+                    var otherNumbers = res.substring(0,res.length-3);
+                    if(otherNumbers !== '')
+                        lastThree = ',' + lastThree;
+                    res = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree;
+
+                    var pt3 = doc.splitTextToSize('3. Accordingly sanction is hereby accorded for the payment of Rs.' + res + '/-' + convertNumberToWords(sanction_amount)
                         + ' to the ' + ' district through the ' + json[0]['bank'] + ' for the disbursement of loan under ' +
                         json[0]['loan_category'], 160);
 
@@ -1356,9 +1377,16 @@
 
                     var size = json.length - 1;
 
+                    res=sanctioned_amount.toString();
+                    lastThree = res.substring(res.length-3);
+                    otherNumbers = res.substring(0,res.length-3);
+                    if(otherNumbers !== '')
+                        lastThree = ',' + lastThree;
+                    res = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree;
+
                     var sub = doc.splitTextToSize('Sub:     Tamil Nadu Backward Classes Economic Development Corporation Ltd., Chennai 600008. Disbursement of ' +
                         'Individual Term Loan to ' + json[0]['applicant_name'] + ' and ' + size + ' others. - Final Sanction Order for ' +
-                        'Rs.' + sanctioned_amount + '/- - Issued - Reg', 160);
+                        'Rs.' + res + '/- - Issued - Reg', 160);
 
                     doc.text(40, 65, sub);
 
@@ -1549,10 +1577,17 @@
                         doc.text(65, 45, 'PRESENT: '+ MD +'., I.A.S.');
                         doc.text(25, 55, 'Proc.No.' + json[0]['ann_loan_id'] + '/' + json[0]['district']+ '/' + json[0]['bank']);
 
+                        var res=sanction_amount.toString();
+                        var lastThree = res.substring(res.length-3);
+                        var otherNumbers = res.substring(0,res.length-3);
+                        if(otherNumbers !== '')
+                            lastThree = ',' + lastThree;
+                        res = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree;
+
                         doc.text(160, 55, 'Dated: ' );
                         doc.text(37, 65, 'Sub:  Tamil Nadu Backward Classes Economic Development Corporation Ltd., Chennai 600008.');
                         doc.text(46, 70, 'Disbursement of Loan under ' + json[0]['loan_category'] + ' Payment sanctioned to ' + total_ben_shg_count + ' beneficiaries');
-                        doc.text(46, 75, 'through ' + json[0]["bank"] + ' - Final Sanction Order for Rs. ' + sanction_amount + ' - issued - Reg.');
+                        doc.text(46, 75, 'through ' + json[0]["bank"] + ' - Final Sanction Order for Rs. ' + res + '/- - issued - Reg.');
 
                         doc.text(37, 85, 'Ref:  1. The Deed of Agreement Dated: '+ moment(deedDate).format("DD-MM-YYYY"));
                         doc.text(46, 90, '2. The Joint Registrar of Cooperative Societies ');
@@ -1622,7 +1657,7 @@
 
                         doc.addPage();
 
-                        var pt3 = doc.splitTextToSize('3. Accordingly sanction is hereby accorded for the payment of Rs.' + sanction_amount + '/-' + convertNumberToWords(sanction_amount)
+                        var pt3 = doc.splitTextToSize('3. Accordingly sanction is hereby accorded for the payment of Rs.' + res + '/-' + convertNumberToWords(sanction_amount)
                            + ' to the ' + json[0]['district'] + ' district through the ' + json[0]['bank'] + ' for the disbursement of loan under ' +
                             json[0]['loan_category'], 160);
 
@@ -1695,11 +1730,18 @@
 
                         var sanctioned_amount = (NBCFDCShareCalculator(json[0]['loan_category'], total_individual_amount)+ tabcedcoShareCalculator(json[0]['loan_category'], total_individual_amount));
 
+                        res=sanctioned_amount.toString();
+                        lastThree = res.substring(res.length-3);
+                        otherNumbers = res.substring(0,res.length-3);
+                        if(otherNumbers !== '')
+                            lastThree = ',' + lastThree;
+                        res = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree;
+
                         var size = json.length-1;
 
                         var sub = doc.splitTextToSize('Sub:     Tamil Nadu Backward Classes Economic Development Corporation Ltd., Chennai 600008. Disbursement of ' +
                             'Individual Term Loan to ' + json[0]['applicant_name'] + ' and '+ size + ' others. - Final Sanction Order for ' +
-                            'Rs.' + sanctioned_amount + ' - Issued - Reg', 160);
+                            'Rs.' + res + '/- - Issued - Reg', 160);
 
                         doc.text(40, 65, sub);
 

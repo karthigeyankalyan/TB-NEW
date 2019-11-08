@@ -156,6 +156,53 @@ class LoanApplication(object):
                                     bank_district=bank_district, cheque_date=cheque_date)
 
     @classmethod
+    def update_loan_app_similar(cls, loan_id, sub_bank, screening_date, jr_letter_number, jr_letter_date, ro_date,
+                        pso_date, ro_number, post_pso_ref, bank_district, cheque_date, received_date):
+
+        if pso_date:
+            pso_date = (datetime.combine(datetime.strptime(pso_date, '%Y-%m-%d').date(),
+                                         datetime.now().time()))
+        else:
+            pso_date = pso_date
+
+        if cheque_date:
+            cheque_date = (datetime.combine(datetime.strptime(cheque_date, '%Y-%m-%d').date(),
+                                            datetime.now().time()))
+        else:
+            cheque_date = cheque_date
+
+        if ro_date:
+            ro_date = (datetime.combine(datetime.strptime(ro_date, '%Y-%m-%d').date(),
+                                        datetime.now().time()))
+        else:
+            ro_date = ro_date
+
+        if received_date:
+            received_date = (datetime.combine(datetime.strptime(received_date, '%Y-%m-%d').date(),
+                                              datetime.now().time()))
+        else:
+            received_date = received_date
+
+        if screening_date:
+            screening_date = (datetime.combine(datetime.strptime(screening_date, '%Y-%m-%d').date(),
+                                               datetime.now().time()))
+        else:
+            screening_date = screening_date
+
+        if jr_letter_date:
+            jr_letter_date = (datetime.combine(datetime.strptime(jr_letter_date, '%Y-%m-%d').date(),
+                                               datetime.now().time()))
+        else:
+            jr_letter_date = jr_letter_date
+
+        Database.update_application_similar(collection='loans', query={'_id': loan_id}, sb=sub_bank,
+                                            received_date=received_date, jr_letter_date=jr_letter_date,
+                                            jr_letter_number=jr_letter_number, screening_date=screening_date,
+                                            ro_date=ro_date, pso_date=pso_date, ro_number=ro_number,
+                                            post_pso_ref=post_pso_ref, bank_district=bank_district,
+                                            cheque_date=cheque_date)
+
+    @classmethod
     def update_pend_amount(cls, amount_yet_to_be_paid, loan_id):
         Database.update_pending_amount(collection='loans', query={'ann_loan_id': loan_id},
                                        amount_yet_to_be_paid=amount_yet_to_be_paid)
