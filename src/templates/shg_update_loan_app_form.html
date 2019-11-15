@@ -304,7 +304,7 @@
                 document.getElementById("annualLoanID").value = json[0]["ann_loan_id"];
                 document.getElementById("roNumber").value = json[0]["ro_number"];
                 document.getElementById("chequeDate").value = moment(json[0]["cheque_date"]['$date']).format("YYYY-MM-DD");
-                document.getElementById("chequeNumber").value = json[0]["cheque_number"];
+                document.getElementById("delID").value = json[0]["cheque_number"];
            for(var i=0; i < json.length; i++) {
             var shg_name = "sn"+i;
             var amount_pm = "apm"+i;
