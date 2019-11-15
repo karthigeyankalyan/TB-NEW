@@ -303,7 +303,9 @@
                 document.getElementById("screeningDate").value = moment(json[0]["screening_date"]['$date']).format("YYYY-MM-DD");
                 document.getElementById("annualLoanID").value = json[0]["ann_loan_id"];
                 document.getElementById("roNumber").value = json[0]["ro_number"];
-            for(var i=0; i < json.length; i++) {
+                document.getElementById("chequeDate").value = moment(json[0]["cheque_date"]['$date']).format("YYYY-MM-DD");
+                document.getElementById("chequeNumber").value = json[0]["cheque_number"];
+           for(var i=0; i < json.length; i++) {
             var shg_name = "sn"+i;
             var amount_pm = "apm"+i;
             var strength = "strength"+i;
