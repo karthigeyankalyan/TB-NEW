@@ -3,7 +3,7 @@
 
 <form id="new-intent" action="/updateDemand/{{ demand_id }}/{{late_interest}}/{{belated_int}}/{{penal_int}}/{{p_due}}/{{p_ndue}}/{{i_due}}" method="post">
 <div style="display: flex; flex-direction: column; align-items: center; flex: 1; justify-content: space-around; margin-top: 10px">
-    <div class="form-group">
+    <div class="form-group" style="display: flex; justify-content: space-between; align-items: center; flex-direction: row">
           <label for="district">Select District:</label>
           <select class="form-control" style="text-align: center;" id="district" name="district">
             {% set districts = ['Ariyalur', 'Karur', 'Nagapattinam', 'Perambalur',
@@ -17,9 +17,7 @@
                 <option value= "{{district}}">{{district}}</option>"
             {% endfor %}
           </select>
-    </div>
 
-    <div class="form-group" style="display: flex; justify-content: space-between; align-items: center; flex-direction: row">
         <label for="demandReference">Demand Reference</label>
         <input type="text" id="demandReference" name="demandReference">
     </div>
