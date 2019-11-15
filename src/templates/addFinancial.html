@@ -176,7 +176,7 @@
             else {
                 if (parseInt(no_of_demands) === 32 || parseInt(no_of_demands) === 20) {
                     var tabcedco_installments = parseInt(TabcedcoShare)/2;
-                    var nbcfdc_installments = Math.floor(parseInt(NBCShare)/(no_of_demands-2));
+                    var nbcfdc_installments = Math.ceil(parseInt(NBCShare)/(no_of_demands-2));
 
                     amount_remaining = NBCShare+TabcedcoShare;
                     var tla = NBCShare+TabcedcoShare;
@@ -186,18 +186,17 @@
                         if (l === 1) {
                             current_demand_date = moment(cheque_date, "DD-MM-YYYY").add(4, 'M').startOf('month').format('DD-MM-YYYY');
                             if (moment(cheque_date, 'DD-MM-YYYY').format('DD') === 1) {
-                                interest = (roi * parseInt(tla) / 400);
-                                interest = Math.ceil(interest);
+                                interest = Math.ceil(roi * tla / 400);
                             }
 
                             else {
                                 total_days_in_month = daysInMonth(moment(cheque_date, 'DD-MM-YYYY').format('MM'), moment(cheque_date, 'DD-MM-YYYY').format('YYYY'), moment(cheque_date, 'DD-MM-YYYY').format('DD-MM-YYYY'));
                                 extra_interest_days = total_days_in_month - moment(cheque_date, 'DD-MM-YYYY').format('DD') + 1;
-                                extra_days_nbc = ((roi) * NBCShare * extra_interest_days) / (365 * 100).toFixed(0);
-                                extra_days_tbc = ((roi) * TabcedcoShare * extra_interest_days) / (365 * 100).toFixed(0);
+                                extra_days_nbc = ((roi) * NBCShare * extra_interest_days) / (365 * 100);
+                                extra_days_tbc = ((roi) * TabcedcoShare * extra_interest_days) / (365 * 100);
 
-                                regular_nbc_interest = (roi * parseInt(NBCShare) / 400).toFixed(0);
-                                regular_tbc_interest = (roi * parseInt(TabcedcoShare) / 400).toFixed(0);
+                                regular_nbc_interest = Math.ceil(roi * parseInt(NBCShare) / 400);
+                                regular_tbc_interest = Math.ceil(roi * parseInt(TabcedcoShare) / 400);
 
                                 interest = Math.ceil(parseInt(extra_days_nbc) + parseInt(extra_days_tbc) + parseInt(regular_nbc_interest) + parseInt(regular_tbc_interest));
 
