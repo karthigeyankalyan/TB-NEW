@@ -960,6 +960,11 @@ def update_loan_financial_form(_id, late_interest, belated_int, penal_int, p_due
                 loan_amount = int(result_object['loan_amount'])
                 loan_id = result_object['loan_id']
 
+            if late_interest == 'NaN':
+                late_interest = 0
+                belated_int = 0
+                penal_int = 0
+
             if demand_number == 1:
                 total_interest_demand = interest_demand+int(late_interest)
             else:
