@@ -95,9 +95,10 @@
                 document.getElementById("demandPrincipalPayable").value = parseInt("{{total_principal_demand}}");
                 document.getElementById("demandInterestPayable").value = parseInt("{{total_interest_demand}}");
                 document.getElementById("chequeNumber").value = parseInt(json[0]["cheque_number"]);
+                document.getElementById("penalInterest").value = parseInt(json[0]["penal_interest"]);
+                document.getElementById("belatedInterest").value = parseInt(json[0]["belated_interest"]);
+                document.getElementById("totalChequeAmount").value = parseInt(json[0]["cheque_amount"]);
                 document.getElementById("chequeDate").value = moment(json[0]["cheque_date"]['$date']).format('YYYY-MM-DD');
-                document.getElementById("demandPrincipalPaid").value = parseInt(json[0]["principal_collected"]);
-                document.getElementById("demandInterestPaid").value = parseInt(json[0]["interest_collected"]);
         },
         error: function (e) {
             alert("The Loan Application does not exist");
