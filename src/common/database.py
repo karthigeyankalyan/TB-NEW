@@ -131,8 +131,9 @@ class Database(object):
 
     @staticmethod
     def update_demand(collection, query, demand_number, demand_date, cheque_number, cheque_date, principal_collected,
-                      interest_collected, penal_interest, belated_interest, service_charge, no_of_demands, cheque_amount,
-                      closing_balance_principal_due, closing_balance_principal_ndue, closing_balance_interest_due):
+                      interest_collected, penal_interest, belated_interest, service_charge, no_of_demands,
+                      cheque_amount, closing_balance_principal_due, closing_balance_principal_ndue,
+                      closing_balance_interest_due, demand_reference):
         return Database.DATABASE[collection].update_one(query, {'$set': {'demand_number': demand_number,
                                                                          "demand_date": demand_date,
                                                                          "cheque_date": cheque_date,
@@ -142,6 +143,7 @@ class Database(object):
                                                                          "interest_collected": interest_collected,
                                                                          "penal_interest": penal_interest,
                                                                          "belated_interest": belated_interest,
+                                                                         "demand_reference": demand_reference,
                                                                          "service_charge": service_charge,
                                                                          "no_of_demands": no_of_demands,
                                                                          "closing_balance_principal_due":

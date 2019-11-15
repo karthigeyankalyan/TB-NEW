@@ -1001,6 +1001,7 @@ def update_loan_financial_form(_id, late_interest, belated_int, penal_int, p_due
             user = User.get_by_email(email)
             demand_number = request.form['demandNumber']
             demand_date = request.form['demandDate']
+            demand_reference = request.form['demandReference']
             cheque_number = request.form['chequeNumber']
             cheque_date = request.form['chequeDate']
             principal_demand = int(request.form['demandPrincipalPayable'])
@@ -1112,7 +1113,8 @@ def update_loan_financial_form(_id, late_interest, belated_int, penal_int, p_due
                                  closing_balance_principal_due=closing_balance_principal_due-service_charge,
                                  closing_balance_principal_ndue=closing_balance_principal_ndue,
                                  penal_interest=penal, belated_interest=belated, cheque_amount=chequeAmount,
-                                 service_charge=service_charge, no_of_demands=dem_count)
+                                 service_charge=service_charge, no_of_demands=dem_count,
+                                 demand_reference=demand_reference)
 
             LoanApplication.update_pend_amount(amount_yet_to_be_paid=int(update_amount), loan_id=loan_id)
 

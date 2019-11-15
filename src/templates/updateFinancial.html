@@ -20,6 +20,11 @@
     </div>
 
     <div class="form-group" style="display: flex; justify-content: space-between; align-items: center; flex-direction: row">
+        <label for="demandReference">Demand Reference</label>
+        <input type="text" id="demandReference" name="demandReference">
+    </div>
+
+    <div class="form-group" style="display: flex; justify-content: space-between; align-items: center; flex-direction: row">
         <label for="bank">Enter Bank:</label>
         <input type="text" id="bank" name="bank">
 
@@ -87,6 +92,7 @@
                 document.getElementById("district").value = json[0]["district"];
                 document.getElementById("bank").value = json[0]["district_bank"];
                 document.getElementById("subBank").value = json[0]["sub_bank"];
+                document.getElementById("demandReference").value = json[0]["demand_reference"];
                 document.getElementById("loanAmount").value = json[0]["loan_amount"];
                 document.getElementById("receivedDate").value = moment(json[0]["loan_sanction_date"]['$date']).format('YYYY-MM-DD');
                 document.getElementById("loanID").value = json[0]["ann_id"];
