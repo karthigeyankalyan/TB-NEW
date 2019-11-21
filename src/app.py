@@ -979,17 +979,17 @@ def update_loan_financial_form(_id, late_interest, belated_int, penal_int, p_due
                     demandm1_date = result_object['demand_date']
                     days = (demand_date-demandm1_date).days
 
-            if principal_due is None:
-                principal_due = p_due
-                principal_for_interest = p_ndue
-                interest_due = i_due
+                if principal_due is None:
+                    principal_due = p_due
+                    principal_for_interest = p_ndue
+                    interest_due = i_due
 
-            if penal_int == 'null':
-                penal_int = 0
-                belated_int = 0
+                if penal_int == 'null':
+                    penal_int = 0
+                    belated_int = 0
 
-            principal_demand += float(principal_due)
-            total_interest_demand = float(interest_demand) + float(interest_due) + float(late_interest)
+                principal_demand += float(principal_due)
+                total_interest_demand = float(interest_demand) + float(interest_due) + float(late_interest)
 
             return render_template('updateFinancial.html', user=user, demand_id=_id,
                                    total_principal_demand=principal_demand,
@@ -1132,11 +1132,33 @@ def update_loan_financial_form(_id, late_interest, belated_int, penal_int, p_due
         return render_template('login_fail.html')
 
 
+@app.route('/view_mini_demands/<string:_id>/<string:belated_int>/'
+           '<string:penal_int>/<string:p_due>/<string:p_ndue>/<string:i_due>', methods=['POST', 'GET'])
+def view_mini_demand(_id, belated_int, penal_int, p_due, p_ndue, i_due):
+    email = session['email']
+    user = User.get_by_email(email)
+    if email is not None:
+        if belated_int == 'NaN':
+            belated_int = 0
+            penal_int = 0
+
+        demand = Database.find("Demands", {"_id": _id})
+        demand_date = None
+
+        for result_object in demand[0:1]:
+            demand_date = int(result_object['demand_date'])
+
+        return render_template('ViewMiniDemands.html', user=user, _id=_id, belated_int=belated_int,
+                               penal_int=penal_int, p_due=p_due, p_ndue=p_ndue, i_due=i_due, demand_date=demand_date)
+
+    else:
+        return render_template('login_fail.html')
+
+
 @app.route('/ViewDemandsByLoan/<string:loan_id>/<string:ro_number>')
 def loan_demands_view(loan_id, ro_number):
     email = session['email']
     user = User.get_by_email(email)
-
     if email is not None:
         return render_template('ViewDemands.html', user=user, loan_id=loan_id, ro_number=ro_number)
     else:
@@ -1170,6 +1192,19 @@ def raw_demands_by_loan_id(loan_id, ro_number):
     loan = []
     loan_dict = Database.find("Demands", {"ann_id": loan_id,
                                           "ro_number": ro_number})
+
+    for tran in loan_dict:
+        loan.append(tran)
+
+    single_loan = json.dumps(loan, default=json_util.default)
+
+    return single_loan
+
+
+@app.route('/rawMinisByDemand/<string:_id>')
+def raw_minis_by_demands(_id):
+    loan = []
+    loan_dict = Database.find("mDemands", {"demand_id": _id})
 
     for tran in loan_dict:
         loan.append(tran)
