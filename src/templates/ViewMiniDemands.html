@@ -19,8 +19,10 @@
             dataType: 'json',
             success: function (json) {
                 console.log(json);
-                console.log(demand_date, moment(demand_date));
+                var final_mini_date = moment(demand_date).add(3, 'M');
+                console.log(final_mini_date);
                     {
+
                         for(var i = 0; i<json.length; i++) {
                             json[i]['demand_number'] = parseInt(json[i]['demand_number']);
                             if (i === 0 ) {

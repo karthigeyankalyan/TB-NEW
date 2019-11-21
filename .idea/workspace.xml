@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="da0bb03c-275f-4eeb-800c-401a339e857e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app.py" afterPath="$PROJECT_DIR$/src/app.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/templates/ViewMiniDemands.html" afterPath="$PROJECT_DIR$/src/templates/ViewMiniDemands.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -21,7 +21,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="app.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="app.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/app.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="272">
@@ -33,25 +33,25 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ViewMiniDemands.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ViewMiniDemands.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/templates/ViewMiniDemands.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+            <state relative-caret-position="221">
+              <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
               <folding>
-                <marker date="1574340016619" expanded="true" signature="4795:4834" ph="..." />
-                <marker date="1574340016619" expanded="true" signature="4913:4952" ph="..." />
-                <marker date="1574340016619" expanded="true" signature="5029:5068" ph="..." />
-                <marker date="1574340016619" expanded="true" signature="5145:5184" ph="..." />
-                <marker date="1574340016619" expanded="true" signature="5261:5300" ph="..." />
-                <marker date="1574340016619" expanded="true" signature="5382:5421" ph="..." />
-                <marker date="1574340016619" expanded="true" signature="5501:5540" ph="..." />
-                <marker date="1574340016619" expanded="true" signature="5619:5658" ph="..." />
-                <marker date="1574340016619" expanded="true" signature="5736:5775" ph="..." />
-                <marker date="1574340016619" expanded="true" signature="5853:5892" ph="..." />
-                <marker date="1574340016619" expanded="true" signature="5971:6010" ph="..." />
-                <marker date="1574340016619" expanded="true" signature="6084:6123" ph="..." />
-                <marker date="1574340016619" expanded="true" signature="10548:10563" ph="..." />
+                <marker date="1574340659970" expanded="true" signature="4850:4889" ph="..." />
+                <marker date="1574340659970" expanded="true" signature="4968:5007" ph="..." />
+                <marker date="1574340659970" expanded="true" signature="5084:5123" ph="..." />
+                <marker date="1574340659970" expanded="true" signature="5200:5239" ph="..." />
+                <marker date="1574340659970" expanded="true" signature="5316:5355" ph="..." />
+                <marker date="1574340659970" expanded="true" signature="5437:5476" ph="..." />
+                <marker date="1574340659970" expanded="true" signature="5556:5595" ph="..." />
+                <marker date="1574340659970" expanded="true" signature="5674:5713" ph="..." />
+                <marker date="1574340659970" expanded="true" signature="5791:5830" ph="..." />
+                <marker date="1574340659970" expanded="true" signature="5908:5947" ph="..." />
+                <marker date="1574340659970" expanded="true" signature="6026:6065" ph="..." />
+                <marker date="1574340659970" expanded="true" signature="6139:6178" ph="..." />
+                <marker date="1574340659970" expanded="true" signature="10603:10618" ph="..." />
               </folding>
             </state>
           </provider>
@@ -216,8 +216,8 @@
         <option value="$PROJECT_DIR$/src/models/mini_demands.py" />
         <option value="$PROJECT_DIR$/src/templates/ViewDemands.html" />
         <option value="$PROJECT_DIR$/src/templates/shg_update_loan_app_form.html" />
-        <option value="$PROJECT_DIR$/src/templates/ViewMiniDemands.html" />
         <option value="$PROJECT_DIR$/src/app.py" />
+        <option value="$PROJECT_DIR$/src/templates/ViewMiniDemands.html" />
       </list>
     </option>
   </component>
@@ -1009,34 +1009,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/templates/ViewMiniDemands.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-          <folding>
-            <marker date="1574340016619" expanded="true" signature="4795:4834" ph="..." />
-            <marker date="1574340016619" expanded="true" signature="4913:4952" ph="..." />
-            <marker date="1574340016619" expanded="true" signature="5029:5068" ph="..." />
-            <marker date="1574340016619" expanded="true" signature="5145:5184" ph="..." />
-            <marker date="1574340016619" expanded="true" signature="5261:5300" ph="..." />
-            <marker date="1574340016619" expanded="true" signature="5382:5421" ph="..." />
-            <marker date="1574340016619" expanded="true" signature="5501:5540" ph="..." />
-            <marker date="1574340016619" expanded="true" signature="5619:5658" ph="..." />
-            <marker date="1574340016619" expanded="true" signature="5736:5775" ph="..." />
-            <marker date="1574340016619" expanded="true" signature="5853:5892" ph="..." />
-            <marker date="1574340016619" expanded="true" signature="5971:6010" ph="..." />
-            <marker date="1574340016619" expanded="true" signature="6084:6123" ph="..." />
-            <marker date="1574340016619" expanded="true" signature="10548:10563" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/app.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
           <caret line="1149" column="0" lean-forward="true" selection-start-line="1149" selection-start-column="0" selection-end-line="1149" selection-end-column="0" />
           <folding>
             <element signature="e#0#29#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/templates/ViewMiniDemands.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+          <folding>
+            <marker date="1574340659970" expanded="true" signature="4850:4889" ph="..." />
+            <marker date="1574340659970" expanded="true" signature="4968:5007" ph="..." />
+            <marker date="1574340659970" expanded="true" signature="5084:5123" ph="..." />
+            <marker date="1574340659970" expanded="true" signature="5200:5239" ph="..." />
+            <marker date="1574340659970" expanded="true" signature="5316:5355" ph="..." />
+            <marker date="1574340659970" expanded="true" signature="5437:5476" ph="..." />
+            <marker date="1574340659970" expanded="true" signature="5556:5595" ph="..." />
+            <marker date="1574340659970" expanded="true" signature="5674:5713" ph="..." />
+            <marker date="1574340659970" expanded="true" signature="5791:5830" ph="..." />
+            <marker date="1574340659970" expanded="true" signature="5908:5947" ph="..." />
+            <marker date="1574340659970" expanded="true" signature="6026:6065" ph="..." />
+            <marker date="1574340659970" expanded="true" signature="6139:6178" ph="..." />
+            <marker date="1574340659970" expanded="true" signature="10603:10618" ph="..." />
           </folding>
         </state>
       </provider>
