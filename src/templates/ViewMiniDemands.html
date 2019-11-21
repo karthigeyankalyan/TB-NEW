@@ -13,7 +13,8 @@
         var p_ndue = "{{p_ndue}}";
         var demand_date = "{{demand_date}}";
         demand_date = new Date(demand_date);
-        var newDate = new Date(demand_date.setMonth(demand_date.getMonth()+3));
+        var mini_demand_max_date = new Date(demand_date.setMonth(demand_date.getMonth()+4));
+        mini_demand_max_date = moment(mini_demand_max_date);
         $.ajax({
             type: 'GET',
             url: source,
@@ -21,7 +22,7 @@
             dataType: 'json',
             success: function (json) {
                 console.log(json);
-                console.log(newDate, moment(newDate));
+                console.log(moment().isBefore(mini_demand_max_date));
                     {
                         for(var i = 0; i<json.length; i++) {
                             json[i]['demand_number'] = parseInt(json[i]['demand_number']);
