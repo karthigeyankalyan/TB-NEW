@@ -12,7 +12,6 @@
         var i_due = "{{i_due}}";
         var p_ndue = "{{p_ndue}}";
         var demand_date = "{{demand_date}}";
-        demand_date = moment(demand_date);
         $.ajax({
             type: 'GET',
             url: source,
@@ -20,7 +19,7 @@
             dataType: 'json',
             success: function (json) {
                 console.log(json);
-                var max_mini_demand_date = new Date(demand_date.format("YYYY"), demand_date.format("MM")+4, 1);
+                var max_mini_demand_date = new Date(moment(demand_date).format("YYYY"), moment(demand_date).format("MM")+3, 1);
                 console.log(max_mini_demand_date);
                     {
 
