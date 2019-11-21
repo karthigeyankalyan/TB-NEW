@@ -20,7 +20,8 @@
             dataType: 'json',
             success: function (json) {
                 console.log(json);
-                console.log(demand_date.add(3, 'months'), demand_date);
+                var max_mini_demand_date = new Date(demand_date.format("YYYY"), demand_date.format("MM")+4, 1);
+                console.log(max_mini_demand_date);
                     {
 
                         for(var i = 0; i<json.length; i++) {
