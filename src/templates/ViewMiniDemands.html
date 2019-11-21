@@ -12,6 +12,7 @@
         var i_due = "{{i_due}}";
         var p_ndue = "{{p_ndue}}";
         var demand_date = "{{demand_date}}";
+        demand_date = new Date(demand_date);
         var newDate = new Date(demand_date.setMonth(demand_date.getMonth()+3));
         $.ajax({
             type: 'GET',
