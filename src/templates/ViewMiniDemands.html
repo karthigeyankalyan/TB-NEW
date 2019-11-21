@@ -20,7 +20,7 @@
             success: function (json) {
                 console.log(json);
                 var max_mini_demand_date = new Date(moment(demand_date).format("YYYY"), moment(demand_date).format("MM")+3, 1);
-                console.log(max_mini_demand_date);
+                console.log(max_mini_demand_date, demand_date, moment(demand_date).format("YYYY"));
                     {
 
                         for(var i = 0; i<json.length; i++) {
