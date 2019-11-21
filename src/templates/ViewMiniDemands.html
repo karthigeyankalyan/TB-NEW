@@ -12,6 +12,7 @@
         var i_due = "{{i_due}}";
         var p_ndue = "{{p_ndue}}";
         var demand_date = "{{demand_date}}";
+        var newDate = new Date(demand_date.setMonth(demand_date.getMonth()+3));
         $.ajax({
             type: 'GET',
             url: source,
@@ -19,10 +20,8 @@
             dataType: 'json',
             success: function (json) {
                 console.log(json);
-                var max_mini_demand_date = moment().date(1).month(moment(demand_date).format("MM")+3).year(moment(demand_date).format("YYYY"));
-                console.log(max_mini_demand_date, demand_date, moment(demand_date).format("YYYY"));
+                console.log(newDate, moment(newDate));
                     {
-
                         for(var i = 0; i<json.length; i++) {
                             json[i]['demand_number'] = parseInt(json[i]['demand_number']);
                             if (i === 0 ) {
