@@ -1146,7 +1146,7 @@ def view_mini_demand(_id, belated_int, penal_int, p_due, p_ndue, i_due):
         demand_date = None
 
         for result_object in demand[0:1]:
-            demand_date = int(result_object['demand_date'])
+            demand_date = result_object['demand_date']
 
         return render_template('ViewMiniDemands.html', user=user, _id=_id, belated_int=belated_int,
                                penal_int=penal_int, p_due=p_due, p_ndue=p_ndue, i_due=i_due, demand_date=demand_date)
