@@ -19,8 +19,7 @@
             dataType: 'json',
             success: function (json) {
                 console.log(json);
-                var final_mini_date = moment(demand_date).add('M', 3);
-                console.log(final_mini_date, moment(demand_date).add('month', 3), demand_date);
+                console.log(moment(demand_date).add(3, 'months'), demand_date);
                     {
 
                         for(var i = 0; i<json.length; i++) {
