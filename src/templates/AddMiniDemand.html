@@ -106,7 +106,6 @@
         contentType: "application/json",
         dataType: 'json',
         success: function (json) {
-            document.getElementById("demandDate").value = moment("{{demand_date}}").format('YYYY-MM-DD');
             document.getElementById("loanID").value = json[0]["ann_id"];
             roi = json[0]['roi'];
             },
