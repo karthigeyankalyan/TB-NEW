@@ -16,7 +16,7 @@
 
 </style>
 
-<form id="new-intent" action="/add_mini_demand/{{ demand_id }}/{{belated_int}}/{{penal_int}}/{{p_due}}/{{p_ndue}}/{{i_due}}/{{old_interest}}" method="post">
+<form id="new-intent" action="/add_mini_demand/{{ demand_id }}/{{belated_int}}/{{penal_int}}/{{p_due}}/{{p_ndue}}/{{i_due}}/{{old_interest}}/{{demand_date}}" method="post">
 <div style="display: flex; flex-direction: column; align-items: center; flex: 1; justify-content: space-around; margin-top: 10px">
 
     <div style="display: flex; flex-direction: row; justify-content: space-around;">
@@ -106,7 +106,7 @@
         contentType: "application/json",
         dataType: 'json',
         success: function (json) {
-            document.getElementById("demandDate").value = moment(json[0]["demand_date"]['$date']).format('YYYY-MM-DD');
+            document.getElementById("demandDate").value = moment("{{demand_date}}").format('YYYY-MM-DD');
             document.getElementById("loanID").value = json[0]["ann_id"];
             roi = json[0]['roi'];
             },
