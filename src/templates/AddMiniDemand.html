@@ -160,7 +160,7 @@
                     var new_interest = parseInt(new_belated_interest) + parseInt(new_penal_interest);
                     old_interest = 0;
                 } else {
-                    demand_date = json[0]['demand_date'];
+                    demand_date = json[0]['demand_date']['$date'];
                     total_new_amount = parseInt(principal_due) + parseInt(interest_due);
                     delay = moment(cheque_date).diff(moment(demand_date), 'days');
                     console.log(delay, demand_date, cheque_date);
