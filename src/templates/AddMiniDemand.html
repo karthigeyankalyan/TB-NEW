@@ -1,0 +1,218 @@
+{% extends "post_login_loans.html" %}
+{% block content %}
+
+<style>
+
+    #pDemand, #pNDue, #iDemand, #demandReference {
+        border: 5px groove;
+        margin-top: 40px;
+        width: 20%;
+        align-items: center;
+        justify-content: center;
+        display: flex;
+        color: green;
+        padding: 20px;
+    }
+
+</style>
+
+<form id="new-intent" action="/add_mini_demand/{{ demand_id }}/{{belated_int}}/{{penal_int}}/{{p_due}}/{{p_ndue}}/{{i_due}}/{{old_interest}}" method="post">
+<div style="display: flex; flex-direction: column; align-items: center; flex: 1; justify-content: space-around; margin-top: 10px">
+
+    <div style="display: flex; flex-direction: row; justify-content: space-around;">
+        <div id="pDemand">
+        </div>
+        <div id="iDemand">
+        </div>
+        <div id="pNDue">
+        </div>
+        <div id="demandReference">
+        </div>
+    </div>
+
+    <div id="demandDetails" class="form-group" style="display: flex; flex-direction: row;">
+        <div id="heading" style="display: flex; flex-direction: column; justify-content: space-between;">
+            <h6>Mini Demand Number</h6>
+            <h6>Cheque Date</h6>
+            <h6>Principal Due</h6>
+            <h6>Interest Due</h6>
+            <h6>Penal Interest</h6>
+            <h6>Belated Interest</h6>
+            <h6>Total Cheque Amount</h6>
+            <h6>Cheque #</h6>
+            <h6>Principal Paid</h6>
+            <h6>Interest Paid</h6>
+            <h6>Service Charge Accumulated</h6>
+            <h6>Principal Due</h6>
+            <h6>Interest Due</h6>
+        </div>
+        <div id="inputForm" style="display: flex; flex-direction: column; justify-content: space-between;">
+            <input type="number" name="demandNumber" id="demandNumber">
+            <input type="Date" name="chequeDate" id="chequeDate" onselect="populateInterest(this)">
+            <input type="number" name="demandPrincipalPayable" id="demandPrincipalPayable">
+            <input type="number" name="demandInterestPayable" id="demandInterestPayable">
+            <input type="number" name="penalInterest" id="penalInterest">
+            <input type="number" name="belatedInterest" id="belatedInterest">
+            <input type="number" name="totalChequeAmount" id="totalChequeAmount" onchange="calculatePayments(this)">
+            <input type="text" name="chequeNumber" id="chequeNumber">
+            <input type="number" name="principalPaid" id="principalPaid">
+            <input type="number" name="interestPaid" id="interestPaid">
+            <input type="number" name="serviceCharge" id="serviceCharge">
+            <input type="number" name="principalDue" id="principalDue">
+            <input type="number" name="interestDue" id="interestDue">
+            <input type="number" name="interestTotal" id="interestTotal" style="display: none">
+        </div>
+    </div>
+
+    <div id="annualloanid" style="display: flex; flex-direction: row; align-items: center; justify-content: center">
+        <label for="loanID">Annual Loan ID</label>
+        <input type="text" name="loanID" id="loanID">
+    </div>
+
+    <button type="submit" class="btn btn-success">Save Application Details</button>
+
+</div>
+
+</form>
+
+<script>
+    var source = "/rawMinisByDemand/"+"{{demand_id}}";
+    var roi;
+    $.ajax({
+        type: 'GET',
+        url: source,
+        contentType: "application/json",
+        dataType: 'json',
+        success: function (json) {
+            var length = json.length;
+            document.getElementById("demandNumber").value = parseInt(length+1);
+            document.getElementById("demandPrincipalPayable").value = parseInt("{{total_principal_demand}}");
+            document.getElementById("demandInterestPayable").value = parseInt("{{total_interest_demand}}");
+            document.getElementById("chequeNumber").value = parseInt(json[0]["cheque_number"]);
+            document.getElementById("penalInterest").value = parseInt(json[0]["penal_interest"]);
+            document.getElementById("belatedInterest").value = parseInt(json[0]["belated_interest"]);
+            document.getElementById("totalChequeAmount").value = parseInt(json[0]["cheque_amount"]);
+        },
+        error: function (e) {
+            alert("Enter Mini Demand Details");
+        }
+    });
+
+    $.ajax({
+        type: 'GET',
+        url: "/demand/"+"{{demand_id}}",
+        contentType: "application/json",
+        dataType: 'json',
+        success: function (json) {
+            document.getElementById("demandDate").value = moment(json[0]["demand_date"]['$date']).format('YYYY-MM-DD');
+            document.getElementById("loanID").value = json[0]["ann_id"];
+            roi = json[0]['roi'];
+            },
+        error: function (e) {
+            alert("The Loan Application does not exist");
+        }
+    });
+
+    function populateInterest(that) {
+
+        //    Find out previous demands and the latest cheque date
+
+    var source1 = "/rawMinisByDemand/"+"{{demand_id}}";
+    var length;
+    var prev_cheque_date;
+    $.ajax({
+        type: 'GET',
+        url: source1,
+        contentType: "application/json",
+        dataType: 'json',
+        success: function (json) {
+            length = parseInt(json.length);
+            for(var i = 0; i<json.length; i++) {
+                if (json[i]["m_demand_no"] === length) {
+                    prev_cheque_date = json[i]['cheque_date']
+                }
+            }
+        },
+        error: function (e) {
+            console.log(e);
+        }
+    });
+
+        var old_interest = "{{old_interest}}";
+        var cheque_date = that.value;
+        var principal_due = "{{p_due}}";
+        var interest_due = "{{i_due}}";
+        var source2 = "/demand/"+"{{demand_id}}";
+        $.ajax({
+            type: 'GET',
+            url: source2,
+            contentType: "application/json",
+            dataType: 'json',
+            success: function (json) {
+                if (length > 0) {
+                    var total_new_amount = parseInt(principal_due) + parseInt(interest_due);
+                    var demand_date = json[0]['demand_date'];
+                    var delay = moment(cheque_date).diff(moment(prev_cheque_date), 'days');
+                    var new_penal_interest = (delay * total_new_amount * 5) / (365 * 100);
+                    var new_belated_interest = (delay * total_new_amount * parseInt(json[i]['roi'])) / (365 * 100);
+                    var new_interest = parseInt(new_belated_interest) + parseInt(new_penal_interest);
+                    old_interest = 0;
+                } else {
+                    demand_date = json[0]['demand_date'];
+                    total_new_amount = parseInt(principal_due) + parseInt(interest_due);
+                    delay = moment(cheque_date).diff(moment(demand_date), 'days');
+                    new_penal_interest = (delay * total_new_amount * 5) / (365 * 100);
+                    new_belated_interest = (delay * total_new_amount * parseInt(json[i]['roi'])) / (365 * 100);
+                    new_interest = parseInt(new_belated_interest) + parseInt(new_penal_interest);
+                }
+                    if (new_penal_interest < 0) {
+                        new_penal_interest = 0;
+                        new_belated_interest = 0;
+                    }
+                    var total_penal_belated = parseInt(old_interest) + parseInt(new_interest);
+                    document.getElementById("penalInterest").value = parseInt(new_penal_interest);
+                    document.getElementById("belatedInterest").value = parseInt(new_belated_interest);
+                    document.getElementById("interestTotal").value = parseInt(total_penal_belated);
+            },
+            error: function (e) {
+                alert("The Loan Application does not exist");
+            }
+        });
+    }
+
+    function calculatePayments(that) {
+        var old_interest = "{{old_interest}}";
+        var cheque_date = that.value;
+        var principal_due = "{{p_due}}";
+        var interest_due = "{{i_due}}";
+        var total_penal_belated = document.getElementById('interestTotal').value;
+        var cheque_amount = that.value;
+        if (cheque_amount > total_penal_belated) {
+            var post_penal_belated_deduction = parseInt(cheque_amount) - parseInt(total_penal_belated);
+            if (post_penal_belated_deduction > interest_due) {
+                var interest_paid = interest_due;
+                var post_interest_late_deduction = post_penal_belated_deduction - interest_due;
+                var service_charge = interest_paid * 3 / roi;
+                var principal_paid = post_interest_late_deduction + service_charge;
+                principal_due = principal_due - principal_paid;
+                document.getElementById('principalPaid').value = principal_paid;
+                document.getElementById('interestPaid').value = interest_paid;
+                document.getElementById('serviceCharge').value = service_charge;
+                document.getElementById('principalDue').value = principal_due;
+                document.getElementById('interestDue').value = 0;
+            } else {
+                interest_paid = post_penal_belated_deduction;
+                service_charge = interest_paid * 3 / roi;
+                interest_due = interest_due - interest_paid;
+                document.getElementById('principalPaid').value = 0;
+                document.getElementById('interestPaid').value = interest_paid;
+                document.getElementById('serviceCharge').value = service_charge;
+                document.getElementById('principalDue').value = principal_due;
+                document.getElementById('interestDue').value = interest_due;
+            }
+        }
+    }
+
+</script>
+
+{% endblock %}

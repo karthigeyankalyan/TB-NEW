@@ -8,6 +8,7 @@ from src.models.accounts import Account
 from src.models.loan_financials import Demand
 from src.models.loanapplication import LoanApplication
 from src.models.user import User
+from src.models.mini_demands import MiniDemand
 
 app = Flask(__name__)  # main
 app.secret_key = "commercial"
@@ -1132,9 +1133,123 @@ def update_loan_financial_form(_id, late_interest, belated_int, penal_int, p_due
         return render_template('login_fail.html')
 
 
+@app.route('/add_mini_demand/<string:_id>/<string:belated_int>/'
+           '<string:penal_int>/<string:p_due>/<string:p_ndue>/<string:i_due>/'
+           '<string:old_interest>', methods=['POST', 'GET'])
+def receipt_form(_id, belated_int, penal_int, p_due, p_ndue, i_due, old_interest, demand_date):
+    email = session['email']
+    if email is not None:
+        if request.method == 'GET':
+            user = User.get_by_email(email)
+            return render_template('AddMiniDemand.html', user=user, demand_id=_id, belated_int=belated_int,
+                                   penal_int=penal_int, p_due=p_due, p_ndue=p_ndue, i_due=i_due,
+                                   old_interest=old_interest, demand_date=demand_date)
+
+        else:
+            user = User.get_by_email(email)
+            demand_number = request.form['demandNumber']
+            opening_balance_pdue = request.form['demandPrincipalPayable']
+            opening_balance_idue = request.form['demandInterestPayable']
+            cheque_date = request.form['cheque_date']
+            penal_interest = request.form['penalInterest']
+            belated_interest = request.form['belatedInterest']
+            cheque_amount = request.form['totalChequeAmount']
+            cheque_number = request.form['chequeNumber']
+            principal_paid = request.form['principalPaid']
+            interest_paid = request.form['interestPaid']
+            service_charge = request.form['serviceCharge']
+            closing_balance_pdue = request.form['principalDue']
+            closing_balance_idue = request.form['interestDue']
+            user_name = user.username
+
+            district, district_bank, sub_bank, loan_category = None, None, None, None
+            loan_id, previous_demand_number, demand_loan_id = None, None, None
+            main_demand_closing_balance_principal_due, main_demand_closing_balance_interest_due = 0, 0
+            main_demand_closing_balance_principal_ndue, main_demand_principal_collected = 0, 0
+            main_demand_interest_collected, main_demand_penal_interest, main_demand_belated_interest = 0, 0, 0
+            main_demand_service_charge, main_demand_cheque_amount = 0, 0
+            mini_demand_principal_total, mini_demand_interest_total, closing_balance_not_due = 0, 0, 0
+            opening_balance_principal_due, opening_balance_interest_due = 0, 0
+            main_demand_principal_demand, main_demand_interest_demand = 0, 0
+
+            # Find the demand for which mini Demand is being added; Need to get auxiliary information
+            demands = Database.find("Demands", {"_id": _id})
+
+            # Auxiliary Information
+            for demand in demands[0:1]:
+                district = demand['district']
+                district_bank = demand['district_bank']
+                sub_bank = demand['sub_bank']
+                loan_category = demand['loan_category']
+                loan_id = demand['loan_id']
+                main_demand_principal_demand = int(demand['principal_demand'])
+                main_demand_interest_demand = int(demand['interest_demand'])
+                main_demand_principal_collected = int(demand['principal_collected'])
+                main_demand_interest_collected = demand['interest_collected']
+                main_demand_penal_interest = demand['penal_interest']
+                main_demand_penal_interest = demand['belated_interest']
+                main_demand_service_charge = demand['service_charge']
+                demand_loan_id = demand['loan_id']
+                previous_demand_number = int(demand['demand_number'])-1
+
+            # Previous Main Demand to get Closing Balance; To calculate Principal Not Due
+            previous_demand = Database.find("Demands", {"$and": [{"demand_number": str(previous_demand_number)},
+                                                                 {"loan_id": demand_loan_id}]})
+            for prev_demand in previous_demand[0:1]:
+                closing_balance_not_due = prev_demand['closing_balance_principal_ndue']
+                opening_balance_principal_due = prev_demand['closing_balance_principal_due']
+                opening_balance_interest_due = prev_demand['closing_balance_interest_due']
+
+            mini_dem = MiniDemand(user_name=user_name, cheque_number=cheque_number, cheque_date=cheque_date,
+                                  demand_number=demand_number, principal_demand=opening_balance_pdue,
+                                  interest_demand=opening_balance_idue, penal_interest=penal_interest,
+                                  belated_interest=belated_interest, cheque_amount=cheque_amount,
+                                  principal_collected=principal_paid, interest_collected=interest_paid,
+                                  service_charge=service_charge, closing_balance_principal_due=closing_balance_pdue,
+                                  closing_balance_interest_due=closing_balance_idue, demand_id=_id, district=district,
+                                  district_bank=district_bank, sub_bank=sub_bank, loan_category=loan_category,
+                                  loan_id=loan_id)
+
+            mini_demands = Database.find("mDemands", {"demand_id": _id})
+
+            # Cumulating principal & interest totals for final main_demand alterations;
+            # [Closing Balance Principal & Interest Dues]
+            for mdemand in mini_demands:
+                main_demand_service_charge += int(mdemand['service_charge'])
+                main_demand_cheque_amount += int(mdemand['cheque_amount'])
+                mini_demand_principal_total += int(mdemand['principal_paid'])
+                mini_demand_interest_total += int(mdemand['interest_paid'])
+
+            main_demand_closing_balance_principal_ndue = \
+                (int(closing_balance_not_due) - (main_demand_principal_collected + mini_demand_principal_total))
+            main_demand_closing_balance_principal_due = \
+                (int(opening_balance_principal_due) + int(main_demand_principal_demand)) - mini_demand_principal_total
+            main_demand_closing_balance_interest_due = \
+                (int(opening_balance_interest_due) + int(main_demand_interest_demand)) - mini_demand_interest_total
+
+            Demand.update_main_demand(demand_id=_id,
+                                      principal_collected=int(principal_paid)+int(main_demand_principal_collected),
+                                      interest_collected=int(interest_paid)+int(main_demand_interest_collected),
+                                      penal_interest=int(main_demand_penal_interest)+int(penal_interest),
+                                      belated_interest=int(main_demand_belated_interest) + int(belated_interest),
+                                      service_charge=int(main_demand_service_charge)+int(service_charge),
+                                      closing_balance_interest_due=main_demand_closing_balance_interest_due,
+                                      closing_balance_principal_due=main_demand_closing_balance_principal_due,
+                                      cheque_amount=int(cheque_amount)+int(main_demand_cheque_amount),
+                                      closing_balance_principal_ndue=main_demand_closing_balance_principal_ndue)
+
+            mini_dem.save_to_mongo()
+
+            return render_template('receipt_added.html', mini_dem=mini_dem, user=user)
+
+    else:
+        return render_template('login_fail.html')
+
+
 @app.route('/view_mini_demands/<string:_id>/<string:belated_int>/'
-           '<string:penal_int>/<string:p_due>/<string:p_ndue>/<string:i_due>', methods=['POST', 'GET'])
-def view_mini_demand(_id, belated_int, penal_int, p_due, p_ndue, i_due):
+           '<string:penal_int>/<string:p_due>/<string:p_ndue>/<string:i_due>/'
+           '<string:old_interest>', methods=['POST', 'GET'])
+def view_mini_demand(_id, belated_int, penal_int, p_due, p_ndue, i_due, old_interest):
     email = session['email']
     user = User.get_by_email(email)
     if email is not None:
@@ -1149,7 +1264,8 @@ def view_mini_demand(_id, belated_int, penal_int, p_due, p_ndue, i_due):
             demand_date = result_object['demand_date']
 
         return render_template('ViewMiniDemands.html', user=user, _id=_id, belated_int=belated_int,
-                               penal_int=penal_int, p_due=p_due, p_ndue=p_ndue, i_due=i_due, demand_date=demand_date)
+                               penal_int=penal_int, p_due=p_due, p_ndue=p_ndue, i_due=i_due, demand_date=demand_date,
+                               old_interest=old_interest)
 
     else:
         return render_template('login_fail.html')

@@ -12,15 +12,18 @@ class MiniDemand(object):
                  closing_balance_principal_due=None, closing_balance_principal_ndue=None,
                  closing_balance_interest_due=None, ro_number=None, interest_demand=None, interest_collected=None,
                  loan_amount=None, no_of_demands=None, m_demand_no=None, roi=None, loan_sanction_date=None,
-                 user_id=None, user_name=None, ann_id=None, _id=None, demand_reference=None):
+                 user_id=None, user_name=None, ann_id=None, _id=None, demand_reference=None,
+                 opening_balance_principal_due=None, opening_balance_interest_due=None, cheque_amount=None):
         self.loan_id = loan_id
         self.demand_id = demand_id
         self.loan_category = loan_category
         self.district = district
+        self.opening_balance_interest_due = opening_balance_interest_due
+        self.opening_balance_principal_due = opening_balance_principal_due
         self.district_bank = district_bank
         self.sub_bank = sub_bank
         self.demand_number = demand_number
-        self.m_demand_no = m_demand_no
+        self.m_demand_no = int(m_demand_no)
         if demand_date:
             self.demand_date = (datetime.combine(datetime.strptime(demand_date, '%Y-%m-%d').date(),
                                                  datetime.now().time()))
@@ -34,6 +37,7 @@ class MiniDemand(object):
             self.cheque_date = cheque_date
 
         self.cheque_number = cheque_number
+        self.cheque_amount = cheque_amount
         self.demand_reference = demand_reference
         self.principal_demand = principal_demand
         self.principal_collected = principal_collected
@@ -90,11 +94,14 @@ class MiniDemand(object):
             "district": self.district,
             "district_bank": self.district_bank,
             "sub_bank": self.sub_bank,
+            "opening_balance_principal_due": self.opening_balance_principal_due,
+            "opening_balance_interest_due": self.opening_balance_interest_due,
             "demand_number": self.demand_number,
             "m_demand_no": self.m_demand_no,
             "demand_reference": self.demand_reference,
             "demand_date": self.demand_date,
             "cheque_date": self.cheque_date,
+            "cheque_amount": self.cheque_amount,
             "cheque_number": self.cheque_number,
             "principal_demand": self.principal_demand,
             "principal_collected": self.principal_collected,

@@ -45,7 +45,7 @@
                                     json[i]['Total Demand'] = json[i]['Total Principal Demand'] + json[i]['Total Interest Demand'];
 
                             if(json[i]['demand_date']) {
-                                if(moment(json[i]['demand_date']).isBefore(moment()) && json[i]['principal_collected'] === null) {
+                                if(moment(json[i]['demand_date']).isBefore(moment())) {
                                     if (json[i]['demand_number'] === 1) {
                                         var delay = moment().diff(moment(json[i]['demand_date']), 'days');
                                         json[i]['delay'] = delay;
@@ -54,24 +54,44 @@
                                     }
                                     else {
                                         json[i]['opening_balance_due'] = json[i]['opening_balance_principal_due'] + json[i]['opening_balance_interest_due'];
-                                        var delay_old = moment(json[i]['demand_date']).diff(moment(json[i - 1]['cheque_date']), 'days');
+
+                                        if (json[i-1]['cheque_date']) {
+                                            var prev_date =  json[i - 1]['cheque_date'];
+                                        } else {
+                                            prev_date = json[i - 1]['demand_date']
+                                        }
+
+                                        var delay_old = moment(json[i]['demand_date']).diff(moment(prev_date), 'days');
                                         json[i]['delay_old'] = delay_old;
                                         json[i]['penal_interest_old'] = (delay_old * json[i]['opening_balance_due'] * 5) / (365 * 100);
                                         json[i]['belated_interest_old'] = (delay_old * json[i]['opening_balance_due'] * parseInt(json[i]['roi'])) / (365 * 100);
+                                        var total_old_interest = parseInt(json[i]['penal_interest_old']) + parseInt(json[i]['belated_interest_old']);
+
+                                        if (!total_old_interest) {
+                                            total_old_interest = 0;
+                                        }
 
                                         delay = moment().diff(moment(json[i]['demand_date']), 'days');
-                                        json[i]['penal_interest'] = (delay * json[i]['Total Demand'] * 5) / (365 * 100);
                                         json[i]['delay'] = delay;
+                                        json[i]['penal_interest'] = (delay * json[i]['Total Demand'] * 5) / (365 * 100);
                                         json[i]['belated_interest'] = (delay * json[i]['Total Demand'] * parseInt(json[i]['roi'])) / (365 * 100);
 
-                                        json[i]['penal_interest'] += json[i]['penal_interest_old'];
-                                        json[i]['belated_interest'] += json[i]['belated_interest_old'];
+                                        json[i]['penal_interest'] += parseInt(json[i]['penal_interest_old']);
+                                        json[i]['belated_interest'] += parseInt(json[i]['belated_interest_old']);
                                     }
                                 }
                             }
                             json[i]['Remarks'] = "Demand Payment not yet made; Penal Interest shown if payment is made today";
-                            json[i]['closing_balance_principal_due'] = parseInt(json[i]['Total Principal Demand']) - (parseInt(json[i]['interest_demand']) * 3 / parseInt(json[i]['roi']));
+
+
+                            // The Closing Balance Principal Due here is the final amount required to be paid in this demand
+                            json[i]['closing_balance_principal_due'] = parseInt(json[i]['Total Principal Demand']);
+//                                - (parseInt(json[i]['interest_demand']) * 3 / parseInt(json[i]['roi']));
+
+                            // The Closing Balance Interest Due here is the final amount required to be paid in this demand
                             json[i]['closing_balance_interest_due'] = parseInt(json[i]['Total Interest Demand']);
+
+                            // This will be the Principal amount left to be paid if this demand is fully satisfied
                             json[i]['closing_balance_principal_ndue'] = parseInt(json[i]['loan_amount']) - parseInt(json[i]['Total Principal Demand']);
                         }
 
@@ -137,7 +157,10 @@
                                 var penal_plus_belated = parseInt(json[j]["belated_interest"]) + parseInt(json[j]["penal_interest"]);
                                 var url = '/updateDemand/'+demand_id+'/'+penal_plus_belated+'/'+json[j]["belated_interest"]+'/'+json[j]["penal_interest"]+'/'+json[j]["closing_balance_principal_due"]+'/'+json[j]["closing_balance_principal_ndue"]+'/'+json[j]["closing_balance_interest_due"];
                                 var url1 = '/delete_demand/'+demand_id;
-                                var url2 = '/view_mini_demands/'+demand_id+'/'+json[j]["belated_interest"]+'/'+json[j]["penal_interest"]+'/'+json[j]["closing_balance_principal_due"]+'/'+json[j]["closing_balance_principal_ndue"]+'/'+json[j]["closing_balance_interest_due"];
+                                var url2 = '/view_mini_demands/'+demand_id+'/'+json[j]["belated_interest"]+'/'
+                                    +json[j]["penal_interest"]+'/'+json[j]["closing_balance_principal_due"]+'/'
+                                    +json[j]["closing_balance_principal_ndue"]+'/'+json[j]["closing_balance_interest_due"]
+                                    +'/'+total_old_interest;
                                 var row = $('<tr></tr>').html('<td>' +
                                     +json[j]["demand_number"] +'</td>'+
                                     '<td>'+json[j]["demand_date"]+'</td>'+
