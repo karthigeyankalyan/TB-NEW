@@ -1135,7 +1135,7 @@ def update_loan_financial_form(_id, late_interest, belated_int, penal_int, p_due
 
 @app.route('/add_mini_demand/<string:_id>/<string:belated_int>/'
            '<string:penal_int>/<string:p_due>/<string:p_ndue>/<string:i_due>/'
-           '<string:old_interest>', methods=['POST', 'GET'])
+           '<string:old_interest>/<string:demand_date>', methods=['POST', 'GET'])
 def mini_demand_form(_id, belated_int, penal_int, p_due, p_ndue, i_due, old_interest, demand_date):
     email = session['email']
     if email is not None:
