@@ -86,8 +86,8 @@
         success: function (json) {
             var length = json.length;
             document.getElementById("demandNumber").value = parseInt(length+1);
-            document.getElementById("demandPrincipalPayable").value = parseInt("{{total_principal_demand}}");
-            document.getElementById("demandInterestPayable").value = parseInt("{{total_interest_demand}}");
+            document.getElementById("demandPrincipalPayable").value = parseInt("{{p_due}}");
+            document.getElementById("demandInterestPayable").value = parseInt("{{i_due}}");
             if (json.length > 0) {
                 document.getElementById("chequeNumber").value = parseInt(json[0]["cheque_number"]);
                 document.getElementById("penalInterest").value = parseInt(json[0]["penal_interest"]);
