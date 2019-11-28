@@ -1109,7 +1109,7 @@ def update_loan_financial_form(_id, late_interest, belated_int, penal_int, p_due
             update_amount = int(pending_amount)+(int(amount_yet_to_pay_loan)/int(no_of_apps))
 
             Demand.update_demand(demand_id=_id, demand_number=demand_number, demand_date=demand_date,
-                                 cheque_number=cheque_number, cheque_date=cheque_date1,
+                                 cheque_number=cheque_number, cheque_date=cheque_date,
                                  principal_collected=principal_collected, interest_collected=interest_collected,
                                  closing_balance_interest_due=closing_balance_interest_due,
                                  closing_balance_principal_due=closing_balance_principal_due-service_charge,
