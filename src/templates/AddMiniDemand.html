@@ -106,9 +106,10 @@
         contentType: "application/json",
         dataType: 'json',
         success: function (json) {
-            console.log(json);
             document.getElementById("loanID").value = json[0]["ann_id"];
-            document.getElementById("cardCategory").innerHTML = "Original Principal Demand: "+json[0]['loan_category'];
+            document.getElementById("pDemand").innerHTML = "Original Principal Demand: Rs "+json[0]['principal_demand']+" /-";
+            document.getElementById("iDemand").innerHTML = "Original Interest Demand: Rs "+json[0]['interest_demand']+" /-";
+            document.getElementById("demandReference").innerHTML = "Demand Reference ID"+json[0]['demand_reference']+" /-";
             roi = json[0]['roi'];
             },
         error: function (e) {
