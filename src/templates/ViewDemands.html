@@ -158,7 +158,7 @@
                                 var url = '/updateDemand/'+demand_id+'/'+penal_plus_belated+'/'+json[j]["belated_interest"]+'/'+json[j]["penal_interest"]+'/'+json[j]["closing_balance_principal_due"]+'/'+json[j]["closing_balance_principal_ndue"]+'/'+json[j]["closing_balance_interest_due"];
                                 var url1 = '/delete_demand/'+demand_id;
                                 var url2 = '/view_mini_demands/'+demand_id+'/'+json[j]["belated_interest"]+'/'
-                                    +json[j]["penal_interest"]+'/'+json[j]["closing_balance_principal_due"]+'/'
+                                    +json[j]["penal_interest"]+'/' +json[j]["closing_balance_principal_due"]+'/'
                                     +json[j]["closing_balance_principal_ndue"]+'/'+json[j]["closing_balance_interest_due"]
                                     +'/'+total_old_interest;
                                 var row = $('<tr></tr>').html('<td>' +
