@@ -1066,6 +1066,7 @@ def update_loan_financial_form(_id, late_interest, belated_int, penal_int, p_due
                 if days_delayed > 0:
                     penal_interest_current_demand = (days_delayed*principal_demand*5)/(365*100)
                     belated_interest_current_demand = (days_delayed*principal_demand*roi)/(365*100)
+                    belated_interest_current_demand = (days_delayed*principal_demand*roi)/(365*100)
                 else:
                     penal_interest_current_demand = 0
                     belated_interest_current_demand = 0
@@ -1127,7 +1128,7 @@ def update_loan_financial_form(_id, late_interest, belated_int, penal_int, p_due
                               cheque_date=cheque_date)
             account.save_to_mongo()
 
-            return render_template('added.html', user=user)
+            return render_template('addedFinancialUpdate.html', user=user, closing=closing_balance_principal_due)
 
     else:
         return render_template('login_fail.html')
