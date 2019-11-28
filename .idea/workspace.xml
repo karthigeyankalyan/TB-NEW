@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="da0bb03c-275f-4eeb-800c-401a339e857e" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/templates/AddMiniDemand.html" afterPath="$PROJECT_DIR$/src/templates/AddMiniDemand.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -36,10 +37,35 @@
       <file leaf-file-name="AddMiniDemand.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/templates/AddMiniDemand.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="253">
-              <caret line="187" column="0" lean-forward="false" selection-start-line="187" selection-start-column="0" selection-end-line="187" selection-end-column="0" />
+            <state relative-caret-position="287">
+              <caret line="109" column="0" lean-forward="false" selection-start-line="109" selection-start-column="0" selection-end-line="109" selection-end-column="0" />
               <folding>
                 <element signature="n#style#0;n#input#13;n#div#1;n#div#1;n#div#0;n#form#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Application_Review.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/templates/Application_Review.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="341">
+              <caret line="2163" column="0" lean-forward="true" selection-start-line="2162" selection-start-column="0" selection-end-line="2163" selection-end-column="0" />
+              <folding>
+                <element signature="e#2087#20372#0" expanded="false" />
+                <element signature="e#20403#39355#0" expanded="false" />
+                <element signature="e#39389#69427#0" expanded="false" />
+                <element signature="e#69457#92530#0" expanded="false" />
+                <element signature="e#92560#115028#0" expanded="false" />
+                <element signature="e#115068#121957#0" expanded="false" />
+                <element signature="e#121963#121998#0" expanded="false" />
+                <element signature="e#122052#122360#0" expanded="false" />
+                <element signature="e#122366#122401#0" expanded="false" />
+                <element signature="e#122457#122767#0" expanded="false" />
+                <element signature="e#122773#122808#0" expanded="false" />
+                <element signature="e#122867#123060#0" expanded="false" />
+                <element signature="e#123118#123414#0" expanded="false" />
+                <element signature="e#123458#126136#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -291,6 +317,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="TABCEDCO NEW" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="TABCEDCO NEW" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="templates" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -890,29 +934,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/templates/Application_Review.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-          <folding>
-            <element signature="e#2087#20372#0" expanded="false" />
-            <element signature="e#20403#39355#0" expanded="false" />
-            <element signature="e#69457#92530#0" expanded="false" />
-            <element signature="e#92560#115028#0" expanded="false" />
-            <element signature="e#115068#121957#0" expanded="false" />
-            <element signature="e#121963#121998#0" expanded="false" />
-            <element signature="e#122052#122360#0" expanded="false" />
-            <element signature="e#122366#122401#0" expanded="false" />
-            <element signature="e#122457#122767#0" expanded="false" />
-            <element signature="e#122773#122808#0" expanded="false" />
-            <element signature="e#122867#123060#0" expanded="false" />
-            <element signature="e#123118#123414#0" expanded="false" />
-            <element signature="e#123458#126136#0" expanded="false" />
-            <element signature="e#126197#128404#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/templates/updateFinancial.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1009,10 +1030,33 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/templates/Application_Review.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="341">
+          <caret line="2163" column="0" lean-forward="true" selection-start-line="2162" selection-start-column="0" selection-end-line="2163" selection-end-column="0" />
+          <folding>
+            <element signature="e#2087#20372#0" expanded="false" />
+            <element signature="e#20403#39355#0" expanded="false" />
+            <element signature="e#39389#69427#0" expanded="false" />
+            <element signature="e#69457#92530#0" expanded="false" />
+            <element signature="e#92560#115028#0" expanded="false" />
+            <element signature="e#115068#121957#0" expanded="false" />
+            <element signature="e#121963#121998#0" expanded="false" />
+            <element signature="e#122052#122360#0" expanded="false" />
+            <element signature="e#122366#122401#0" expanded="false" />
+            <element signature="e#122457#122767#0" expanded="false" />
+            <element signature="e#122773#122808#0" expanded="false" />
+            <element signature="e#122867#123060#0" expanded="false" />
+            <element signature="e#123118#123414#0" expanded="false" />
+            <element signature="e#123458#126136#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/templates/AddMiniDemand.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="187" column="0" lean-forward="false" selection-start-line="187" selection-start-column="0" selection-end-line="187" selection-end-column="0" />
+        <state relative-caret-position="287">
+          <caret line="109" column="0" lean-forward="false" selection-start-line="109" selection-start-column="0" selection-end-line="109" selection-end-column="0" />
           <folding>
             <element signature="n#style#0;n#input#13;n#div#1;n#div#1;n#div#0;n#form#0;n#!!top" expanded="true" />
           </folding>

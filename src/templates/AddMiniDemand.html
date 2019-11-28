@@ -106,7 +106,9 @@
         contentType: "application/json",
         dataType: 'json',
         success: function (json) {
+            console.log(json);
             document.getElementById("loanID").value = json[0]["ann_id"];
+            document.getElementById("cardCategory").innerHTML = "Original Principal Demand: "+json[0]['loan_category'];
             roi = json[0]['roi'];
             },
         error: function (e) {
