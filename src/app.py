@@ -1020,24 +1020,44 @@ def update_loan_financial_form(_id, late_interest, belated_int, penal_int, p_due
 
             loan_amount, roi, penal_interest, belated_interest, opening_balance_principal_ndue = 0, 0, 0, 0, 0
             original_principal_demand, original_interest_demand = 0, 0
-            sub_bank, chequem1_date, loan_id = None, None, None
+            sub_bank, previous_demand_cheque_date, loan_id = None, None, None
+            opening_balance_principal_due, opening_balance_interest_due = 0, 0
+            service_charge, total_old_due = 0, 0
+            principal_collected, interest_collected = 0, 0
+            closing_balance_principal_due, closing_balance_interest_due, closing_balance_principal_ndue = 0, 0, 0
 
             for result_object in demand[0:1]:
                 loan_amount = int(result_object['loan_amount'])
                 roi = int(result_object['roi'])
                 original_principal_demand = int(result_object['principal_demand'])
+                original_interest_demand = int(result_object['interest_demand'])
                 loan_id = result_object['loan_id']
 
             if int(demand_number) == 1:
                 days_delayed = (cheque_date1 - demand_date1).days
                 opening_balance_principal_ndue = loan_amount
-                total_paid = principal_demand       #+interest_collected
+                opening_balance_principal_due = original_principal_demand
+                opening_balance_interest_due = original_interest_demand
                 if days_delayed > 0:
-                    penal_interest = (days_delayed*total_paid*5)/(365*100)
-                    belated_interest = (days_delayed*total_paid*roi)/(365 * 100)
+                    penal_interest = penal
+                    belated_interest = belated
                 else:
                     penal_interest = 0
                     belated_interest = 0
+
+                if chequeAmount > (penal+belated):
+                    post_penal_belated_amount = float(chequeAmount) - (float(penal_interest)-float(belated_interest))
+                    if post_penal_belated_amount > opening_balance_interest_due:
+                        interest_collected = interest_demand
+                        post_interest_late_fees_deduction = post_penal_belated_amount - interest_collected
+                        service_charge = int(interest_collected) * 3 / roi
+                        principal_collected = post_interest_late_fees_deduction + service_charge
+                        closing_balance_principal_due = opening_balance_principal_due - principal_collected
+                    else:
+                        interest_collected = post_penal_belated_amount
+                        principal_collected = 0
+                        service_charge = int(interest_collected) * 3 / roi
+                        closing_balance_interest_due = opening_balance_interest_due - interest_collected
 
             else:
                 demand_numberm1 = int(demand_number)-1
@@ -1047,53 +1067,51 @@ def update_loan_financial_form(_id, late_interest, belated_int, penal_int, p_due
 
                 for result_object in demandm1[0:1]:
                     opening_balance_principal_ndue = int(result_object['closing_balance_principal_ndue'])
-                    original_principal_demand = int(result_object['principal_demand'])
-                    original_interest_demand = int(result_object['interest_demand'])
-                    chequem1_date = result_object['cheque_date']
+                    opening_balance_principal_due = int(result_object['closing_balance_principal_due'])
+                    opening_balance_interest_due = int(result_object['closing_balance_interest_ndue'])
+                    total_old_due = opening_balance_principal_due + opening_balance_interest_due
+                    previous_demand_cheque_date = result_object['cheque_date']
                     sub_bank = result_object['sub_bank']
 
-                days_delayed_old_due = (demand_date1-chequem1_date).days
-                days_delayed = (cheque_date1 - demand_date1).days
+                days_delayed_old_due = (demand_date1-previous_demand_cheque_date).days
+                days_delayed_current_demand = (cheque_date1 - demand_date1).days
 
-                if days_delayed_old_due > 0:
-                    total_old_due = (principal_demand-original_principal_demand)                #+(interest_demand-original_interest_demand)
+                if total_old_due > 0:
                     penal_interest_old_due = (days_delayed_old_due*total_old_due*5)/(365*100)
                     belated_interest_old_due = (days_delayed_old_due*total_old_due*roi)/(365*100)
                 else:
                     penal_interest_old_due = 0
                     belated_interest_old_due = 0
 
-                if days_delayed > 0:
-                    penal_interest_current_demand = (days_delayed*principal_demand*5)/(365*100)
-                    belated_interest_current_demand = (days_delayed*principal_demand*roi)/(365*100)
-                    belated_interest_current_demand = (days_delayed*principal_demand*roi)/(365*100)
+                if days_delayed_current_demand > 0:
+                    penal_interest_current_demand = (days_delayed_current_demand*principal_demand*5)/(365*100)
+                    belated_interest_current_demand = (days_delayed_current_demand*principal_demand*roi)/(365*100)
                 else:
                     penal_interest_current_demand = 0
                     belated_interest_current_demand = 0
 
-                late_interest = int(late_interest)
+                late_interest = int(penal_interest_current_demand) + int(belated_interest_current_demand)
                 late_interest += float(belated_interest_old_due)+float(penal_interest_old_due)
 
-            if (int(chequeAmount) - int(penal)+int(belated)) >= interest_demand:
-                interest_collected = int(interest_demand)\
-                                     # +int(penal)+int(belated)
-            else:
-                interest_collected = int(chequeAmount) - (int(penal)+int(belated))
-            closing_balance_interest_due = int(interest_demand)-int(interest_collected)
-
-            if (chequeAmount - (int(penal)+int(belated)+int(interest_collected))) >= 0:
-                principal_collected = int(chequeAmount) - (int(penal)+int(belated)+int(interest_collected))
-            else:
-                principal_collected = 0
+                if chequeAmount > late_interest:
+                    post_penal_belated_amount = float(chequeAmount) - late_interest
+                    if post_penal_belated_amount > opening_balance_interest_due:
+                        interest_collected = interest_demand
+                        post_interest_late_fees_deduction = post_penal_belated_amount - interest_collected
+                        service_charge = int(interest_collected) * 3 / roi
+                        principal_collected = post_interest_late_fees_deduction + service_charge
+                        closing_balance_principal_due = opening_balance_principal_due - principal_collected
+                    else:
+                        interest_collected = post_penal_belated_amount
+                        service_charge = int(interest_collected) * 3 / roi
+                        closing_balance_interest_due = opening_balance_interest_due - interest_collected
+                        principal_collected = 0
 
             if float(belated_int) < 0:
                 belated_int = 0
                 penal_int = 0
 
-            principal_collected1 = int(principal_collected) - (int(penal)+int(belated))
-            closing_balance_principal_due = int(principal_demand)-int(principal_collected)
-            closing_balance_principal_ndue = int(opening_balance_principal_ndue)-int(original_principal_demand)
-            service_charge = (3/roi)*int(interest_collected)
+            closing_balance_principal_ndue = opening_balance_principal_ndue - principal_collected
 
             demand = Database.find("loans", {"ann_loan_id": loan_id})
             pending_amount = 0
@@ -1105,7 +1123,7 @@ def update_loan_financial_form(_id, late_interest, belated_int, penal_int, p_due
                 dem_count = result_object['no_of_demands']
 
             amount_yet_to_pay_loan = (int(closing_balance_interest_due)+int(closing_balance_principal_due)+int(penal)+
-                                      int(belated))-(int(principal_collected1)+int(interest_collected))
+                                      int(belated))-(int(principal_collected)+int(interest_collected))
             update_amount = int(pending_amount)+(int(amount_yet_to_pay_loan)/int(no_of_apps))
 
             Demand.update_demand(demand_id=_id, demand_number=demand_number, demand_date=demand_date,

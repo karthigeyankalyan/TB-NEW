@@ -197,7 +197,6 @@
             if (post_penal_belated_deduction > interest_due) {
                 var interest_paid = interest_due;
                 var post_interest_late_deduction = post_penal_belated_deduction - interest_due;
-                console.log(cheque_amount, post_penal_belated_deduction);
                 var service_charge = interest_paid * 3 / roi;
                 var principal_paid = post_interest_late_deduction + service_charge;
                 principal_due = principal_due - principal_paid;
