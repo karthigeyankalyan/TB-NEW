@@ -1052,12 +1052,10 @@ def update_loan_financial_form(_id, late_interest, belated_int, penal_int, p_due
                         post_interest_late_fees_deduction = post_penal_belated_amount - interest_collected
                         service_charge = int(interest_collected) * 3 / roi
                         principal_collected = post_interest_late_fees_deduction + service_charge
-                        closing_balance_principal_due = opening_balance_principal_due - principal_collected
                     else:
                         interest_collected = post_penal_belated_amount
                         principal_collected = 0
                         service_charge = int(interest_collected) * 3 / roi
-                        closing_balance_interest_due = opening_balance_interest_due - interest_collected
 
             else:
                 demand_numberm1 = int(demand_number)-1
@@ -1100,11 +1098,9 @@ def update_loan_financial_form(_id, late_interest, belated_int, penal_int, p_due
                         post_interest_late_fees_deduction = post_penal_belated_amount - interest_collected
                         service_charge = int(interest_collected) * 3 / roi
                         principal_collected = post_interest_late_fees_deduction + service_charge
-                        closing_balance_principal_due = opening_balance_principal_due - principal_collected
                     else:
                         interest_collected = post_penal_belated_amount
                         service_charge = int(interest_collected) * 3 / roi
-                        closing_balance_interest_due = opening_balance_interest_due - interest_collected
                         principal_collected = 0
 
             if float(belated_int) < 0:
@@ -1112,6 +1108,8 @@ def update_loan_financial_form(_id, late_interest, belated_int, penal_int, p_due
                 penal_int = 0
 
             closing_balance_principal_ndue = opening_balance_principal_ndue - principal_collected
+            closing_balance_interest_due = opening_balance_interest_due - interest_collected
+            closing_balance_principal_due = opening_balance_principal_due - principal_collected
 
             demand = Database.find("loans", {"ann_loan_id": loan_id})
             pending_amount = 0
