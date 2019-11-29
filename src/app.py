@@ -1144,7 +1144,9 @@ def update_loan_financial_form(_id, late_interest, belated_int, penal_int, p_due
                               cheque_date=cheque_date)
             account.save_to_mongo()
 
-            return render_template('addedFinancialUpdate.html', user=user, closing=closing_balance_principal_due)
+            return render_template('addedFinancialUpdate.html', user=user, closing=closing_balance_principal_due,
+                                   closing_int=closing_balance_interest_due, principal=principal_collected,
+                                   interest=interest_collected)
 
     else:
         return render_template('login_fail.html')
