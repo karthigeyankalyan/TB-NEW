@@ -178,7 +178,7 @@ class LoanApplication(object):
             ro_date = ro_date
 
         if received_date:
-            received_date = (datetime.combine(datetime.strptime(received_date, '%Y-%m-%d').date(),
+            received_date = (datetime.combine(received_date.date(),
                                               datetime.now().time()))
         else:
             received_date = received_date
