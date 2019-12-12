@@ -1066,7 +1066,7 @@ def update_loan_financial_form(_id, late_interest, belated_int, penal_int, p_due
                 for result_object in demandm1[0:1]:
                     opening_balance_principal_ndue = int(result_object['closing_balance_principal_ndue'])
                     opening_balance_principal_due = int(result_object['closing_balance_principal_due'])
-                    opening_balance_interest_due = int(result_object['closing_balance_interest_ndue'])
+                    opening_balance_interest_due = int(result_object['closing_balance_interest_due'])
                     total_old_due = opening_balance_principal_due + opening_balance_interest_due
                     previous_demand_cheque_date = result_object['cheque_date']
                     sub_bank = result_object['sub_bank']
