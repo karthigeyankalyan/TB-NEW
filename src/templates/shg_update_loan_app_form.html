@@ -318,7 +318,7 @@
             document.getElementById(total_amount).value = json[i]['total_amount'];
             document.getElementById(lid).value = json[i]['_id'];
             total_loan_amount += json[i]['total_amount'];
-            total_ben_count += json[i]['strength'];
+            total_ben_count += parseInt(json[i]['strength']);
             }
                 if(json[0]["ro_date"] !== null) {
                     document.getElementById("roDate").value = moment(json[0]["ro_date"]['$date']).format("YYYY-MM-DD");
