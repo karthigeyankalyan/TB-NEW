@@ -981,7 +981,7 @@
 
                                 if (parseInt(no_of_demands) === 32 || parseInt(no_of_demands) === 20) {
                                     var tabcedco_installments = TabcedcoShare/2;
-                                    var nbcfdc_installments = Math.floor(NBCShare/(no_of_demands-2));
+                                    var nbcfdc_installments = Math.ceil(NBCShare/(no_of_demands-2));
 
                                     var amount_remaining = NBCShare+TabcedcoShare;
                                     var sum_interest = 0, sum_principal = 0;
@@ -1052,7 +1052,7 @@
 
                                 else {
                                     tabcedco_installments = TabcedcoShare;
-                                    nbcfdc_installments = Math.floor(NBCShare/(no_of_demands-1));
+                                    nbcfdc_installments = Math.ceil(NBCShare/(no_of_demands-1));
                                     amount_remaining = tla;
                                     sum_interest = 0, sum_principal = 0;
 
