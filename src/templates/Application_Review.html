@@ -1908,7 +1908,7 @@
                     var PSO = json[0]['ann_loan_id'] + '/' + json[0]['loan_category'] + '/' + (moment(json[0]['received_date']['$date']).year() - 2000) + '' + (moment(json[0]['received_date']['$date']).year() - 1999);
 
                     doc.setFontSize(12);
-                    doc.text(25, 50, 'DR. '+MD + '., I.A.S');
+                    doc.text(25, 50, MD + '., I.A.S');
                     doc.text(25, 55, 'Managing Director');
 
                     var refNo = 'Proc.No.' + json[0]['ann_loan_id'] + '/' + json[0]['district'] + '/' + json[0]['bank'];
