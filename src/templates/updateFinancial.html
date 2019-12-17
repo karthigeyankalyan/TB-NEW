@@ -132,8 +132,8 @@
                     belated = 0;
                 }
 
-                document.getElementById("penalInterest").value = Math.ceil(penal);
-                document.getElementById("belatedInterest").value = Math.ceil(belated);
+                document.getElementById("penalInterest").value = Math.round(penal);
+                document.getElementById("belatedInterest").value = Math.round(belated);
             },
             error: function (e) {
                 alert("The Loan Application does not exist");
