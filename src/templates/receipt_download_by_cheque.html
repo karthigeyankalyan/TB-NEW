@@ -38,7 +38,7 @@
                 console.log(json);
 
                 for(var j = 0; j < json.length; j++) {
-                    principal = json[j]['principal_collected'] + json[j]['service_charge'];
+                    principal = json[j]['principal_collected'];
 
                     cheque_amount += parseInt(json[j]['cheque_amount']);
                     total_principal += parseInt(principal);
@@ -91,7 +91,7 @@
 
                 doc.setFontStyle('bold');
 
-                        rows.push([["-"], ["-"], ["-"], [total_principal], [total_interest],
+                        rows.push([["-"], ["-"], ["Total"], [total_principal], [total_interest],
                             [total_penal], [total_belated], [total_service], [cheque_amount]]);
 
                         doc.autoTable(columns, rows,

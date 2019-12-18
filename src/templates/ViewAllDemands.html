@@ -34,8 +34,8 @@
         </div>
 
         <div id="SearchRO#" style="display: flex; flex-direction: column;">
-            <label for="myInput" style="margin-left: 10%">Search by RO Number:</label>
-            <input type="text" id="myInputRO" onkeyup="myFunctionRO()" placeholder="Search for RO" title="Type in a name">
+            <label for="myInput" style="margin-left: 10%">Search by Demand Reference:</label>
+            <input type="text" id="myInputRO" onkeyup="myFunctionRO()" placeholder="Search for Demand Ref" title="Type to search">
         </div>
 
     </div>
@@ -98,8 +98,9 @@
                             var th3 = "<th style='text-align:center;vertical-align:middle'>" + "Demand Number" + "</th>";
                             var th4 = "<th style='text-align:center;vertical-align:middle'>" + "Demand Date" + "</th>";
                             var th5 = "<th style='text-align:center;vertical-align:middle'>" + "Cheque Number" + "</th>";
-                            var th6 = "<th style='text-align:center;vertical-align:middle'>" + "Download Receipt" + "</th>";
-                            $("#loansDetails").append(hr + th1 + th2 + th3 + th4 + th5 + th6);
+                            var th6 = "<th style='text-align:center;vertical-align:middle'>" + "Demand Reference" + "</th>";
+                            var th7 = "<th style='text-align:center;vertical-align:middle'>" + "Download Receipt" + "</th>";
+                            $("#loansDetails").append(hr + th1 + th2 + th3 + th4 + th5 + th6 + th7);
                             for (var j = 0; j < jsonFunc.length; j++) {
                                 {
                                     var loan_id = jsonFunc[j]["ro_number"];
@@ -111,6 +112,7 @@
                                         '<td>'+jsonFunc[j]["demand_number"] +'</td>'+
                                         '<td>'+ moment(jsonFunc[j]["demand_date"]).format("DD-MM-YYYY") +'</td>'+
                                         '<td>'+jsonFunc[j]["cheque_number"] +'</td>'+
+                                        '<td>'+jsonFunc[j]["demand_reference"] +'</td>'+
                                         '<td><button class="btn btn-default"><a href="' + url + '">'+ 'Download Receipt' +'</a></button></td>');
                                     $("#loansDetails").append(row);
                                 }
@@ -149,7 +151,7 @@
         tr = table.getElementsByTagName("tr");
         console.log(tr.length);
         for (i = 0; i < tr.length; i++) {
-            td = tr[i].getElementsByTagName("td")[0];
+            td = tr[i].getElementsByTagName("td")[5];
             if (td) {
                 if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
                     tr[i].style.display = "";
