@@ -665,6 +665,15 @@
                             }
                         }
 
+                        var aggregatedData = d3.nest()
+                            .key(function (d) {
+                                return d.amount_per_member;
+                            })
+                            .rollup(function (v) { return v.length; })
+                            .entries(json);
+
+                        console.log(aggregatedData);
+
                         var strength = 0;
 
                         for (i = 0; i < json.length; i++) {
