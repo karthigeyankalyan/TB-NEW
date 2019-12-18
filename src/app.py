@@ -1093,8 +1093,7 @@ def update_loan_financial_form(_id, late_interest, belated_int, penal_int, p_due
 
                 if chequeAmount > int(late_interest):
                     post_penal_belated_amount = float(chequeAmount) - late_interest
-                    post_penal_belated_amount = float(post_penal_belated_amount) - \
-                                                (float(penal_interest)-float(belated_interest))
+                    post_penal_belated_amount = float(post_penal_belated_amount) - (float(penal)-float(belated))
                     if post_penal_belated_amount > opening_balance_interest_due:
                         interest_collected = interest_demand
                         post_interest_late_fees_deduction = post_penal_belated_amount - interest_collected
@@ -1148,7 +1147,7 @@ def update_loan_financial_form(_id, late_interest, belated_int, penal_int, p_due
 
             return render_template('addedFinancialUpdate.html', user=user, closing=closing_balance_principal_due,
                                    closing_int=closing_balance_interest_due, principal=principal_collected,
-                                   interest=interest_collected)
+                                   interest=interest_collected, penal=penal, belated=belated)
 
     else:
         return render_template('login_fail.html')
