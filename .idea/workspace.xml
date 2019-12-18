@@ -36,17 +36,17 @@
       <file leaf-file-name="Application_Review.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/templates/Application_Review.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="406">
-              <caret line="752" column="0" lean-forward="true" selection-start-line="752" selection-start-column="0" selection-end-line="752" selection-end-column="0" />
+            <state relative-caret-position="423">
+              <caret line="694" column="0" lean-forward="true" selection-start-line="694" selection-start-column="0" selection-end-line="694" selection-end-column="0" />
               <folding>
-                <element signature="e#69899#92972#0" expanded="false" />
-                <element signature="e#93002#115470#0" expanded="false" />
-                <element signature="e#122487#122795#0" expanded="false" />
-                <element signature="e#122892#123202#0" expanded="false" />
-                <element signature="e#123302#123495#0" expanded="false" />
-                <element signature="e#123553#123849#0" expanded="false" />
-                <element signature="e#123893#126571#0" expanded="false" />
-                <element signature="e#126632#128839#0" expanded="false" />
+                <element signature="e#70156#93229#0" expanded="false" />
+                <element signature="e#93259#115727#0" expanded="false" />
+                <element signature="e#122744#123052#0" expanded="false" />
+                <element signature="e#123149#123459#0" expanded="false" />
+                <element signature="e#123559#123752#0" expanded="false" />
+                <element signature="e#123810#124106#0" expanded="false" />
+                <element signature="e#124150#126828#0" expanded="false" />
+                <element signature="e#126889#129096#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -1002,17 +1002,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/templates/Application_Review.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="406">
-          <caret line="752" column="0" lean-forward="true" selection-start-line="752" selection-start-column="0" selection-end-line="752" selection-end-column="0" />
+        <state relative-caret-position="423">
+          <caret line="694" column="0" lean-forward="true" selection-start-line="694" selection-start-column="0" selection-end-line="694" selection-end-column="0" />
           <folding>
-            <element signature="e#69899#92972#0" expanded="false" />
-            <element signature="e#93002#115470#0" expanded="false" />
-            <element signature="e#122487#122795#0" expanded="false" />
-            <element signature="e#122892#123202#0" expanded="false" />
-            <element signature="e#123302#123495#0" expanded="false" />
-            <element signature="e#123553#123849#0" expanded="false" />
-            <element signature="e#123893#126571#0" expanded="false" />
-            <element signature="e#126632#128839#0" expanded="false" />
+            <element signature="e#70156#93229#0" expanded="false" />
+            <element signature="e#93259#115727#0" expanded="false" />
+            <element signature="e#122744#123052#0" expanded="false" />
+            <element signature="e#123149#123459#0" expanded="false" />
+            <element signature="e#123559#123752#0" expanded="false" />
+            <element signature="e#123810#124106#0" expanded="false" />
+            <element signature="e#124150#126828#0" expanded="false" />
+            <element signature="e#126889#129096#0" expanded="false" />
           </folding>
         </state>
       </provider>
