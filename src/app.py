@@ -1093,6 +1093,9 @@ def update_loan_financial_form(_id, late_interest, belated_int, penal_int, p_due
 
                 if chequeAmount > late_interest:
                     post_penal_belated_amount = float(chequeAmount) - late_interest
+                    if penal_interest_current_demand == 0:
+                        post_penal_belated_amount = float(post_penal_belated_amount) - \
+                                                    (float(penal_interest)-float(belated_interest))
                     if post_penal_belated_amount > opening_balance_interest_due:
                         interest_collected = interest_demand
                         post_interest_late_fees_deduction = post_penal_belated_amount - interest_collected
