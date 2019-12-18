@@ -76,9 +76,9 @@
                         var total = parseInt(json[j]['principal_collected']) + parseInt(json['interest_collected']) + parseInt(json['interest_collected']) + parseInt(json['belated_interest']) + parseInt(json['penal_interest']) - parseInt(json[j]['service_charge']);
                         var loan_id = json[j]["ro_number"];
 
-                        rows.push([[json[j]['district_bank']], loan_id, cat, [Math.floor(principal)],
+                        rows.push([[json[j]['district_bank']], loan_id, cat, [Math.round(principal)],
                             [json[j]['interest_collected']], [parseInt(json[j]['penal_interest'])], [parseInt(json[j]['belated_interest'])],
-                            [Math.floor(json[j]['service_charge'])], [json[j]['cheque_amount']], [total]]);
+                            [Math.round(json[j]['service_charge'])], [json[j]['cheque_amount']], [total]]);
                         console.log(j);
 
                     }
