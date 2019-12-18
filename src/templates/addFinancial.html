@@ -130,12 +130,14 @@
 
             var no_of_demands = json[0]['no_of_demands'];
 
+            var NBCShare = NBCFDCShareCalculator(json[0]['loan_category'], amount);
+            var TabcedcoShare = tabcedcoShareCalculator(json[0]['loan_category'], amount);
+
+            amount = NBCShare + TabcedcoShare;
+
             var principal_per_installment = amount/no_of_demands;
             var amount_remaining = amount;
             var sum_interest = 0, sum_principal = 0;
-
-            var NBCShare = NBCFDCShareCalculator(json[0]['loan_category'], amount);
-            var TabcedcoShare = tabcedcoShareCalculator(json[0]['loan_category'], amount);
 
             console.log(NBCShare, TabcedcoShare);
 
