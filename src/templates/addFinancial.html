@@ -137,6 +137,8 @@
             var NBCShare = NBCFDCShareCalculator(json[0]['loan_category'], amount);
             var TabcedcoShare = tabcedcoShareCalculator(json[0]['loan_category'], amount);
 
+            console.log(NBCShare, TabcedcoShare);
+
             var cheque_date = moment(json[0]['cheque_date']['$date']).format('DD-MM-YYYY');
             var roi = parseInt(json[0]['roi']);
 
