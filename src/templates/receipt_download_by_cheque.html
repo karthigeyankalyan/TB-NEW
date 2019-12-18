@@ -40,12 +40,12 @@
                 for(var j = 0; j < json.length; j++) {
                     principal = json[j]['principal_collected'];
 
-                    cheque_amount += parseInt(json[j]['cheque_amount']);
-                    total_principal += parseInt(principal);
-                    total_interest += parseInt(json[j]['interest_collected']);
-                    total_penal += parseInt(json[j]['penal_interest']);
-                    total_belated += parseInt(json[j]['belated_interest']);
-                    total_service += parseInt(json[j]['service_charge']);
+                    cheque_amount += Math.round(json[j]['cheque_amount']);
+                    total_principal += Math.round(principal);
+                    total_interest += Math.round(json[j]['interest_collected']);
+                    total_penal += Math.round(json[j]['penal_interest']);
+                    total_belated += Math.round(json[j]['belated_interest']);
+                    total_service += Math.round(json[j]['service_charge']);
                 }
 
                 var AAO = doc.splitTextToSize('Received with thanks from ' + json[0]['district_bank'] + ' ' + cheque_amount + ' Rs. ( ' + convertNumberToWords(cheque_amount) +
