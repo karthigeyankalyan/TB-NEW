@@ -27,6 +27,7 @@
 
                 doc.setFontSize(12);
                 doc.text(75, 50, 'RECEIPT');
+                doc.text(150, 50, 'Demand Reference: ' + json[0]['demand_reference']);
 
                 var cheque_amount = 0;
                 var total_principal = 0;
@@ -53,7 +54,7 @@
 
                 doc.text(25, 65, AAO);
 
-                var columns = ["Bank", "Ro #", "Code", "Principal", "Interest", "Penal", "Belated", "Service Charge", "Total"];
+                var columns = ["Bank", "Ro #", "Principal", "Interest", "Penal", "Belated", "Service Charge", "Total"];
                 var rows = [];
 
                 for(j = 0; j < json.length; j++) {
@@ -76,7 +77,10 @@
                         var total = parseInt(json[j]['principal_collected']) + parseInt(json['interest_collected']) + parseInt(json['interest_collected']) + parseInt(json['belated_interest']) + parseInt(json['penal_interest']) - parseInt(json[j]['service_charge']);
                         var loan_id = json[j]["ro_number"];
 
-                        rows.push([[json[j]['district_bank']], loan_id, cat, [Math.round(principal)],
+                        var year_code = (moment(json[0]['sanction_date']['$date']).year() - 2000) + '' +
+                        (moment(json[0]['sanction_date']['$date']).year() - 1999);
+
+                        rows.push([[json[j]['district_bank']], loan_id+'-'+cat+'-'+year_code, [Math.round(principal)],
                             [json[j]['interest_collected']], [parseInt(json[j]['penal_interest'])], [parseInt(json[j]['belated_interest'])],
                             [Math.round(json[j]['service_charge'])], [json[j]['cheque_amount']], [total]]);
                         console.log(j);
