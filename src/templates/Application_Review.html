@@ -1005,7 +1005,8 @@
                                         if (l === 1) {
                                             var current_demand_date = moment(cheque_date, "DD-MM-YYYY").add(4, 'M').startOf('month').format('DD-MM-YYYY');
                                             if (moment(cheque_date, 'DD-MM-YYYY').format('DD') === 1) {
-                                                interest = Math.round((roi * parseInt(tla) / 400));
+                                                interest = Math.round(roi * parseInt(tla) / 400);
+                                                console.log(interest, tla, roi);
                                             }
 
                                             else {
@@ -1055,7 +1056,7 @@
 
                                         rows.push([[l], [current_demand_date], [Math.round(amount_remaining)],
                                             [principal_per_installment], [Math.round(interest)],
-                                            [parseInt(principal_per_installment) + parseInt(interest)]]);
+                                            [Math.round(principal_per_installment) + Math.round(interest)]]);
 
                                         sum_principal += parseInt(principal_per_installment);
                                         sum_interest += parseInt(interest);

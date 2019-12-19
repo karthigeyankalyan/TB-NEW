@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="da0bb03c-275f-4eeb-800c-401a339e857e" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/templates/Application_Review.html" afterPath="$PROJECT_DIR$/src/templates/Application_Review.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/templates/addFinancial.html" afterPath="$PROJECT_DIR$/src/templates/addFinancial.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/templates/receipt_download_by_cheque.html" afterPath="$PROJECT_DIR$/src/templates/receipt_download_by_cheque.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -23,7 +21,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="app.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="app.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/app.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="171">
@@ -52,6 +50,27 @@
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding>
                 <element signature="e#6196#8874#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Application_Review.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/templates/Application_Review.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="508">
+              <caret line="1071" column="0" lean-forward="false" selection-start-line="1071" selection-start-column="0" selection-end-line="1071" selection-end-column="0" />
+              <folding>
+                <element signature="e#2087#20372#0" expanded="false" />
+                <element signature="e#20403#39355#0" expanded="false" />
+                <element signature="e#70240#93313#0" expanded="false" />
+                <element signature="e#93343#115811#0" expanded="false" />
+                <element signature="e#122828#123136#0" expanded="false" />
+                <element signature="e#123233#123543#0" expanded="false" />
+                <element signature="e#123643#123836#0" expanded="false" />
+                <element signature="e#123894#124190#0" expanded="false" />
+                <element signature="e#124234#126912#0" expanded="false" />
+                <element signature="e#126973#129180#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -941,11 +960,29 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/templates/addFinancial.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="189" column="0" lean-forward="false" selection-start-line="189" selection-start-column="0" selection-end-line="189" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/templates/addedFinancialUpdate.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="474">
           <caret line="36" column="0" lean-forward="false" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="1315" column="24" lean-forward="false" selection-start-line="1315" selection-start-column="13" selection-end-line="1315" selection-end-column="24" />
+          <folding>
+            <element signature="e#0#29#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -975,39 +1012,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/templates/addFinancial.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="189" column="0" lean-forward="false" selection-start-line="189" selection-start-column="0" selection-end-line="189" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/templates/Application_Review.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="508">
-          <caret line="1142" column="0" lean-forward="false" selection-start-line="1142" selection-start-column="0" selection-end-line="1142" selection-end-column="0" />
+          <caret line="1071" column="0" lean-forward="false" selection-start-line="1071" selection-start-column="0" selection-end-line="1071" selection-end-column="0" />
           <folding>
             <element signature="e#2087#20372#0" expanded="false" />
             <element signature="e#20403#39355#0" expanded="false" />
-            <element signature="e#70157#93230#0" expanded="false" />
-            <element signature="e#93260#115728#0" expanded="false" />
-            <element signature="e#122745#123053#0" expanded="false" />
-            <element signature="e#123150#123460#0" expanded="false" />
-            <element signature="e#123560#123753#0" expanded="false" />
-            <element signature="e#123811#124107#0" expanded="false" />
-            <element signature="e#124151#126829#0" expanded="false" />
-            <element signature="e#126890#129097#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="1315" column="24" lean-forward="false" selection-start-line="1315" selection-start-column="13" selection-end-line="1315" selection-end-column="24" />
-          <folding>
-            <element signature="e#0#29#0" expanded="true" />
+            <element signature="e#70240#93313#0" expanded="false" />
+            <element signature="e#93343#115811#0" expanded="false" />
+            <element signature="e#122828#123136#0" expanded="false" />
+            <element signature="e#123233#123543#0" expanded="false" />
+            <element signature="e#123643#123836#0" expanded="false" />
+            <element signature="e#123894#124190#0" expanded="false" />
+            <element signature="e#124234#126912#0" expanded="false" />
+            <element signature="e#126973#129180#0" expanded="false" />
           </folding>
         </state>
       </provider>
