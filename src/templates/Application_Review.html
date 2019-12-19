@@ -1001,8 +1001,6 @@
                                     var sum_interest = 0, sum_principal = 0;
                                     var previous_demand_date;
 
-                                    console.log(tla, roi);
-
                                     for (var l = 1; l <= no_of_demands; l++) {
                                         if (l === 1) {
                                             var current_demand_date = moment(cheque_date, "DD-MM-YYYY").add(4, 'M').startOf('month').format('DD-MM-YYYY');
@@ -1014,13 +1012,14 @@
                                                 var total_days_in_month = daysInMonth(moment(cheque_date, 'DD-MM-YYYY').format('MM'), moment(cheque_date, 'DD-MM-YYYY').format('YYYY'), moment(cheque_date, 'DD-MM-YYYY').format('DD-MM-YYYY'));
                                                 var extra_interest_days = total_days_in_month - moment(cheque_date, 'DD-MM-YYYY').format('DD') + 1;
 
-                                                var extra_days_nbc = ((roi) * NBCShare * extra_interest_days) / (365 * 100).toFixed(0);
-                                                var extra_days_tbc = ((roi) * TabcedcoShare * extra_interest_days) / (365 * 100).toFixed(0);
+                                                var extra_days_nbc = ((roi) * NBCShare * extra_interest_days) / (365 * 100);
+                                                var extra_days_tbc = ((roi) * TabcedcoShare * extra_interest_days) / (365 * 100);
 
-                                                var regular_nbc_interest = (roi * parseInt(NBCShare) / 400).toFixed(0);
-                                                var regular_tbc_interest = (roi * parseInt(TabcedcoShare) / 400).toFixed(0);
+                                                var regular_nbc_interest = (roi * parseInt(NBCShare) / 400);
+                                                var regular_tbc_interest = (roi * parseInt(TabcedcoShare) / 400);
 
-                                                var interest = extra_days_nbc+extra_days_tbc+parseInt(regular_nbc_interest)+parseInt(regular_tbc_interest);
+                                                var interest = Math.round(extra_days_nbc+extra_days_tbc+regular_nbc_interest+regular_tbc_interest);
+                                                console.log(interest, NBCShare, TabcedcoShare, extra_days_nbc, extra_days_tbc, regular_nbc_interest, regular_tbc_interest)
                                             }
                                             var principal_per_installment = Math.round(tabcedco_installments);
                                         }

@@ -58,19 +58,19 @@
       <file leaf-file-name="Application_Review.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/templates/Application_Review.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="1003" column="0" lean-forward="false" selection-start-line="1003" selection-start-column="0" selection-end-line="1003" selection-end-column="0" />
+            <state relative-caret-position="425">
+              <caret line="1021" column="0" lean-forward="false" selection-start-line="1021" selection-start-column="0" selection-end-line="1021" selection-end-column="0" />
               <folding>
                 <element signature="e#2087#20372#0" expanded="false" />
                 <element signature="e#20403#39355#0" expanded="false" />
-                <element signature="e#70219#93292#0" expanded="false" />
-                <element signature="e#93322#115790#0" expanded="false" />
-                <element signature="e#122807#123115#0" expanded="false" />
-                <element signature="e#123212#123522#0" expanded="false" />
-                <element signature="e#123622#123815#0" expanded="false" />
-                <element signature="e#123873#124169#0" expanded="false" />
-                <element signature="e#124213#126891#0" expanded="false" />
-                <element signature="e#126952#129159#0" expanded="false" />
+                <element signature="e#70278#93351#0" expanded="false" />
+                <element signature="e#93381#115849#0" expanded="false" />
+                <element signature="e#122866#123174#0" expanded="false" />
+                <element signature="e#123271#123581#0" expanded="false" />
+                <element signature="e#123681#123874#0" expanded="false" />
+                <element signature="e#123932#124228#0" expanded="false" />
+                <element signature="e#124272#126950#0" expanded="false" />
+                <element signature="e#127011#129218#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -1014,19 +1014,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/templates/Application_Review.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="1003" column="0" lean-forward="false" selection-start-line="1003" selection-start-column="0" selection-end-line="1003" selection-end-column="0" />
+        <state relative-caret-position="425">
+          <caret line="1021" column="0" lean-forward="false" selection-start-line="1021" selection-start-column="0" selection-end-line="1021" selection-end-column="0" />
           <folding>
             <element signature="e#2087#20372#0" expanded="false" />
             <element signature="e#20403#39355#0" expanded="false" />
-            <element signature="e#70219#93292#0" expanded="false" />
-            <element signature="e#93322#115790#0" expanded="false" />
-            <element signature="e#122807#123115#0" expanded="false" />
-            <element signature="e#123212#123522#0" expanded="false" />
-            <element signature="e#123622#123815#0" expanded="false" />
-            <element signature="e#123873#124169#0" expanded="false" />
-            <element signature="e#124213#126891#0" expanded="false" />
-            <element signature="e#126952#129159#0" expanded="false" />
+            <element signature="e#70278#93351#0" expanded="false" />
+            <element signature="e#93381#115849#0" expanded="false" />
+            <element signature="e#122866#123174#0" expanded="false" />
+            <element signature="e#123271#123581#0" expanded="false" />
+            <element signature="e#123681#123874#0" expanded="false" />
+            <element signature="e#123932#124228#0" expanded="false" />
+            <element signature="e#124272#126950#0" expanded="false" />
+            <element signature="e#127011#129218#0" expanded="false" />
           </folding>
         </state>
       </provider>
