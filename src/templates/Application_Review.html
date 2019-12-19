@@ -1005,7 +1005,7 @@
                                         if (l === 1) {
                                             var current_demand_date = moment(cheque_date, "DD-MM-YYYY").add(4, 'M').startOf('month').format('DD-MM-YYYY');
                                             if (moment(cheque_date, 'DD-MM-YYYY').format('DD') === 1) {
-                                                interest = (roi * parseInt(tla) / 400).toFixed(0);
+                                                interest = Math.round((roi * parseInt(tla) / 400));
                                             }
 
                                             else {
@@ -1066,7 +1066,7 @@
 
                                 else {
                                     tabcedco_installments = TabcedcoShare;
-                                    nbcfdc_installments = Math.floor(NBCShare/(no_of_demands-1));
+                                    nbcfdc_installments = Math.round(NBCShare/(no_of_demands-1));
                                     amount_remaining = tla;
                                     sum_interest = 0, sum_principal = 0;
 
