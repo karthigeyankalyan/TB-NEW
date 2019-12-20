@@ -253,12 +253,14 @@
                 }
 
                 else {
-                    tabcedco_installments = TabcedcoShare;
-                    nbcfdc_installments = Math.round(NBCShare/(no_of_demands-1));
+                NBCShare = NBCFDCShareCalculator(json[0]['loan_category'], amount);
+                TabcedcoShare = tabcedcoShareCalculator(json[0]['loan_category'], amount);
 
-                    amount_remaining = NBCShare+TabcedcoShare;
-                    tla = NBCShare+TabcedcoShare;
+                tabcedco_installments = Math.round(TabcedcoShare)/2;
+                nbcfdc_installments = Math.round(parseInt(NBCShare)/(no_of_demands-2));
 
+                amount_remaining = NBCShare+TabcedcoShare;
+                    var tla = NBCShare+TabcedcoShare;
                     sum_interest = 0, sum_principal = 0;
 
                     for (l = 1; l <= no_of_demands; l++) {
