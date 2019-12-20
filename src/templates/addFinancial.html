@@ -120,13 +120,14 @@
             var amount = 0;
 
             if (cat === 'GTL' || cat === 'NSS') {
+            var no_of_demands = json[0]['no_of_demands'];
                 for ( var i = 0; i < json.length; i++) {
                     amount += parseInt(json[i]['loan_amount']);
                 }
             }
             else {
                 amount +=  parseInt(json[0]['loan_amount']);
-            var no_of_demands = json[0]['no_of_demands'];
+                no_of_demands = json[0]['no_of_demands'];
 
             var NBCShare = NBCFDCShareCalculator(json[0]['loan_category'], amount);
             var TabcedcoShare = tabcedcoShareCalculator(json[0]['loan_category'], amount);
