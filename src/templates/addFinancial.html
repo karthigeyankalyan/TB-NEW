@@ -113,6 +113,7 @@
                 for ( var i = 0; i < json.length; i++) {
                     if (distinct_demands.indexOf(json[i]['no_of_demands']) === -1) {
                         distinct_demands.push(json[i]['no_of_demands']);
+                        console.log(distinct_demands);
                     }
 
                     if (distinct_demands.indexOf(json[i]['no_of_demands']) !== -1) {
@@ -204,7 +205,6 @@
                                 if (moment(cheque_date, 'DD-MM-YYYY').format('DD') === 1) {
                                     interest = Math.round(roi * tla / 400);
                                 }
-
                                 else {
                                     total_days_in_month = daysInMonth(moment(cheque_date, 'DD-MM-YYYY').format('MM'), moment(cheque_date, 'DD-MM-YYYY').format('YYYY'), moment(cheque_date, 'DD-MM-YYYY').format('DD-MM-YYYY'));
                                     extra_interest_days = total_days_in_month - moment(cheque_date, 'DD-MM-YYYY').format('DD') + 1;
@@ -215,10 +215,9 @@
                                     regular_tbc_interest = Math.round(roi * parseInt(TabcedcoShare) / 400);
 
                                     interest = Math.round(extra_days_nbc + extra_days_tbc + regular_nbc_interest + regular_tbc_interest);
-                                    console.log(amount, interest, NBCShare, TabcedcoShare, extra_days_nbc, extra_days_tbc, regular_nbc_interest, regular_tbc_interest)
+                                    console.log(amount, interest, NBCShare, TabcedcoShare, extra_days_nbc, extra_days_tbc, regular_nbc_interest, regular_tbc_interest);
 
                                     principal_per_installment = Math.round(tabcedco_installments);
-                                    console.log(principal_per_installment);
                                 }
                             }
 
