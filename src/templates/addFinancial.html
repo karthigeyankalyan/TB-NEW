@@ -119,7 +119,7 @@
                     if (distinct_demands.indexOf(json[i]['no_of_demands']) !== -1) {
                         amount += parseInt(json[i]['loan_amount']);
                     } else {
-                        amount += parseInt(json[i]['loan_amount']);
+                        amount = parseInt(json[i]['loan_amount']);
                     }
                 }
             }
