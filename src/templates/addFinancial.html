@@ -120,9 +120,9 @@
             var amount = 0;
 
             if (cat === 'GTL' || cat === 'NSS') {
-            var no_of_demands = json[0]['no_of_demands'];
                 for ( var i = 0; i < json.length; i++) {
                     amount += parseInt(json[i]['loan_amount']);
+                    var no_of_demands = json[i]['no_of_demands'];
                 }
             }
             else {
