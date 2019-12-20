@@ -106,23 +106,16 @@
                 alert('Update RO Number and Add Financial');
             }
 
-            for (var j = 1; j <= parseInt(json[0]["no_of_demands"]); j++) {
-                {
-                    var inputSNO = "s"+j;
-                    var inputDateid = "d"+j;
-                    var inputPrincipalDemand = "pd"+j;
-                    var inputInterestDemand = "id"+j;
-                    var row = $('<div></div>').html('<input type="number" onchange="populateDates()" name='+inputSNO+' value='+j+'><input type="date" onchange="populateDates()" id='+inputDateid+' name='+inputDateid+'><input type="number" id='+inputPrincipalDemand+' name='+inputPrincipalDemand+'><input type="number" onchange="populateDates()" id='+inputInterestDemand+' name='+inputInterestDemand+'>');
-                    $("#demandDetails").append(row);
-                }
-            }
-
             var amount = 0;
 
             if (cat === 'GTL' || cat === 'NSS') {
                 for ( var i = 0; i < json.length; i++) {
-                    amount += parseInt(json[i]['loan_amount']);
                     var no_of_demands = json[i]['no_of_demands'];
+                    if (json[i-1]['no_of_demands'] === no_of_demands) {
+                        amount += parseInt(json[i]['loan_amount']);
+                    } else {
+                        amount += parseInt(json[i]['loan_amount']);
+                    }
                 }
             }
             else {
@@ -137,6 +130,17 @@
             var principal_per_installment = amount/no_of_demands;
             var amount_remaining = amount;
             var sum_interest = 0, sum_principal = 0;
+            }
+
+            for (var j = 1; j <= parseInt(no_of_demands); j++) {
+                {
+                    var inputSNO = "s"+j;
+                    var inputDateid = "d"+j;
+                    var inputPrincipalDemand = "pd"+j;
+                    var inputInterestDemand = "id"+j;
+                    var row = $('<div></div>').html('<input type="number" onchange="populateDates()" name='+inputSNO+' value='+j+'><input type="date" onchange="populateDates()" id='+inputDateid+' name='+inputDateid+'><input type="number" id='+inputPrincipalDemand+' name='+inputPrincipalDemand+'><input type="number" onchange="populateDates()" id='+inputInterestDemand+' name='+inputInterestDemand+'>');
+                    $("#demandDetails").append(row);
+                }
             }
 
             var cheque_date = moment(json[0]['cheque_date']['$date']).format('DD-MM-YYYY');
