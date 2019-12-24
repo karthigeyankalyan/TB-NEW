@@ -1302,6 +1302,29 @@ def loan_demands_view(loan_id, ro_number):
         return render_template('login_fail.html', user=user)
 
 
+@app.route('/ViewAccountHeadBalance')
+def acc_head_balance_view():
+    email = session['email']
+    user = User.get_by_email(email)
+    if email is not None:
+        return render_template('ViewAccountHead.html', user=user)
+    else:
+        return render_template('login_fail.html', user=user)
+
+
+@app.route('/raw_acc_head_balance')
+def raw_acc_head_balance():
+    loan = []
+    loan_dict = Database.find("accounthead", {})
+
+    for tran in loan_dict:
+        loan.append(tran)
+
+    single_loan = json.dumps(loan, default=json_util.default)
+
+    return single_loan
+
+
 @app.route('/demands_by_cheque/<string:_id>')
 def download_receipt_by_cheque(_id):
     email = session['email']
