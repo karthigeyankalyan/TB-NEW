@@ -14,17 +14,16 @@
             contentType: "application/json",
             dataType: 'json',
             success: function (json) {
-                console.log(json);
-                for (var j = 0; j< json.length; j++) {
-                    var tbl = $("<table class='table table-bordered table-dark' id='demandDetails'/>");
-                    $("#demandList").append(tbl);
-                    var hr = "<tr>";
-                    var th1 = "<th onclick='sortTable(0)' style='text-align:center;vertical-align:middle'>" + "S.No" + "</th>";
-                    var th2 = "<th style='text-align:center;vertical-align:middle'>" + "Account Head" + "</th>";
-                    var th3 = "<th style='text-align:center;vertical-align:middle'>" + "Cl Balance Debit" + "</th>";
-                    var th4 = "<th style='text-align:center;vertical-align:middle'>" + "Cl Balance Credit" + "</th>";
-                    $("#demandDetails").append(hr + th1 + th2 + th3 + th4);
+                var tbl = $("<table class='table table-bordered table-dark' id='demandDetails'/>");
+                $("#demandList").append(tbl);
+                var hr = "<tr>";
+                var th1 = "<th onclick='sortTable(0)' style='text-align:center;vertical-align:middle'>" + "S.No" + "</th>";
+                var th2 = "<th style='text-align:center;vertical-align:middle'>" + "Account Head" + "</th>";
+                var th3 = "<th style='text-align:center;vertical-align:middle'>" + "Cl Balance Debit" + "</th>";
+                var th4 = "<th style='text-align:center;vertical-align:middle'>" + "Cl Balance Credit" + "</th>";
+                $("#demandDetails").append(hr + th1 + th2 + th3 + th4);
 
+                for (var j = 0; j< json.length; j++) {
                     var row = $('<tr></tr>').html('<td>' +
                         + (j+1) + '</td>' +
                         '<td>' + json[j]["Head of Accounts"] + '</td>' +
