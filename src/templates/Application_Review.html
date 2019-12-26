@@ -677,13 +677,13 @@
                             })
                             .entries(json);
 
-                        console.log(aggregatedData);
-
                         var strength = 0;
 
                         for (i = 0; i < json.length; i++) {
                             strength += parseInt(json[i]['strength']);
                         }
+
+                        console.log(aggregatedData, strength);
 
                         for (i = 0; i < aggregatedData.length; i++) {
                             var total_strength = 0;
