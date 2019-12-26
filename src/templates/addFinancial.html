@@ -130,6 +130,7 @@
                     amount = lt_25_amount;
                     no_of_demands = 12;
                 }
+                console.log(no_of_demands);
             }
             else {
                 amount +=  parseInt(json[0]['loan_amount']);
@@ -221,7 +222,6 @@
                                 regular_tbc_interest = Math.round(roi * parseInt(TabcedcoShare) / 400);
 
                                 interest = Math.round(extra_days_nbc + extra_days_tbc + regular_nbc_interest + regular_tbc_interest);
-                                console.log(amount, interest, NBCShare, TabcedcoShare, extra_days_nbc, extra_days_tbc, regular_nbc_interest, regular_tbc_interest)
 
                                 principal_per_installment = Math.round(tabcedco_installments);
                             }
@@ -263,7 +263,6 @@
                         previous_demand_date = current_demand_date;
 
                         document.getElementById('pd'+l).value = principal_per_installment;
-                        console.log(principal_per_installment, l);
                         document.getElementById('id'+l).value = interest;
                         document.getElementById('d'+l).value = moment(current_demand_date, "DD-MM-YYYY").format("YYYY-MM-DD");
                     }
