@@ -115,6 +115,7 @@
                 for (var a = 0; a < json.length; a++) {
                     if (parseInt(json[a]['loan_amount']) <= 25000) {
                         lt_25_amount += parseInt(json[a]['loan_amount']);
+                        console.log(lt_25_amount, json[a]['loan_amount'])
                     } else {
                         gt_25_amount += parseInt(json[a]['loan_amount']);
                     }
