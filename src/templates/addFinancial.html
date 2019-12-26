@@ -101,17 +101,28 @@
             document.getElementById("receivedDate").value = moment(json[0]["cheque_date"]['$date']).format("YYYY-MM-DD");
 
             var per_installment;
+            var incoming_amount = "{{loan_amount}}";
 
             if(json[0]['ro_number'] === undefined) {
                 alert('Update RO Number and Add Financial');
             }
 
             var amount = 0;
+            var lt_25_amount = 0;
+            var gt_25_amount = 0;
 
             if (cat === 'GTL' || cat === 'NSS') {
-                for ( var i = 0; i < json.length; i++) {
-                    amount += parseInt(json[i]['loan_amount']);
-                    var no_of_demands = json[i]['no_of_demands'];
+                for (var a = 0; a < json.length; a++) {
+                    if (parseInt(json[a]['loan_amount']) <= 25000) {
+                        lt_25_amount += parseInt(json[a]['loan_amount']);
+                    } else {
+                        gt_25_amount += parseInt(json[a]['loan_amount']);
+                    }
+                }
+                if (parseInt(incoming_amount) > 25000) {
+                    amount = gt_25_amount
+                } else {
+                    amount = lt_25_amount
                 }
             }
             else {
