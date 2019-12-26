@@ -120,10 +120,15 @@
                         gt_25_amount += parseInt(json[a]['loan_amount']);
                     }
                 }
-                if (parseInt(incoming_amount) > 25000) {
-                    amount = gt_25_amount
+                if (parseInt(incoming_amount) > 25000 && parseInt(incoming_amount) < 500000) {
+                    amount = gt_25_amount;
+                    var no_of_demands = 20;
+                } else if (parseInt(incoming_amount) > 500000) {
+                    amount = gt_25_amount;
+                    no_of_demands = 32;
                 } else {
-                    amount = lt_25_amount
+                    amount = lt_25_amount;
+                    no_of_demands = 12;
                 }
             }
             else {
