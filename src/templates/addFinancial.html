@@ -96,7 +96,7 @@
             document.getElementById("loanID").value = json[0]["ann_loan_id"];
             document.getElementById("bank").value = json[0]["bank"];
             document.getElementById("subBank").value = json[0]["sub_bank"];
-            document.getElementById("loanAmount").value = json[0]["loan_amount"];
+            document.getElementById("loanAmount").value = "{{loan_amount}}";
             document.getElementById("loanID").value = json[0]["ann_loan_id"];
             document.getElementById("receivedDate").value = moment(json[0]["cheque_date"]['$date']).format("YYYY-MM-DD");
 
