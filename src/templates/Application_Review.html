@@ -694,6 +694,7 @@
                         downloadSHGPDF(parseInt(json[0]['loan_amount']), no_of_demands=10, cheque_date, json[0]['roi'], json[0]['ann_loan_id'], RO, total_strength);
 
                         for (var las = 0; las < aggregatedData.length; las++) {
+                            console.log(aggregatedData);
                             downloadSHGPDF(parseInt(aggregatedData[0].key), no_of_demands=10, cheque_date, json[0]['roi'], aggregatedData[0].key, RO, aggregatedData[0].values);
                         }
 
