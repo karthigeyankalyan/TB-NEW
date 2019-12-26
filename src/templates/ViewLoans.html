@@ -90,8 +90,9 @@
                                     var loan_id = jsonFunc[j]["_id"];
                                     var ann_loan_id = jsonFunc[j]["ann_loan_id"];
                                     var ro_number = jsonFunc[j]["ro_number"];
+                                    var loan_amount = jsonFunc[j]["loan_amount"];
                                     var url = '/updateApplication/'+loan_id;
-                                    var url1 = '/loanFinancial/'+ann_loan_id+"/"+ro_number;
+                                    var url1 = '/loanFinancial/'+ann_loan_id+"/"+ro_number+"/"+loan_amount;
                                     var url2 = '/ViewDemandsByLoan/'+ann_loan_id+"/"+ro_number;
                                     console.log(url2);
                                     if (jsonFunc[j]['loan_category'] === 'GTL (General Term Loan)' || jsonFunc[j]['loan_category'] === 'NSS (New-Swarnima Scheme)') {

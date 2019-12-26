@@ -869,13 +869,14 @@ def update_loan_form(_id):
         return render_template('login_fail.html')
 
 
-@app.route('/loanFinancial/<string:_id>/<string:ro_number>', methods=['POST', 'GET'])
-def loan_financial_form(_id, ro_number):
+@app.route('/loanFinancial/<string:_id>/<string:ro_number>/<string:loan_amount>', methods=['POST', 'GET'])
+def loan_financial_form(_id, ro_number, loan_amount):
     email = session['email']
     if email is not None:
         if request.method == 'GET':
             user = User.get_by_email(email)
-            return render_template('addFinancial.html', user=user, application_id=_id, ro_number=ro_number)
+            return render_template('addFinancial.html', user=user, application_id=_id, ro_number=ro_number,
+                                   loan_amount=loan_amount)
 
         else:
             user = User.get_by_email(email)
