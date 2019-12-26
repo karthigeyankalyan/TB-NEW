@@ -669,7 +669,12 @@
                             .key(function (d) {
                                 return d.amount_per_member;
                             })
-                            .rollup(function (v) { return v.length; })
+                            .rollup(function (v) {
+                                return {
+                                    "no_of_shgs": v.length,
+                                    "total_strength": d3.sum(v, function(d) { return parseInt(d.strength) })
+                                }
+                            })
                             .entries(json);
 
                         console.log(aggregatedData);
