@@ -687,7 +687,7 @@
 
                         for (i = 0; i < aggregatedData.length; i++) {
                             var total_strength = 0;
-                            total_strength += parseInt(aggregatedData[i].values);
+                            total_strength += parseInt(aggregatedData[i].values.total_strength);
                         }
 
                         var cheque_date = moment(json[0]['cheque_date']['$date']).format('DD-MM-YYYY');
