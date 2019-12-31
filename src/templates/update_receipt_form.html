@@ -8,7 +8,7 @@
     <div class="form-group" style="display: block; width: 38%">
         <label style="flex: 8" for="natureOfTransaction">Transaction Type</label>
         <select style="flex: 4" class="form-control" id="natureOfTransaction" name="natureOfTransaction">
-            {% set nature = ['Debit', 'Credit'] %}
+            {% set nature = ['Debit', 'Credit', 'Multi-Ledger'] %}
 
             {% for nat in nature %}
                 <option value= "{{nat}}">{{nat}}</option>"
@@ -20,7 +20,6 @@
         <label style="flex: 8" for="ledger">Ledger</label>
         <select style="flex: 4" class="form-control" id="ledger" name="ledger">
             {% set nature = ['Sub', 'Main'] %}
-
             {% for nat in nature %}
                 <option value= "{{nat}}">{{nat}}</option>"
             {% endfor %}
@@ -31,7 +30,6 @@
         <label style="flex: 8" for="adjustmentVoucher">Adjustment Voucher</label>
         <select style="flex: 4" class="form-control" id="adjustmentVoucher" name="adjustmentVoucher">
             {% set nature = ['No', 'Yes'] %}
-
             {% for nat in nature %}
                 <option value= "{{nat}}">{{nat}}</option>"
             {% endfor %}
@@ -42,7 +40,6 @@
         <label style="flex: 8" for="cleared">Cheque Cleared?</label>
         <select style="flex: 4" class="form-control" id="cleared" name="cleared">
             {% set nature = ['No', 'Yes'] %}
-
             {% for nat in nature %}
                 <option value= "{{nat}}">{{nat}}</option>"
             {% endfor %}
@@ -72,6 +69,17 @@
 
     <div class="form-group" style="display: flex; flex-direction: row; justify-content: space-between;">
         <div>
+            <label style="flex: 4" for="totalDebit">Total Debit</label>
+            <input type="number" id="totalDebit" name="totalDebit" style="display: block; width: 100%">
+        </div>
+        <div>
+            <label style="flex: 4" for="totalCredit">Total Credit</label>
+            <input type="number" id="totalCredit" name="totalCredit" style="display: block; width: 100%">
+        </div>
+    </div>
+
+    <div class="form-group" style="display: flex; flex-direction: row; justify-content: space-between;">
+        <div>
             <label for="amount">Amount</label>
             <input type="number" id="amount" name="amount">
         </div>
@@ -92,7 +100,7 @@
     </div>
 
     <div class="form-group" style="display: flex; flex-direction: row; justify-content: space-between;">
-        <label style="flex: 4" for="paymentVoucher">Payment Voucher</label>
+        <label style="flex: 4" for="paymentVoucher">Voucher Number</label>
         <input type="text" id="paymentVoucher" name="paymentVoucher" style="display: block; width: 100%">
         <div style="margin-left: 10px">
             <label for="voucherDate">Voucher Date</label>

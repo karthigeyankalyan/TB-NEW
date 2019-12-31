@@ -269,7 +269,8 @@ def receipt_form(user_id):
                               user_id=user_id, user_name=user_name, doc_account_head=doc_account_head,
                               cheque_number=cheque_num, payment_voucher=pvoucher, depositing_bank=depoBank,
                               voucher_date=voucher_date, adjustment_voucher=adjustmentVoucher,
-                              ledger=ledger, cleared="No", cheque_date=cheque_date, narration=narration)
+                              ledger=ledger, cleared="No", cheque_date=cheque_date, narration=narration,
+                              clearing_credit_balance=0, clearing_debit_balance=0)
 
             account.save_to_mongo()
 
@@ -279,7 +280,220 @@ def receipt_form(user_id):
         return render_template('login_fail.html')
 
 
-@app.route('/updateReceipt/<string:_id>', methods=['POST', 'GET'])
+@app.route('/new_multi_receipt/<string:user_id>', methods=['POST', 'GET'])
+def multi_receipt_form(user_id):
+    email = session['email']
+    if email is not None:
+        if request.method == 'GET':
+            user = User.get_by_id(user_id)
+            return render_template('multi_receipt_form.html', user=user)
+
+        else:
+            user = User.get_by_id(user_id)
+            invoice_date = request.form['invoiceDate']
+            voucher_date = request.form['voucherDate']
+            adjustmentVoucher = request.form['adjustmentVoucher']
+            ledger = request.form['ledger']
+            nature_of_transaction = request.form['natureOfTransaction']
+            bank_account = request.form['bankAccount']
+            narration = request.form['narration']
+            cheque_num = request.form['cheque']
+            pvoucher = request.form['paymentVoucher']
+            depoBank = request.form['depositingBank']
+            cheque_date = request.form['chequeDate']
+            inv_id = request.form['invID']
+            user_id = user_id
+            user_name = user.username
+
+            account, account_head, clearing_balance_debit, clearing_balance_credit = None, None, None, None
+
+            for i in range(int(inv_id)):
+                s_no = "sno" + str(i)
+                acchead = "acchead" + str(i)
+                cl_debit_balance = "debit_amount" + str(i)
+                cl_credit_balance = "credit_amount" + str(i)
+
+                serial_no = request.form[s_no]
+                account_head = request.form[acchead]
+                clearing_balance_debit = request.form[cl_debit_balance]
+                clearing_balance_credit = request.form[cl_credit_balance]
+
+                doc_account_dict = {"LOAN FROM NBCFDC (GTL)": "Borrowings from NBCFDC",
+                                    "LOAN FROM NBCFDC (MCS)": "Borrowings from NBCFDC",
+                                    "LOAN FROM NBCFDC (MSY)": "Borrowings from NBCFDC",
+                                    "BANK OF BARODA , MOUNT ROAD BR": "Cash and Cash Equivalents",
+                                    "FIXED DEPOSIT": "Cash and Cash Equivalents",
+                                    "Indian Bank T.Nagar Branch": "Cash and Cash Equivalents",
+                                    "INDUSIND BANK, NUNGABAKKAM BR": "Cash and Cash Equivalents",
+                                    "IOB, MOUNT ROAD": "Cash and Cash Equivalents",
+                                    "Karur Vysya Bank Kodambakkam branch": "Cash and Cash Equivalents",
+                                    "P.D. A/C - RBI": "Cash and Cash Equivalents",
+                                    "STAMPS ON HAND": "Cash and Cash Equivalents",
+                                    "SYNDICATE BANK, EGMORE BR": "Cash and Cash Equivalents",
+                                    "TAMILNADU STATE APEX CO-OP BANK": "Cash and Cash Equivalents",
+                                    "DEPRECIATION": "Depreciation",
+                                    "BOOKS & PERIODICALS": "Employee Benefit Expenses",
+                                    "CONTRIBUTION TO EPF & OTHER FUNDS": "Employee Benefit Expenses",
+                                    "GROUP INSURANCE SCHEME": "Employee Benefit Expenses",
+                                    "MEDICAL EXPENSES": "Employee Benefit Expenses",
+                                    "NEW HEALTH INSURANCE SCHEME": "Employee Benefit Expenses",
+                                    "PENSION CONTRIBUTION": "Employee Benefit Expenses",
+                                    "SALARIES": "Employee Benefit Expenses",
+                                    "VEHICLE HIRE CHARGES": "Employee Benefit Expenses",
+                                    "GUARANTEE COMMISSION TO T.N. GOVT.": "Finance Cost",
+                                    "INTEREST PAID TO NBCFDC": "Finance Cost",
+                                    "PROVISION FOR GRATUITY": "Long Term Provisions",
+                                    "PROVISION FOR LEAVE SALARY": "Long Term Provisions",
+                                    "WORK IN PROGRESS": "Capital Work-In Progress",
+                                    "ADVANCE TO TUCS LTD.": "Other Current Assets",
+                                    "ADVANCE-NEW CATHEDRAL SERVICE STATION": "Other Current Assets",
+                                    "ADVANCES": "Other Current Assets",
+                                    "AMOUNT DUE FROM CTA": "Other Current Assets",
+                                    "AMOUNT RECEIVABLE FROM ELCOT": "Other Current Assets",
+                                    "AMOUNT RECEIVABLE FROM NBCFDC": "Other Current Assets",
+                                    "FESTIVAL ADVANCE": "Other Current Assets",
+                                    "INTEREST ACCURED BUT NOT DUE ON FD": "Other Current Assets",
+                                    "INTERIM ARREARS": "Other Current Assets",
+                                    "TELEPHONE DEPOSIT": "Other Current Assets",
+                                    "AMOUNT PAYABLE TO TAMCO (CAR)": "Other Current Liabilities",
+                                    "AMOUNT RECEIVED FROM GOVT (IRRI)": "Other Current Liabilities",
+                                    "AMT REC FROM NBCFDC FOR EXHIBITION": "Other Current Liabilities",
+                                    "AMT REVD FROM GOVT - JOT (PD A/c)": "Other Current Liabilities",
+                                    "ARREARS PAYABLE": "Other Current Liabilities",
+                                    "CANCELLATION OF CHEQUE(JOT)": "Other Current Liabilities",
+                                    "COMPUTER TRAINING": "Other Current Liabilities",
+                                    "GUARANTEE COMMISSIN PAYABLE TO TN GOVT": "Other Current Liabilities",
+                                    "MARGIN ON INTEREST PAYABLE TO SCAS (SC)": "Other Current Liabilities",
+                                    "OUTSTANDING EXPENSES": "Other Current Liabilities",
+                                    "SUBSIDY RECEIVED FROM GOVT FOR ML": "Other Current Liabilities",
+                                    "TAICO INT": "Other Current Liabilities",
+                                    "TAMCO": "Other Current Liabilities",
+                                    "TRAINING GRANT IN AID FROM NBCFDC": "Other Current Liabilities",
+                                    "BAD AND DOUBTFUL DEBTS": "Other Expenses",
+                                    "BANK CHARGES": "Other Expenses",
+                                    "BOARD MEETING EXPENSE": "Other Expenses",
+                                    "COMPUTERS": "Other Expenses",
+                                    "CONVEYANCE CHARGES": "Other Expenses",
+                                    "COST OF FUEL": "Other Expenses",
+                                    "ELECTRICITY CHARGES": "Other Expenses",
+                                    "EXHIBITION/ADVERTISEMENT EXEPNSES": "Other Expenses",
+                                    "FILING FEES": "Other Expenses",
+                                    "INSURANCE": "Other Expenses",
+                                    "INTERNAL AUDIT FEES PAYABLE": "Other Expenses",
+                                    "STATUTORY AUDIT FEES PAYABLE": "Other Expenses",
+                                    "INTERNAL AUDIT FEES": "Other Expenses",
+                                    "LEGAL FEES": "Other Expenses",
+                                    "MEETING EXPENSE": "Other Expenses",
+                                    "OFFICE EQUIPMENT": "Other Expenses",
+                                    "OFFICE EXPENSE": "Other Expenses",
+                                    "PETTY CASH": "Other Expenses",
+                                    "POSTAGE EXPENSES": "Other Expenses",
+                                    "PRINTING & STATIONERY": "Other Expenses",
+                                    "PROFEESIONAL FEES": "Other Expenses",
+                                    "Purchase of Telephone": "Other Expenses",
+                                    "REFRESHMENT CHARGES": "Other Expenses",
+                                    "REMUNERATION TO CHARMAN": "Other Expenses",
+                                    "RENT": "Other Expenses",
+                                    "REPAIR & MAINTENANCE": "Other Expenses",
+                                    "SERVICE CHARGES": "Other Expenses",
+                                    "SOFTWARE DEVELOPMENT ": "Other Expenses",
+                                    "STATUTORY AUDIT FEES": "Other Expenses",
+                                    "TAX AUDIT FEES": "Other Expenses",
+                                    "TELEPHONE CHARGES": "Other Expenses",
+                                    "TRAVELLING EXPENSE/TTA": "Other Expenses",
+                                    "VEHICLE MAINTANCE": "Other Expenses",
+                                    "WAGES": "Other Expenses",
+                                    "COMM OF BACKWARD CLASSES": "Other Income",
+                                    "GRATUITY": "Other Income",
+                                    "Gain on sale of assets": "Other Income",
+                                    "INTEREST ACCRUED ON FD": "Other Income",
+                                    "INTEREST ACCRUED ON SB A/C": "Other Income",
+                                    "INTEREST FROM TAMCO receivable": "Other Income",
+                                    "INTEREST ON FIXED DEPOSIT": "Other Income",
+                                    "INTEREST ON SAVING BANK A/C": "Other Income",
+                                    "Sale of Tender Form": "Other Income",
+                                    "INTEREST ACCRUED ON ML LOAN": "Other Non-Current Assets",
+                                    "PENAL INTEREST ACCRUED": "Other Non-Current Assets",
+                                    "LOAN HOSTEL -PRINCIPAL": "Principal Lent",
+                                    "LOAN TO AAVIN-PRINCIPAL": "Principal Lent",
+                                    "LOAN TO DCCB (GTL) - PRINCIPAL": "Principal Lent",
+                                    "LOAN TO EDP TRAINED WOMEN - PRINCIPAL": "Principal Lent",
+                                    "LOAN TO HDC-PRINCIPAL": "Principal Lent",
+                                    "LOAN TO ICS (AUTO)-PRINCIPAL (BC)": "Principal Lent",
+                                    "LOAN TO ICS (AUTO)-PRINCIPAL (G)": "Principal Lent",
+                                    "LOAN TO ICS (AUTO)-PRINCIPAL (M)": "Principal Lent",
+                                    "LOAN TO ICS (MML) PRINCIPAL": "Principal Lent",
+                                    "LOAN TO MICRO CREDIT SCHEME-PRINCIPAL": "Principal Lent",
+                                    "LOAN TO NSS -PRINCIPAL": "Principal Lent",
+                                    "LOAN TO PACB (GTL) - PRINCIPAL": "Principal Lent",
+                                    "LOAN TO SUGAR MILL-PRINCIPAL": "Principal Lent",
+                                    "LOAN TO TAICO-PRINCIPAL": "Principal Lent",
+                                    "LOAN TO UCB (GTL) -PRINCIPAL": "Principal Lent",
+                                    "DCCB INT": "Revenue From Operations",
+                                    "DCCB P.INT": "Revenue From Operations",
+                                    "EDP INTEREST": "Revenue From Operations",
+                                    "EDP P INT.": "Revenue From Operations",
+                                    "INTEREST ON ML LOAN": "Revenue From Operations",
+                                    "MAS INT.": "Revenue From Operations",
+                                    "MAS P.INT": "Revenue From Operations",
+                                    "MICRO CREDIT SCHEME INT": "Revenue From Operations",
+                                    "MICRO CREDIT SCHEME P.INT": "Revenue From Operations",
+                                    "MLL INT.": "Revenue From Operations",
+                                    "MLL P.INT": "Revenue From Operations",
+                                    "NSS INTEREST": "Revenue From Operations",
+                                    "NSS P.INTEREST": "Revenue From Operations",
+                                    "PACB INT": "Revenue From Operations",
+                                    "PACB P.INT": "Revenue From Operations",
+                                    "UCB INT": "Revenue From Operations",
+                                    "UCB P.INT": "Revenue From Operations",
+                                    "ISSUED, SUBSCRIBED AND PAID-UP": "Share Capital",
+                                    "PROVISION FOR BONUS": "Short Term Provisions",
+                                    "AMOUNT TRANSFERRED TO TAMCO": "NA",
+                                    "BONUS": "NA",
+                                    "Buildings": "NA",
+                                    "FURNITURE & FITTINGS": "NA",
+                                    "LEAVE SALARY": "NA",
+                                    "LOAN FOR SETTING UP OF MOBILE LAUNDRY": "NA",
+                                    "MOTOR CAR": "NA",
+                                    "PROFIT AND LOSS ACCOUNT": "NA",
+                                    "PROVISION FOR BAD & DOUDTFUL DEBTIS": "NA",
+                                    "STIPEND": "NA",
+                                    "SUBSIDY CHARGES RECEIVABLE FROM GOVT.": "NA",
+                                    "TDS ON BANK DEPOSITS": "NA",
+                                    "TDS ON RENT": "NA"}
+
+                doc_account_head = doc_account_dict[account_head]
+
+                application = Database.find("accounthead", {"Head of Accounts": account_head})
+
+                cl_credit_old, cl_debit_old  = 0, 0
+
+                for result_object in application[0:1]:
+                    cl_credit_old = int(result_object['Cl']['Credit Bal'])
+                    cl_debit_old = int(result_object['Cl']['Debit Bal'])
+
+                Account.update_ledger_balance(head_of_accounts=account_head,
+                                              credit_balance=clearing_balance_credit+cl_credit_old,
+                                              debit_balance=clearing_balance_debit + cl_debit_old)
+
+                account = Account(invoice_date=invoice_date, nature_of_transaction=nature_of_transaction,
+                                  account_head=account_head, bank_account=bank_account,
+                                  user_id=user_id, user_name=user_name, doc_account_head=doc_account_head,
+                                  cheque_number=cheque_num, payment_voucher=pvoucher, depositing_bank=depoBank,
+                                  voucher_date=voucher_date, adjustment_voucher=adjustmentVoucher,
+                                  ledger=ledger, cleared="No", cheque_date=cheque_date, narration=narration,
+                                  clearing_credit_balance=clearing_balance_credit,
+                                  clearing_debit_balance=clearing_balance_debit, amount=0)
+
+                account.save_to_mongo()
+
+            return render_template('receipt_added.html', account=account, user=user)
+
+    else:
+        return render_template('login_fail.html')
+
+
+@app.route('/update_Receipt/<string:_id>', methods=['POST', 'GET'])
 def update_receipt(_id):
     email = session['email']
     if email is not None:
@@ -297,6 +511,8 @@ def update_receipt(_id):
             account_head = request.form['accountHead']
             bank_account = request.form['bankAccount']
             amount = request.form['amount']
+            cl_debit_amount = request.form['total_debit']
+            cl_credit_amount = request.form['total_credit']
             narration = request.form['narration']
             cheque_num = request.form['cheque']
             pvoucher = request.form['paymentVoucher']
@@ -460,11 +676,33 @@ def update_receipt(_id):
                                             datetime.now().time())
 
             Account.update_receipt(invoice_date=invoice_date, nature_of_transaction=nature_of_transaction,
-                                   account_head=account_head, bank_account=bank_account, amount=amount,
+                                   account_head=account_head, bank_account=bank_account,
                                    user_id=user_id, user_name=user_name, doc_account_head=doc_account_head, _id=_id,
                                    payment_voucher=pvoucher, cheque_number=cheque_num, depositing_bank=depoBank,
                                    adjustment_voucher=adjustmentVoucher, voucher_date=voucher_date, ledger=ledger,
-                                   cleared=cleared, cheque_date=cheque_date, narration=narration)
+                                   cleared=cleared, cheque_date=cheque_date, narration=narration,
+                                   clearing_credit_balance=cl_credit_amount, clearing_debit_balance=cl_debit_amount,
+                                   amount=amount)
+
+            application = Database.find("accounthead", {"Head of Accounts": account_head})
+
+            cl_credit_old, cl_debit_old = 0, 0
+
+            for result_object in application[0:1]:
+                cl_credit_old = int(result_object['Cl']['Credit Bal'])
+                cl_debit_old = int(result_object['Cl']['Debit Bal'])
+
+            application = Database.find("accounts", {"_id": _id})
+
+            new_credit, new_debit = 0, 0
+
+            for result_object in application[0:1]:
+                new_credit = int(cl_credit_amount) - int(result_object['clearing_credit_balance'])
+                new_debit = int(cl_debit_amount) - int(result_object['clearing_debit_balance'])
+
+            Account.update_ledger_balance(head_of_accounts=account_head,
+                                          credit_balance=new_credit + cl_credit_old,
+                                          debit_balance=new_debit + cl_debit_old)
 
             return render_template('application_added.html', user=user)
 

@@ -6,11 +6,12 @@ from src.common.database import Database
 
 class Account(object):
 
-    def __init__(self, invoice_date, nature_of_transaction, amount, user_id, user_name, loan_id=None, account_head=None,
+    def __init__(self, invoice_date, nature_of_transaction, user_id, user_name, loan_id=None, account_head=None,
                  bank_account=None, doc_account_head=None, _id=None, cheque_number=None, payment_voucher=None,
                  depositing_bank=None, adjustment_voucher=None, ledger=None, interest=None, penal_interest=None,
                  service_charge=None, principal=None, external_bank_account=None, voucher_date=None, cleared=None,
-                 cheque_date=None, narration=None):
+                 cheque_date=None, narration=None, clearing_debit_balance=None, clearing_credit_balance=None,
+                 amount=None):
         self.invoice_date = datetime.combine(datetime.strptime(invoice_date, '%Y-%m-%d').date(),
                                              datetime.now().time())
         if voucher_date:
@@ -26,6 +27,8 @@ class Account(object):
             self.cheque_date = None
 
         self.nature_of_transaction = nature_of_transaction
+        self.clearing_debit_balance = int(clearing_debit_balance)
+        self.clearing_credit_balance = int(clearing_credit_balance)
         self.account_head = account_head
         self.doc_account_head = doc_account_head
         self.bank_account = bank_account
@@ -53,14 +56,21 @@ class Account(object):
     @classmethod
     def update_receipt(cls, _id, invoice_date, nature_of_transaction, account_head, bank_account, amount, user_id,
                        user_name, doc_account_head, cheque_number, payment_voucher, depositing_bank,
-                       adjustment_voucher, voucher_date, ledger, cleared, cheque_date, narration):
+                       clearing_debit_balance, clearing_credit_balance, adjustment_voucher, voucher_date, ledger,
+                       cleared, cheque_date, narration):
         Database.update_receipt(collection='accounts', query={'_id': _id}, invoice_date=invoice_date,
                                 nature_of_transaction=nature_of_transaction, doc_account_head=doc_account_head,
                                 account_head=account_head, bank_account=bank_account, amount=amount, user_id=user_id,
                                 user_name=user_name, cheque_number=cheque_number, payment_voucher=payment_voucher,
                                 depositing_bank=depositing_bank, adjustment_voucher=adjustment_voucher,
                                 voucher_date=voucher_date, ledger=ledger, cleared=cleared, cheque_date=cheque_date,
-                                narration=narration)
+                                narration=narration, clearing_credit_balance=clearing_credit_balance,
+                                clearing_debit_balance=clearing_debit_balance)
+
+    @classmethod
+    def update_ledger_balance(cls, head_of_accounts, debit_balance, credit_balance):
+        Database.update_ledger_balance(collection='accounthead', query={'Head of Accounts': head_of_accounts},
+                                       credit=credit_balance, debit=debit_balance)
 
     def json(self):
         return {
@@ -73,6 +83,8 @@ class Account(object):
             'bank_account': self.bank_account,
             'depositing_bank': self.depositing_bank,
             'adjustment_voucher': self.adjustment_voucher,
+            'clearing_debit_balance': self.clearing_debit_balance,
+            'clearing_credit_balance': self.clearing_credit_balance,
             'payment_voucher': self.payment_voucher,
             'voucher_date': self.voucher_date,
             'ledger': self.ledger,

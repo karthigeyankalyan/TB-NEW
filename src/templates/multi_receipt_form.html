@@ -1,0 +1,184 @@
+{% extends "post_login_accounts.html" %}
+{% block content %}
+
+<form id="new-intent" action="/new_multi_receipt/{{ user._id }}" method="post">
+
+<div style="display: flex; flex-direction: column; align-items: center; flex: 1; justify-content: space-around; margin-top: 10px">
+
+    <div class="form-group" style="display: block; width: 38%">
+        <label style="flex: 8" for="natureOfTransaction">Transaction Type</label>
+        <select style="flex: 4" class="form-control" id="natureOfTransaction" name="natureOfTransaction">
+            {% set nature = ['Debit', 'Credit', 'Multi-Ledger'] %}
+
+            {% for nat in nature %}
+                <option value= "{{nat}}">{{nat}}</option>"
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="form-group" style="display: block; width: 38%">
+        <label style="flex: 8" for="ledger">Ledger</label>
+        <select style="flex: 4" class="form-control" id="ledger" name="ledger">
+            {% set nature = ['Sub', 'Main'] %}
+
+            {% for nat in nature %}
+                <option value= "{{nat}}">{{nat}}</option>"
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="form-group" style="display: block; width: 38%">
+        <label style="flex: 8" for="adjustmentVoucher">Adjustment Voucher</label>
+        <select style="flex: 4" class="form-control" id="adjustmentVoucher" name="adjustmentVoucher">
+            {% set nature = ['No', 'Yes'] %}
+
+            {% for nat in nature %}
+                <option value= "{{nat}}">{{nat}}</option>"
+            {% endfor %}
+        </select>
+    </div>
+
+    <div style="display: flex; flex-direction: row; justify-content: space-around;">
+        <button type="button"><a onclick="addAnotherField()">Add Another Field</a></button>
+        <button type="button"><a onclick="populateTotals()">Done</a></button>
+    </div>
+
+    <div id="shgDetails" class="form-group" style="display: none;">
+    </div>
+
+    <div class="form-group" style="display: flex; flex-direction: row; justify-content: space-between;">
+        <div>
+            <label style="flex: 4" for="totalDebit">Total Debit</label>
+            <input type="number" id="totalDebit" name="totalDebit" style="display: block; width: 100%">
+        </div>
+        <div>
+            <label style="flex: 4" for="totalCredit">Total Credit</label>
+            <input type="number" id="totalCredit" name="totalCredit" style="display: block; width: 100%">
+        </div>
+    </div>
+
+    <div class="form-group" style="display: block; width: 38%">
+        <label style="flex: 4" for="bankAccount">TABCEDCO Account</label>
+        <input type="text" id="bankAccount" name="bankAccount" style="display: block; width: 100%">
+    </div>
+
+    <div class="form-group" style="display: block; width: 38%">
+        <label style="flex: 4" for="depositingBank">External Bank Account</label>
+        <input type="text" id="depositingBank" name="depositingBank" style="display: block; width: 100%">
+    </div>
+
+    <div class="form-group" style="display: flex; flex-direction: row; justify-content: space-between;">
+        <div style="margin-left: 10px">
+            <label for="invoiceDate">Invoice Date</label>
+            <input type="date" value="" id="invoiceDate" name="invoiceDate">
+        </div>
+    </div>
+
+    <div class="form-group" style="display: block; width: 38%">
+        <label style="flex: 4" for="cheque">Cheque/RTGS/DD #</label>
+        <input type="text" id="cheque" name="cheque" style="display: block; width: 100%">
+    </div>
+
+    <div class="form-group" style="display: block; width: 38%">
+        <label style="flex: 4" for="narration">Narration for Bill</label>
+        <input type="text" id="narration" name="narration" style="display: block; width: 100%">
+    </div>
+
+    <div class="form-group" style="display: flex; flex-direction: row; justify-content: space-between;">
+        <label style="flex: 4" for="paymentVoucher">Voucher Number</label>
+        <input type="text" id="paymentVoucher" name="paymentVoucher" style="display: block; width: 100%">
+        <div style="margin-left: 10px">
+            <label for="voucherDate">Voucher Date</label>
+            <input type="date" value="" id="voucherDate" name="voucherDate">
+        </div>
+        <div style="margin-left: 10px">
+            <label for="chequeDate">Cheque Date</label>
+            <input type="date" value="" id="chequeDate" name="chequeDate">
+        </div>
+    </div>
+
+    <input style="display: none" type="date" value="" id="invID" name="invID">
+
+    <button type="submit" class="btn btn-success">Save Bill Details</button>
+
+</div>
+</form>
+
+<script>
+      $(document).ready(function () {
+    $('.selectpicker').selectpicker('refresh');
+  });
+
+    var i = 0;
+    var shg_det = $("#shgDetails");
+    shg_det.empty();
+    var inputSNO = "sno"+i;
+    var accHead = "acchead"+i;
+    var debit_amount = "debit_amount"+i;
+    var credit_amount = "credit_amount"+i;
+    var row = $('<div style="display: flex; flex-direction: row; justify-content: space-around; align-items: center;"></div>')
+        .html(
+            '<div style="display: flex; flex-direction: column;">' +
+            '<label for='+inputSNO+'>S.No</label>' +
+            '<input class="amount" type="number" id='+inputSNO+' name='+inputSNO+' value='+(i+1)+'>' +
+            '</div>' +
+            '<div style="display: flex; flex-direction: column;">' +
+            '<label for='+accHead+'>Account Head</label>' +
+            '<select style="flex: 4" class="form-control" id='+accHead+' name='+accHead+'><option>ADVANCE TO TUCS LTD.</option><option>ADVANCE-NEW CATHEDRAL SERVICE STATION</option><option>ADVANCES</option> <option>AMOUNT DUE FROM CTA</option> <option>AMOUNT PAYABLE TO TAMCO (CAR)</option> <option>AMOUNT RECEIVABLE FROM ELCOT</option> <option>AMOUNT RECEIVABLE FROM NBCFDC</option> <option>AMOUNT RECEIVED FROM GOVT (IRRI)</option> <option>AMOUNT TRANSFERRED TO TAMCO</option> <option>AMT REC FROM NBCFDC FOR EXHIBITION</option> <option>AMT REVD FROM GOVT - JOT (PD A/c)</option> <option>ARREARS PAYABLE</option> <option>BAD AND DOUBTFUL DEBTS</option> <option>BANK CHARGES</option> <option>BANK OF BARODA </option> <option>MOUNT ROAD BR</option> <option>BOARD MEETING EXPENSE</option> <option>BONUS</option> <option>BOOKS & PERIODICALS</option> <option>Buildings</option> <option>CANCELLATION OF CHEQUE(JOT)</option> <option>COMM OF BACKWARD CLASSES</option> <option>COMPUTER TRAINING</option> <option>COMPUTERS</option> <option>CONTRIBUTION TO EPF & OTHER FUNDS</option> <option>CONVEYANCE CHARGES</option> <option>COST OF FUEL</option> <option>DCCB INT</option> <option>DCCB P.INT</option> <option>DEPRECIATION</option> <option>EDP INTEREST</option> <option>EDP P INT.</option> <option>ELECTRICITY CHARGES</option> <option>EXHIBITION/ADVERTISEMENT EXEPNSES</option> <option>FESTIVAL ADVANCE</option> <option>FILING FEES</option> <option>FIXED DEPOSIT</option> <option>FURNITURE & FITTINGS</option> <option>GRATUITY</option> <option>Gain on sale of assets</option> <option>GROUP INSURANCE SCHEME</option> <option>GUARANTEE COMMISSIN PAYABLE TO TN GOVT</option> <option>GUARANTEE COMMISSION TO T.N. GOVT.</option> <option>Indian Bank T.Nagar Branch</option> <option>INDUSIND BANK NUNGABAKKAM BR</option> <option>INSURANCE</option> <option>INTEREST ACCRUED ON FD</option> <option>INTEREST ACCRUED ON ML LOAN</option> <option>INTEREST ACCRUED ON SB A/C</option> <option>INTEREST ACCURED BUT NOT DUE ON FD</option> <option>INTEREST FROM TAMCO receivable</option> <option>INTEREST ON FIXED DEPOSIT</option> <option>INTEREST ON SAVING BANK A/C</option> <option>INTEREST PAID TO NBCFDC</option> <option>INTERIM ARREARS</option> <option>INTERNAL AUDIT FEES PAYABLE</option> <option>STATUTORY AUDIT FEES PAYABLE</option> <option>INTEREST ON ML LOAN</option> <option>INTERIM ARREARS</option> <option>INTERNAL AUDIT FEES</option> <option>IOB MOUNT ROAD</option> <option>ISSUED SUBSCRIBED AND PAID-UP</option> <option>Karur Vysya Bank Kodambakkam branch</option> <option>LEAVE SALARY</option> <option>LEGAL FEES</option> <option>LOAN FOR SETTING UP OF MOBILE LAUNDRY</option> <option>LOAN FROM NBCFDC (GTL)</option> <option>LOAN FROM NBCFDC (MCS)</option> <option>LOAN FROM NBCFDC (MSY)</option> <option>LOAN HOSTEL -PRINCIPAL</option> <option>LOAN TO AAVIN-PRINCIPAL</option> <option>LOAN TO DCCB (GTL) - PRINCIPAL</option> <option>LOAN TO EDP TRAINED WOMEN - PRINCIPAL</option> <option>LOAN TO HDC-PRINCIPAL</option> <option>LOAN TO ICS (AUTO)-PRINCIPAL (BC)</option> <option>LOAN TO ICS (AUTO)-PRINCIPAL (G)</option> <option>LOAN TO ICS (AUTO)-PRINCIPAL (M)</option> <option>LOAN TO ICS (MML) PRINCIPAL</option> <option>LOAN TO MICRO CREDIT SCHEME-PRINCIPAL</option> <option>LOAN TO NSS -PRINCIPAL</option> <option>LOAN TO PACB (GTL) - PRINCIPAL</option> <option>LOAN TO SUGAR MILL-PRINCIPAL</option> <option>LOAN TO TAICO-PRINCIPAL</option> <option>LOAN TO UCB (GTL) -PRINCIPAL</option> <option>MARGIN ON INTEREST PAYABLE TO SCAS (SC)</option> <option>MAS INT.</option> <option>MAS P.INT</option> <option>MEDICAL EXPENSES</option> <option>MEETING EXPENSE</option> <option>MICRO CREDIT SCHEME INT</option> <option>MICRO CREDIT SCHEME P.INT</option> <option>MLL INT.</option> <option>MLL P.INT</option> <option>MOTOR CAR</option> <option>NEW HEALTH INSURANCE SCHEME</option> <option>NSS INTEREST</option> <option>NSS P.INTEREST</option> <option>OFFICE EQUIPMENT</option> <option>OFFICE EXPENSE</option> <option>OUTSTANDING EXPENSES</option> <option>P.D. A/C - RBI</option> <option>PACB INT</option> <option>PACB P.INT</option> <option>PENAL INTEREST ACCRUED</option> <option>PENSION CONTRIBUTION</option> <option>PETTY CASH</option> <option>POSTAGE EXPENSES</option> <option>PRINTING & STATIONERY</option> <option>PROFEESIONAL FEES</option> <option>PROFIT AND LOSS ACCOUNT</option> <option>PROVISION FOR BAD & DOUDTFUL DEBTIS</option> <option>PROVISION FOR BONUS</option> <option>PROVISION FOR GRATUITY</option> <option>PROVISION FOR LEAVE SALARY</option> <option>Purchase of Telephone</option> <option>REFRESHMENT CHARGES</option> <option>REMUNERATION TO CHARMAN</option> <option>RENT</option> <option>REPAIR & MAINTENANCE</option> <option>SALARIES</option> <option>Sale of Tender Form</option> <option>SERVICE CHARGES</option> <option>SOFTWARE DEVELOPMENT </option> <option>STAMPS ON HAND</option> <option>STATUTORY AUDIT FEES</option> <option>STIPEND</option> <option>SUBSIDY CHARGES RECEIVABLE FROM GOVT.</option> <option>SUBSIDY RECEIVED FROM GOVT FOR ML</option> <option>SYNDICATE BANK</option> <option>EGMORE BR</option> <option>TAICO INT</option> <option>TAMCO</option> <option>TAMILNADU STATE APEX CO-OP BANK</option> <option>TAX AUDIT FEES</option> <option>TDS ON BANK DEPOSITS</option> <option>TDS ON RENT</option> <option>TELEPHONE DEPOSIT</option> <option>TELEPHONE CHARGES</option> <option>TRAINING GRANT IN AID FROM NBCFDC</option> <option>TRAVELLING EXPENSE/TTA</option> <option>UCB INT</option> <option>UCB P.INT</option> <option>VEHICLE MAINTANCE</option> <option>VEHICLE HIRE CHARGES</option> <option>WORK IN PROGRESS</option> <option>WAGES</option></select>'+
+            '</div>' +
+            '<div style="display: flex; flex-direction: column;">' +
+            '<label for='+debit_amount+'>Cl. Debit</label>' +
+            '<input type="text" id='+debit_amount+' name='+debit_amount+'>' +
+            '</div>' +
+            '<div style="display: flex; flex-direction: column;">' +
+            '<label for='+credit_amount+'>Cl. Credit</label>' +
+            '<input type="text" id='+credit_amount+' name='+credit_amount+'>' +
+            '</div>'
+        );
+        shg_det.append(row);
+        i++;
+
+    function addAnotherField() {
+    var shg_det = $("#shgDetails");
+    var inputSNO = "sno"+i;
+    var accHead = "acchead"+i;
+    var debit_amount = "debit_amount"+i;
+    var credit_amount = "credit_amount"+i;
+    var row = $('<div style="display: flex; flex-direction: row; justify-content: space-around; align-items: center;"></div>')
+        .html(
+            '<div style="display: flex; flex-direction: column;">' +
+            '<label for='+inputSNO+'>S.No</label>' +
+            '<input class="amount" type="number" id='+inputSNO+' name='+inputSNO+' value='+(i+1)+'>' +
+            '</div>' +
+            '<div style="display: flex; flex-direction: column;">' +
+            '<label for='+accHead+'>Account Head</label>' +
+            '<select style="flex: 4" class="form-control" id='+accHead+' name='+accHead+'>' +
+            '</div>' +
+            '<div style="display: flex; flex-direction: column;">' +
+            '<label for='+debit_amount+'>Cl. Debit</label>' +
+            '<input type="text" id='+debit_amount+' name='+debit_amount+'>' +
+            '</div>' +
+            '<div style="display: flex; flex-direction: column;">' +
+            '<label for='+credit_amount+'>Cl. Debit</label>' +
+            '<input type="text" id='+credit_amount+' name='+credit_amount+'>' +
+            '</div>'
+        );
+        shg_det.append(row);
+        i++;
+        document.getElementById("invID").value = i;
+    }
+
+    function populateTotals() {
+        var total_debit_amount = 0;
+        var total_credit_amount = 0;
+        for(var iter = 0; iter <i; iter ++) {
+            total_debit_amount += parseInt(document.getElementById("debit_amount"+iter).value);
+            total_credit_amount += parseInt(document.getElementById("credit_amount"+iter).value);
+        }
+        document.getElementById("totalDebit").value = total_debit_amount;
+        document.getElementById("totalCredit").value = total_credit_amount;
+    }
+
+</script>
+
+{% endblock %}

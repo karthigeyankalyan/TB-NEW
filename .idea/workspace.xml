@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="da0bb03c-275f-4eeb-800c-401a339e857e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/templates/receipt_download_by_cheque.html" afterPath="$PROJECT_DIR$/src/templates/receipt_download_by_cheque.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app.py" afterPath="$PROJECT_DIR$/src/app.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/common/database.py" afterPath="$PROJECT_DIR$/src/common/database.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/models/accounts.py" afterPath="$PROJECT_DIR$/src/models/accounts.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/templates/post_login_accounts.html" afterPath="$PROJECT_DIR$/src/templates/post_login_accounts.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/templates/update_receipt_form.html" afterPath="$PROJECT_DIR$/src/templates/update_receipt_form.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -24,64 +28,109 @@
       <file leaf-file-name="app.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/app.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
-              <caret line="1328" column="45" lean-forward="true" selection-start-line="1328" selection-start-column="45" selection-end-line="1328" selection-end-column="45" />
+            <state relative-caret-position="508">
+              <caret line="721" column="0" lean-forward="false" selection-start-line="721" selection-start-column="0" selection-end-line="721" selection-end-column="0" />
               <folding>
                 <element signature="e#0#29#0" expanded="true" />
+                <element signature="e#32246#43326#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="receipt_download_by_cheque.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/templates/receipt_download_by_cheque.html">
+      <file leaf-file-name="accounts.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/models/accounts.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="253">
-              <caret line="96" column="0" lean-forward="false" selection-start-line="96" selection-start-column="0" selection-end-line="96" selection-end-column="0" />
-              <folding>
-                <element signature="e#6185#8863#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="addFinancial.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/templates/addFinancial.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
-              <caret line="99" column="0" lean-forward="false" selection-start-line="99" selection-start-column="0" selection-end-line="99" selection-end-column="0" />
+            <state relative-caret-position="389">
+              <caret line="85" column="35" lean-forward="false" selection-start-line="85" selection-start-column="13" selection-end-line="85" selection-end-column="35" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Application_Review.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/templates/Application_Review.html">
+      <file leaf-file-name="multi_receipt_form.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/templates/multi_receipt_form.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="508">
-              <caret line="704" column="0" lean-forward="false" selection-start-line="704" selection-start-column="0" selection-end-line="704" selection-end-column="0" />
+            <state relative-caret-position="202">
+              <caret line="126" column="0" lean-forward="false" selection-start-line="126" selection-start-column="0" selection-end-line="126" selection-end-column="0" />
               <folding>
-                <element signature="e#2087#20372#0" expanded="false" />
-                <element signature="e#20403#39355#0" expanded="false" />
-                <element signature="e#70590#93663#0" expanded="false" />
-                <element signature="e#93693#116161#0" expanded="false" />
-                <element signature="e#123178#123486#0" expanded="false" />
-                <element signature="e#123583#123893#0" expanded="false" />
-                <element signature="e#123993#124186#0" expanded="false" />
-                <element signature="e#124244#124540#0" expanded="false" />
-                <element signature="e#124584#127262#0" expanded="false" />
-                <element signature="e#127323#129530#0" expanded="false" />
+                <element signature="n#style#0;n#div#3;n#div#0;n#form#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#input#0;n#div#0;n#form#0;n#!!top" expanded="true" />
+                <element signature="e#11702#13094#0" expanded="false" />
+                <marker date="1577824360256" expanded="true" signature="4964:5051" ph="..." />
+                <marker date="1577824360256" expanded="true" signature="5102:5140" ph="..." />
+                <marker date="1577824360256" expanded="true" signature="5350:5388" ph="..." />
+                <marker date="1577824360256" expanded="true" signature="5482:5489" ph="..." />
+                <marker date="1577824360256" expanded="true" signature="11176:11214" ph="..." />
+                <marker date="1577824360256" expanded="true" signature="11408:11446" ph="..." />
+                <marker date="1577824360256" expanded="true" signature="11912:11999" ph="..." />
+                <marker date="1577824360256" expanded="true" signature="12050:12088" ph="..." />
+                <marker date="1577824360256" expanded="true" signature="12298:12336" ph="..." />
+                <marker date="1577824360256" expanded="true" signature="12430:12437" ph="..." />
+                <marker date="1577824360256" expanded="true" signature="12544:12582" ph="..." />
+                <marker date="1577824360256" expanded="true" signature="12776:12814" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="bank_account_statements.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/templates/bank_account_statements.html">
+      <file leaf-file-name="receipt_form.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/templates/receipt_form.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
-              <caret line="50" column="70" lean-forward="true" selection-start-line="50" selection-start-column="27" selection-end-line="50" selection-end-column="70" />
+            <state relative-caret-position="238">
+              <caret line="38" column="0" lean-forward="false" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="loan_app_form.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/templates/loan_app_form.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="477">
+              <caret line="356" column="0" lean-forward="false" selection-start-line="350" selection-start-column="0" selection-end-line="356" selection-end-column="0" />
+              <folding>
+                <element signature="e#13900#15433#0" expanded="false" />
+                <marker date="1561880585010" expanded="true" signature="12213:12300" ph="..." />
+                <marker date="1561880585010" expanded="true" signature="12359:12397" ph="..." />
+                <marker date="1561880585010" expanded="true" signature="12623:12661" ph="..." />
+                <marker date="1561880585010" expanded="true" signature="12838:12876" ph="..." />
+                <marker date="1561880585010" expanded="true" signature="13073:13111" ph="..." />
+                <marker date="1561880585010" expanded="true" signature="13308:13346" ph="..." />
+                <marker date="1561880585010" expanded="true" signature="13586:13624" ph="..." />
+                <marker date="1561880585010" expanded="true" signature="14129:14216" ph="..." />
+                <marker date="1561880585010" expanded="true" signature="14275:14313" ph="..." />
+                <marker date="1561880585010" expanded="true" signature="14467:14505" ph="..." />
+                <marker date="1561880585010" expanded="true" signature="14656:14694" ph="..." />
+                <marker date="1561880585010" expanded="true" signature="14830:14868" ph="..." />
+                <marker date="1561880585010" expanded="true" signature="15004:15042" ph="..." />
+                <marker date="1561880585010" expanded="true" signature="15211:15249" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="database.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/common/database.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="372">
+              <caret line="182" column="0" lean-forward="false" selection-start-line="182" selection-start-column="0" selection-end-line="182" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ViewAccountHead.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/templates/ViewAccountHead.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding>
+                <marker date="1577180579284" expanded="true" signature="591:630" ph="..." />
+                <marker date="1577180579284" expanded="true" signature="692:731" ph="..." />
+                <marker date="1577180579284" expanded="true" signature="801:840" ph="..." />
+                <marker date="1577180579284" expanded="true" signature="914:953" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -98,14 +147,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>/demand/</find>
-      <find>add_mono</find>
-      <find>demand_number-</find>
-      <find>mini_demand_form</find>
-      <find>mini_demand_fo</find>
-      <find>update_demand</find>
-      <find>addmini</find>
-      <find>demand_number</find>
       <find>ceil</find>
       <find>M</find>
       <find>Ma</find>
@@ -126,8 +167,16 @@
       <find>d</find>
       <find>d3</find>
       <find>loanFinancial</find>
-      <find>demands_by_chequ</find>
       <find>sanctio</find>
+      <find>demands_by_chequ</find>
+      <find>new_rece</find>
+      <find>new_</find>
+      <find>loan_app</find>
+      <find>creit</find>
+      <find>trail</find>
+      <find>multi</find>
+      <find>LOAN FROM NBCFDC (MCS)</find>
+      <find>find</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -141,7 +190,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/templates/BetweenDates.html" />
         <option value="$PROJECT_DIR$/src/templates/BetweenDatesAccount.html" />
         <option value="$PROJECT_DIR$/src/templates/profile_accounts.html" />
         <option value="$PROJECT_DIR$/src/templates/CreditView.html" />
@@ -149,9 +197,7 @@
         <option value="$PROJECT_DIR$/src/models/balance.py" />
         <option value="$PROJECT_DIR$/src/templates/BetweenDatesBank.html" />
         <option value="$PROJECT_DIR$/src/templates/bank_account_statements.html" />
-        <option value="$PROJECT_DIR$/src/models/accounts.py" />
         <option value="$PROJECT_DIR$/src/templates/receipt_form.html" />
-        <option value="$PROJECT_DIR$/src/templates/update_receipt_form.html" />
         <option value="$PROJECT_DIR$/src/templates/account_statements.html" />
         <option value="$PROJECT_DIR$/src/templates/BetweenDatesOtherAccounts.html" />
         <option value="$PROJECT_DIR$/runtime.txt" />
@@ -177,7 +223,6 @@
         <option value="$PROJECT_DIR$/src/templates/updateFinancial.html" />
         <option value="$PROJECT_DIR$/src/models/mini_demands.py" />
         <option value="$PROJECT_DIR$/src/models/loan_financials.py" />
-        <option value="$PROJECT_DIR$/src/common/database.py" />
         <option value="$PROJECT_DIR$/src/templates/ViewMiniDemands.html" />
         <option value="$PROJECT_DIR$/src/templates/AddMiniDemand.html" />
         <option value="$PROJECT_DIR$/src/templates/shg_update_loan_app_form.html" />
@@ -185,13 +230,17 @@
         <option value="$PROJECT_DIR$/src/templates/addedFinancialUpdate.html" />
         <option value="$PROJECT_DIR$/src/templates/ViewAllDemands.html" />
         <option value="$PROJECT_DIR$/src/templates/ViewDemands.html" />
-        <option value="$PROJECT_DIR$/src/templates/post_login_accounts.html" />
         <option value="$PROJECT_DIR$/src/templates/ViewAccountHead.html" />
         <option value="$PROJECT_DIR$/src/templates/ViewLoans.html" />
         <option value="$PROJECT_DIR$/src/templates/Application_Review.html" />
         <option value="$PROJECT_DIR$/src/templates/addFinancial.html" />
-        <option value="$PROJECT_DIR$/src/app.py" />
         <option value="$PROJECT_DIR$/src/templates/receipt_download_by_cheque.html" />
+        <option value="$PROJECT_DIR$/src/templates/post_login_accounts.html" />
+        <option value="$PROJECT_DIR$/src/templates/update_receipt_form.html" />
+        <option value="$PROJECT_DIR$/src/common/database.py" />
+        <option value="$PROJECT_DIR$/src/models/accounts.py" />
+        <option value="$PROJECT_DIR$/src/app.py" />
+        <option value="$PROJECT_DIR$/src/templates/multi_receipt_form.html" />
       </list>
     </option>
   </component>
@@ -289,6 +338,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="models" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="TABCEDCO NEW" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="TABCEDCO NEW" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="common" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -568,34 +635,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Procfile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="13" lean-forward="false" selection-start-line="0" selection-start-column="13" selection-end-line="0" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/models/user.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="51" column="0" lean-forward="false" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/templates/BetweenDatesOtherAccounts.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="55">
-          <caret line="292" column="0" lean-forward="false" selection-start-line="292" selection-start-column="0" selection-end-line="292" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/templates/post_login_HQ.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
-          <caret line="114" column="0" lean-forward="false" selection-start-line="114" selection-start-column="0" selection-end-line="114" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/templates/profile_HQ.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -722,13 +761,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/templates/TrailBalanceSheet.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="19" column="23" lean-forward="false" selection-start-line="19" selection-start-column="23" selection-end-line="19" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/templates/loanFinancialView.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="561">
@@ -743,27 +775,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/templates/loan_app_form.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="182" column="0" lean-forward="false" selection-start-line="182" selection-start-column="0" selection-end-line="182" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/requirements.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
           <caret line="3" column="5" lean-forward="false" selection-start-line="3" selection-start-column="5" selection-end-line="3" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/models/accounts.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#11#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -785,14 +800,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="204" column="0" lean-forward="false" selection-start-line="204" selection-start-column="0" selection-end-line="204" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/common/database.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -888,31 +895,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/templates/ViewAccountHead.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="389">
-          <caret line="27" column="0" lean-forward="false" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
-          <folding>
-            <marker date="1577180579284" expanded="true" signature="591:630" ph="..." />
-            <marker date="1577180579284" expanded="true" signature="692:731" ph="..." />
-            <marker date="1577180579284" expanded="true" signature="801:840" ph="..." />
-            <marker date="1577180579284" expanded="true" signature="914:953" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/templates/post_login_loans.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
           <caret line="78" column="0" lean-forward="false" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/templates/post_login_accounts.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="508">
-          <caret line="67" column="0" lean-forward="false" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -944,10 +930,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/templates/bank_account_statements.html">
+    <entry file="file://$PROJECT_DIR$/src/templates/receipt_download_by_cheque.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="50" column="70" lean-forward="true" selection-start-line="50" selection-start-column="27" selection-end-line="50" selection-end-column="70" />
+        <state relative-caret-position="253">
+          <caret line="96" column="0" lean-forward="false" selection-start-line="96" selection-start-column="0" selection-end-line="96" selection-end-column="0" />
+          <folding>
+            <element signature="e#6185#8863#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/templates/addFinancial.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="99" column="0" lean-forward="false" selection-start-line="99" selection-start-column="0" selection-end-line="99" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -971,30 +967,145 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/templates/addFinancial.html">
+    <entry file="file://$PROJECT_DIR$/src/templates/bank_account_statements.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="99" column="0" lean-forward="false" selection-start-line="99" selection-start-column="0" selection-end-line="99" selection-end-column="0" />
+        <state relative-caret-position="189">
+          <caret line="50" column="70" lean-forward="true" selection-start-line="50" selection-start-column="27" selection-end-line="50" selection-end-column="70" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/templates/post_login_accounts.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="76" column="34" lean-forward="true" selection-start-line="76" selection-start-column="34" selection-end-line="76" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/templates/update_receipt_form.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="355">
+          <caret line="71" column="50" lean-forward="false" selection-start-line="71" selection-start-column="40" selection-end-line="71" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/templates/TrailBalanceSheet.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1003">
+          <caret line="19" column="23" lean-forward="false" selection-start-line="19" selection-start-column="23" selection-end-line="19" selection-end-column="23" />
+          <folding>
+            <marker date="1537308436000" expanded="true" signature="1975:2014" ph="..." />
+            <marker date="1537308436000" expanded="true" signature="2089:2128" ph="..." />
+            <marker date="1537308436000" expanded="true" signature="2210:2249" ph="..." />
+            <marker date="1537308436000" expanded="true" signature="2334:2373" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/models/balance.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#11#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/templates/ViewAccountHead.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1577180579284" expanded="true" signature="591:630" ph="..." />
+            <marker date="1577180579284" expanded="true" signature="692:731" ph="..." />
+            <marker date="1577180579284" expanded="true" signature="801:840" ph="..." />
+            <marker date="1577180579284" expanded="true" signature="914:953" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/database.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="372">
+          <caret line="182" column="0" lean-forward="false" selection-start-line="182" selection-start-column="0" selection-end-line="182" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/templates/loan_app_form.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="477">
+          <caret line="356" column="0" lean-forward="false" selection-start-line="350" selection-start-column="0" selection-end-line="356" selection-end-column="0" />
+          <folding>
+            <element signature="e#13900#15433#0" expanded="false" />
+            <marker date="1561880585010" expanded="true" signature="12213:12300" ph="..." />
+            <marker date="1561880585010" expanded="true" signature="12359:12397" ph="..." />
+            <marker date="1561880585010" expanded="true" signature="12623:12661" ph="..." />
+            <marker date="1561880585010" expanded="true" signature="12838:12876" ph="..." />
+            <marker date="1561880585010" expanded="true" signature="13073:13111" ph="..." />
+            <marker date="1561880585010" expanded="true" signature="13308:13346" ph="..." />
+            <marker date="1561880585010" expanded="true" signature="13586:13624" ph="..." />
+            <marker date="1561880585010" expanded="true" signature="14129:14216" ph="..." />
+            <marker date="1561880585010" expanded="true" signature="14275:14313" ph="..." />
+            <marker date="1561880585010" expanded="true" signature="14467:14505" ph="..." />
+            <marker date="1561880585010" expanded="true" signature="14656:14694" ph="..." />
+            <marker date="1561880585010" expanded="true" signature="14830:14868" ph="..." />
+            <marker date="1561880585010" expanded="true" signature="15004:15042" ph="..." />
+            <marker date="1561880585010" expanded="true" signature="15211:15249" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/templates/receipt_form.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="38" column="0" lean-forward="false" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/app.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="1328" column="45" lean-forward="true" selection-start-line="1328" selection-start-column="45" selection-end-line="1328" selection-end-column="45" />
+        <state relative-caret-position="508">
+          <caret line="721" column="0" lean-forward="false" selection-start-line="721" selection-start-column="0" selection-end-line="721" selection-end-column="0" />
           <folding>
             <element signature="e#0#29#0" expanded="true" />
+            <element signature="e#32246#43326#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/templates/receipt_download_by_cheque.html">
+    <entry file="file://$PROJECT_DIR$/src/models/accounts.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="96" column="0" lean-forward="false" selection-start-line="96" selection-start-column="0" selection-end-line="96" selection-end-column="0" />
+        <state relative-caret-position="389">
+          <caret line="85" column="35" lean-forward="false" selection-start-line="85" selection-start-column="13" selection-end-line="85" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/templates/multi_receipt_form.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="126" column="0" lean-forward="false" selection-start-line="126" selection-start-column="0" selection-end-line="126" selection-end-column="0" />
           <folding>
-            <element signature="e#6185#8863#0" expanded="false" />
+            <element signature="n#style#0;n#div#3;n#div#0;n#form#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#div#0;n#form#0;n#!!top" expanded="true" />
+            <element signature="e#11702#13094#0" expanded="false" />
+            <marker date="1577824360256" expanded="true" signature="4964:5051" ph="..." />
+            <marker date="1577824360256" expanded="true" signature="5102:5140" ph="..." />
+            <marker date="1577824360256" expanded="true" signature="5350:5388" ph="..." />
+            <marker date="1577824360256" expanded="true" signature="5482:5489" ph="..." />
+            <marker date="1577824360256" expanded="true" signature="11176:11214" ph="..." />
+            <marker date="1577824360256" expanded="true" signature="11408:11446" ph="..." />
+            <marker date="1577824360256" expanded="true" signature="11912:11999" ph="..." />
+            <marker date="1577824360256" expanded="true" signature="12050:12088" ph="..." />
+            <marker date="1577824360256" expanded="true" signature="12298:12336" ph="..." />
+            <marker date="1577824360256" expanded="true" signature="12430:12437" ph="..." />
+            <marker date="1577824360256" expanded="true" signature="12544:12582" ph="..." />
+            <marker date="1577824360256" expanded="true" signature="12776:12814" ph="..." />
           </folding>
         </state>
       </provider>

@@ -35,7 +35,8 @@ class Database(object):
     @staticmethod
     def update_receipt(collection, query, invoice_date, nature_of_transaction, account_head, bank_account, amount,
                        user_id, user_name, doc_account_head, cheque_number, payment_voucher, depositing_bank,
-                       adjustment_voucher, voucher_date, ledger, cleared, cheque_date, narration):
+                       adjustment_voucher, voucher_date, ledger, cleared, cheque_date, narration,
+                       clearing_debit_balance, clearing_credit_balance):
 
         return Database.DATABASE[collection].update_one(query, {'$set': {'invoice_date': invoice_date,
                                                                          'cheque_date': cheque_date,
@@ -47,6 +48,10 @@ class Database(object):
                                                                          'adjustment_voucher': adjustment_voucher,
                                                                          'payment_voucher': payment_voucher,
                                                                          'voucher_date': voucher_date,
+                                                                         'clearing_debit_balance':
+                                                                             clearing_debit_balance,
+                                                                         'clearing_credit_balance':
+                                                                             clearing_credit_balance,
                                                                          'ledger': ledger,
                                                                          'cleared': cleared,
                                                                          'amount': amount,
@@ -174,6 +179,12 @@ class Database(object):
     def update_pending_amount(collection, query, amount_yet_to_be_paid):
         return Database.DATABASE[collection].update_many(query,
                                                          {'$set': {"amount_yet_to_pay": amount_yet_to_be_paid}}, True)
+
+    @staticmethod
+    def update_ledger_balance(collection, query, credit, debit):
+        return Database.DATABASE[collection].update_many(query,
+                                                         {'$set': {"Cl": {"Debit Bal": debit, "Credit Bal": credit}}},
+                                                         True)
 
     @staticmethod
     def delete_from_mongo(collection, query):
