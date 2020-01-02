@@ -47,22 +47,20 @@
       <file leaf-file-name="multi_receipt_form.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/templates/multi_receipt_form.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="423">
-              <caret line="166" column="0" lean-forward="false" selection-start-line="166" selection-start-column="0" selection-end-line="166" selection-end-column="0" />
+            <state relative-caret-position="17">
+              <caret line="117" column="0" lean-forward="false" selection-start-line="117" selection-start-column="0" selection-end-line="117" selection-end-column="0" />
               <folding>
                 <element signature="n#style#0;n#div#3;n#div#0;n#form#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#input#0;n#div#0;n#form#0;n#!!top" expanded="true" />
-                <marker date="1577936883731" expanded="true" signature="4849:4936" ph="..." />
-                <marker date="1577936883731" expanded="true" signature="4987:5025" ph="..." />
-                <marker date="1577936883731" expanded="true" signature="5235:5273" ph="..." />
-                <marker date="1577936883731" expanded="true" signature="5484:5522" ph="..." />
-                <marker date="1577936883731" expanded="true" signature="5716:5754" ph="..." />
-                <marker date="1577936883731" expanded="true" signature="10076:10163" ph="..." />
-                <marker date="1577936883731" expanded="true" signature="10214:10252" ph="..." />
-                <marker date="1577936883731" expanded="true" signature="10409:10447" ph="..." />
-                <marker date="1577936883731" expanded="true" signature="10481:10488" ph="..." />
-                <marker date="1577936883731" expanded="true" signature="10589:10627" ph="..." />
-                <marker date="1577936883731" expanded="true" signature="10759:10797" ph="..." />
+                <marker date="1577937004543" expanded="true" signature="4849:4936" ph="..." />
+                <marker date="1577937004543" expanded="true" signature="4987:5025" ph="..." />
+                <marker date="1577937004543" expanded="true" signature="5236:5274" ph="..." />
+                <marker date="1577937004543" expanded="true" signature="5468:5506" ph="..." />
+                <marker date="1577937004543" expanded="true" signature="9828:9915" ph="..." />
+                <marker date="1577937004543" expanded="true" signature="9966:10004" ph="..." />
+                <marker date="1577937004543" expanded="true" signature="10038:10045" ph="..." />
+                <marker date="1577937004543" expanded="true" signature="10146:10184" ph="..." />
+                <marker date="1577937004543" expanded="true" signature="10316:10354" ph="..." />
               </folding>
             </state>
           </provider>
@@ -1082,22 +1080,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/templates/multi_receipt_form.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="423">
-          <caret line="166" column="0" lean-forward="false" selection-start-line="166" selection-start-column="0" selection-end-line="166" selection-end-column="0" />
+        <state relative-caret-position="17">
+          <caret line="117" column="0" lean-forward="false" selection-start-line="117" selection-start-column="0" selection-end-line="117" selection-end-column="0" />
           <folding>
             <element signature="n#style#0;n#div#3;n#div#0;n#form#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#input#0;n#div#0;n#form#0;n#!!top" expanded="true" />
-            <marker date="1577936883731" expanded="true" signature="4849:4936" ph="..." />
-            <marker date="1577936883731" expanded="true" signature="4987:5025" ph="..." />
-            <marker date="1577936883731" expanded="true" signature="5235:5273" ph="..." />
-            <marker date="1577936883731" expanded="true" signature="5484:5522" ph="..." />
-            <marker date="1577936883731" expanded="true" signature="5716:5754" ph="..." />
-            <marker date="1577936883731" expanded="true" signature="10076:10163" ph="..." />
-            <marker date="1577936883731" expanded="true" signature="10214:10252" ph="..." />
-            <marker date="1577936883731" expanded="true" signature="10409:10447" ph="..." />
-            <marker date="1577936883731" expanded="true" signature="10481:10488" ph="..." />
-            <marker date="1577936883731" expanded="true" signature="10589:10627" ph="..." />
-            <marker date="1577936883731" expanded="true" signature="10759:10797" ph="..." />
+            <marker date="1577937004543" expanded="true" signature="4849:4936" ph="..." />
+            <marker date="1577937004543" expanded="true" signature="4987:5025" ph="..." />
+            <marker date="1577937004543" expanded="true" signature="5236:5274" ph="..." />
+            <marker date="1577937004543" expanded="true" signature="5468:5506" ph="..." />
+            <marker date="1577937004543" expanded="true" signature="9828:9915" ph="..." />
+            <marker date="1577937004543" expanded="true" signature="9966:10004" ph="..." />
+            <marker date="1577937004543" expanded="true" signature="10038:10045" ph="..." />
+            <marker date="1577937004543" expanded="true" signature="10146:10184" ph="..." />
+            <marker date="1577937004543" expanded="true" signature="10316:10354" ph="..." />
           </folding>
         </state>
       </provider>
