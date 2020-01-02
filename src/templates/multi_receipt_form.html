@@ -158,19 +158,15 @@
     var row = $('<div style="display: flex; flex-direction: row; justify-content: space-around; align-items: center;"></div>')
         .html(
             '<div style="display: flex; flex-direction: column;">' +
-            '<label for='+inputSNO+'>S.No</label>' +
             '<input class="amount" type="number" id='+inputSNO+' name='+inputSNO+' value='+(i+1)+'>' +
             '</div>' +
             '<div style="display: flex; flex-direction: column;">' +
-            '<label for='+accHead+'>Account Head</label>' +
-            '<select style="flex: 4" class="form-control" id='+accHead+' name='+accHead+'>' +
+            '<select style="flex: 4" class="select" id='+accHead+' name='+accHead+'>' +
             '</div>' +
             '<div style="display: flex; flex-direction: column;">' +
-            '<label for='+debit_amount+'>Cl. Debit</label>' +
             '<input type="text" id='+debit_amount+' name='+debit_amount+'>' +
             '</div>' +
             '<div style="display: flex; flex-direction: column;">' +
-            '<label for='+credit_amount+'>Cl. Debit</label>' +
             '<input type="text" id='+credit_amount+' name='+credit_amount+'>' +
             '</div>'
         );
