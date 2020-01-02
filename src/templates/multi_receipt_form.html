@@ -131,6 +131,10 @@
             '<div style="display: flex; flex: 3; flex-direction: column;">' +
             '<label for='+credit_amount+'>Cl. Credit</label>' +
             '<input type="text" id='+credit_amount+' name='+credit_amount+'>' +
+            '</div>'+
+            '<div style="display: flex; flex: 3; flex-direction: column;">' +
+            '<label for="abc">Cl. Credit</label>' +
+            '<input type="text" id="abc">' +
             '</div>'
         );
         shg_det.append(row);
@@ -157,16 +161,16 @@
     var credit_amount = "credit_amount"+i;
     var row = $('<div style="display: flex; flex-direction: row; justify-content: space-around; align-items: center;"></div>')
         .html(
-            '<div style="display: flex; flex: 3; flex-direction: column;">' +
+            '<div style="display: flex; flex: 3;">' +
             '<input class="amount" type="number" id='+inputSNO+' name='+inputSNO+' value='+(i+1)+'>' +
             '</div>' +
-            '<div style="display: flex; flex: 5; flex-direction: column;">' +
+            '<div style="display: flex; flex: 5;">' +
             '<select class="select" id='+accHead+' name='+accHead+'>' +
             '</div>' +
-            '<div style="display: flex; flex: 3; flex-direction: column;">' +
+            '<div style="display: flex; flex: 3;">' +
             '<input type="text" id='+debit_amount+' name='+debit_amount+'>' +
             '</div>' +
-            '<div style="display: flex; flex: 3; flex-direction: column;">' +
+            '<div style="display: flex; flex: 3;">' +
             '<input type="text" id='+credit_amount+' name='+credit_amount+'>' +
             '</div>'
         );
