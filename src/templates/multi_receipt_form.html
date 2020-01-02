@@ -116,6 +116,10 @@
     var row = $('<div style="display: flex; flex-direction: row; justify-content: space-around; align-items: center;"></div>')
         .html(
             '<div style="display: flex; flex-direction: column;">' +
+            '<label for='+inputSNO+'>S.No</label>' +
+            '<input class="amount" type="number" id='+inputSNO+' name='+inputSNO+' value='+(i+1)+'>' +
+            '</div>' +
+            '<div style="display: flex; flex-direction: column;">' +
             '<label for='+accHead+'>Account Head</label>' +
             '<select class="select" id='+accHead+' name='+accHead+'>' +
             '</select>'+
@@ -127,6 +131,10 @@
             '<div style="display: flex; flex-direction: column;">' +
             '<label for='+credit_amount+'>Cl. Credit</label>' +
             '<input type="text" id='+credit_amount+' name='+credit_amount+'>' +
+            '</div>'+
+            '<div style="display: flex; flex-direction: column;">' +
+            '<label for="abc">Cl. Credit</label>' +
+            '<input type="text" id="abc">' +
             '</div>'
         );
         shg_det.append(row);
@@ -154,6 +162,9 @@
     var row = $('<div style="display: flex; flex-direction: row; justify-content: space-around; align-items: center;"></div>')
         .html(
             '<div style="display: flex; flex-direction: column;">' +
+            '<input class="amount" type="number" id='+inputSNO+' name='+inputSNO+' value='+(i+1)+'>' +
+            '</div>' +
+            '<div style="display: flex; flex-direction: column;">' +
             '<select style="flex: 4" class="select" id='+accHead+' name='+accHead+'>' +
             '</div>' +
             '<div style="display: flex; flex-direction: column;">' +
@@ -161,6 +172,9 @@
             '</div>' +
             '<div style="display: flex; flex-direction: column;">' +
             '<input type="text" id='+credit_amount+' name='+credit_amount+'>' +
+            '</div>'+
+            '<div style="display: flex; flex-direction: column;">' +
+            '<input type="text" id="abc">' +
             '</div>'
         );
         shg_det.append(row);
