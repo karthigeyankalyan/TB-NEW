@@ -53,6 +53,7 @@
             <h6>Belated Interest</h6>
             <h6>Total Cheque Amount</h6>
             <h6>Cheque #</h6>
+            <h6>Cheque Date Issued</h6>
         </div>
         <div id="inputForm" style="display: flex; flex-direction: column; justify-content: space-between;">
             <input type="number" name="demandNumber" id="demandNumber">
@@ -64,6 +65,7 @@
             <input type="number" name="belatedInterest" id="belatedInterest">
             <input type="number" name="totalChequeAmount" id="totalChequeAmount">
             <input type="text" name="chequeNumber" id="chequeNumber">
+            <input type="Date" name="chequeDateIssued" id="chequeDateIssued">
         </div>
     </div>
 
@@ -103,6 +105,7 @@
                 document.getElementById("belatedInterest").value = parseInt(json[0]["belated_interest"]);
                 document.getElementById("totalChequeAmount").value = parseInt(json[0]["cheque_amount"]);
                 document.getElementById("chequeDate").value = moment(json[0]["cheque_date"]['$date']).format('YYYY-MM-DD');
+                document.getElementById("chequeDateIssued").value = moment(json[0]["cheque_date_issued"]['$date']).format('YYYY-MM-DD');
         },
         error: function (e) {
             alert("The Loan Application does not exist");

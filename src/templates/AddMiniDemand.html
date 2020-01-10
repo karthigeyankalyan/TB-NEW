@@ -33,6 +33,7 @@
     <div id="demandDetails" class="form-group" style="display: flex; flex-direction: row;">
         <div id="heading" style="display: flex; flex-direction: column; justify-content: space-between;">
             <h6>Mini Demand Number</h6>
+            <h6>Mini Demand Reference</h6>
             <h6>Cheque Date</h6>
             <h6>Principal Due</h6>
             <h6>Interest Due</h6>
@@ -48,6 +49,7 @@
         </div>
         <div id="inputForm" style="display: flex; flex-direction: column; justify-content: space-between;">
             <input type="number" name="demandNumber" id="demandNumber">
+            <input type="text" name="miniDemandReference" id="miniDemandReference">
             <input type="Date" name="chequeDate" id="chequeDate" onchange="populateInterest(this)">
             <input type="number" name="demandPrincipalPayable" id="demandPrincipalPayable">
             <input type="number" name="demandInterestPayable" id="demandInterestPayable">
@@ -94,6 +96,7 @@
                 document.getElementById("belatedInterest").value = parseInt(json[0]["belated_interest"]);
                 document.getElementById("totalChequeAmount").value = parseInt(json[0]["cheque_amount"]);
             }
+            document.getElementById("miniDemandReference").value = json[0]["demand_reference"];
         },
         error: function (e) {
             alert("Enter Mini Demand Details");

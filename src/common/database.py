@@ -138,10 +138,11 @@ class Database(object):
     def update_demand(collection, query, demand_number, demand_date, cheque_number, cheque_date, principal_collected,
                       interest_collected, penal_interest, belated_interest, service_charge, no_of_demands,
                       cheque_amount, closing_balance_principal_due, closing_balance_principal_ndue,
-                      closing_balance_interest_due, demand_reference):
+                      closing_balance_interest_due, demand_reference, cheque_date_issued):
         return Database.DATABASE[collection].update_one(query, {'$set': {'demand_number': demand_number,
                                                                          "demand_date": demand_date,
                                                                          "cheque_date": cheque_date,
+                                                                         "cheque_date_issued": cheque_date_issued,
                                                                          "cheque_amount": cheque_amount,
                                                                          "cheque_number": cheque_number,
                                                                          "principal_collected": principal_collected,

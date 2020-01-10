@@ -12,7 +12,7 @@ class Demand(object):
                  closing_balance_principal_ndue=None, closing_balance_interest_due=None, ro_number=None,
                  interest_demand=None, interest_collected=None, loan_amount=None, no_of_demands=None,
                  roi=None, loan_sanction_date=None, user_id=None, user_name=None, ann_id=None, _id=None,
-                 demand_reference=None):
+                 demand_reference=None, cheque_date_issued=None):
         self.loan_id = loan_id
         self.loan_category = loan_category
         self.district = district
@@ -28,6 +28,12 @@ class Demand(object):
         if cheque_date:
             self.cheque_date = (datetime.combine(datetime.strptime(cheque_date, '%Y-%m-%d').date(),
                                                  datetime.now().time()))
+        else:
+            self.cheque_date = cheque_date
+
+        if cheque_date_issued:
+            self.cheque_date_issued = (datetime.combine(datetime.strptime(cheque_date_issued, '%Y-%m-%d').date(),
+                                                        datetime.now().time()))
         else:
             self.cheque_date = cheque_date
 
@@ -66,7 +72,7 @@ class Demand(object):
     def update_demand(cls, demand_number, demand_date, cheque_number, cheque_date, principal_collected,
                       interest_collected, demand_id, penal_interest, belated_interest, service_charge, no_of_demands,
                       closing_balance_principal_due, closing_balance_principal_ndue, closing_balance_interest_due,
-                      cheque_amount, demand_reference):
+                      cheque_amount, demand_reference, cheque_date_issued):
 
         if demand_date:
             demand_date = (datetime.combine(datetime.strptime(demand_date, '%Y-%m-%d').date(),
@@ -76,6 +82,10 @@ class Demand(object):
             cheque_date = (datetime.combine(datetime.strptime(cheque_date, '%Y-%m-%d').date(),
                                             datetime.now().time()))
 
+        if cheque_date_issued:
+            cheque_date_issued = (datetime.combine(datetime.strptime(cheque_date_issued, '%Y-%m-%d').date(),
+                                                   datetime.now().time()))
+
         Database.update_demand(collection='Demands', query={'_id': demand_id}, demand_number=demand_number,
                                demand_date=demand_date, cheque_number=cheque_number, cheque_date=cheque_date,
                                principal_collected=principal_collected, interest_collected=interest_collected,
@@ -84,7 +94,8 @@ class Demand(object):
                                closing_balance_principal_due=closing_balance_principal_due,
                                closing_balance_principal_ndue=closing_balance_principal_ndue,
                                closing_balance_interest_due=closing_balance_interest_due,
-                               cheque_amount=cheque_amount, demand_reference=demand_reference)
+                               cheque_amount=cheque_amount, demand_reference=demand_reference,
+                               cheque_date_issued=cheque_date_issued)
 
     @classmethod
     def update_main_demand(cls, principal_collected, interest_collected, demand_id,
@@ -115,6 +126,7 @@ class Demand(object):
             "demand_reference": self.demand_reference,
             "demand_date": self.demand_date,
             "cheque_date": self.cheque_date,
+            "cheque_date_issued": self.cheque_date_issued,
             "cheque_number": self.cheque_number,
             "principal_demand": self.principal_demand,
             "principal_collected": self.principal_collected,
