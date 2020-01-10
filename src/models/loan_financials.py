@@ -35,7 +35,7 @@ class Demand(object):
             self.cheque_date_issued = (datetime.combine(datetime.strptime(cheque_date_issued, '%Y-%m-%d').date(),
                                                         datetime.now().time()))
         else:
-            self.cheque_date = cheque_date
+            self.cheque_date_issued = cheque_date_issued
 
         self.cheque_number = cheque_number
         self.demand_reference = demand_reference
