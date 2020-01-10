@@ -1255,6 +1255,8 @@ def update_loan_financial_form(_id, late_interest, belated_int, penal_int, p_due
                                              datetime.now().time()))
             cheque_date1 = (datetime.combine(datetime.strptime(cheque_date, '%Y-%m-%d').date(),
                                              datetime.now().time()))
+            cheque_date_issued = (datetime.combine(datetime.strptime(cheque_date_issued, '%Y-%m-%d').date(),
+                                                   datetime.now().time()))
 
             demand = Database.find("Demands", {"_id": _id})
 

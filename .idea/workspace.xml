@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="da0bb03c-275f-4eeb-800c-401a339e857e" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app.py" afterPath="$PROJECT_DIR$/src/app.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/models/loan_financials.py" afterPath="$PROJECT_DIR$/src/models/loan_financials.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -24,8 +25,8 @@
       <file leaf-file-name="app.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/app.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="123">
-              <caret line="1257" column="0" lean-forward="false" selection-start-line="1257" selection-start-column="0" selection-end-line="1257" selection-end-column="0" />
+            <state relative-caret-position="255">
+              <caret line="1257" column="0" lean-forward="false" selection-start-line="1257" selection-start-column="0" selection-end-line="1259" selection-end-column="0" />
               <folding>
                 <element signature="e#0#29#0" expanded="true" />
                 <element signature="e#32246#43326#0" expanded="false" />
@@ -90,8 +91,8 @@
       <file leaf-file-name="loan_financials.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/models/loan_financials.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="86" column="0" lean-forward="false" selection-start-line="86" selection-start-column="0" selection-end-line="86" selection-end-column="0" />
+            <state relative-caret-position="102">
+              <caret line="83" column="0" lean-forward="true" selection-start-line="83" selection-start-column="0" selection-end-line="83" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -896,19 +897,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/templates/ViewAccountHead.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1577180579284" expanded="true" signature="591:630" ph="..." />
-            <marker date="1577180579284" expanded="true" signature="692:731" ph="..." />
-            <marker date="1577180579284" expanded="true" signature="801:840" ph="..." />
-            <marker date="1577180579284" expanded="true" signature="914:953" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/models/accounts.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1394">
@@ -957,33 +945,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/common/database.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="491">
-          <caret line="178" column="0" lean-forward="false" selection-start-line="178" selection-start-column="0" selection-end-line="178" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="123">
-          <caret line="1257" column="0" lean-forward="false" selection-start-line="1257" selection-start-column="0" selection-end-line="1257" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#29#0" expanded="true" />
-            <element signature="e#32246#43326#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/templates/AddMiniDemand.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="41" column="0" lean-forward="false" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/models/mini_demands.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1021,10 +982,50 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/templates/AddMiniDemand.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="41" column="0" lean-forward="false" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="1257" column="0" lean-forward="false" selection-start-line="1257" selection-start-column="0" selection-end-line="1259" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#29#0" expanded="true" />
+            <element signature="e#32246#43326#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/database.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="491">
+          <caret line="178" column="0" lean-forward="false" selection-start-line="178" selection-start-column="0" selection-end-line="178" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/templates/ViewAccountHead.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1577180579284" expanded="true" signature="591:630" ph="..." />
+            <marker date="1577180579284" expanded="true" signature="692:731" ph="..." />
+            <marker date="1577180579284" expanded="true" signature="801:840" ph="..." />
+            <marker date="1577180579284" expanded="true" signature="914:953" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/models/loan_financials.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="86" column="0" lean-forward="false" selection-start-line="86" selection-start-column="0" selection-end-line="86" selection-end-column="0" />
+        <state relative-caret-position="102">
+          <caret line="83" column="0" lean-forward="true" selection-start-line="83" selection-start-column="0" selection-end-line="83" selection-end-column="0" />
           <folding />
         </state>
       </provider>

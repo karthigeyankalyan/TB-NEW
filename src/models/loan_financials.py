@@ -82,10 +82,6 @@ class Demand(object):
             cheque_date = (datetime.combine(datetime.strptime(cheque_date, '%Y-%m-%d').date(),
                                             datetime.now().time()))
 
-        if cheque_date_issued:
-            cheque_date_issued = (datetime.combine(datetime.strptime(cheque_date_issued, '%Y-%m-%d').date(),
-                                                   datetime.now().time()))
-
         Database.update_demand(collection='Demands', query={'_id': demand_id}, demand_number=demand_number,
                                demand_date=demand_date, cheque_number=cheque_number, cheque_date=cheque_date,
                                principal_collected=principal_collected, interest_collected=interest_collected,
