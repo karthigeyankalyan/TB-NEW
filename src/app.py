@@ -1632,7 +1632,7 @@ def get_raw_all_demands():
 @app.route('/raw_demands_by_cheque_number/<string:cheque_number>')
 def get_raw_receipt_by_cheque(cheque_number):
     all_credit = []
-    all_credit_dict = Database.find("Demands", {"cheque_number": cheque_number})
+    all_credit_dict = Database.find("Demands", {"demand_reference": cheque_number})
     for tran in all_credit_dict:
         all_credit.append(tran)
 
