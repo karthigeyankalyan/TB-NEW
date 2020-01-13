@@ -28,6 +28,7 @@
                 doc.setFontSize(12);
                 doc.text(75, 50, 'RECEIPT');
                 doc.text(150, 50, 'Demand Reference: ' + json[0]['demand_reference']);
+                doc.text(150, 55, 'Cheque Received Date: ' + json[0]['cheque_date']);
 
                 var cheque_amount = 0;
                 var total_principal = 0;
