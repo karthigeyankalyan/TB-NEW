@@ -1414,7 +1414,7 @@ def mini_demand_form(_id, belated_int, penal_int, p_due, p_ndue, i_due, old_inte
             demand_reference = request.form['miniDemandReference']
             opening_balance_pdue = request.form['demandPrincipalPayable']
             opening_balance_idue = request.form['demandInterestPayable']
-            cheque_date = request.form['cheque_date']
+            cheque_date = request.form['chequeDate']
             penal_interest = request.form['penalInterest']
             belated_interest = request.form['belatedInterest']
             cheque_amount = request.form['totalChequeAmount']
