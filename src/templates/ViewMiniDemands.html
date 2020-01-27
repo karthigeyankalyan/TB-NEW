@@ -83,7 +83,7 @@
                                 var tbl = $("<table class='table table-bordered table-dark' id='demandDetails'/>");
                                 $("#demandList").append(tbl);
                                 var hr = "<tr>";
-                                var th1 = "<th style='text-align:center;vertical-align:middle'>" + "Demand Number" + "</th>";
+                                var th1 = "<th style='text-align:center;vertical-align:middle'>" + "Mini Demand Number" + "</th>";
                                 var th2 = "<th style='text-align:center;vertical-align:middle'>" + "Demand Date" + "</th>";
                                 var th3 = "<th style='text-align:center;vertical-align:middle'>" + "Cheque Date" + "</th>";
                                 var th4 = "<th style='text-align:center;vertical-align:middle'>" + "Loan Amount" + "</th>";
@@ -125,13 +125,6 @@
                                             json[j]["closing_balance_interest_due"] = parseInt(json[j]["closing_balance_interest_due"]).toFixed(2);
                                         }
 
-                                        if (moment().isAfter(moment(json[j]["demand_date"]))) {
-                                            var cheque_date = moment(json[j]["cheque_date"]).format('YYYY-MM-DD');
-                                        }
-                                        else {
-                                            cheque_date = 'Due Date Not Yet Crossed'
-                                        }
-
                                         if (json[j]["belated_interest"] < 0) {
                                             json[j]["belated_interest"] = 0;
                                             json[j]["penal_interest"] = 0;
@@ -143,9 +136,9 @@
                                         var url1 = '/delete_demand/' + demand_id;
                                         var url2 = '/view_mini_demands/' + demand_id + '/' + json[j]["belated_interest"] + '/' + json[j]["penal_interest"] + '/' + json[j]["closing_balance_principal_due"] + '/' + json[j]["closing_balance_principal_ndue"] + '/' + json[j]["closing_balance_interest_due"];
                                         var row = $('<tr></tr>').html('<td>' +
-                                            +json[j]["demand_number"] + '</td>' +
+                                            +json[j]["m_demand_no"] + '</td>' +
                                             '<td>' + json[j]["demand_date"] + '</td>' +
-                                            '<td>' + cheque_date + '</td>' +
+                                            '<td>' + moment(json[j]["cheque_date"]['$date']).format('DD-MM-YYYY') + '</td>' +
                                             '<td>' + json[j]["loan_amount"] + '</td>' +
                                             '<td>' + json[j]["belated_interest"] + '</td>' +
                                             '<td>' + json[j]["penal_interest"] + '</td>' +
