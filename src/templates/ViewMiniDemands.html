@@ -54,7 +54,7 @@
                                 json[i]['Total Interest Demand'] = parseInt(json[i]['opening_balance_interest_due']);
                                 json[i]['Total Demand'] = json[i]['Total Principal Demand'] + json[i]['Total Interest Demand'];
 
-                                if (json[i]['m_demand_no'] === 1) {
+                                if (parseInt(json[i]['m_demand_no']) === 1) {
                                     var delay = moment().diff(moment(json[i]['demand_date']), 'days');
                                     json[i]['delay'] = delay;
                                     json[i]['penal_interest'] = (delay * json[i]['Total Demand'] * 5) / (365 * 100);
