@@ -1466,20 +1466,16 @@ def mini_demand_form(_id, belated_int, penal_int, p_due, p_ndue, i_due, old_inte
 
             mini_demands = Database.find("mDemands", {"demand_id": _id})
 
-            if mini_demands:
-                m_dem_count = mini_demands.count() + 1
-            else:
-                m_dem_count = 1
-
             mini_dem = MiniDemand(user_name=user_name, cheque_number=cheque_number, cheque_date=cheque_date,
-                                  demand_number=demand_number, principal_demand=opening_balance_pdue,
+                                  principal_demand=opening_balance_pdue,
                                   interest_demand=opening_balance_idue, penal_interest=penal_interest,
                                   belated_interest=belated_interest, cheque_amount=cheque_amount,
                                   principal_collected=principal_paid, interest_collected=interest_paid,
                                   service_charge=service_charge, closing_balance_principal_due=closing_balance_pdue,
                                   closing_balance_interest_due=closing_balance_idue, demand_id=_id, district=district,
                                   district_bank=district_bank, sub_bank=sub_bank, loan_category=loan_category,
-                                  loan_id=loan_id, demand_reference=demand_reference, m_demand_no=m_dem_count)
+                                  loan_id=loan_id, demand_reference=demand_reference,
+                                  m_demand_no=demand_number)
 
             # Cumulating principal & interest totals for final main_demand alterations;
             # [Closing Balance Principal & Interest Dues]
