@@ -25,11 +25,12 @@
                 doc.text(40, 35, 'Phone Office: 044-28190122, 044-28190146');
                 doc.text(160, 35, 'Email: tabcedco@gmail.com');
 
-                doc.setFontSize(12);
+                doc.setFontSize(10);
                 doc.text(75, 50, 'RECEIPT');
                 doc.text(150, 50, 'Demand Reference: ' + json[0]['demand_reference']);
-                doc.text(150, 55, 'Cheque Received Date: ' + json[0]['cheque_date']);
+                doc.text(150, 55, 'Cheque Received Date: ' + json[0]['cheque_date']['$date']);
 
+                doc.setFontSize(12);
                 var cheque_amount = 0;
                 var total_principal = 0;
                 var total_interest = 0;
@@ -50,7 +51,7 @@
                     total_service += Math.round(json[j]['service_charge']);
                 }
 
-                var AAO = doc.splitTextToSize('Received with thanks from ' + json[0]['district_bank'] + ' ' + cheque_amount + ' Rs. ( ' + convertNumberToWords(cheque_amount) +
+                var AAO = doc.splitTextToSize('Received with thanks from ' + json[0]['district_bank'] + ' Rs. ' + cheque_amount + '( ' + convertNumberToWords(cheque_amount) +
                     ' ) vide DD/Cheque No. ' + json[0]['cheque_number'] + ' Dated: ' + moment(json[0]['cheque_date']['$date']).format('DD/MM/YYYY'), 160);
 
                 doc.text(25, 65, AAO);
