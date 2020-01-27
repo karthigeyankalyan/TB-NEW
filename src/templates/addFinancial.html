@@ -198,8 +198,8 @@
                 NBCShare = NBCFDCShareCalculator(json[0]['loan_category'], amount);
                 TabcedcoShare = tabcedcoShareCalculator(json[0]['loan_category'], amount);
 
-                var tabcedco_installments = Math.floor(TabcedcoShare)/2;
-                var nbcfdc_installments = Math.round(parseInt(NBCShare)/(no_of_demands-2));
+                var tabcedco_installments = Math.round(TabcedcoShare)/2;
+                var nbcfdc_installments = Math.floor(parseInt(NBCShare)/(no_of_demands-2));
 
                     amount_remaining = NBCShare+TabcedcoShare;
                     var tla = NBCShare+TabcedcoShare;
