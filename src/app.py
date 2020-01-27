@@ -1435,7 +1435,7 @@ def mini_demand_form(_id, belated_int, penal_int, p_due, p_ndue, i_due, old_inte
             mini_demand_principal_total, mini_demand_interest_total, closing_balance_not_due = 0, 0, 0
             opening_balance_principal_due, opening_balance_interest_due = 0, 0
             main_demand_principal_demand, main_demand_interest_demand = 0, 0
-            main_demand_date = None
+            main_demand_date, ann_id = None, None
 
             # Find the demand for which mini Demand is being added; Need to get auxiliary information
             demands = Database.find("Demands", {"_id": _id})
@@ -1457,6 +1457,7 @@ def mini_demand_form(_id, belated_int, penal_int, p_due, p_ndue, i_due, old_inte
                 main_demand_service_charge = demand['service_charge']
                 loan_amount = demand['loan_amount']
                 demand_loan_id = demand['loan_id']
+                ann_id = demand['ann_id']
                 previous_demand_number = int(demand['demand_number'])-1
 
             # Previous Main Demand to get Closing Balance; To calculate Principal Not Due
@@ -1486,7 +1487,7 @@ def mini_demand_form(_id, belated_int, penal_int, p_due, p_ndue, i_due, old_inte
                                   closing_balance_interest_due=closing_balance_idue, demand_id=_id, district=district,
                                   district_bank=district_bank, sub_bank=sub_bank, loan_category=loan_category,
                                   loan_id=loan_id, demand_reference=demand_reference,
-                                  m_demand_no=demand_number, loan_amount=loan_amount)
+                                  m_demand_no=demand_number, loan_amount=loan_amount, ann_id=ann_id)
 
             # Cumulating principal & interest totals for final main_demand alterations;
             # [Closing Balance Principal & Interest Dues]
@@ -1603,6 +1604,17 @@ def all_demands_view():
         return render_template('login_fail.html', user=user)
 
 
+@app.route('/view_all_mini_demands')
+def all_mini_demands_view():
+    email = session['email']
+    user = User.get_by_email(email)
+
+    if email is not None:
+        return render_template('ViewAllMiniDemands.html', user=user)
+    else:
+        return render_template('login_fail.html', user=user)
+
+
 @app.route('/rawDemandsByLoan/<string:loan_id>/<string:ro_number>')
 def raw_demands_by_loan_id(loan_id, ro_number):
     loan = []
@@ -1634,6 +1646,18 @@ def raw_minis_by_demands(_id):
 def get_raw_all_demands():
     all_credit = []
     all_credit_dict = Database.find("Demands", {})
+    for tran in all_credit_dict:
+        all_credit.append(tran)
+
+    all_credits = json.dumps(all_credit, default=json_util.default)
+
+    return all_credits
+
+
+@app.route('/raw_mini_demands')
+def get_raw_all_mini_demands():
+    all_credit = []
+    all_credit_dict = Database.find("mDemands", {})
     for tran in all_credit_dict:
         all_credit.append(tran)
 

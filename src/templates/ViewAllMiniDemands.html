@@ -1,0 +1,166 @@
+{% extends "post_login_loans.html" %}
+{% block content %}
+
+<body>
+    <div style="display: flex; flex-direction: row; justify-content: space-around; align-items: center; margin-top: 10px; margin-bottom: 10px">
+        <div id="filters">
+            <div id="Category">
+                <label for="loanCategory">Loan Category</label>
+                <select class="form-control" id="loanCategory" name="loanCategory">
+                    {% set categories = ['All', 'GTL', 'NSS', 'MCL', 'MSY'] %}
+                    {% for category in categories %}
+                        <option value= "{{category}}">{{category}}</option>"
+                    {% endfor %}
+                </select>
+                <label for="DistrictSelect" style="margin-left: 6%">Service District:</label>
+                <select id="DistrictSelect" style="margin-left: 1%; position: relative;">
+                    {% set districts = ['Ariyalur', 'Karur', 'Nagapattinam', 'Perambalur',
+                      'Pudukkottai', 'Thanjavur', 'Tiruchirappalli','Tiruvarur', 'Dharmapuri',
+                      'Coimbatore', 'Erode', 'Krishnagiri', 'Namakkal', 'Nilgiris', 'Salem',
+                      'Tiruppur', 'Dindigul', 'Kanyakumari', 'Madurai', 'Ramanathapuram', 'Sivaganga',
+                      'Theni', 'Thoothukudi','Tirunelveli', 'Virudhunagar', 'Chennai', 'Cuddalore', 'Kancheepuram',
+                      'Tiruvallur', 'Tiruvannamalai', 'Vellore','Viluppuram'] %}
+
+                    {% for district in districts %}
+                        <option value= "{{district}}">{{district}}</option>"
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+
+        <div id="Search" style="display: flex; flex-direction: column;">
+            <label for="myInput" style="margin-left: 10%">Search by Cheque Number:</label>
+            <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for cheque" title="Type in a name">
+        </div>
+
+        <div id="SearchRO#" style="display: flex; flex-direction: column;">
+            <label for="myInput" style="margin-left: 10%">Search by Demand Reference:</label>
+            <input type="text" id="myInputRO" onkeyup="myFunctionRO()" placeholder="Search for Demand Ref" title="Type to search">
+        </div>
+
+    </div>
+
+    <div id="loansList">
+    </div>
+</body>
+
+<script>
+        var source = "/raw_mini_demands";
+        $.ajax({
+            type: 'GET',
+            url: source,
+            contentType: "application/json",
+            dataType: 'json',
+            success: function (json) {
+                console.log(json);
+                    if(json[0]['loan_category'] === 'GTL (General Term Loan)') {
+                        var cat = "GTL";
+                    }
+                    else if(json[0]['loan_category'] === 'NSS (New-Swarnima Scheme)') {
+                        cat = "NSS";
+                    }
+                    else if(json[0]['loan_category'] === 'MCG (Micro-Credit Gents)') {
+                        cat = "MCR";
+                    }
+                    else if(json[0]['loan_category'] === 'MSY (Mahila Samridhi Yojana)') {
+                        cat = "MSY";
+                    }
+
+                        var $accountHead = $("#loanCategory");
+
+                        $accountHead.each(function() {
+                            if (this.selectedIndex === 0) {
+                                populatePage(json);
+                            }
+                        });
+
+                        $accountHead.change(function () {
+                            var selectedbucket = this.value;
+                            //filter based on  selected year.
+                            if (selectedbucket==="All") {
+                                populatePage(json);
+                            }
+                            else {
+                                selectedAccountHead = jQuery.grep(json, function (account) {
+                                    return account.loan_category === selectedbucket;
+                                });
+                                populatePage(selectedAccountHead);
+                            }
+                        });
+
+                        function populatePage(jsonFunc) {
+                            $("#loansDetails").find("tbody").empty();
+                            var tbl = $("<table class='table table-bordered table-dark' id='loansDetails'/>");
+                            $("#loansList").append(tbl);
+                            var hr = "<tr>";
+                            var th1 = "<th style='text-align:center;vertical-align:middle'>" + "Ro Number" + "</th>";
+                            var th2 = "<th style='text-align:center;vertical-align:middle'>" + "File #" + "</th>";
+                            var th3 = "<th style='text-align:center;vertical-align:middle'>" + "Demand Number" + "</th>";
+                            var th4 = "<th style='text-align:center;vertical-align:middle'>" + "Demand Date" + "</th>";
+                            var th5 = "<th style='text-align:center;vertical-align:middle'>" + "Cheque Number" + "</th>";
+                            var th6 = "<th style='text-align:center;vertical-align:middle'>" + "Demand Reference" + "</th>";
+                            var th7 = "<th style='text-align:center;vertical-align:middle'>" + "Download Receipt" + "</th>";
+                            $("#loansDetails").append(hr + th1 + th2 + th3 + th4 + th5 + th6 + th7);
+                            for (var j = 0; j < jsonFunc.length; j++) {
+                                {
+                                    var loan_id = jsonFunc[j]["ro_number"];
+                                    var ann_loan_id = jsonFunc[j]["ann_id"];
+                                    var cheque_number = jsonFunc[j]["demand_reference"];
+                                    var url = '/demands_by_cheque/'+cheque_number;
+                                    var row = $('<tr></tr>').html('<td>' + loan_id + '</td>'+
+                                        '<td>'+ ann_loan_id + '</td>'+
+                                        '<td>'+jsonFunc[j]["demand_number"] +'</td>'+
+                                        '<td>'+ moment(jsonFunc[j]["demand_date"]).format("DD-MM-YYYY") +'</td>'+
+                                        '<td>'+jsonFunc[j]["cheque_number"] +'</td>'+
+                                        '<td>'+jsonFunc[j]["demand_reference"] +'</td>'+
+                                        '<td><button class="btn btn-default"><a href="' + url + '">'+ 'Download Receipt' +'</a></button></td>');
+                                    $("#loansDetails").append(row);
+                                }
+                            }
+                        }
+                },
+            error: function (e) {
+                alert("error");
+            }
+        });
+
+    function myFunction() {
+        var input, filter, table, tr, td, i;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("loansList");
+        tr = table.getElementsByTagName("tr");
+        console.log(tr.length);
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[4];
+            if (td) {
+                if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+
+    function myFunctionRO() {
+        var input, filter, table, tr, td, i;
+        input = document.getElementById("myInputRO");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("loansList");
+        tr = table.getElementsByTagName("tr");
+        console.log(tr.length);
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[5];
+            if (td) {
+                if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>
+
+{% endblock %}
