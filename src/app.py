@@ -1509,7 +1509,7 @@ def mini_demand_form(_id, belated_int, penal_int, p_due, p_ndue, i_due, old_inte
 
             mini_dem.save_to_mongo()
 
-            return render_template('receipt_added.html', mini_dem=mini_dem, user=user)
+            return render_template('mini_dem_added.html', mini_dem=mini_dem, user=user)
 
     else:
         return render_template('login_fail.html')
