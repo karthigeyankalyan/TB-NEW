@@ -60,7 +60,7 @@
                                     json[i]['penal_interest'] = (delay * json[i]['Total Demand'] * 5) / (365 * 100);
                                     json[i]['belated_interest'] = (delay * json[i]['Total Demand'] * parseInt(json[i]['roi'])) / (365 * 100);
                                     json[i]['closing_balance_principal_due'] = parseInt(json[i]['closing_balance_principal_due']);
-                                    json[i]['closing_balance_interest_due'] = parseInt(json[i]['closing_balance_principal_due']);
+                                    json[i]['closing_balance_interest_due'] = parseInt(json[i]['closing_balance_interest_due']);
                                     json[i]['closing_balance_principal_ndue'] = parseInt(json[i]['loan_amount']) - parseInt(json[i]['Total Principal Demand']);
                                 } else {
                                     json[i]['opening_balance_due'] = json[i]['opening_balance_principal_due'] + json[i]['opening_balance_interest_due'];
