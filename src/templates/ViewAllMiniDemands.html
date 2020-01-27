@@ -106,7 +106,7 @@
                                     var loan_id = jsonFunc[j]["ro_number"];
                                     var ann_loan_id = jsonFunc[j]["ann_id"];
                                     var cheque_number = jsonFunc[j]["demand_reference"];
-                                    var url = '/demands_by_cheque/'+cheque_number;
+                                    var url = '/mini_demands_by_cheque/'+cheque_number;
                                     var row = $('<tr></tr>').html('<td>' + loan_id + '</td>'+
                                         '<td>'+ ann_loan_id + '</td>'+
                                         '<td>'+jsonFunc[j]["demand_number"] +'</td>'+

@@ -1593,6 +1593,17 @@ def download_receipt_by_cheque(_id):
         return render_template('login_fail.html', user=user)
 
 
+@app.route('/mini_demands_by_cheque/<string:_id>')
+def download_receipt_by_cheque_minis(_id):
+    email = session['email']
+    user = User.get_by_email(email)
+
+    if email is not None:
+        return render_template('receipt_download_by_cheque.html', user=user, loan_id=_id)
+    else:
+        return render_template('login_fail.html', user=user)
+
+
 @app.route('/view_all_demands')
 def all_demands_view():
     email = session['email']
@@ -1670,6 +1681,18 @@ def get_raw_all_mini_demands():
 def get_raw_receipt_by_cheque(cheque_number):
     all_credit = []
     all_credit_dict = Database.find("Demands", {"demand_reference": cheque_number})
+    for tran in all_credit_dict:
+        all_credit.append(tran)
+
+    all_credits = json.dumps(all_credit, default=json_util.default)
+
+    return all_credits
+
+
+@app.route('/raw_mini_demands_by_cheque_number/<string:cheque_number>')
+def get_raw_mini_receipt_by_cheque(cheque_number):
+    all_credit = []
+    all_credit_dict = Database.find("mDemands", {"demand_reference": cheque_number})
     for tran in all_credit_dict:
         all_credit.append(tran)
 
