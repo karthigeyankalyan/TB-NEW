@@ -59,6 +59,9 @@
                                     json[i]['delay'] = delay;
                                     json[i]['penal_interest'] = (delay * json[i]['Total Demand'] * 5) / (365 * 100);
                                     json[i]['belated_interest'] = (delay * json[i]['Total Demand'] * parseInt(json[i]['roi'])) / (365 * 100);
+                                    json[i]['closing_balance_principal_due'] = parseInt(json[i]['closing_balance_principal_due']);
+                                    json[i]['closing_balance_interest_due'] = parseInt(json[i]['closing_balance_principal_due']);
+                                    json[i]['closing_balance_principal_ndue'] = parseInt(json[i]['loan_amount']) - parseInt(json[i]['Total Principal Demand']);
                                 } else {
                                     json[i]['opening_balance_due'] = json[i]['opening_balance_principal_due'] + json[i]['opening_balance_interest_due'];
                                     var delay_old = moment().diff(moment(json[i - 1]['cheque_date']), 'days');
@@ -73,12 +76,11 @@
 
                                     json[i]['penal_interest'] += json[i]['penal_interest_old'];
                                     json[i]['belated_interest'] += json[i]['belated_interest_old'];
-                                }
-
                                 json[i]['Remarks'] = "Demand Payment not yet made; Penal Interest shown if payment is made today";
                                 json[i]['closing_balance_principal_due'] = parseInt(json[i]['Total Principal Demand']) - (parseInt(json[i]['interest_demand']) * 3 / parseInt(json[i]['roi']));
                                 json[i]['closing_balance_interest_due'] = parseInt(json[i]['Total Interest Demand']);
                                 json[i]['closing_balance_principal_ndue'] = parseInt(json[i]['loan_amount']) - parseInt(json[i]['Total Principal Demand']);
+                                }
 
                                 var tbl = $("<table class='table table-bordered table-dark' id='demandDetails'/>");
                                 $("#demandList").append(tbl);
