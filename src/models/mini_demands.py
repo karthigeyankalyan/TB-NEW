@@ -23,7 +23,7 @@ class MiniDemand(object):
         self.district_bank = district_bank
         self.sub_bank = sub_bank
         self.demand_number = demand_number
-        self.m_demand_no = int(m_demand_no)
+        self.m_demand_no = m_demand_no
         if demand_date:
             self.demand_date = (datetime.combine(datetime.strptime(demand_date, '%Y-%m-%d').date(),
                                                  datetime.now().time()))
