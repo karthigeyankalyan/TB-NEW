@@ -222,6 +222,8 @@
                                 regular_tbc_interest = Math.round(roi * parseInt(TabcedcoShare) / 400);
 
                                 interest = Math.round(extra_days_nbc + extra_days_tbc + regular_nbc_interest + regular_tbc_interest);
+                                console.log(regular_tbc_interest, regular_nbc_interest, extra_days_tbc, extra_days_nbc);
+                                console.log(roi, NBCShare, TabcedcoShare, extra_interest_days);
 
                                 principal_per_installment = Math.round(tabcedco_installments);
                             }
@@ -233,6 +235,7 @@
                             var days = moment(current_demand_date, 'DD-MM-YYYY').diff(moment(cheque_date, 'DD-MM-YYYY'), 'days');
                             interest = Math.round(((roi) * amount_remaining ) / (400));
                             principal_per_installment = Math.round(tabcedco_installments);
+                            console.log(roi, amount_remaining, days, interest, principal_per_installment);
                         }
 
                         else if (l ===3) {
@@ -241,6 +244,7 @@
                             days = moment(current_demand_date, 'DD-MM-YYYY').diff(moment(cheque_date, 'DD-MM-YYYY'), 'days');
                             interest = Math.round(((roi) * amount_remaining ) / (400));
                             principal_per_installment = Math.round(nbcfdc_installments);
+                            console.log(roi, amount_remaining, days, interest, principal_per_installment);
                         }
 
                         else if(l=== parseInt(no_of_demands)) {
@@ -248,6 +252,7 @@
                             amount_remaining -= principal_per_installment;
                             interest = Math.round(((roi) * amount_remaining ) / (400));
                             principal_per_installment = Math.round(amount_remaining);
+                            console.log(roi, amount_remaining, interest, principal_per_installment);
                         }
 
                         else {
@@ -255,6 +260,7 @@
                             amount_remaining -= principal_per_installment;
                             interest = Math.round(((roi) * amount_remaining ) / (400));
                             principal_per_installment = Math.round(nbcfdc_installments);
+                            console.log(roi, amount_remaining, interest, principal_per_installment);
                         }
 
                         sum_principal += parseInt(principal_per_installment);
