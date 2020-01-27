@@ -1435,6 +1435,7 @@ def mini_demand_form(_id, belated_int, penal_int, p_due, p_ndue, i_due, old_inte
             mini_demand_principal_total, mini_demand_interest_total, closing_balance_not_due = 0, 0, 0
             opening_balance_principal_due, opening_balance_interest_due = 0, 0
             main_demand_principal_demand, main_demand_interest_demand = 0, 0
+            main_demand_date = None
 
             # Find the demand for which mini Demand is being added; Need to get auxiliary information
             demands = Database.find("Demands", {"_id": _id})
@@ -1444,6 +1445,7 @@ def mini_demand_form(_id, belated_int, penal_int, p_due, p_ndue, i_due, old_inte
                 district = demand['district']
                 district_bank = demand['district_bank']
                 sub_bank = demand['sub_bank']
+                main_demand_date = demand['demand_date']
                 loan_category = demand['loan_category']
                 loan_id = demand['loan_id']
                 main_demand_principal_demand = int(demand['principal_demand'])
@@ -1476,7 +1478,7 @@ def mini_demand_form(_id, belated_int, penal_int, p_due, p_ndue, i_due, old_inte
             mini_demands = Database.find("mDemands", {"demand_id": _id})
 
             mini_dem = MiniDemand(user_name=user_name, cheque_number=cheque_number, cheque_date=cheque_date,
-                                  principal_demand=opening_balance_pdue, demand_date=demand_date,
+                                  principal_demand=opening_balance_pdue, demand_date=main_demand_date,
                                   interest_demand=opening_balance_idue, penal_interest=penal_interest,
                                   belated_interest=belated_interest, cheque_amount=cheque_amount,
                                   principal_collected=principal_paid, interest_collected=interest_paid,

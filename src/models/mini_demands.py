@@ -23,13 +23,8 @@ class MiniDemand(object):
         self.district_bank = district_bank
         self.sub_bank = sub_bank
         self.demand_number = demand_number
+        self.demand_date = demand_date
         self.m_demand_no = m_demand_no
-        if demand_date:
-            self.demand_date = (datetime.combine(datetime.strptime(demand_date, '%Y-%m-%d').date(),
-                                                 datetime.now().time()))
-        else:
-            self.demand_date = demand_date
-
         if cheque_date:
             self.cheque_date = (datetime.combine(datetime.strptime(cheque_date, '%Y-%m-%d').date(),
                                                  datetime.now().time()))
