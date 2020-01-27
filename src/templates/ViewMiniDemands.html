@@ -97,34 +97,6 @@
                                 var th12 = "<th style='text-align:center;vertical-align:middle'>" + "Delete Demand" + "</th>";
                                 $("#demandDetails").append(hr + th1 + th2 + th3 + th4 + th5 + th6 + th7 + th8 + th9 + th10 + th11 + th12);
                                 for (var j = 0; j < json.length; j++) {
-                                        if (json[j]["belated_interest"] === null) {
-                                            json[j]["belated_interest"] = json[j]["belated_interest"];
-                                        }
-                                        else {
-                                            json[j]["belated_interest"] = parseInt(json[j]["belated_interest"]).toFixed(2);
-                                        }
-
-                                        if (json[j]["penal_interest"] === null) {
-                                            json[j]["penal_interest"] = json[j]["penal_interest"];
-                                        }
-                                        else {
-                                            json[j]["penal_interest"] = parseInt(json[j]["penal_interest"]).toFixed(2);
-                                        }
-
-                                        if (json[j]["closing_balance_principal_due"] === null) {
-                                            json[j]["closing_balance_principal_due"] = json[j]["closing_balance_principal_due"];
-                                        }
-                                        else {
-                                            json[j]["closing_balance_principal_due"] = parseInt(json[j]["closing_balance_principal_due"]).toFixed(2);
-                                        }
-
-                                        if (json[j]["closing_balance_interest_due"] === null) {
-                                            json[j]["closing_balance_interest_due"] = json[j]["closing_balance_interest_due"];
-                                        }
-                                        else {
-                                            json[j]["closing_balance_interest_due"] = parseInt(json[j]["closing_balance_interest_due"]).toFixed(2);
-                                        }
-
                                         if (json[j]["belated_interest"] < 0) {
                                             json[j]["belated_interest"] = 0;
                                             json[j]["penal_interest"] = 0;
