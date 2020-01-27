@@ -1467,7 +1467,7 @@ def mini_demand_form(_id, belated_int, penal_int, p_due, p_ndue, i_due, old_inte
             mini_demands = Database.find("mDemands", {"demand_id": _id})
 
             if mini_demands:
-                m_dem_count = mini_demands.count()
+                m_dem_count = mini_demands.count() + 1
             else:
                 m_dem_count = 1
 
