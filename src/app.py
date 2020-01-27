@@ -1427,7 +1427,7 @@ def mini_demand_form(_id, belated_int, penal_int, p_due, p_ndue, i_due, old_inte
             user_name = user.username
 
             district, district_bank, sub_bank, loan_category = None, None, None, None
-            loan_id, previous_demand_number, demand_loan_id = None, None, None
+            loan_id, previous_demand_number, demand_loan_id, loan_amount = None, None, None, None
             main_demand_closing_balance_principal_due, main_demand_closing_balance_interest_due = 0, 0
             main_demand_closing_balance_principal_ndue, main_demand_principal_collected = 0, 0
             main_demand_interest_collected, main_demand_penal_interest, main_demand_belated_interest = 0, 0, 0
@@ -1453,21 +1453,30 @@ def mini_demand_form(_id, belated_int, penal_int, p_due, p_ndue, i_due, old_inte
                 main_demand_penal_interest = demand['penal_interest']
                 main_demand_penal_interest = demand['belated_interest']
                 main_demand_service_charge = demand['service_charge']
+                loan_amount = demand['loan_amount']
                 demand_loan_id = demand['loan_id']
                 previous_demand_number = int(demand['demand_number'])-1
 
             # Previous Main Demand to get Closing Balance; To calculate Principal Not Due
-            previous_demand = Database.find("Demands", {"$and": [{"demand_number": str(previous_demand_number)},
-                                                                 {"loan_id": demand_loan_id}]})
-            for prev_demand in previous_demand[0:1]:
-                closing_balance_not_due = prev_demand['closing_balance_principal_ndue']
-                opening_balance_principal_due = prev_demand['closing_balance_principal_due']
-                opening_balance_interest_due = prev_demand['closing_balance_interest_due']
+
+            if demand_number == 1:
+                closing_balance_not_due = demands['closing_balance_principal_ndue']
+                opening_balance_principal_due = demands['closing_balance_principal_due']
+                opening_balance_interest_due = demands['closing_balance_interest_due']
+
+            else:
+                previous_demand = Database.find("Demands", {"$and": [{"demand_number": str(previous_demand_number)},
+                                                                     {"loan_id": demand_loan_id}]})
+
+                for prev_demand in previous_demand[0:1]:
+                    closing_balance_not_due = prev_demand['closing_balance_principal_ndue']
+                    opening_balance_principal_due = prev_demand['closing_balance_principal_due']
+                    opening_balance_interest_due = prev_demand['closing_balance_interest_due']
 
             mini_demands = Database.find("mDemands", {"demand_id": _id})
 
             mini_dem = MiniDemand(user_name=user_name, cheque_number=cheque_number, cheque_date=cheque_date,
-                                  principal_demand=opening_balance_pdue,
+                                  principal_demand=opening_balance_pdue, demand_date=demand_date,
                                   interest_demand=opening_balance_idue, penal_interest=penal_interest,
                                   belated_interest=belated_interest, cheque_amount=cheque_amount,
                                   principal_collected=principal_paid, interest_collected=interest_paid,
@@ -1475,7 +1484,7 @@ def mini_demand_form(_id, belated_int, penal_int, p_due, p_ndue, i_due, old_inte
                                   closing_balance_interest_due=closing_balance_idue, demand_id=_id, district=district,
                                   district_bank=district_bank, sub_bank=sub_bank, loan_category=loan_category,
                                   loan_id=loan_id, demand_reference=demand_reference,
-                                  m_demand_no=demand_number)
+                                  m_demand_no=demand_number, loan_amount=loan_amount)
 
             # Cumulating principal & interest totals for final main_demand alterations;
             # [Closing Balance Principal & Interest Dues]

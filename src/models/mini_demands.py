@@ -43,8 +43,8 @@ class MiniDemand(object):
         self.principal_collected = principal_collected
         self.interest_demand = interest_demand
         self.interest_collected = interest_collected
-        self.penal_interest = penal_interest
-        self.belated_interest = belated_interest
+        self.penal_interest = 0 if penal_interest is None else penal_interest
+        self.belated_interest = 0 if belated_interest is None else belated_interest
         self.service_charge = service_charge
         self.closing_balance_principal_due = closing_balance_principal_due
         self.closing_balance_principal_ndue = closing_balance_principal_ndue
