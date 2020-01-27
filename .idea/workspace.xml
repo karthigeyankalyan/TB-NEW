@@ -37,10 +37,10 @@
       <file leaf-file-name="addFinancial.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/templates/addFinancial.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="457">
-              <caret line="343" column="0" lean-forward="false" selection-start-line="343" selection-start-column="0" selection-end-line="343" selection-end-column="0" />
+            <state relative-caret-position="170">
+              <caret line="291" column="83" lean-forward="true" selection-start-line="291" selection-start-column="83" selection-end-line="291" selection-end-column="83" />
               <folding>
-                <element signature="e#23176#26196#0" expanded="false" />
+                <element signature="e#23177#26197#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -961,10 +961,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/templates/addFinancial.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="457">
-          <caret line="343" column="0" lean-forward="false" selection-start-line="343" selection-start-column="0" selection-end-line="343" selection-end-column="0" />
+        <state relative-caret-position="170">
+          <caret line="291" column="83" lean-forward="true" selection-start-line="291" selection-start-column="83" selection-end-line="291" selection-end-column="83" />
           <folding>
-            <element signature="e#23176#26196#0" expanded="false" />
+            <element signature="e#23177#26197#0" expanded="false" />
           </folding>
         </state>
       </provider>
