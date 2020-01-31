@@ -1307,6 +1307,7 @@ def update_loan_financial_form(_id, late_interest, belated_int, penal_int, p_due
                                                               {"loan_id": loan_id}]})
 
                 for result_object in demandm1[0:1]:
+                    print(result_object)
                     opening_balance_principal_ndue = int(result_object['closing_balance_principal_ndue'])
                     opening_balance_principal_due = int(result_object['closing_balance_principal_due'])
                     opening_balance_interest_due = int(result_object['closing_balance_interest_due'])
