@@ -9,7 +9,7 @@
 <script>
         function downloadReceipt() {
             var cheque_number = "{{loan_id}}";
-        var source = "/raw_demands_by_cheque_number/"+cheque_number;
+        var source = "/raw_mini_demands_by_cheque_number/"+cheque_number;
         console.log(source);
         var doc = new jsPDF();
         $.ajax({

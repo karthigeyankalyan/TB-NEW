@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="da0bb03c-275f-4eeb-800c-401a339e857e" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/templates/receipt_download_minis_by_cheque.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app.py" afterPath="$PROJECT_DIR$/src/app.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/templates/receipt_download_by_cheque.html" afterPath="$PROJECT_DIR$/src/templates/receipt_download_by_cheque.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -21,11 +23,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="app.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="app.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/app.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="1310" column="0" lean-forward="false" selection-start-line="1310" selection-start-column="0" selection-end-line="1310" selection-end-column="0" />
+            <state relative-caret-position="182">
+              <caret line="1679" column="0" lean-forward="true" selection-start-line="1679" selection-start-column="0" selection-end-line="1679" selection-end-column="0" />
               <folding>
                 <element signature="e#0#29#0" expanded="true" />
                 <element signature="e#32246#43326#0" expanded="false" />
@@ -34,11 +36,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="receipt_download_by_cheque.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="receipt_download_minis_by_cheque.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/templates/receipt_download_minis_by_cheque.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="187">
+              <caret line="11" column="31" lean-forward="false" selection-start-line="11" selection-start-column="31" selection-end-line="11" selection-end-column="31" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="receipt_download_by_cheque.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/templates/receipt_download_by_cheque.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+            <state relative-caret-position="119">
+              <caret line="10" column="46" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="216" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -66,10 +78,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>sanctio</find>
-      <find>demands_by_chequ</find>
-      <find>new_rece</find>
-      <find>new_</find>
       <find>loan_app</find>
       <find>creit</find>
       <find>trail</find>
@@ -96,6 +104,10 @@
       <find>raw_demands</find>
       <find>raw_demands_by_che</find>
       <find>json[i - 1]['cheq</find>
+      <find>mini_demands_b</find>
+      <find>raw_mini</find>
+      <find>raw_mini_demands</find>
+      <find>raw_demands_by_ch</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -109,7 +121,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/templates/CreditView.html" />
         <option value="$PROJECT_DIR$/src/templates/DebitView.html" />
         <option value="$PROJECT_DIR$/src/models/balance.py" />
         <option value="$PROJECT_DIR$/src/templates/BetweenDatesBank.html" />
@@ -158,8 +169,9 @@
         <option value="$PROJECT_DIR$/src/templates/post_login_loans.html" />
         <option value="$PROJECT_DIR$/src/templates/ViewAllMiniDemands.html" />
         <option value="$PROJECT_DIR$/src/templates/addFinancial.html" />
-        <option value="$PROJECT_DIR$/src/app.py" />
         <option value="$PROJECT_DIR$/src/templates/receipt_download_by_cheque.html" />
+        <option value="$PROJECT_DIR$/src/app.py" />
+        <option value="$PROJECT_DIR$/src/templates/receipt_download_minis_by_cheque.html" />
       </list>
     </option>
   </component>
@@ -519,13 +531,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/karthigeyan/Lib/site-packages/parso/python/errors.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="1025" column="6" lean-forward="false" selection-start-line="1025" selection-start-column="6" selection-end-line="1025" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/templates/CreditView.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
@@ -870,22 +875,30 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/templates/receipt_download_by_cheque.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="10" column="46" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="216" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/templates/receipt_download_minis_by_cheque.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="31" lean-forward="false" selection-start-line="11" selection-start-column="31" selection-end-line="11" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/app.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="1310" column="0" lean-forward="false" selection-start-line="1310" selection-start-column="0" selection-end-line="1310" selection-end-column="0" />
+        <state relative-caret-position="182">
+          <caret line="1679" column="0" lean-forward="true" selection-start-line="1679" selection-start-column="0" selection-end-line="1679" selection-end-column="0" />
           <folding>
             <element signature="e#0#29#0" expanded="true" />
             <element signature="e#32246#43326#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/templates/receipt_download_by_cheque.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>

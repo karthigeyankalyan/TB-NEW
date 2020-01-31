@@ -1600,7 +1600,7 @@ def download_receipt_by_cheque_minis(_id):
     user = User.get_by_email(email)
 
     if email is not None:
-        return render_template('receipt_download_by_cheque.html', user=user, loan_id=_id)
+        return render_template('receipt_download_minis_by_cheque.html', user=user, loan_id=_id)
     else:
         return render_template('login_fail.html', user=user)
 
