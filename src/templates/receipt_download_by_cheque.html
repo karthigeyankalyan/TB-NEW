@@ -81,12 +81,8 @@
                         var loan_id = json[j]["ro_number"];
                         var ann_id = json[j]["ann_id"];
 
-                        var year_part = ann_id.substr(ann_id.length - 4);
-
-                        var year_code = (parseInt(year_part) - 2000) + '' +
-                        (parseInt(year_part) - 1999);
-
-                        console.log(ann_id, year_part, year_code);
+                        var year_code = (moment(json[0]['loan_sanction_date']['$date']).year() - 2000) + '' +
+                        (moment(json[0]['loan_sanction_date']['$date']).year() - 1999);
 
                         rows.push([[json[j]['district_bank']], [json[j]['ann_id']], loan_id+'-'+cat+'-'+year_code, [Math.round(principal)],
                             [json[j]['interest_collected']], [parseInt(json[j]['penal_interest'])], [parseInt(json[j]['belated_interest'])],
