@@ -82,6 +82,7 @@
                         var ann_id = json[j]["ann_id"];
 
                         var year_part = ann_id.substr(ann_id.length - 4);
+                        console.log(year_part);
 
                         var year_code = (parseInt(year_part) - 2000) + '' +
                         (parseInt(year_part) - 1999);
