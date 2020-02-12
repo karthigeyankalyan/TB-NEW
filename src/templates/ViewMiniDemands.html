@@ -70,12 +70,12 @@
                                 json[i]['belated_interest_old'] = (delay_old * json[i]['opening_balance_due'] * parseInt(json[i]['roi'])) / (365 * 100);
 
                                 delay = moment().diff(moment(json[i]['demand_date']), 'days');
-                                json[i]['penal_interest'] = (delay * json[i]['Total Demand'] * 5) / (365 * 100);
+//                                json[i]['penal_interest'] = (delay * json[i]['Total Demand'] * 5) / (365 * 100);
                                 json[i]['delay'] = delay;
-                                json[i]['belated_interest'] = (delay * json[i]['Total Demand'] * parseInt(json[i]['roi'])) / (365 * 100);
+//                                json[i]['belated_interest'] = (delay * json[i]['Total Demand'] * parseInt(json[i]['roi'])) / (365 * 100);
 
-                                json[i]['penal_interest'] += json[i]['penal_interest_old'];
-                                json[i]['belated_interest'] += json[i]['belated_interest_old'];
+//                                json[i]['penal_interest'] += json[i]['penal_interest_old'];
+//                                json[i]['belated_interest'] += json[i]['belated_interest_old'];
                                 json[i]['Remarks'] = "Demand Payment not yet made; Penal Interest shown if payment is made today";
                                 json[i]['closing_balance_principal_due'] = parseInt(json[i]['principal_demand']) - parseInt(json[i]['principal_collected']);
                                 json[i]['closing_balance_interest_due'] = parseInt(json[i]['interest_demand']) - parseInt(json[i]['interest_collected']);
