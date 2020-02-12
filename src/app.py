@@ -2078,6 +2078,7 @@ def raw_trail_balance(start_date, end_date):
                              datetime.now().time())
     end = datetime.combine(datetime.strptime(end_date, '%Y-%m-%d').date(),
                            datetime.now().time())
+
     all_trans_dict = Database.find("accounts", {"invoice_date": {"$gte": start, "$lt": end}})
 
     for tran in all_trans_dict:
