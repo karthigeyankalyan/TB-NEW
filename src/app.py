@@ -308,7 +308,7 @@ def multi_receipt_form(user_id):
             account, account_head, clearing_balance_debit, clearing_balance_credit = None, None, None, None
 
             for i in range(int(inv_id) - 1):
-                print(inv_id)
+                print(i)
 
             for i in range(int(inv_id)-1):
                 s_no = "sno" + str(i)
