@@ -88,6 +88,15 @@
                                             json[i]['belated_interest'] += parseInt(json[i]['belated_interest_old']);
                                         }
                                     }
+                                    if (json[i]['cheque_amount'] > parseInt(json[i]['interest_demand'])) {
+                                        json[i]['interest_collected'] =  parseInt(json[i]['interest_demand']);
+                                        json[i]['post_interest_deduction'] = parseInt(json[i]['cheque_amount']) - json[i]['interest_collected'];
+                                        json[i]['service_charge'] = parseInt(json[i]['interest_collected'])*(3/parseInt(json[i]['roi']));
+                                        if (json[i]['post_interest_deduction'] > (parseInt(json['penal_interest'])+parseInt(json['belated_interest']))) {
+                                            json[i]['post_penal_interest_deduction'] = json[i]['post_interest_deduction'] - (parseInt(json['penal_interest'])+parseInt(json['belated_interest']))
+                                            json[i]['principal_collected'] = json[i]['post_penal_interest_deduction'] + json[i]['service_charge']
+                                        }
+                                    }
                                 }
                                 json[i]['Remarks'] = "Demand Payment not yet made; Penal Interest shown if payment is made today";
 
