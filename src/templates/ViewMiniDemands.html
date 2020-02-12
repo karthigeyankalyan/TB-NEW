@@ -77,8 +77,8 @@
                                 json[i]['penal_interest'] += json[i]['penal_interest_old'];
                                 json[i]['belated_interest'] += json[i]['belated_interest_old'];
                                 json[i]['Remarks'] = "Demand Payment not yet made; Penal Interest shown if payment is made today";
-                                json[i]['closing_balance_principal_due'] = parseInt(json[i]['Total Principal Demand']) - (parseInt(json[i]['interest_demand']) * 3 / parseInt(json[i]['roi']));
-                                json[i]['closing_balance_interest_due'] = parseInt(json[i]['Total Interest Demand']);
+                                json[i]['closing_balance_principal_due'] = parseInt(json[i]['principal_demand']) - parseInt(json[i]['principal_collected']);
+                                json[i]['closing_balance_interest_due'] = parseInt(json[i]['interest_demand']) - parseInt(json[i]['interest_collected']);
                                 json[i]['closing_balance_principal_ndue'] = parseInt(json[i]['loan_amount']) - parseInt(json[i]['Total Principal Demand']);
                             }
                         }
