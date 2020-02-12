@@ -93,14 +93,14 @@
 
 
                                 // The Closing Balance Principal Due here is the final amount required to be paid in this demand
-                                json[i]['closing_balance_principal_due'] = parseInt(json[i]['Total Principal Demand']);
+                                json[i]['closing_balance_principal_due'] = parseInt(json[i]['Total Principal Demand']) - parseInt(json[i]['principal_collected']);
     //                                - (parseInt(json[i]['interest_demand']) * 3 / parseInt(json[i]['roi']));
 
                                 // The Closing Balance Interest Due here is the final amount required to be paid in this demand
-                                json[i]['closing_balance_interest_due'] = parseInt(json[i]['Total Interest Demand']);
+                                json[i]['closing_balance_interest_due'] = parseInt(json[i]['Total Interest Demand']) - parseInt(json[i]['interest_collected']);
 
                                 // This will be the Principal amount left to be paid if this demand is fully satisfied
-                                json[i]['closing_balance_principal_ndue'] = parseInt(json[i]['loan_amount']) - parseInt(json[i]['Total Principal Demand']);
+                                json[i]['closing_balance_principal_ndue'] = parseInt(json[i]['loan_amount']) - parseInt(json[i]['principal_collected']);
 //                            }
                         }
 
