@@ -1410,7 +1410,8 @@ def mini_demand_form(_id, belated_int, penal_int, p_due, p_ndue, i_due, old_inte
 
             previous_mini_demands = Database.find("mDemands", {"demand_id": _id})
 
-            print(type(previous_mini_demands))
+            print(previous_mini_demands.count())
+            print(previous_mini_demands[0])
 
             # for demand in demands[0:1]:
             #     district = demand['district']
