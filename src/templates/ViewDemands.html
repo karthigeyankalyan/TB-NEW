@@ -35,7 +35,7 @@
                                     json[i]['opening_balance_interest_due'] = parseInt(json[i-1]['closing_balance_interest_due']);
                                     json[i]['opening_balance_principal_ndue'] = parseInt(json[i-1]['closing_balance_principal_ndue']);
                                     if (i === 1) {
-                                        console.log(json[i])
+                                        console.log(json[i], json[i-1])
                                     }
                                 }
 
