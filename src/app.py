@@ -1509,7 +1509,8 @@ def mini_demand_form(_id, belated_int, penal_int, p_due, p_ndue, i_due, old_inte
 
             Demand.update_main_demand(demand_id=_id,
                                       principal_collected=int(principal_paid)+int(main_demand_principal_collected),
-                                      interest_collected=int(interest_paid)+int(main_demand_interest_collected),
+                                      interest_collected=int(float(interest_paid)) +
+                                                         int(float(main_demand_interest_collected)),
                                       penal_interest=int(main_demand_penal_interest)+int(penal_interest),
                                       belated_interest=int(main_demand_belated_interest) + int(belated_interest),
                                       service_charge=int(main_demand_service_charge)+int(service_charge),
