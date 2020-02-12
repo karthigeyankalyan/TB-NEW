@@ -18,10 +18,10 @@
 
                         for(var i = 0; i<json.length; i++) {
 
-//                            if (json[i]['cheque_date']) {
-//                            }
-//
-//                            else {
+                            if (json[i]['cheque_date']) {
+                            }
+
+                            else {
                                 json[i]['demand_number'] = parseInt(json[i]['demand_number']);
                                 if (i === 0 ) {
                                         json[0]['opening_balance_principal_due'] = 0;
@@ -93,7 +93,7 @@
                                         json[i]['service_charge'] = parseInt(json[i]['interest_collected'])*(3/parseInt(json[i]['roi']));
                                         if (json[i]['post_interest_deduction'] > (parseInt(json[i]['penal_interest'])+parseInt(json[i]['belated_interest']))) {
                                             json[i]['post_penal_interest_deduction'] = json[i]['post_interest_deduction'] - (parseInt(json['penal_interest'])+parseInt(json['belated_interest']))
-                                            json[i]['principal_collected'] = json[i]['post_penal_interest_deduction'] + json[i]['service_charge'];
+                                            json[i]['principal_collected'] = json[i]['post_penal_interest_deduction'] + json[i]['service_charge']
                                             console.log(i, parseInt(json['penal_interest']), parseInt(json['belated_interest']));
                                         }
                                     }
@@ -110,7 +110,7 @@
 
                                 // This will be the Principal amount left to be paid if this demand is fully satisfied
                                 json[i]['closing_balance_principal_ndue'] = parseInt(json[i]['loan_amount']) - parseInt(json[i]['principal_collected']);
-//                            }
+                            }
                         }
 
                         console.log(json);
