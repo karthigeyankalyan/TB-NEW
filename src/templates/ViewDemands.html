@@ -19,10 +19,10 @@
 
                         for(var i = 0; i<json.length; i++) {
 
-                            if (json[i]['cheque_date']) {
-                            }
-
-                            else {
+//                            if (json[i]['cheque_date']) {
+//                            }
+//
+//                            else {
                                 json[i]['demand_number'] = parseInt(json[i]['demand_number']);
                                 if (i === 0 ) {
                                         json[0]['opening_balance_principal_due'] = 0;
@@ -101,7 +101,7 @@
 
                                 // This will be the Principal amount left to be paid if this demand is fully satisfied
                                 json[i]['closing_balance_principal_ndue'] = parseInt(json[i]['loan_amount']) - parseInt(json[i]['Total Principal Demand']);
-                            }
+//                            }
                         }
 
                         var tbl = $("<table class='table table-bordered table-dark' id='demandDetails'/>");
@@ -151,7 +151,7 @@
                                 }
 
                                 if (moment().isAfter(moment(json[j]["demand_date"]))) {
-                                    var cheque_date = moment(json[j]["cheque_date"]).format('YYYY-MM-DD');
+                                    var cheque_date = moment(json[j]["cheque_date"]['$date']).format('YYYY-MM-DD');
                                 }
                                 else {
                                     cheque_date = 'Due Date Not Yet Crossed'
