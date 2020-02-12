@@ -51,44 +51,8 @@
             url: source,
             contentType: "application/json",
             dataType: 'json',
-            success: function (json) {
+            success: function (jsonFunc) {
                 console.log(json);
-                    if(json[0]['loan_category'] === 'GTL (General Term Loan)') {
-                        var cat = "GTL";
-                    }
-                    else if(json[0]['loan_category'] === 'NSS (New-Swarnima Scheme)') {
-                        cat = "NSS";
-                    }
-                    else if(json[0]['loan_category'] === 'MCG (Micro-Credit Gents)') {
-                        cat = "MCR";
-                    }
-                    else if(json[0]['loan_category'] === 'MSY (Mahila Samridhi Yojana)') {
-                        cat = "MSY";
-                    }
-
-                        var $accountHead = $("#loanCategory");
-
-                        $accountHead.each(function() {
-                            if (this.selectedIndex === 0) {
-                                populatePage(json);
-                            }
-                        });
-
-                        $accountHead.change(function () {
-                            var selectedbucket = this.value;
-                            //filter based on  selected year.
-                            if (selectedbucket==="All") {
-                                populatePage(json);
-                            }
-                            else {
-                                selectedAccountHead = jQuery.grep(json, function (account) {
-                                    return account.loan_category === selectedbucket;
-                                });
-                                populatePage(selectedAccountHead);
-                            }
-                        });
-
-                        function populatePage(jsonFunc) {
                             $("#loansDetails").find("tbody").empty();
                             var tbl = $("<table class='table table-bordered table-dark' id='loansDetails'/>");
                             $("#loansList").append(tbl);
@@ -117,7 +81,6 @@
                                     $("#loansDetails").append(row);
                                 }
                             }
-                        }
                 },
             error: function (e) {
                 alert("error");
