@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="da0bb03c-275f-4eeb-800c-401a339e857e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/templates/inside_multi_ledger_View.html" afterPath="$PROJECT_DIR$/src/templates/inside_multi_ledger_View.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app.py" afterPath="$PROJECT_DIR$/src/app.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -41,26 +41,26 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="app.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="app.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/app.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-452">
-              <caret line="303" column="16" lean-forward="false" selection-start-line="303" selection-start-column="12" selection-end-line="303" selection-end-column="16" />
+            <state relative-caret-position="117">
+              <caret line="478" column="70" lean-forward="false" selection-start-line="478" selection-start-column="70" selection-end-line="478" selection-end-column="70" />
               <folding>
                 <element signature="e#0#29#0" expanded="true" />
                 <element signature="e#3802#14888#0" expanded="false" />
                 <element signature="e#17561#29215#0" expanded="false" />
-                <element signature="e#32316#43396#0" expanded="false" />
+                <element signature="e#32340#43420#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="inside_multi_ledger_View.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="inside_multi_ledger_View.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/templates/inside_multi_ledger_View.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="83">
-              <caret line="65" column="0" lean-forward="false" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
+            <state relative-caret-position="100">
+              <caret line="66" column="0" lean-forward="false" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
               <folding>
                 <marker date="1581504496217" expanded="true" signature="5700:5739" ph="..." />
                 <marker date="1581504496217" expanded="true" signature="5821:5860" ph="..." />
@@ -275,10 +275,10 @@
         <option value="$PROJECT_DIR$/src/templates/receipt_download_by_cheque.html" />
         <option value="$PROJECT_DIR$/src/common/database.py" />
         <option value="$PROJECT_DIR$/src/templates/multi_receipt_form.html" />
-        <option value="$PROJECT_DIR$/src/app.py" />
         <option value="$PROJECT_DIR$/src/templates/post_login_accounts.html" />
         <option value="$PROJECT_DIR$/src/templates/multi_ledger_View.html" />
         <option value="$PROJECT_DIR$/src/templates/inside_multi_ledger_View.html" />
+        <option value="$PROJECT_DIR$/src/app.py" />
       </list>
     </option>
   </component>
@@ -1084,23 +1084,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-452">
-          <caret line="303" column="16" lean-forward="false" selection-start-line="303" selection-start-column="12" selection-end-line="303" selection-end-column="16" />
-          <folding>
-            <element signature="e#0#29#0" expanded="true" />
-            <element signature="e#3802#14888#0" expanded="false" />
-            <element signature="e#17561#29215#0" expanded="false" />
-            <element signature="e#32316#43396#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/templates/inside_multi_ledger_View.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="83">
-          <caret line="65" column="0" lean-forward="false" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
+        <state relative-caret-position="100">
+          <caret line="66" column="0" lean-forward="false" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
           <folding>
             <marker date="1581504496217" expanded="true" signature="5700:5739" ph="..." />
             <marker date="1581504496217" expanded="true" signature="5821:5860" ph="..." />
@@ -1108,6 +1095,19 @@
             <marker date="1581504496217" expanded="true" signature="6063:6102" ph="..." />
             <marker date="1581504496217" expanded="true" signature="6184:6223" ph="..." />
             <marker date="1581504496217" expanded="true" signature="6306:6345" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="117">
+          <caret line="478" column="70" lean-forward="false" selection-start-line="478" selection-start-column="70" selection-end-line="478" selection-end-column="70" />
+          <folding>
+            <element signature="e#0#29#0" expanded="true" />
+            <element signature="e#3802#14888#0" expanded="false" />
+            <element signature="e#17561#29215#0" expanded="false" />
+            <element signature="e#32340#43420#0" expanded="false" />
           </folding>
         </state>
       </provider>
