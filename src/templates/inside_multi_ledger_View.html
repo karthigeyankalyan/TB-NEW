@@ -60,10 +60,9 @@
                             var th2 = "<th style='text-align:center;vertical-align:middle'>" + "Credit/Debit" + "</th>";
                             var th3 = "<th style='text-align:center;vertical-align:middle'>" + "Account Head" + "</th>";
                             var th5 = "<th style='text-align:center;vertical-align:middle'>" + "Bank Account" + "</th>";
-                            var th6 = "<th style='text-align:center;vertical-align:middle'>" + "Amount" + "</th>";
-                            var th7 = "<th style='text-align:center;vertical-align:middle'>" + "Uploaded by" + "</th>";
-                            var th8 = "<th style='text-align:center;vertical-align:middle'>" + "Update" + "</th>";
-                            $("#creditsDetails").append(hr + th1 + th2 + th3 + th5 + th6 + th7 + th8);
+                            var th6 = "<th style='text-align:center;vertical-align:middle'>" + "Debit Balance" + "</th>";
+                            var th7 = "<th style='text-align:center;vertical-align:middle'>" + "Credit Balance" + "</th>";
+                            $("#creditsDetails").append(hr + th1 + th2 + th3 + th5 + th6 + th7);
                             for (var j = 0; j < jsonFunc.length; j++) {
                                 {
                                     var url = 'updateReceipt/'+jsonFunc[j]['_id'];
@@ -72,9 +71,8 @@
                                         '<td>'+jsonFunc[j]["nature_of_transaction"]+'</td>'+
                                         '<td>'+jsonFunc[j]["account_head"] +'</td>'+
                                         '<td>'+jsonFunc[j]["bank_account"] +'</td>'+
-                                        '<td>'+jsonFunc[j]["amount"] +'</td>'+
-                                        '<td>'+jsonFunc[j]["user_name"] +'</td>'+
-                                        '<td><button><a href="' + url + '">Update Receipt</a></button></td>');
+                                        '<td>'+jsonFunc[j]["clearing_debit_balance"] +'</td>'+
+                                        '<td>'+jsonFunc[j]["clearing_debit_balance"] +'</td>');
                                     $("#creditsDetails").append(row);
                                 }
                             }
