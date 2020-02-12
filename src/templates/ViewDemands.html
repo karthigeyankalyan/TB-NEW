@@ -94,7 +94,7 @@
                                         if (json[i]['post_interest_deduction'] > (parseInt(json['penal_interest'])+parseInt(json['belated_interest']))) {
                                             json[i]['post_penal_interest_deduction'] = json[i]['post_interest_deduction'] - (parseInt(json['penal_interest'])+parseInt(json['belated_interest']))
                                             json[i]['principal_collected'] = json[i]['post_penal_interest_deduction'] + json[i]['service_charge']
-                                            console.log(i);
+                                            console.log(i, parseInt(json['penal_interest']), parseInt(json['belated_interest']));
                                         }
                                     }
                                 }
