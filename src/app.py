@@ -1407,6 +1407,15 @@ def mini_demand_form(_id, belated_int, penal_int, p_due, p_ndue, i_due, old_inte
     if email is not None:
         if request.method == 'GET':
             user = User.get_by_email(email)
+
+            previous_mini_demands = Database.find("mDemands", {"demand_id": _id})
+
+            print(type(previous_mini_demands))
+
+            # for demand in demands[0:1]:
+            #     district = demand['district']
+            #
+            #
             return render_template('AddMiniDemand.html', user=user, demand_id=_id, belated_int=belated_int,
                                    penal_int=penal_int, p_due=p_due, p_ndue=p_ndue, i_due=i_due,
                                    old_interest=old_interest, demand_date=demand_date)
