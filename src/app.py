@@ -307,11 +307,12 @@ def multi_receipt_form(user_id):
 
             account, account_head, clearing_balance_debit, clearing_balance_credit = None, None, None, None
 
-            for i in range(int(inv_id)):
+            for i in range(int(inv_id)-1):
                 s_no = "sno" + str(i)
                 acchead = "acchead" + str(i)
                 cl_debit_balance = "debit_amount" + str(i)
                 cl_credit_balance = "credit_amount" + str(i)
+                print(i)
 
                 serial_no = request.form[s_no]
                 account_head = request.form[acchead]
@@ -473,8 +474,8 @@ def multi_receipt_form(user_id):
                     cl_debit_old = int(result_object['Cl']['Debit Bal'])
 
                 Account.update_ledger_balance(head_of_accounts=account_head,
-                                              credit_balance=clearing_balance_credit+cl_credit_old,
-                                              debit_balance=clearing_balance_debit + cl_debit_old)
+                                              credit_balance=int(clearing_balance_credit) + int(cl_credit_old),
+                                              debit_balance=int(clearing_balance_debit) + int(cl_debit_old))
 
                 account = Account(invoice_date=invoice_date, nature_of_transaction=nature_of_transaction,
                                   account_head=account_head, bank_account=bank_account,

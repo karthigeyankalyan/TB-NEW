@@ -97,7 +97,7 @@
         </div>
     </div>
 
-    <input style="display: none" type="date" value="" id="invID" name="invID">
+    <input style="display: none" type="text" value="" id="invID" name="invID">
 
     <button type="submit" class="btn btn-success">Save Bill Details</button>
 
@@ -177,6 +177,7 @@
     }
 
     function populateTotals() {
+        document.getElementById("invID").value = i;
         console.log(i, document.getElementById("invID").value);
         var total_debit_amount = 0;
         var total_credit_amount = 0;
