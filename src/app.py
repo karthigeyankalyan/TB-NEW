@@ -477,6 +477,7 @@ def multi_receipt_form(user_id):
                                               credit_balance=int(clearing_balance_credit) + int(cl_credit_old),
                                               debit_balance=int(clearing_balance_debit) + int(cl_debit_old))
 
+                print(nature_of_transaction, i)
                 account = Account(invoice_date=invoice_date, nature_of_transaction=nature_of_transaction,
                                   account_head=account_head, bank_account=bank_account,
                                   user_id=user_id, user_name=user_name, doc_account_head=doc_account_head,
