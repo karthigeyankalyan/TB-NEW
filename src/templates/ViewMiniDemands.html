@@ -31,56 +31,57 @@
                             if (!json[i]['cheque_date']) {
                                 json[i]['cheque_date'] = moment();
                             }
-                                json[i]['demand_number'] = parseInt(json[i]['demand_number']);
-                                if (i === 0) {
-                                    json[0]['opening_balance_principal_due'] = p_due;
-                                    json[0]['opening_balance_interest_due'] = i_due;
-                                    json[0]['opening_balance_principal_ndue'] = p_ndue;
-                                }
+                            json[i]['demand_number'] = parseInt(json[i]['demand_number']);
+                            if (i === 0) {
+                                json[0]['opening_balance_principal_due'] = p_due;
+                                json[0]['opening_balance_interest_due'] = i_due;
+                                json[0]['opening_balance_principal_ndue'] = p_ndue;
+                            }
 
-                                if (i !== 0) {
-                                    json[i]['opening_balance_principal_due'] = parseInt(json[i - 1]['closing_balance_principal_due']);
-                                    json[i]['opening_balance_interest_due'] = parseInt(json[i - 1]['closing_balance_interest_due']);
-                                    json[i]['opening_balance_principal_ndue'] = parseInt(json[i - 1]['closing_balance_principal_ndue']);
-                                }
+                            if (i !== 0) {
+                                json[i]['opening_balance_principal_due'] = parseInt(json[i - 1]['closing_balance_principal_due']);
+                                json[i]['opening_balance_interest_due'] = parseInt(json[i - 1]['closing_balance_interest_due']);
+                                json[i]['opening_balance_principal_ndue'] = parseInt(json[i - 1]['closing_balance_principal_ndue']);
+                            }
 
-                                if (json[i]["cheque_date"] !== null) {
-                                    json[i]["cheque_date"] = moment(json[i]["cheque_date"]['$date']).format('YYYY-MM-DD');
-                                }
+                            if (json[i]["cheque_date"] !== null) {
+                                json[i]["cheque_date"] = moment(json[i]["cheque_date"]['$date']).format('YYYY-MM-DD');
+                            }
 
 
-                                json[i]['cheque_date'] = moment();
-                                json[i]['Total Principal Demand'] = parseInt(json[i]['opening_balance_principal_due']);
-                                json[i]['Total Interest Demand'] = parseInt(json[i]['opening_balance_interest_due']);
-                                json[i]['Total Demand'] = json[i]['Total Principal Demand'] + json[i]['Total Interest Demand'];
+                            json[i]['cheque_date'] = moment();
+                            json[i]['Total Principal Demand'] = parseInt(json[i]['opening_balance_principal_due']);
+                            json[i]['Total Interest Demand'] = parseInt(json[i]['opening_balance_interest_due']);
+                            json[i]['Total Demand'] = json[i]['Total Principal Demand'] + json[i]['Total Interest Demand'];
 
-                                if (parseInt(json[i]['m_demand_no']) === 1) {
-                                    var delay = moment().diff(moment(json[i]['demand_date']), 'days');
-                                    json[i]['delay'] = delay;
-                                    json[i]['penal_interest'] = json[i]['penal_interest'];
-                                    json[i]['belated_interest'] = json[i]['penal_interest'];
-                                    json[i]['closing_balance_principal_due'] = parseInt(json[i]['closing_balance_principal_due']);
-                                    json[i]['closing_balance_interest_due'] = parseInt(json[i]['closing_balance_interest_due']);
-                                    json[i]['closing_balance_principal_ndue'] = parseInt(json[i]['loan_amount']) - parseInt(json[i]['Total Principal Demand']);
-                                } else {
-                                    json[i]['opening_balance_due'] = json[i]['opening_balance_principal_due'] + json[i]['opening_balance_interest_due'];
-                                    var delay_old = moment().diff(moment(json[i - 1]['cheque_date']), 'days');
-                                    json[i]['delay_old'] = delay_old;
-                                    json[i]['penal_interest_old'] = (delay_old * json[i]['opening_balance_due'] * 5) / (365 * 100);
-                                    json[i]['belated_interest_old'] = (delay_old * json[i]['opening_balance_due'] * parseInt(json[i]['roi'])) / (365 * 100);
+                            if (parseInt(json[i]['m_demand_no']) === 1) {
+                                var delay = moment().diff(moment(json[i]['demand_date']), 'days');
+                                json[i]['delay'] = delay;
+                                json[i]['penal_interest'] = json[i]['penal_interest'];
+                                json[i]['belated_interest'] = json[i]['penal_interest'];
+                                json[i]['closing_balance_principal_due'] = parseInt(json[i]['closing_balance_principal_due']);
+                                json[i]['closing_balance_interest_due'] = parseInt(json[i]['closing_balance_interest_due']);
+                                json[i]['closing_balance_principal_ndue'] = parseInt(json[i]['loan_amount']) - parseInt(json[i]['Total Principal Demand']);
+                            } else {
+                                json[i]['opening_balance_due'] = json[i]['opening_balance_principal_due'] + json[i]['opening_balance_interest_due'];
+                                var delay_old = moment().diff(moment(json[i - 1]['cheque_date']), 'days');
+                                json[i]['delay_old'] = delay_old;
+                                json[i]['penal_interest_old'] = (delay_old * json[i]['opening_balance_due'] * 5) / (365 * 100);
+                                json[i]['belated_interest_old'] = (delay_old * json[i]['opening_balance_due'] * parseInt(json[i]['roi'])) / (365 * 100);
 
-                                    delay = moment().diff(moment(json[i]['demand_date']), 'days');
-                                    json[i]['penal_interest'] = (delay * json[i]['Total Demand'] * 5) / (365 * 100);
-                                    json[i]['delay'] = delay;
-                                    json[i]['belated_interest'] = (delay * json[i]['Total Demand'] * parseInt(json[i]['roi'])) / (365 * 100);
+                                delay = moment().diff(moment(json[i]['demand_date']), 'days');
+                                json[i]['penal_interest'] = (delay * json[i]['Total Demand'] * 5) / (365 * 100);
+                                json[i]['delay'] = delay;
+                                json[i]['belated_interest'] = (delay * json[i]['Total Demand'] * parseInt(json[i]['roi'])) / (365 * 100);
 
-                                    json[i]['penal_interest'] += json[i]['penal_interest_old'];
-                                    json[i]['belated_interest'] += json[i]['belated_interest_old'];
+                                json[i]['penal_interest'] += json[i]['penal_interest_old'];
+                                json[i]['belated_interest'] += json[i]['belated_interest_old'];
                                 json[i]['Remarks'] = "Demand Payment not yet made; Penal Interest shown if payment is made today";
                                 json[i]['closing_balance_principal_due'] = parseInt(json[i]['Total Principal Demand']) - (parseInt(json[i]['interest_demand']) * 3 / parseInt(json[i]['roi']));
                                 json[i]['closing_balance_interest_due'] = parseInt(json[i]['Total Interest Demand']);
                                 json[i]['closing_balance_principal_ndue'] = parseInt(json[i]['loan_amount']) - parseInt(json[i]['Total Principal Demand']);
-                                }
+                            }
+                        }
 
                                 var tbl = $("<table class='table table-bordered table-dark' id='demandDetails'/>");
                                 $("#demandList").append(tbl);
@@ -130,7 +131,6 @@
                                         $("#demandDetails").append(row);
                                 }
                         }
-                    }
                 },
             error: function (e) {
                 alert("error");
