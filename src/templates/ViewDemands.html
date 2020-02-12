@@ -241,6 +241,12 @@
                                     cheque_date = 'Due Date Not Yet Crossed'
                                 }
 
+                                if (json[j]["demand_date"]) {
+                                    json[j]["demand_date"] = moment(json[j]["demand_date"]['$date'].format('DD-MM-YYYY'));
+                                } else {
+                                    json[j]["demand_date"] = json[j]["demand_date"];
+                                }
+
                                 if (json[j]["belated_interest"] < 0) {
                                     json[j]["belated_interest"] = 0;
                                     json[j]["penal_interest"] = 0;
@@ -256,7 +262,7 @@
                                     +'/'+total_old_interest;
                                 var row = $('<tr></tr>').html('<td>' +
                                     + parseInt(json[j]["demand_number"]) +'</td>'+
-                                    '<td>'+moment(json[j]["demand_date"]['$date'].format('DD-MM-YYYY'))+'</td>'+
+                                    '<td>'+json[j]['demand_date]'+'</td>'+
                                     '<td>'+cheque_date+'</td>'+
                                     '<td>'+json[j]["loan_amount"]+'</td>'+
                                     '<td>'+json[j]["belated_interest"]+'</td>'+
