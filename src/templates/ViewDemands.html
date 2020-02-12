@@ -83,6 +83,7 @@
                                             json[i]['belated_interest'] += parseInt(json[i]['belated_interest_old']);
                                         }
                                     }
+                                    console.log(i, parseInt(json[i]['penal_interest']), parseInt(json[i]['belated_interest']));
                                     if (json[i]['cheque_amount'] > parseInt(json[i]['interest_demand'])) {
                                         json[i]['interest_collected'] = parseInt(json[i]['interest_demand']);
                                         json[i]['post_interest_deduction'] = parseInt(json[i]['cheque_amount']) - json[i]['interest_collected'];
@@ -90,7 +91,6 @@
                                         if (json[i]['post_interest_deduction'] > (parseInt(json[i]['penal_interest']) + parseInt(json[i]['belated_interest']))) {
                                             json[i]['post_penal_interest_deduction'] = json[i]['post_interest_deduction'] - (parseInt(json['penal_interest']) + parseInt(json['belated_interest']))
                                             json[i]['principal_collected'] = json[i]['post_penal_interest_deduction'] + json[i]['service_charge']
-                                            console.log(i, parseInt(json['penal_interest']), parseInt(json['belated_interest']));
                                         }
                                     }
                                 }
@@ -239,12 +239,6 @@
                                 }
                                 else {
                                     cheque_date = 'Due Date Not Yet Crossed'
-                                }
-
-                                if (json[j]["demand_date"]) {
-                                    json[j]["demand_date"] = moment(json[j]["demand_date"]['$date'].format('DD-MM-YYYY'));
-                                } else {
-                                    json[j]["demand_date"] = json[j]["demand_date"];
                                 }
 
                                 if (json[j]["belated_interest"] < 0) {
