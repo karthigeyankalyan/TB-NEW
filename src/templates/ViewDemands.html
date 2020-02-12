@@ -19,40 +19,115 @@
                         for(var i = 0; i<json.length; i++) {
 
                             if (json[i]['cheque_date']) {
+                                json[i]['demand_number'] = parseInt(json[i]['demand_number']);
+                                if (i === 0) {
+                                    json[0]['opening_balance_principal_due'] = 0;
+                                    json[0]['opening_balance_interest_due'] = 0;
+                                    json[0]['opening_balance_principal_ndue'] = parseInt(json[0]['loan_amount']);
+                                }
+
+                                if (i !== 0) {
+                                    json[i]['opening_balance_principal_due'] = parseInt(json[i - 1]['closing_balance_principal_due']);
+                                    json[i]['opening_balance_interest_due'] = parseInt(json[i - 1]['closing_balance_interest_due']);
+                                    json[i]['opening_balance_principal_ndue'] = parseInt(json[i - 1]['closing_balance_principal_ndue']);
+                                    if (i === 1) {
+                                        console.log(json[i], json[i - 1])
+                                    }
+                                }
+
+                                if (json[i]["cheque_date"] !== null) {
+                                    json[i]["cheque_date"] = moment(json[i]["cheque_date"]['$date']).format('YYYY-MM-DD');
+                                }
+
+                                if (json[i]["demand_date"] !== null) {
+                                    json[i]["demand_date"] = moment(json[i]["demand_date"]['$date']).format('YYYY-MM-DD');
+                                }
+
+                                json[i]['Total Principal Demand'] = parseInt(json[i]['principal_demand']) + parseInt(json[i]['opening_balance_principal_due']);
+                                json[i]['Total Interest Demand'] = parseInt(json[i]['interest_demand']) + parseInt(json[i]['opening_balance_interest_due']);
+                                json[i]['Total Demand'] = json[i]['Total Principal Demand'] + json[i]['Total Interest Demand'];
+
+                                if (json[i]['demand_date']) {
+                                    if (moment(json[i]['demand_date']).isBefore(moment())) {
+                                        if (json[i]['demand_number'] === 1) {
+                                            delay = moment().diff(moment(json[i]['demand_date']), 'days');
+                                            json[i]['delay'] = delay;
+                                            json[i]['penal_interest'] = (delay * json[i]['Total Demand'] * 5) / (365 * 100);
+                                            json[i]['belated_interest'] = (delay * json[i]['Total Demand'] * parseInt(json[i]['roi'])) / (365 * 100);
+                                        }
+                                        else {
+                                            json[i]['opening_balance_due'] = json[i]['opening_balance_principal_due'] + json[i]['opening_balance_interest_due'];
+
+                                            if (json[i - 1]['cheque_date']) {
+                                                prev_date = json[i - 1]['cheque_date'];
+                                            } else {
+                                                prev_date = json[i - 1]['demand_date']
+                                            }
+
+                                            delay_old = moment(json[i]['demand_date']).diff(moment(prev_date), 'days');
+                                            json[i]['delay_old'] = delay_old;
+                                            json[i]['penal_interest_old'] = (delay_old * json[i]['opening_balance_due'] * 5) / (365 * 100);
+                                            json[i]['belated_interest_old'] = (delay_old * json[i]['opening_balance_due'] * parseInt(json[i]['roi'])) / (365 * 100);
+                                            total_old_interest = parseInt(json[i]['penal_interest_old']) + parseInt(json[i]['belated_interest_old']);
+
+                                            if (!total_old_interest) {
+                                                total_old_interest = 0;
+                                            }
+
+                                            delay = moment().diff(moment(json[i]['demand_date']), 'days');
+                                            json[i]['delay'] = delay;
+                                            json[i]['penal_interest'] = (delay * json[i]['Total Demand'] * 5) / (365 * 100);
+                                            json[i]['belated_interest'] = (delay * json[i]['Total Demand'] * parseInt(json[i]['roi'])) / (365 * 100);
+
+                                            json[i]['penal_interest'] += parseInt(json[i]['penal_interest_old']);
+                                            json[i]['belated_interest'] += parseInt(json[i]['belated_interest_old']);
+                                        }
+                                    }
+                                    if (json[i]['cheque_amount'] > parseInt(json[i]['interest_demand'])) {
+                                        json[i]['interest_collected'] = parseInt(json[i]['interest_demand']);
+                                        json[i]['post_interest_deduction'] = parseInt(json[i]['cheque_amount']) - json[i]['interest_collected'];
+                                        json[i]['service_charge'] = parseInt(json[i]['interest_collected']) * (3 / parseInt(json[i]['roi']));
+                                        if (json[i]['post_interest_deduction'] > (parseInt(json[i]['penal_interest']) + parseInt(json[i]['belated_interest']))) {
+                                            json[i]['post_penal_interest_deduction'] = json[i]['post_interest_deduction'] - (parseInt(json['penal_interest']) + parseInt(json['belated_interest']))
+                                            json[i]['principal_collected'] = json[i]['post_penal_interest_deduction'] + json[i]['service_charge']
+                                            console.log(i, parseInt(json['penal_interest']), parseInt(json['belated_interest']));
+                                        }
+                                    }
+                                }
                             }
 
                             else {
                                 json[i]['demand_number'] = parseInt(json[i]['demand_number']);
-                                if (i === 0 ) {
-                                        json[0]['opening_balance_principal_due'] = 0;
-                                        json[0]['opening_balance_interest_due'] = 0;
-                                        json[0]['opening_balance_principal_ndue'] = parseInt(json[0]['loan_amount']);
+                                if (i === 0) {
+                                    json[0]['opening_balance_principal_due'] = 0;
+                                    json[0]['opening_balance_interest_due'] = 0;
+                                    json[0]['opening_balance_principal_ndue'] = parseInt(json[0]['loan_amount']);
                                 }
 
-                                if (i !== 0 ) {
-                                    json[i]['opening_balance_principal_due'] = parseInt(json[i-1]['closing_balance_principal_due']);
-                                    json[i]['opening_balance_interest_due'] = parseInt(json[i-1]['closing_balance_interest_due']);
-                                    json[i]['opening_balance_principal_ndue'] = parseInt(json[i-1]['closing_balance_principal_ndue']);
+                                if (i !== 0) {
+                                    json[i]['opening_balance_principal_due'] = parseInt(json[i - 1]['closing_balance_principal_due']);
+                                    json[i]['opening_balance_interest_due'] = parseInt(json[i - 1]['closing_balance_interest_due']);
+                                    json[i]['opening_balance_principal_ndue'] = parseInt(json[i - 1]['closing_balance_principal_ndue']);
                                     if (i === 1) {
-                                        console.log(json[i], json[i-1])
+                                        console.log(json[i], json[i - 1])
                                     }
                                 }
 
-                                if(json[i]["cheque_date"] !== null) {
+                                if (json[i]["cheque_date"] !== null) {
                                     json[i]["cheque_date"] = moment(json[i]["cheque_date"]['$date']).format('YYYY-MM-DD');
                                 }
 
-                                if(json[i]["demand_date"] !== null) {
+                                if (json[i]["demand_date"] !== null) {
                                     json[i]["demand_date"] = moment(json[i]["demand_date"]['$date']).format('YYYY-MM-DD');
                                 }
 
-                                        json[i]['cheque_date'] = moment();
-                                        json[i]['Total Principal Demand'] = parseInt(json[i]['principal_demand']) + parseInt(json[i]['opening_balance_principal_due']);
-                                        json[i]['Total Interest Demand'] = parseInt(json[i]['interest_demand']) + parseInt(json[i]['opening_balance_interest_due']);
-                                        json[i]['Total Demand'] = json[i]['Total Principal Demand'] + json[i]['Total Interest Demand'];
+                                json[i]['cheque_date'] = moment();
+                                json[i]['Total Principal Demand'] = parseInt(json[i]['principal_demand']) + parseInt(json[i]['opening_balance_principal_due']);
+                                json[i]['Total Interest Demand'] = parseInt(json[i]['interest_demand']) + parseInt(json[i]['opening_balance_interest_due']);
+                                json[i]['Total Demand'] = json[i]['Total Principal Demand'] + json[i]['Total Interest Demand'];
 
-                                if(json[i]['demand_date']) {
-                                    if(moment(json[i]['demand_date']).isBefore(moment())) {
+                                if (json[i]['demand_date']) {
+                                    if (moment(json[i]['demand_date']).isBefore(moment())) {
                                         if (json[i]['demand_number'] === 1) {
                                             var delay = moment().diff(moment(json[i]['demand_date']), 'days');
                                             json[i]['delay'] = delay;
@@ -62,8 +137,8 @@
                                         else {
                                             json[i]['opening_balance_due'] = json[i]['opening_balance_principal_due'] + json[i]['opening_balance_interest_due'];
 
-                                            if (json[i-1]['cheque_date']) {
-                                                var prev_date =  json[i - 1]['cheque_date'];
+                                            if (json[i - 1]['cheque_date']) {
+                                                var prev_date = json[i - 1]['cheque_date'];
                                             } else {
                                                 prev_date = json[i - 1]['demand_date']
                                             }
@@ -88,18 +163,18 @@
                                         }
                                     }
                                     if (json[i]['cheque_amount'] > parseInt(json[i]['interest_demand'])) {
-                                        json[i]['interest_collected'] =  parseInt(json[i]['interest_demand']);
+                                        json[i]['interest_collected'] = parseInt(json[i]['interest_demand']);
                                         json[i]['post_interest_deduction'] = parseInt(json[i]['cheque_amount']) - json[i]['interest_collected'];
-                                        json[i]['service_charge'] = parseInt(json[i]['interest_collected'])*(3/parseInt(json[i]['roi']));
-                                        if (json[i]['post_interest_deduction'] > (parseInt(json[i]['penal_interest'])+parseInt(json[i]['belated_interest']))) {
-                                            json[i]['post_penal_interest_deduction'] = json[i]['post_interest_deduction'] - (parseInt(json['penal_interest'])+parseInt(json['belated_interest']))
+                                        json[i]['service_charge'] = parseInt(json[i]['interest_collected']) * (3 / parseInt(json[i]['roi']));
+                                        if (json[i]['post_interest_deduction'] > (parseInt(json[i]['penal_interest']) + parseInt(json[i]['belated_interest']))) {
+                                            json[i]['post_penal_interest_deduction'] = json[i]['post_interest_deduction'] - (parseInt(json['penal_interest']) + parseInt(json['belated_interest']))
                                             json[i]['principal_collected'] = json[i]['post_penal_interest_deduction'] + json[i]['service_charge']
                                             console.log(i, parseInt(json['penal_interest']), parseInt(json['belated_interest']));
                                         }
                                     }
                                 }
                                 json[i]['Remarks'] = "Demand Payment not yet made; Penal Interest shown if payment is made today";
-
+                            }
 
                                 // The Closing Balance Principal Due here is the final amount required to be paid in this demand
                                 json[i]['closing_balance_principal_due'] = parseInt(json[i]['Total Principal Demand']) - parseInt(json[i]['principal_collected']);
@@ -110,7 +185,6 @@
 
                                 // This will be the Principal amount left to be paid if this demand is fully satisfied
                                 json[i]['closing_balance_principal_ndue'] = parseInt(json[i]['loan_amount']) - parseInt(json[i]['principal_collected']);
-                            }
                         }
 
                         console.log(json);
@@ -161,7 +235,7 @@
                                 }
 
                                 if (moment().isAfter(moment(json[j]["demand_date"]))) {
-                                    var cheque_date = moment(json[j]["cheque_date"]['$date']).format('YYYY-MM-DD');
+                                    var cheque_date = moment(json[j]["cheque_date"]['$date']).format('DD-MM-YYYY');
                                 }
                                 else {
                                     cheque_date = 'Due Date Not Yet Crossed'
@@ -182,7 +256,7 @@
                                     +'/'+total_old_interest;
                                 var row = $('<tr></tr>').html('<td>' +
                                     + parseInt(json[j]["demand_number"]) +'</td>'+
-                                    '<td>'+json[j]["demand_date"]+'</td>'+
+                                    '<td>'+moment(json[j]["demand_date"]['$date'].format('DD-MM-YYYY'))+'</td>'+
                                     '<td>'+cheque_date+'</td>'+
                                     '<td>'+json[j]["loan_amount"]+'</td>'+
                                     '<td>'+json[j]["belated_interest"]+'</td>'+
