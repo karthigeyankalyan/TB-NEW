@@ -235,7 +235,7 @@
                                 }
 
                                 if (moment().isAfter(moment(json[j]["demand_date"]))) {
-                                    var cheque_date = moment(json[j]["cheque_date"]['$date']).format('DD-MM-YYYY');
+                                    var cheque_date = moment(json[j]["cheque_date"]).format('DD-MM-YYYY');
                                 }
                                 else {
                                     cheque_date = 'Due Date Not Yet Crossed'
