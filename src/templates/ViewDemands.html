@@ -14,7 +14,6 @@
             contentType: "application/json",
             dataType: 'json',
             success: function (json) {
-                console.log(json);
                     {
 
                         for(var i = 0; i<json.length; i++) {
@@ -113,6 +112,7 @@
 //                            }
                         }
 
+                        console.log(json);
                         var tbl = $("<table class='table table-bordered table-dark' id='demandDetails'/>");
                         $("#demandList").append(tbl);
                         var hr = "<tr>";
