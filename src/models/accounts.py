@@ -28,7 +28,7 @@ class Account(object):
 
         self.nature_of_transaction = nature_of_transaction
         self.clearing_debit_balance = 0 if clearing_debit_balance is None else int(clearing_debit_balance)
-        self.clearing_credit_balance = 0 if clearing_debit_balance is None else int(clearing_debit_balance)
+        self.clearing_credit_balance = 0 if clearing_credit_balance is None else int(clearing_credit_balance)
         self.account_head = account_head
         self.doc_account_head = doc_account_head
         self.bank_account = bank_account

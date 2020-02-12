@@ -474,6 +474,7 @@ def multi_receipt_form(user_id):
                                   ledger=ledger, cleared="No", cheque_date=cheque_date, narration=narration,
                                   clearing_credit_balance=clearing_balance_credit,
                                   clearing_debit_balance=clearing_balance_debit, amount=0)
+
                 print(clearing_balance_debit, clearing_balance_credit)
 
                 cl_credit_old, cl_debit_old = 0, 0
