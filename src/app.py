@@ -1747,6 +1747,30 @@ def get_credits():
     return all_credits
 
 
+@app.route('/multi_ledger_raw')
+def get_multi_ledgers():
+    all_credit = []
+    all_credit_dict = Database.find("accounts", {'nature_of_transaction': "Multi-Ledger"})
+    for tran in all_credit_dict:
+        all_credit.append(tran)
+
+    all_credits = json.dumps(all_credit, default=json_util.default)
+
+    return all_credits
+
+
+@app.route('/inside_multi_ledger_raw/<string:voucher_id>')
+def get_raw_multi_ledgers(voucher_id):
+    all_credit = []
+    all_credit_dict = Database.find("accounts", {'payment_voucher': voucher_id})
+    for tran in all_credit_dict:
+        all_credit.append(tran)
+
+    all_credits = json.dumps(all_credit, default=json_util.default)
+
+    return all_credits
+
+
 @app.route('/Debit')
 def get_debits():
     all_debit = []
@@ -1895,6 +1919,28 @@ def credit_view():
 
     if email is not None:
         return render_template('CreditView.html', user=user)
+    else:
+        return render_template('login_fail.html', user=user)
+
+
+@app.route('/Multi_Ledger_View')
+def multi_ledger_view():
+    email = session['email']
+    user = User.get_by_email(email)
+
+    if email is not None:
+        return render_template('multi_ledger_View.html', user=user)
+    else:
+        return render_template('login_fail.html', user=user)
+
+
+@app.route('/ViewInsideLedger/<string:voucher_id>')
+def inside_multi_ledger_view(voucher_id):
+    email = session['email']
+    user = User.get_by_email(email)
+
+    if email is not None:
+        return render_template('inside_multi_ledger_View.html', user=user, voucher_id=voucher_id)
     else:
         return render_template('login_fail.html', user=user)
 

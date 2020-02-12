@@ -1,0 +1,75 @@
+{% extends "post_login_accounts.html" %}
+{% block content %}
+
+<body>
+
+    <div id="filters">
+        <div id="accountHead">
+            <p>Search by Voucher #:</p>
+            <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for Voucher.." title="Type in a name">
+        </div>
+    </div>
+
+    <div id="creditsList">
+    </div>
+</body>
+
+<script>
+        var source = "/multi_ledger_raw";
+        $.ajax({
+            type: 'GET',
+            url: source,
+            contentType: "application/json",
+            dataType: 'json',
+            success: function (json) {
+                    {
+                        function populatePage(jsonFunc) {
+                            $("#creditsDetails").find("tbody").empty();
+                            var tbl = $("<table class='table table-bordered table-dark' id='creditsDetails'/>");
+                            $("#creditsList").append(tbl);
+                            var hr = "<tr>";
+                            var th1 = "<th style='text-align:center;vertical-align:middle'>" + "S. No" + "</th>";
+                            var th2 = "<th style='text-align:center;vertical-align:middle'>" + "Voucher Number" + "</th>";
+                            var th3 = "<th style='text-align:center;vertical-align:middle'>" + "Uploaded by" + "</th>";
+                            var th4 = "<th style='text-align:center;vertical-align:middle'>" + "View Bills" + "</th>";
+                            $("#creditsDetails").append(hr + th1 + th2 + th3 + th4);
+                            for (var j = 0; j < jsonFunc.length; j++) {
+                                {
+                                    var url = 'ViewInsideLedger/'+jsonFunc[j]['payment_voucher'];
+                                    var row = $('<tr></tr>').html('<td>' + (j+1) +'</td>'+
+                                        '<td>'+jsonFunc[j]["payment_voucher"]+'</td>'+
+                                        '<td>'+jsonFunc[j]["user_name"] +'</td>'+
+                                        '<td><button><a href="' + url + '">View Bills</a></button></td>');
+                                    $("#creditsDetails").append(row);
+                                }
+                            }
+                        }
+                    }
+                },
+            error: function (e) {
+                alert("error");
+            }
+        });
+
+    function myFunction() {
+        var input, filter, table, tr, td, i;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("creditsList");
+        tr = table.getElementsByTagName("tr");
+        console.log(tr.length);
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[1];
+            if (td) {
+                if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+
+</script>
+
+{% endblock %}
