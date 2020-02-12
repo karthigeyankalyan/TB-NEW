@@ -1492,8 +1492,6 @@ def mini_demand_form(_id, belated_int, penal_int, p_due, p_ndue, i_due, old_inte
                     opening_balance_principal_due = prev_demand['closing_balance_principal_due']
                     opening_balance_interest_due = prev_demand['closing_balance_interest_due']
 
-            mini_demands = Database.find("mDemands", {"demand_id": _id})
-
             mini_dem = MiniDemand(user_name=user_name, cheque_number=cheque_number, cheque_date=cheque_date,
                                   principal_demand=opening_balance_pdue, demand_date=main_demand_date,
                                   interest_demand=opening_balance_idue, penal_interest=penal_interest,
@@ -1505,13 +1503,15 @@ def mini_demand_form(_id, belated_int, penal_int, p_due, p_ndue, i_due, old_inte
                                   loan_id=loan_id, demand_reference=demand_reference,
                                   m_demand_no=demand_number, loan_amount=loan_amount, ann_id=ann_id)
 
+            mini_demands = Database.find("mDemands", {"demand_id": _id})
+
             # Cumulating principal & interest totals for final main_demand alterations;
             # [Closing Balance Principal & Interest Dues]
             for mdemand in mini_demands:
                 main_demand_service_charge += int(mdemand['service_charge'])
                 main_demand_cheque_amount += int(mdemand['cheque_amount'])
-                mini_demand_principal_total += int(mdemand['principal_paid'])
-                mini_demand_interest_total += int(mdemand['interest_paid'])
+                mini_demand_principal_total += int(mdemand['principal_collected'])
+                mini_demand_interest_total += int(mdemand['interest_collected'])
 
             main_demand_closing_balance_principal_ndue = \
                 (int(closing_balance_not_due) - (main_demand_principal_collected + mini_demand_principal_total))
