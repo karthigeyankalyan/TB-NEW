@@ -48,9 +48,9 @@
                                 json[i]['Total Demand'] = json[i]['Total Principal Demand'] + json[i]['Total Interest Demand'];
 
                                 if (json[i]['demand_date']) {
-                                    if (moment(json[i]['demand_date']).isBefore(moment())) {
+                                    if (moment(json[i]['demand_date']).isBefore(moment(json[i]['cheque_date']))) {
                                         if (json[i]['demand_number'] === 1) {
-                                            delay = moment().diff(moment(json[i]['demand_date']), 'days');
+                                            delay = moment(json[i]['cheque_date']).diff(moment(json[i]['demand_date']), 'days');
                                             json[i]['delay'] = delay;
                                             json[i]['penal_interest'] = (delay * json[i]['Total Demand'] * 5) / (365 * 100);
                                             json[i]['belated_interest'] = (delay * json[i]['Total Demand'] * parseInt(json[i]['roi'])) / (365 * 100);
@@ -74,7 +74,7 @@
                                                 total_old_interest = 0;
                                             }
 
-                                            delay = moment().diff(moment(json[i]['demand_date']), 'days');
+                                            delay = moment(json[i]['cheque_date']).diff(moment(json[i]['demand_date']), 'days');
                                             json[i]['delay'] = delay;
                                             json[i]['penal_interest'] = (delay * json[i]['Total Demand'] * 5) / (365 * 100);
                                             json[i]['belated_interest'] = (delay * json[i]['Total Demand'] * parseInt(json[i]['roi'])) / (365 * 100);
