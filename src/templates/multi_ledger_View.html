@@ -21,9 +21,8 @@
             url: source,
             contentType: "application/json",
             dataType: 'json',
-            success: function (json) {
+            success: function (jsonFunc) {
                     {
-                        function populatePage(jsonFunc) {
                             $("#creditsDetails").find("tbody").empty();
                             var tbl = $("<table class='table table-bordered table-dark' id='creditsDetails'/>");
                             $("#creditsList").append(tbl);
@@ -44,7 +43,6 @@
                                 }
                             }
                         }
-                    }
                 },
             error: function (e) {
                 alert("error");
