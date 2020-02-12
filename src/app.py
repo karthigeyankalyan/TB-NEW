@@ -466,18 +466,6 @@ def multi_receipt_form(user_id):
 
                 application = Database.find("accounthead", {"Head of Accounts": account_head})
 
-                cl_credit_old, cl_debit_old  = 0, 0
-
-                for result_object in application[0:1]:
-                    cl_credit_old = int(result_object['Cl']['Credit Bal'])
-                    cl_debit_old = int(result_object['Cl']['Debit Bal'])
-
-                Account.update_ledger_balance(head_of_accounts=account_head,
-                                              credit_balance=int(clearing_balance_credit) + int(cl_credit_old),
-                                              debit_balance=int(clearing_balance_debit) + int(cl_debit_old))
-
-                print(clearing_balance_credit, clearing_balance_debit)
-
                 account = Account(invoice_date=invoice_date, nature_of_transaction=nature_of_transaction,
                                   account_head=account_head, bank_account=bank_account,
                                   user_id=user_id, user_name=user_name, doc_account_head=doc_account_head,
@@ -486,6 +474,17 @@ def multi_receipt_form(user_id):
                                   ledger=ledger, cleared="No", cheque_date=cheque_date, narration=narration,
                                   clearing_credit_balance=clearing_balance_credit,
                                   clearing_debit_balance=clearing_balance_debit, amount=0)
+                print(clearing_balance_debit, clearing_balance_credit)
+
+                cl_credit_old, cl_debit_old = 0, 0
+
+                for result_object in application[0:1]:
+                    cl_credit_old = int(result_object['Cl']['Credit Bal'])
+                    cl_debit_old = int(result_object['Cl']['Debit Bal'])
+
+                Account.update_ledger_balance(head_of_accounts=account_head,
+                                              credit_balance=int(clearing_balance_credit) + int(cl_credit_old),
+                                              debit_balance=int(clearing_balance_debit) + int(cl_debit_old))
 
                 account.save_to_mongo()
 
