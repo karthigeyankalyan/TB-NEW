@@ -62,16 +62,16 @@
 
                 for(j = 0; j < json.length; j++) {
                     if (json[j]['penal_interest'] !== null) {
-                        if (json[0]['loan_category'] === 'GTL (General Term Loan)') {
+                        if (json[j]['loan_category'] === 'GTL (General Term Loan)') {
                             var cat = "GTL";
                         }
-                        else if (json[0]['loan_category'] === 'NSS (New-Swarnima Scheme)') {
+                        else if (json[j]['loan_category'] === 'NSS (New-Swarnima Scheme)') {
                             cat = "NSS";
                         }
-                        else if (json[0]['loan_category'] === 'MCG (Micro-Credit Gents)') {
+                        else if (json[j]['loan_category'] === 'MCG (Micro-Credit Gents)') {
                             cat = "MCR";
                         }
-                        else if (json[0]['loan_category'] === 'MSY (Mahila Samridhi Yojana)') {
+                        else if (json[j]['loan_category'] === 'MSY (Mahila Samridhi Yojana)') {
                             cat = "MSY";
                         }
 
