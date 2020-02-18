@@ -80,6 +80,8 @@
                         var total = parseInt(json[j]['principal_collected']) + parseInt(json['interest_collected']) + parseInt(json['interest_collected']) + parseInt(json['belated_interest']) + parseInt(json['penal_interest']) - parseInt(json[j]['service_charge']);
                         var loan_id = json[j]["ro_number"];
 
+                        console.log(moment(json[0]['loan_sanction_date']['$date']).month());
+
                         if (moment(json[0]['loan_sanction_date']['$date']).month() < 4) {
                             var year_code = (moment(json[0]['loan_sanction_date']['$date']).year() - 1999) + '' +
                             (moment(json[0]['loan_sanction_date']['$date']).year() - 1998);
