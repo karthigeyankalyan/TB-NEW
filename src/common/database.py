@@ -160,15 +160,23 @@ class Database(object):
                                                                              closing_balance_interest_due}}, True)
 
     @staticmethod
-    def update_mini_demand(collection, query, principal_collected, interest_collected, penal_interest, belated_interest,
-                           service_charge, cheque_amount, closing_balance_principal_due,
-                           closing_balance_principal_ndue, closing_balance_interest_due):
-        return Database.DATABASE[collection].update_one(query, {'$set': {"cheque_amount": cheque_amount,
+    def update_mini_demand(collection, query, demand_number, demand_date, cheque_number, cheque_date,
+                           principal_collected, interest_collected, penal_interest, belated_interest, service_charge,
+                           no_of_demands, cheque_amount, closing_balance_principal_due, closing_balance_principal_ndue,
+                           closing_balance_interest_due, demand_reference, cheque_date_issued):
+        return Database.DATABASE[collection].update_one(query, {'$set': {'demand_number': demand_number,
+                                                                         "demand_date": demand_date,
+                                                                         "cheque_date": cheque_date,
+                                                                         "cheque_date_issued": cheque_date_issued,
+                                                                         "cheque_amount": cheque_amount,
+                                                                         "cheque_number": cheque_number,
                                                                          "principal_collected": principal_collected,
                                                                          "interest_collected": interest_collected,
                                                                          "penal_interest": penal_interest,
                                                                          "belated_interest": belated_interest,
+                                                                         "demand_reference": demand_reference,
                                                                          "service_charge": service_charge,
+                                                                         "no_of_demands": no_of_demands,
                                                                          "closing_balance_principal_due":
                                                                              closing_balance_principal_due,
                                                                          "closing_balance_principal_ndue":

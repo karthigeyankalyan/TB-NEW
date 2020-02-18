@@ -1431,6 +1431,7 @@ def mini_demand_form(_id, belated_int, penal_int, p_due, p_ndue, i_due, old_inte
             opening_balance_pdue = request.form['demandPrincipalPayable']
             opening_balance_idue = request.form['demandInterestPayable']
             cheque_date = request.form['chequeDate']
+            cheque_date_issued = request.form['chequeIssueDate']
             penal_interest = request.form['penalInterest']
             belated_interest = request.form['belatedInterest']
             cheque_amount = request.form['totalChequeAmount']
@@ -1441,6 +1442,9 @@ def mini_demand_form(_id, belated_int, penal_int, p_due, p_ndue, i_due, old_inte
             closing_balance_pdue = request.form['principalDue']
             closing_balance_idue = request.form['interestDue']
             user_name = user.username
+
+            cheque_date_issued = (datetime.combine(datetime.strptime(cheque_date_issued, '%Y-%m-%d').date(),
+                                                   datetime.now().time()))
 
             district, district_bank, sub_bank, loan_category = None, None, None, None
             loan_id, previous_demand_number, demand_loan_id, loan_amount = None, None, None, None
@@ -1501,7 +1505,8 @@ def mini_demand_form(_id, belated_int, penal_int, p_due, p_ndue, i_due, old_inte
                                   closing_balance_interest_due=closing_balance_idue, demand_id=_id, district=district,
                                   district_bank=district_bank, sub_bank=sub_bank, loan_category=loan_category,
                                   loan_id=loan_id, demand_reference=demand_reference,
-                                  m_demand_no=demand_number, loan_amount=loan_amount, ann_id=ann_id)
+                                  m_demand_no=demand_number, loan_amount=loan_amount, ann_id=ann_id,
+                                  cheque_date_issued=cheque_date_issued)
 
             mini_demands = Database.find("mDemands", {"demand_id": _id})
 
