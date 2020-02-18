@@ -83,8 +83,8 @@
                         console.log(moment(json[0]['loan_sanction_date']['$date']).month());
 
                         if (moment(json[0]['loan_sanction_date']['$date']).month() < 4) {
-                            var year_code = (moment(json[0]['loan_sanction_date']['$date']).year() - 1999) + '' +
-                            (moment(json[0]['loan_sanction_date']['$date']).year() - 1998);
+                            var year_code = (moment(json[0]['loan_sanction_date']['$date']).year() - 2001) + '' +
+                            (moment(json[0]['loan_sanction_date']['$date']).year() - 2000);
                         }
                         else {
                             year_code = (moment(json[0]['loan_sanction_date']['$date']).year() - 2000) + '' +
