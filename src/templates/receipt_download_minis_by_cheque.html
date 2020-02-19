@@ -115,8 +115,6 @@
                         alert('Demand not yet updated!');
                     }
                 }
-                        }
-                    });
 
                 var last_row = json.length-1;
 
@@ -148,6 +146,8 @@
                         doc.text(25, table_end+45, json[0]['district']);
 
                         doc.save('Receipt ' + json[0]['ann_id'] + '.pdf');
+                        }
+                    });
             },
             error: function (e) {
                 alert("error");
