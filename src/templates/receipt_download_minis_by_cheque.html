@@ -98,7 +98,7 @@
                         var loan_id = json[j]["ro_number"];
 
                         if (moment(jsonFunc[0]['loan_sanction_date']['$date']).month() + 1 < 4) {
-                            var year_code = (moment(json[0]['loan_sanction_date']['$date']).year() - 2001) + '' +
+                            var year_code = (moment(jsonFunc[0]['loan_sanction_date']['$date']).year() - 2001) + '' +
                             (moment(jsonFunc[0]['loan_sanction_date']['$date']).year() - 2000);
                         }
                         else {
