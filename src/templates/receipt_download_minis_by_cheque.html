@@ -32,7 +32,7 @@
                 doc.text(150, 55, 'Cheque Received Date: ' + moment(json[0]['cheque_date']['$date']).format('DD-MM-YYYY'));
 
                 doc.setFontSize(12);
-                var loan_sanction_date;
+                var loan_sanction_date, ro_number;
                 var cheque_amount = 0;
                 var total_principal = 0;
                 var total_interest = 0;
@@ -49,6 +49,7 @@
                         dataType: 'json',
                         success: function (jsonFunc) {
                             loan_sanction_date = moment(jsonFunc[0]['loan_sanction_date']['$date']).format('DD-MM-YYYY');
+                            ro_number = jsonFunc[0]['ro_number'];
                         }
                     });
 
@@ -108,7 +109,7 @@
                             (moment(loan_sanction_date).year() - 1999);
                         }
 
-                        rows.push([[json[j]['district_bank']], [json[j]['ann_id']], loan_id+'-'+cat+'-'+year_code, [Math.round(principal)],
+                        rows.push([[json[j]['district_bank']], [json[j]['ann_id']], ro_number+'-'+cat+'-'+year_code, [Math.round(principal)],
                             [json[j]['interest_collected']], [parseInt(json[j]['penal_interest'])], [parseInt(json[j]['belated_interest'])],
                             [Math.round(json[j]['service_charge'])], [json[j]['cheque_amount']], [total]]);
                     }
