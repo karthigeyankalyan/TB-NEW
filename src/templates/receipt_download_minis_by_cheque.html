@@ -49,7 +49,6 @@
                         contentType: "application/json",
                         dataType: 'json',
                         success: function (jsonFunc) {
-                            loan_sanction_date = moment(jsonFunc[0]['loan_sanction_date']['$date']).format('DD-MM-YYYY');
                             ro_number = jsonFunc[0]['ro_number'];
                             console.log(ro_number);
 
@@ -98,13 +97,13 @@
                         var total = parseInt(json[j]['principal_collected']) + parseInt(json['interest_collected']) + parseInt(json['interest_collected']) + parseInt(json['belated_interest']) + parseInt(json['penal_interest']) - parseInt(json[j]['service_charge']);
                         var loan_id = json[j]["ro_number"];
 
-                        if (moment(loan_sanction_date).month() < 4) {
-                            var year_code = (moment(loan_sanction_date).year() - 2001) + '' +
-                            (moment(loan_sanction_date).year() - 2000);
+                        if (moment(jsonFunc[0]['loan_sanction_date']['$date']).month() + 1 < 4) {
+                            var year_code = (moment(json[0]['loan_sanction_date']['$date']).year() - 2001) + '' +
+                            (moment(jsonFunc[0]['loan_sanction_date']['$date']).year() - 2000);
                         }
                         else {
-                            year_code = (moment(loan_sanction_date).year() - 2000) + '' +
-                            (moment(loan_sanction_date).year() - 1999);
+                            year_code = (moment(jsonFunc[0]['loan_sanction_date']['$date']).year() - 2000) + '' +
+                            (moment(jsonFunc[0]['loan_sanction_date']['$date']).year() - 1999);
                         }
 
                         rows.push([[json[j]['district_bank']], [json[j]['ann_id']], ro_number+'-'+cat+'-'+year_code, [Math.round(principal)],
