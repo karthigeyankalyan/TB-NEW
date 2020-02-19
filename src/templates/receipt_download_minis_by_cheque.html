@@ -52,10 +52,6 @@
                             loan_sanction_date = moment(jsonFunc[0]['loan_sanction_date']['$date']).format('DD-MM-YYYY');
                             ro_number = jsonFunc[0]['ro_number'];
                             console.log(ro_number);
-                        }
-                    });
-
-                    console.log(ro_number);
 
                 for(var j = 0; j < json.length; j++) {
                     principal = json[j]['principal_collected'];
@@ -119,6 +115,8 @@
                         alert('Demand not yet updated!');
                     }
                 }
+                        }
+                    });
 
                 var last_row = json.length-1;
 
