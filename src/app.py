@@ -1252,6 +1252,10 @@ def update_loan_financial_form(_id, late_interest, belated_int, penal_int, p_due
             penal = int(request.form['penalInterest'])
             belated = int(request.form['belatedInterest'])
             chequeAmount = int(request.form['totalChequeAmount'])
+            cl_bal_p_due = int(request.form['principalDue'])
+            cl_bal_i_due = int(request.form['interestDue'])
+            cl_bal_p_ndue = int(request.form['overallDue'])
+            service_sc = int(request.form['serviceCharge'])
 
             demand_date1 = (datetime.combine(datetime.strptime(demand_date, '%Y-%m-%d').date(),
                                              datetime.now().time()))
@@ -1373,11 +1377,11 @@ def update_loan_financial_form(_id, late_interest, belated_int, penal_int, p_due
             Demand.update_demand(demand_id=_id, demand_number=demand_number, demand_date=demand_date,
                                  cheque_number=cheque_number, cheque_date=cheque_date,
                                  principal_collected=principal_collected, interest_collected=interest_collected,
-                                 closing_balance_interest_due=closing_balance_interest_due,
-                                 closing_balance_principal_due=closing_balance_principal_due,
-                                 closing_balance_principal_ndue=closing_balance_principal_ndue,
+                                 closing_balance_interest_due=cl_bal_i_due,
+                                 closing_balance_principal_due=cl_bal_p_due,
+                                 closing_balance_principal_ndue=cl_bal_p_ndue,
                                  penal_interest=penal, belated_interest=belated, cheque_amount=chequeAmount,
-                                 service_charge=service_charge, no_of_demands=dem_count,
+                                 service_charge=service_sc, no_of_demands=dem_count,
                                  demand_reference=demand_reference, cheque_date_issued=cheque_date_issued)
 
             LoanApplication.update_pend_amount(amount_yet_to_be_paid=int(update_amount), loan_id=loan_id)
@@ -1846,6 +1850,19 @@ def raw_applications(status):
 def get_demand_by_id(_id):
     loan = []
     loan_dict = Database.find("Demands", {"_id": _id})
+    for tran in loan_dict:
+        loan.append(tran)
+
+    single_loan = json.dumps(loan, default=json_util.default)
+
+    return single_loan
+
+
+@app.route('/demand_ann_id/<string:ann_id>/<string:demand_number>')
+def get_demand_by_ann_id(ann_id, demand_number):
+    loan = []
+    loan_dict = Database.find("Demands", {"ann_id": ann_id,
+                                          "demand_number": demand_number})
     for tran in loan_dict:
         loan.append(tran)
 

@@ -56,6 +56,7 @@
             <h6>Interest Paid</h6>
             <h6>Service Charge Accumulated</h6>
             <h6>Principal Due</h6>
+            <h6>Overall Due</h6>
             <h6>Interest Due</h6>
             <h6>Cheque #</h6>
             <h6>Cheque Date Issued</h6>
@@ -73,6 +74,7 @@
             <input type="number" name="interestPaid" id="interestPaid">
             <input type="number" name="serviceCharge" id="serviceCharge">
             <input type="number" name="principalDue" id="principalDue">
+            <input type="number" name="overallDue" id="overallDue">
             <input type="number" name="interestDue" id="interestDue">
             <input type="number" name="interestTotal" id="interestTotal" style="display: none">
             <input type="text" name="chequeNumber" id="chequeNumber">
@@ -156,53 +158,69 @@
     }
 
     function calculatePayments(that) {
-    var source = "/demand/"+"{{demand_id}}";
-    $.ajax({
-        type: 'GET',
-        url: source,
-        contentType: "application/json",
-        dataType: 'json',
-        success: function (json) {
-            if (parseInt(json[0]['demand_number']) === 1) {
-              var principal_due = parseInt(json[0]['principal_demand']);
-              var interest_due = parseInt(json[0]['interest_demand']);
-            } else {
-              principal_due = parseInt(json[0]['opening_balance_principal_due']);
-              interest_due = parseInt(json[0]['opening_balance_interest_due']);
-            }
-            var total_penal_belated = parseInt(document.getElementById('penalInterest').value) + parseInt(document.getElementById('belatedInterest').value);
-            var cheque_amount = that.value;
-            if (cheque_amount > total_penal_belated) {
-                var post_penal_belated_deduction = parseInt(cheque_amount) - parseInt(total_penal_belated);
-                if (post_penal_belated_deduction > interest_due) {
-                    var interest_paid = interest_due;
-                    var post_interest_late_deduction = post_penal_belated_deduction - interest_due;
-                    var service_charge = interest_paid * 3 / json[0]['roi'];
-                    var principal_paid = post_interest_late_deduction + service_charge;
-                    principal_due = principal_due - principal_paid;
-                    document.getElementById('principalPaid').value = principal_paid;
-                    document.getElementById('interestPaid').value = interest_paid;
-                    document.getElementById('serviceCharge').value = Math.round(service_charge);
-                    document.getElementById('principalDue').value = Math.round(principal_due);
-                    document.getElementById('interestDue').value = 0;
+        var source = "/demand/" + "{{demand_id}}";
+        var ann_id, demand_number;
+        $.ajax({
+            type: 'GET',
+            url: source,
+            contentType: "application/json",
+            dataType: 'json',
+            success: function (json) {
+                ann_id = json[0]['ann_id'];
+                demand_number = parseInt(json[0]['demand_number']) - 1;
+                if (parseInt(json[0]['demand_number']) === 1) {
+                    var principal_due = parseInt(json[0]['principal_demand']);
+                    var interest_due = parseInt(json[0]['interest_demand']);
+                    var p_n_paid = parseInt(json[0]['loan_amount']) - document.getElementById('principalPaid').value;
                 } else {
-                    interest_paid = post_penal_belated_deduction;
-                    service_charge = interest_paid * 3 / json[0]['roi'];
-                    interest_due = interest_due - interest_paid;
-                    document.getElementById('principalPaid').value = 0;
-                    document.getElementById('interestPaid').value = interest_paid;
-                    document.getElementById('serviceCharge').value = service_charge;
-                    document.getElementById('principalDue').value = principal_due;
-                    document.getElementById('interestDue').value = interest_due;
+                var source1 = "/demand_ann_id/"+ann_id+"/"+str(demand_number);
+                $.ajax({
+                    type: 'GET',
+                    url: source1,
+                    contentType: "application/json",
+                    dataType: 'json',
+                    success: function (json) {
+                          principal_due = parseInt(json[0]['closing_balance_principal_due']);
+                          interest_due = parseInt(json[0]['closing_balance_interest_due']);
+                          p_n_paid = parseInt(json[0]['closing_balance_principal_ndue']) - document.getElementById('principalPaid').value;
+                    },
+                        error: function (e) {
+                            alert("The Loan Application does not exist");
+                        }
+                    });
                 }
-            }
-        },
+                var total_penal_belated = parseInt(document.getElementById('penalInterest').value) + parseInt(document.getElementById('belatedInterest').value);
+                var cheque_amount = that.value;
+                if (cheque_amount > total_penal_belated) {
+                    var post_penal_belated_deduction = parseInt(cheque_amount) - parseInt(total_penal_belated);
+                    if (post_penal_belated_deduction > interest_due) {
+                        var interest_paid = interest_due;
+                        var post_interest_late_deduction = post_penal_belated_deduction - interest_due;
+                        var service_charge = interest_paid * 3 / json[0]['roi'];
+                        var principal_paid = post_interest_late_deduction + service_charge;
+                        principal_due = principal_due - principal_paid;
+                        document.getElementById('principalPaid').value = principal_paid;
+                        document.getElementById('interestPaid').value = interest_paid;
+                        document.getElementById('serviceCharge').value = Math.round(service_charge);
+                        document.getElementById('principalDue').value = Math.round(principal_due);
+                        document.getElementById('interestDue').value = 0;
+                    } else {
+                        interest_paid = post_penal_belated_deduction;
+                        service_charge = interest_paid * 3 / json[0]['roi'];
+                        interest_due = interest_due - interest_paid;
+                        document.getElementById('principalPaid').value = 0;
+                        document.getElementById('interestPaid').value = interest_paid;
+                        document.getElementById('serviceCharge').value = service_charge;
+                        document.getElementById('principalDue').value = principal_due;
+                        document.getElementById('interestDue').value = interest_due;
+                    }
+                }
+            },
             error: function (e) {
                 alert("The Loan Application does not exist");
             }
         });
     }
-
 </script>
 
 {% endblock %}
