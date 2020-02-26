@@ -177,7 +177,7 @@
                 if (post_penal_belated_deduction > interest_due) {
                     var interest_paid = interest_due;
                     var post_interest_late_deduction = post_penal_belated_deduction - interest_due;
-                    var service_charge = interest_paid * 3 / roi;
+                    var service_charge = interest_paid * 3 / json[0]['roi'];
                     var principal_paid = post_interest_late_deduction + service_charge;
                     principal_due = principal_due - principal_paid;
                     document.getElementById('principalPaid').value = principal_paid;
@@ -187,7 +187,7 @@
                     document.getElementById('interestDue').value = 0;
                 } else {
                     interest_paid = post_penal_belated_deduction;
-                    service_charge = interest_paid * 3 / roi;
+                    service_charge = interest_paid * 3 / json[0]['roi'];
                     interest_due = interest_due - interest_paid;
                     document.getElementById('principalPaid').value = 0;
                     document.getElementById('interestPaid').value = interest_paid;
