@@ -172,6 +172,7 @@
                     var principal_due = parseInt(json[0]['principal_demand']);
                     var interest_due = parseInt(json[0]['interest_demand']);
                     var p_n_paid = parseInt(json[0]['loan_amount']) - document.getElementById('principalPaid').value;
+                    principal_n_due = parseInt(json[0]['loan_amount']);
                     console.log(p_n_paid, document.getElementById('principalPaid').value);
                     document.getElementById('overallDue').value = p_n_paid;
                 } else {
