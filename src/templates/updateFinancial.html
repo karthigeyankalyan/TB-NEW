@@ -197,12 +197,6 @@
                           principal_due = parseInt(jsonFunc[0]['closing_balance_principal_due']);
                           principal_n_due = parseInt(jsonFunc[0]['closing_balance_principal_ndue']);
                           interest_due = parseInt(jsonFunc[0]['closing_balance_interest_due']);
-                    },
-                        error: function (e) {
-                            alert("The Loan Application does not exist");
-                        }
-                    });
-                }
                 var total_penal_belated = parseInt(document.getElementById('penalInterest').value) + parseInt(document.getElementById('belatedInterest').value);
                 var cheque_amount = that.value;
                 if (cheque_amount > total_penal_belated) {
@@ -233,6 +227,12 @@
                 p_n_paid = principal_n_due - document.getElementById('principalPaid').value;
                 console.log(principal_n_due, document.getElementById('principalPaid').value);
                 document.getElementById('overallDue').value = p_n_paid;
+                    },
+                        error: function (e) {
+                            alert("The Loan Application does not exist");
+                        }
+                    });
+                }
             },
             error: function (e) {
                 alert("The Loan Application does not exist");
