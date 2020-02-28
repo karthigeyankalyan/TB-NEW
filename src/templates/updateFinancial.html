@@ -103,7 +103,8 @@
         success: function (json) {
             console.log(json);
             var previous_demand_number = parseInt(json[0]['demand_number']) - 1;
-            var source1 = "/demand_ann_id/" + json[0]['ann_id'] + "/" + toString(previous_demand_number);
+            var source1 = "/demand_ann_id/" + json[0]['ann_id'] + "/" + previous_demand_number;
+            console.log(source1);
             $.ajax({
                 type: 'GET',
                 url: source1,
