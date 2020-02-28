@@ -111,8 +111,6 @@
                 contentType: "application/json",
                 dataType: 'json',
                 success: function (jsonFunc) {
-                    console.log(jsonFunc);
-                    console.log(source1);
                 document.getElementById("district").value = json[0]["district"];
                 document.getElementById("bank").value = json[0]["district_bank"];
                 document.getElementById("subBank").value = json[0]["sub_bank"];
@@ -192,8 +190,8 @@
                     console.log(p_n_paid, document.getElementById('principalPaid').value);
                     document.getElementById('overallDue').value = p_n_paid;
                 } else {
-                var source1 = "/demand_ann_id/"+json[0]['ann_id']+"/"+str(demand_number);
-                $.ajax({
+                    source1 = "/demand_ann_id/" + json[0]['ann_id'] + "/" + demand_number;
+                    $.ajax({
                     type: 'GET',
                     url: source1,
                     contentType: "application/json",
