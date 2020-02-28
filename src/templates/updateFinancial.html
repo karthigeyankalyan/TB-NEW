@@ -101,7 +101,6 @@
         contentType: "application/json",
         dataType: 'json',
         success: function (json) {
-            console.log(json);
             var previous_demand_number = parseInt(json[0]['demand_number']) - 1;
             var source1 = "/demand_ann_id/" + json[0]['ann_id'] + "/" + previous_demand_number;
             console.log(source1);
@@ -149,8 +148,6 @@
             success: function (json) {
                 var cheque_date = document.getElementById('chequeDate').value;
                 var demand_date = document.getElementById('demandDate').value;
-
-                console.log(cheque_date, demand_date);
                 var total_demand = parseInt("{{total_interest_demand}}") + parseInt("{{total_principal_demand}}");
 
                 var delay = moment(cheque_date).diff(moment(demand_date), 'days');
@@ -187,10 +184,9 @@
                     var interest_due = parseInt(json[0]['interest_demand']);
                     var p_n_paid = parseInt(json[0]['loan_amount']) - document.getElementById('principalPaid').value;
                     principal_n_due = parseInt(json[0]['loan_amount']);
-                    console.log(p_n_paid, document.getElementById('principalPaid').value);
                     document.getElementById('overallDue').value = p_n_paid;
                 } else {
-                    source1 = "/demand_ann_id/" + json[0]['ann_id'] + "/" + demand_number;
+                    var source1 = "/demand_ann_id/" + json[0]['ann_id'] + "/" + demand_number;
                     $.ajax({
                     type: 'GET',
                     url: source1,
@@ -211,7 +207,7 @@
                 var cheque_amount = that.value;
                 if (cheque_amount > total_penal_belated) {
                     var post_penal_belated_deduction = parseInt(cheque_amount) - parseInt(total_penal_belated);
-                    console.log(post_penal_belated_deduction);
+                    console.log(post_penal_belated_deduction, interest_due);
                     if (post_penal_belated_deduction > interest_due) {
                         var interest_paid = interest_due;
                         var post_interest_late_deduction = post_penal_belated_deduction - interest_due;
