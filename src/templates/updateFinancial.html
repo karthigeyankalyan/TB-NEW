@@ -219,6 +219,7 @@
                     }
                 }
                 p_n_paid = principal_n_due - document.getElementById('principalPaid').value;
+                console.log(principal_n_due, document.getElementById('principalPaid').value);
                 document.getElementById('overallDue').value = p_n_paid;
             },
             error: function (e) {
