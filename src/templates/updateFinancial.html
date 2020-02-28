@@ -159,7 +159,7 @@
 
     function calculatePayments(that) {
         var source = "/demand/" + "{{demand_id}}";
-        var ann_id, demand_number;
+        var ann_id, demand_number, principal_n_due;
         $.ajax({
             type: 'GET',
             url: source,
@@ -184,10 +184,8 @@
                     success: function (jsonFunc) {
                         console.log(jsonFunc);
                           principal_due = parseInt(jsonFunc[0]['closing_balance_principal_due']);
+                          principal_n_due = parseInt(jsonFunc[0]['closing_balance_principal_ndue']);
                           interest_due = parseInt(jsonFunc[0]['closing_balance_interest_due']);
-                          p_n_paid = parseInt(jsonFunc[0]['closing_balance_principal_ndue']) - document.getElementById('principalPaid').value;
-                          console.log(p_n_paid, document.getElementById('principalPaid').value);
-                          document.getElementById('overallDue').value = p_n_paid;
                     },
                         error: function (e) {
                             alert("The Loan Application does not exist");
@@ -220,6 +218,8 @@
                         document.getElementById('interestDue').value = interest_due;
                     }
                 }
+                p_n_paid = principal_n_due - document.getElementById('principalPaid').value;
+                document.getElementById('overallDue').value = p_n_paid;
             },
             error: function (e) {
                 alert("The Loan Application does not exist");
