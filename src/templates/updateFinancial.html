@@ -102,7 +102,8 @@
         dataType: 'json',
         success: function (json) {
             console.log(json);
-            var source1 = "/demand_ann_id/" + ann_id + "/" + str(demand_number);
+            var previous_demand_number = parseInt(json[0]['demand_number']) - 1;
+            var source1 = "/demand_ann_id/" + json[0]['ann_id'] + "/" + str(previous_demand_number);
             $.ajax({
                 type: 'GET',
                 url: source1,
