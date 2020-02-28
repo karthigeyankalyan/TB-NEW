@@ -102,6 +102,13 @@
         dataType: 'json',
         success: function (json) {
             console.log(json);
+            var source1 = "/demand_ann_id/" + ann_id + "/" + str(demand_number);
+            $.ajax({
+                type: 'GET',
+                url: source1,
+                contentType: "application/json",
+                dataType: 'json',
+                success: function (jsonFunc) {
                 document.getElementById("district").value = json[0]["district"];
                 document.getElementById("bank").value = json[0]["district_bank"];
                 document.getElementById("subBank").value = json[0]["sub_bank"];
@@ -111,14 +118,19 @@
                 document.getElementById("loanID").value = json[0]["ann_id"];
                 document.getElementById("demandNumber").value = parseInt(json[0]["demand_number"]);
                 document.getElementById("demandDate").value = moment(json[0]["demand_date"]['$date']).format('YYYY-MM-DD');
-                document.getElementById("demandPrincipalPayable").value = parseInt(json[0]["principal_demand"]);
-                document.getElementById("demandInterestPayable").value = parseInt(json[0]["interest_demand"]);
+                document.getElementById("demandPrincipalPayable").value = parseInt(json[0]["principal_demand"]) + parseInt(jsonFunc[0]["closing_balance_principal_due"]);
+                document.getElementById("demandInterestPayable").value = parseInt(json[0]["interest_demand"]) + parseInt(jsonFunc[0]["closing_balance_interest_due"]);
                 document.getElementById("chequeNumber").value = parseInt(json[0]["cheque_number"]);
                 document.getElementById("penalInterest").value = parseInt(json[0]["penal_interest"]);
                 document.getElementById("belatedInterest").value = parseInt(json[0]["belated_interest"]);
                 document.getElementById("totalChequeAmount").value = parseInt(json[0]["cheque_amount"]);
                 document.getElementById("chequeDate").value = moment(json[0]["cheque_date"]['$date']).format('YYYY-MM-DD');
                 document.getElementById("chequeDateIssued").value = moment(json[0]["cheque_date_issued"]['$date']).format('YYYY-MM-DD');
+                    },
+                    error: function (e) {
+                        alert("The Loan Application does not exist");
+                    }
+                });
         },
         error: function (e) {
             alert("The Loan Application does not exist");
@@ -176,7 +188,7 @@
                     console.log(p_n_paid, document.getElementById('principalPaid').value);
                     document.getElementById('overallDue').value = p_n_paid;
                 } else {
-                var source1 = "/demand_ann_id/"+ann_id+"/"+str(demand_number);
+                var source1 = "/demand_ann_id/"+json[0]['ann_id']+"/"+str(demand_number);
                 $.ajax({
                     type: 'GET',
                     url: source1,
