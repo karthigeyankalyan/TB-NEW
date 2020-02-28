@@ -179,10 +179,12 @@
                     url: source1,
                     contentType: "application/json",
                     dataType: 'json',
-                    success: function (json) {
-                          principal_due = parseInt(json[0]['closing_balance_principal_due']);
-                          interest_due = parseInt(json[0]['closing_balance_interest_due']);
-                          p_n_paid = parseInt(json[0]['closing_balance_principal_ndue']) - document.getElementById('principalPaid').value;
+                    success: function (jsonFunc) {
+                        console.log(jsonFunc);
+                          principal_due = parseInt(jsonFunc[0]['closing_balance_principal_due']);
+                          interest_due = parseInt(jsonFunc[0]['closing_balance_interest_due']);
+                          p_n_paid = parseInt(jsonFunc[0]['closing_balance_principal_ndue']) - document.getElementById('principalPaid').value;
+                          console.log(p_n_paid, document.getElementById('principalPaid').value);
                           document.getElementById('overallDue').value = p_n_paid;
                     },
                         error: function (e) {
