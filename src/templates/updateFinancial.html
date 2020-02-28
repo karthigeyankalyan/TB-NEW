@@ -170,7 +170,8 @@
 
     function calculatePayments(that) {
         var source = "/demand/" + "{{demand_id}}";
-        var ann_id, demand_number, principal_n_due;
+        var ann_id, demand_number;
+        var principal_due, interest_due, principal_n_due, p_n_paid;
         $.ajax({
             type: 'GET',
             url: source,
@@ -181,9 +182,8 @@
                 ann_id = json[0]['ann_id'];
                 demand_number = parseInt(json[0]['demand_number']) - 1;
                 if (parseInt(json[0]['demand_number']) === 1) {
-                    var principal_due = parseInt(json[0]['principal_demand']);
-                    var interest_due = parseInt(json[0]['interest_demand']);
-                    var p_n_paid = parseInt(json[0]['loan_amount']) - document.getElementById('principalPaid').value;
+                    principal_due = parseInt(json[0]['principal_demand']);
+                    interest_due = parseInt(json[0]['interest_demand']);
                     principal_n_due = parseInt(json[0]['loan_amount']);
                     document.getElementById('overallDue').value = p_n_paid;
                 } else {
