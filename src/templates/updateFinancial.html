@@ -111,6 +111,7 @@
                 dataType: 'json',
                 success: function (jsonFunc) {
                     console.log(jsonFunc);
+                    console.log(source1);
                 document.getElementById("district").value = json[0]["district"];
                 document.getElementById("bank").value = json[0]["district_bank"];
                 document.getElementById("subBank").value = json[0]["sub_bank"];
