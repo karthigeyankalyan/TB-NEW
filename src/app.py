@@ -1253,6 +1253,8 @@ def update_loan_financial_form(_id, late_interest, belated_int, penal_int, p_due
             belated = int(request.form['belatedInterest'])
             chequeAmount = int(request.form['totalChequeAmount'])
             cl_bal_p_due = int(request.form['principalDue'])
+            principal_paid_collected = int(request.form['principalPaid'])
+            interest_paid_collected = int(request.form['interestPaid'])
             cl_bal_i_due = int(request.form['interestDue'])
             cl_bal_p_ndue = int(request.form['overallDue'])
             service_sc = int(request.form['serviceCharge'])
@@ -1376,7 +1378,8 @@ def update_loan_financial_form(_id, late_interest, belated_int, penal_int, p_due
 
             Demand.update_demand(demand_id=_id, demand_number=demand_number, demand_date=demand_date,
                                  cheque_number=cheque_number, cheque_date=cheque_date,
-                                 principal_collected=principal_collected, interest_collected=interest_collected,
+                                 principal_collected=principal_paid_collected,
+                                 interest_collected=interest_paid_collected,
                                  closing_balance_interest_due=cl_bal_i_due,
                                  closing_balance_principal_due=cl_bal_p_due,
                                  closing_balance_principal_ndue=cl_bal_p_ndue,
