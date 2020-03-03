@@ -180,6 +180,7 @@
                                 json[i]['closing_balance_principal_due'] = parseInt(json[i]['Total Principal Demand']) - Math.round(parseInt(json[i]['principal_collected']));
     //                                - (parseInt(json[i]['interest_demand']) * 3 / parseInt(json[i]['roi']));
 
+                            console.log(json[0]['Total Principal Demand'], Math.round(json[0]['principal_collected']), json[0]['closing_balance_principal_due']);
                                 // The Closing Balance Interest Due here is the final amount required to be paid in this demand
                                 json[i]['closing_balance_interest_due'] = parseInt(json[i]['Total Interest Demand']) - Math.round(parseInt(json[i]['interest_collected']));
 
@@ -246,7 +247,6 @@
                                     json[j]["penal_interest"] = 0;
                                 }
 
-                                console.log(json[0]['Total Principal Demand'], Math.round(json[0]['principal_collected']));
                                 var demand_id = json[j]["_id"];
                                 var penal_plus_belated = parseInt(json[j]["belated_interest"]) + parseInt(json[j]["penal_interest"]);
                                 var url = '/updateDemand/'+demand_id+'/'+penal_plus_belated+'/'+json[j]["belated_interest"]+'/'+json[j]["penal_interest"]+'/'+json[j]["closing_balance_principal_due"]+'/'+json[j]["closing_balance_principal_ndue"]+'/'+json[j]["closing_balance_interest_due"];
