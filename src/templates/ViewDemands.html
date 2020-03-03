@@ -179,7 +179,7 @@
                                 // The Closing Balance Principal Due here is the final amount required to be paid in this demand
                                 json[i]['closing_balance_principal_due'] = parseInt(json[i]['Total Principal Demand']) - Math.round(parseInt(json[i]['principal_collected']));
     //                                - (parseInt(json[i]['interest_demand']) * 3 / parseInt(json[i]['roi']));
-                            console.log(json[0]['Total Principal Demand'], json[0]['principal_collected']);
+                            console.log(json[0]['Total Principal Demand'], Math.round(json[0]['principal_collected']));
 
                                 // The Closing Balance Interest Due here is the final amount required to be paid in this demand
                                 json[i]['closing_balance_interest_due'] = parseInt(json[i]['Total Interest Demand']) - Math.round(parseInt(json[i]['interest_collected']));
