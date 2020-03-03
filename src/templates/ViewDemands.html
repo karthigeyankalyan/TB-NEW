@@ -262,7 +262,7 @@
                                     '<td>'+json[j]["loan_amount"]+'</td>'+
                                     '<td>'+json[j]["belated_interest"]+'</td>'+
                                     '<td>'+json[j]["penal_interest"]+'</td>'+
-                                    '<td>'+parseInt(json[j]['Total Principal Demand']) - Math.round(json[j]['principal_collected'])+'</td>'+
+                                    '<td>'+(parseInt(json[j]['Total Principal Demand']) - Math.round(json[j]['principal_collected']))+'</td>'+
                                     '<td>'+json[j]["closing_balance_interest_due"]+'</td>'+
                                     '<td><button class="btn btn-default"><a href="' + url + '">'+ 'Update Demand' +'</a></button></td>'+
                                     '<td><button class="btn btn-default"><a href="' + url2 + '">'+ 'Mini Demand' +'</a></button></td>'+
