@@ -119,8 +119,15 @@
                 document.getElementById("loanID").value = json[0]["ann_id"];
                 document.getElementById("demandNumber").value = parseInt(json[0]["demand_number"]);
                 document.getElementById("demandDate").value = moment(json[0]["demand_date"]['$date']).format('YYYY-MM-DD');
-                document.getElementById("demandPrincipalPayable").value = parseInt(json[0]["principal_demand"]) + parseInt(jsonFunc[0]["closing_balance_principal_due"]);
-                document.getElementById("demandInterestPayable").value = parseInt(json[0]["interest_demand"]) + parseInt(jsonFunc[0]["closing_balance_interest_due"]);
+                if (parseInt(json[0]["demand_number"]) > 1) {
+                    var principal_payable = parseInt(json[0]["principal_demand"]) + parseInt(jsonFunc[0]["closing_balance_principal_due"]);
+                    var interest_payable = parseInt(json[0]["interest_demand"]) + parseInt(jsonFunc[0]["closing_balance_interest_due"]);
+                } else {
+                    principal_payable = parseInt(json[0]["principal_demand"]);
+                    interest_payable = parseInt(json[0]["interest_demand"]);
+                }
+                document.getElementById("demandPrincipalPayable").value = principal_payable;
+                document.getElementById("demandInterestPayable").value = interest_payable;
                 document.getElementById("chequeNumber").value = parseInt(json[0]["cheque_number"]);
                 document.getElementById("penalInterest").value = parseInt(json[0]["penal_interest"]);
                 document.getElementById("belatedInterest").value = parseInt(json[0]["belated_interest"]);
