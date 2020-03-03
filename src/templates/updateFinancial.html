@@ -205,8 +205,8 @@
                                     var service_charge = interest_paid * 3 / json[0]['roi'];
                                     var principal_paid = post_interest_late_deduction + service_charge;
                                     principal_due = principal_due - principal_paid;
-                                    document.getElementById('principalPaid').value = principal_paid;
-                                    document.getElementById('interestPaid').value = interest_paid;
+                                    document.getElementById('principalPaid').value = Math.round(principal_paid);
+                                    document.getElementById('interestPaid').value = Math.round(interest_paid);
                                     document.getElementById('serviceCharge').value = Math.round(service_charge);
                                     document.getElementById('principalDue').value = Math.round(principal_due);
                                     document.getElementById('interestDue').value = 0;
@@ -246,7 +246,6 @@
                                     var service_charge = interest_paid * 3 / json[0]['roi'];
                                     var principal_paid = post_interest_late_deduction + service_charge;
                                     principal_due = principal_due - principal_paid;
-                                    console.log(Math.round(principal_paid), Math.round(interest_paid));
                                     document.getElementById('principalPaid').value = Math.round(principal_paid);
                                     document.getElementById('interestPaid').value = Math.round(interest_paid);
                                     document.getElementById('serviceCharge').value = Math.round(service_charge);
