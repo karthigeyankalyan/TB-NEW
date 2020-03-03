@@ -240,13 +240,13 @@
                             var cheque_amount = that.value;
                             if (cheque_amount > total_penal_belated) {
                                 var post_penal_belated_deduction = parseInt(cheque_amount) - parseInt(total_penal_belated);
-                                console.log(post_penal_belated_deduction, interest_due);
                                 if (post_penal_belated_deduction > interest_due) {
                                     var interest_paid = interest_due;
                                     var post_interest_late_deduction = post_penal_belated_deduction - interest_due;
                                     var service_charge = interest_paid * 3 / json[0]['roi'];
                                     var principal_paid = post_interest_late_deduction + service_charge;
                                     principal_due = principal_due - principal_paid;
+                                    console.log(Math.round(principal_paid));
                                     document.getElementById('principalPaid').value = Math.round(principal_paid);
                                     document.getElementById('interestPaid').value = Math.round(interest_paid);
                                     document.getElementById('serviceCharge').value = Math.round(service_charge);
