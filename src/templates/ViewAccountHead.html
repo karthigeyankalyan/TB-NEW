@@ -21,14 +21,20 @@
                 var th2 = "<th style='text-align:center;vertical-align:middle'>" + "Account Head" + "</th>";
                 var th3 = "<th style='text-align:center;vertical-align:middle'>" + "Cl Balance Debit" + "</th>";
                 var th4 = "<th style='text-align:center;vertical-align:middle'>" + "Cl Balance Credit" + "</th>";
-                $("#demandDetails").append(hr + th1 + th2 + th3 + th4);
+                var th5 = "<th style='text-align:center;vertical-align:middle'>" + "Download Ledger Statement" + "</th>";
+                $("#demandDetails").append(hr + th1 + th2 + th3 + th4 + th5);
 
                 for (var j = 0; j< json.length; j++) {
+                    var debit_bal = json[j]["Cl"]["Debit Bal"];
+                    var credit_bal = json[j]["Cl"]["Credit Bal"];
+                    var url = '/ledger_statement_download/'+json[j]["Head of Accounts"]+"/"+debit_bal+"/"+credit_bal;
                     var row = $('<tr></tr>').html('<td>' +
                         + (j+1) + '</td>' +
                         '<td>' + json[j]["Head of Accounts"] + '</td>' +
                         '<td>' + json[j]["Cl"]["Debit Bal"] + '</td>' +
-                        '<td>' + json[j]["Cl"]["Credit Bal"] + '</td>');
+                        '<td>' + json[j]["Cl"]["Credit Bal"] + '</td>' +
+                        '<td><button class="btn btn-default"><a href="' + url + '">'+ 'Download Statement' +'</a></button></td>'
+                    );
                     $("#demandDetails").append(row);
                 }
             },

@@ -483,9 +483,9 @@ def multi_receipt_form(user_id):
                     cl_credit_old = int(result_object['Cl']['Credit Bal'])
                     cl_debit_old = int(result_object['Cl']['Debit Bal'])
 
-                Account.update_ledger_balance(head_of_accounts=account_head,
-                                              credit_balance=int(clearing_balance_credit) + int(cl_credit_old),
-                                              debit_balance=int(clearing_balance_debit) + int(cl_debit_old))
+                # Account.update_ledger_balance(head_of_accounts=account_head,
+                #                               credit_balance=int(clearing_balance_credit) + int(cl_credit_old),
+                #                               debit_balance=int(clearing_balance_debit) + int(cl_debit_old))
 
                 account.save_to_mongo()
 
@@ -1596,6 +1596,47 @@ def acc_head_balance_view():
         return render_template('ViewAccountHead.html', user=user)
     else:
         return render_template('login_fail.html', user=user)
+
+
+@app.route('/ledger_statement_download/<string:hoa>/<string:debit_bal>/<string:credit_bal>', methods=['POST', 'GET'])
+def acc_head_balance_view(hoa, debit_bal, credit_bal):
+    email = session['email']
+    user = User.get_by_email(email)
+    if email is not None:
+        if request.method == 'GET':
+            return render_template('DownloadLedgerStatementWithinDates.html', user=user, hoa=hoa, debit_bal=debit_bal,
+                                   credit_bal=credit_bal)
+        else:
+            start = request.form['startDate']
+            end = request.form['endDate']
+            user = User.get_by_email(email)
+
+            return render_template('ledger_statement_download.html', end=end, start=start, hoa=hoa, user=user,
+                                   debit_bal=debit_bal, credit_bal=credit_bal)
+
+    else:
+        return render_template('login_fail.html', user=user)
+
+
+@app.route('/raw_ledger_statement_between/<string:hoa>/<string:start_date>/<string:end_date>')
+def get_raw_footfall_entries_by_district_datefilter(hoa, start_date, end_date):
+    district_destinations_array = []
+
+    start = datetime.combine(datetime.strptime(start_date, '%Y-%m-%d').date(),
+                             datetime.now().time())
+
+    end = datetime.combine(datetime.strptime(end_date, '%Y-%m-%d').date(),
+                           datetime.now().time())
+
+    district_destinations = Database.find("footfallData", {"$and": [{"voucher_date": {"$gte": start, "$lte": end}},
+                                                                    {"account_head": hoa}]})
+
+    for intent in district_destinations:
+        district_destinations_array.append(intent)
+
+    raw_district_destinations = json.dumps(district_destinations_array, default=json_util.default)
+
+    return raw_district_destinations
 
 
 @app.route('/raw_acc_head_balance')

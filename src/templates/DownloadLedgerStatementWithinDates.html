@@ -1,0 +1,24 @@
+{% extends "post_login_accounts.html" %}
+{% block content %}
+
+<div style="display: flex; flex-direction: column; justify-content: space-around; align-items: center">
+
+    <h3>Enter Dates Below to Get Ledger Statement Report</h3>
+
+    <div style="display: flex; flex-direction: row; justify-content: space-between">
+        <form id="getByDate" action="/ledger_statement_download/{{hoa}}/{{debit_bal}}/{{credit_bal}}" method="post">
+            <div>
+                <label for="startDate">Start Date</label>
+                <input type="date" id="startDate" name="startDate">
+            </div>
+            <div>
+                <label for="endDate">End Date</label>
+                <input type="date" id="endDate" name="endDate">
+            </div>
+            <button type="submit" class="btn btn-success">Get Details</button>
+        </form>
+    </div>
+
+</div>
+
+{% endblock %}
