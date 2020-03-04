@@ -29,6 +29,8 @@
                 total_credit += parseInt(credit_bal);
                 total_debit += parseInt(debit_bal);
 
+                console.log(total_debit, total_credit);
+
                 if (total_credit > total_debit) {
                     var balance_update = total_credit - total_debit;
                     var final_total = total_credit;
@@ -45,6 +47,8 @@
                 var columns = ["VR No", "VR Date", "Ch. No", "Ch. Date", "Head of Account", "Mode", "Debit Rs.", "Credit Rs."];
                 var rows = [];
 
+                rows.push([[], [], [], [], [],
+                    [], [parseInt(debit_bal)], [parseInt(credit_bal)]]);
                 for(var j = 0; j < json.length; j++) {
                     if (json[j]['cheque_number']) {
                         var cheque_number = json[j]['cheque_number'];
@@ -67,7 +71,7 @@
                     ['Balance b/d'], [parseInt(balance_update)], []]);
 
                 doc.autoTable(columns, rows, {
-                    startY: 30,
+                    startY: 50,
                     styles: {overflow: 'linebreak', fontSize: 8}
                 });
 
