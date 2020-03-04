@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="da0bb03c-275f-4eeb-800c-401a339e857e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app.py" afterPath="$PROJECT_DIR$/src/app.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/templates/BetweenDatesOtherAccounts.html" afterPath="$PROJECT_DIR$/src/templates/BetweenDatesOtherAccounts.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/templates/CreditView.html" afterPath="$PROJECT_DIR$/src/templates/CreditView.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/templates/DebitView.html" afterPath="$PROJECT_DIR$/src/templates/DebitView.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/templates/inside_multi_ledger_View.html" afterPath="$PROJECT_DIR$/src/templates/inside_multi_ledger_View.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/templates/multi_receipt_form.html" afterPath="$PROJECT_DIR$/src/templates/multi_receipt_form.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/templates/receipt_form.html" afterPath="$PROJECT_DIR$/src/templates/receipt_form.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/templates/update_receipt_form.html" afterPath="$PROJECT_DIR$/src/templates/update_receipt_form.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/templates/ViewDemands.html" afterPath="$PROJECT_DIR$/src/templates/ViewDemands.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -28,7 +21,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="app.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="app.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/app.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="66">
@@ -48,6 +41,30 @@
             <state relative-caret-position="66">
               <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ViewDemands.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/templates/ViewDemands.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="491">
+              <caret line="73" column="0" lean-forward="false" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
+              <folding>
+                <marker date="1583323788737" expanded="true" signature="14724:14763" ph="..." />
+                <marker date="1583323788737" expanded="true" signature="14842:14881" ph="..." />
+                <marker date="1583323788737" expanded="true" signature="14958:14997" ph="..." />
+                <marker date="1583323788737" expanded="true" signature="15074:15113" ph="..." />
+                <marker date="1583323788737" expanded="true" signature="15190:15229" ph="..." />
+                <marker date="1583323788737" expanded="true" signature="15311:15350" ph="..." />
+                <marker date="1583323788737" expanded="true" signature="15430:15469" ph="..." />
+                <marker date="1583323788737" expanded="true" signature="15548:15587" ph="..." />
+                <marker date="1583323788737" expanded="true" signature="15665:15704" ph="..." />
+                <marker date="1583323788737" expanded="true" signature="15782:15821" ph="..." />
+                <marker date="1583323788737" expanded="true" signature="15900:15939" ph="..." />
+                <marker date="1583323788737" expanded="true" signature="16013:16052" ph="..." />
+                <marker date="1583323788737" expanded="true" signature="20640:20655" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -192,7 +209,6 @@
         <option value="$PROJECT_DIR$/src/templates/receipt_download_minis_by_cheque.html" />
         <option value="$PROJECT_DIR$/src/templates/AddMiniDemand.html" />
         <option value="$PROJECT_DIR$/src/templates/updateFinancial.html" />
-        <option value="$PROJECT_DIR$/src/templates/ViewDemands.html" />
         <option value="$PROJECT_DIR$/src/templates/inside_multi_ledger_View.html" />
         <option value="$PROJECT_DIR$/src/templates/ViewAccountHead.html" />
         <option value="$PROJECT_DIR$/src/templates/DownloadLedgerStatementWithinDates.html" />
@@ -201,6 +217,7 @@
         <option value="$PROJECT_DIR$/src/templates/multi_receipt_form.html" />
         <option value="$PROJECT_DIR$/src/templates/ledger_statement_download.html" />
         <option value="$PROJECT_DIR$/src/app.py" />
+        <option value="$PROJECT_DIR$/src/templates/ViewDemands.html" />
       </list>
     </option>
   </component>
@@ -978,41 +995,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/templates/ViewDemands.html">
+    <entry file="file://$PROJECT_DIR$/src/models/accounts.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="269" column="136" lean-forward="true" selection-start-line="269" selection-start-column="36" selection-end-line="269" selection-end-column="136" />
-          <folding>
-            <marker date="1583264840833" expanded="true" signature="14709:14748" ph="..." />
-            <marker date="1583264840833" expanded="true" signature="14827:14866" ph="..." />
-            <marker date="1583264840833" expanded="true" signature="14943:14982" ph="..." />
-            <marker date="1583264840833" expanded="true" signature="15059:15098" ph="..." />
-            <marker date="1583264840833" expanded="true" signature="15175:15214" ph="..." />
-            <marker date="1583264840833" expanded="true" signature="15296:15335" ph="..." />
-            <marker date="1583264840833" expanded="true" signature="15415:15454" ph="..." />
-            <marker date="1583264840833" expanded="true" signature="15533:15572" ph="..." />
-            <marker date="1583264840833" expanded="true" signature="15650:15689" ph="..." />
-            <marker date="1583264840833" expanded="true" signature="15767:15806" ph="..." />
-            <marker date="1583264840833" expanded="true" signature="15885:15924" ph="..." />
-            <marker date="1583264840833" expanded="true" signature="15998:16037" ph="..." />
-            <marker date="1583264840833" expanded="true" signature="20625:20640" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/templates/ledger_statement_download.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="44" lean-forward="true" selection-start-line="13" selection-start-column="44" selection-end-line="13" selection-end-column="44" />
+        <state relative-caret-position="34">
+          <caret line="83" column="0" lean-forward="true" selection-start-line="83" selection-start-column="0" selection-end-line="83" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/common/database.py">
+    <entry file="file://$PROJECT_DIR$/src/app.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="66">
-          <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-          <folding />
+          <caret line="186" column="16" lean-forward="false" selection-start-line="186" selection-start-column="16" selection-end-line="186" selection-end-column="16" />
+          <folding>
+            <element signature="e#0#29#0" expanded="true" />
+            <element signature="e#17603#29259#0" expanded="false" />
+            <element signature="e#32423#43505#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1036,22 +1035,40 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/models/accounts.py">
+    <entry file="file://$PROJECT_DIR$/src/templates/ledger_statement_download.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="83" column="0" lean-forward="true" selection-start-line="83" selection-start-column="0" selection-end-line="83" selection-end-column="0" />
+        <state relative-caret-position="221">
+          <caret line="13" column="44" lean-forward="true" selection-start-line="13" selection-start-column="44" selection-end-line="13" selection-end-column="44" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app.py">
+    <entry file="file://$PROJECT_DIR$/src/common/database.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="66">
-          <caret line="186" column="16" lean-forward="false" selection-start-line="186" selection-start-column="16" selection-end-line="186" selection-end-column="16" />
+          <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/templates/ViewDemands.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="491">
+          <caret line="73" column="0" lean-forward="false" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
           <folding>
-            <element signature="e#0#29#0" expanded="true" />
-            <element signature="e#17603#29259#0" expanded="false" />
-            <element signature="e#32423#43505#0" expanded="false" />
+            <marker date="1583323788737" expanded="true" signature="14724:14763" ph="..." />
+            <marker date="1583323788737" expanded="true" signature="14842:14881" ph="..." />
+            <marker date="1583323788737" expanded="true" signature="14958:14997" ph="..." />
+            <marker date="1583323788737" expanded="true" signature="15074:15113" ph="..." />
+            <marker date="1583323788737" expanded="true" signature="15190:15229" ph="..." />
+            <marker date="1583323788737" expanded="true" signature="15311:15350" ph="..." />
+            <marker date="1583323788737" expanded="true" signature="15430:15469" ph="..." />
+            <marker date="1583323788737" expanded="true" signature="15548:15587" ph="..." />
+            <marker date="1583323788737" expanded="true" signature="15665:15704" ph="..." />
+            <marker date="1583323788737" expanded="true" signature="15782:15821" ph="..." />
+            <marker date="1583323788737" expanded="true" signature="15900:15939" ph="..." />
+            <marker date="1583323788737" expanded="true" signature="16013:16052" ph="..." />
+            <marker date="1583323788737" expanded="true" signature="20640:20655" ph="..." />
           </folding>
         </state>
       </provider>
