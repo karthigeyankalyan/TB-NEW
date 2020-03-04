@@ -196,9 +196,9 @@
 
                             var total_penal_belated = parseInt(document.getElementById('penalInterest').value) + parseInt(document.getElementById('belatedInterest').value);
                             var cheque_amount = that.value;
+                            console.log(post_penal_belated_deduction, interest_due, cheque_amount);
                             if (cheque_amount > total_penal_belated) {
                                 var post_penal_belated_deduction = parseInt(cheque_amount) - parseInt(total_penal_belated);
-                                console.log(post_penal_belated_deduction, interest_due);
                                 if (post_penal_belated_deduction > interest_due) {
                                     var interest_paid = interest_due;
                                     var post_interest_late_deduction = post_penal_belated_deduction - interest_due;
