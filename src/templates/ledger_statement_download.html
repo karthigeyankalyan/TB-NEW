@@ -23,8 +23,8 @@
                 console.log(json);
                 var total_debit = 0, total_credit = 0;
                 for(var i = 0; i < json.length; i++) {
-                     total_debit += json[i]['clearing_debit_balance'];
-                     total_credit += json[i]['clearing_credit_balance'];
+                     total_debit += parseInt(json[i]['clearing_debit_balance']);
+                     total_credit += parseInt(json[i]['clearing_credit_balance']);
                 }
                 total_credit += parseInt(credit_bal);
                 total_debit += parseInt(debit_bal);
