@@ -1628,7 +1628,7 @@ def get_raw_footfall_entries_by_hoa_datefilter(hoa, start_date, end_date):
     end = datetime.combine(datetime.strptime(end_date, '%Y-%m-%d').date(),
                            datetime.now().time())
 
-    district_destinations = Database.find("footfallData", {"$and": [{"voucher_date": {"$gte": start, "$lte": end}},
+    district_destinations = Database.find("accounts", {"$and": [{"voucher_date": {"$gte": start, "$lte": end}},
                                                                     {"account_head": hoa}]})
 
     for intent in district_destinations:
