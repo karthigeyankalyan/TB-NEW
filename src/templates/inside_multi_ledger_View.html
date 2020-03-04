@@ -56,7 +56,7 @@
                             var tbl = $("<table class='table table-bordered table-dark' id='creditsDetails'/>");
                             $("#creditsList").append(tbl);
                             var hr = "<tr>";
-                            var th1 = "<th style='text-align:center;vertical-align:middle'>" + "Invoice Date" + "</th>";
+                            var th1 = "<th style='text-align:center;vertical-align:middle'>" + "Voucher Date" + "</th>";
                             var th2 = "<th style='text-align:center;vertical-align:middle'>" + "Credit/Debit" + "</th>";
                             var th3 = "<th style='text-align:center;vertical-align:middle'>" + "Account Head" + "</th>";
                             var th5 = "<th style='text-align:center;vertical-align:middle'>" + "Bank Account" + "</th>";
@@ -67,7 +67,7 @@
                                 {
                                     var url = 'updateReceipt/'+jsonFunc[j]['_id'];
                                     var row = $('<tr></tr>').html('<td>' +
-                                        moment(jsonFunc[j]["invoice_date"]['$date']).format('YYYY-MM-DD') + '</td>'+
+                                        moment(jsonFunc[j]["voucher_date"]['$date']).format('YYYY-MM-DD') + '</td>'+
                                         '<td>'+jsonFunc[j]["nature_of_transaction"]+'</td>'+
                                         '<td>'+jsonFunc[j]["account_head"] +'</td>'+
                                         '<td>'+jsonFunc[j]["bank_account"] +'</td>'+
