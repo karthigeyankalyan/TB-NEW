@@ -11,6 +11,7 @@
             var hoa = "{{hoa}}";
             var debit_bal = "{{debit_bal}}";
             var credit_bal = "{{credit_bal}}";
+            hoa = hoa.replace("&amp;", "&");
 
             var source = "/raw_ledger_statement_between/"+hoa+"/{{start}}/{{end}}";
             console.log(source);
