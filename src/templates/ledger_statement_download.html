@@ -21,7 +21,7 @@
             dataType: 'json',
             success: function (json) {
                 console.log(json);
-                var total_debit, total_credit;
+                var total_debit = 0, total_credit = 0;
                 for(var i = 0; i < json.length; i++) {
                      total_debit += json[i]['clearing_debit_balance'];
                      total_credit += json[i]['clearing_credit_balance'];
