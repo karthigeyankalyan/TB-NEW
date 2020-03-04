@@ -699,13 +699,15 @@ def update_receipt(_id):
 
             new_credit, new_debit = 0, 0
 
-            for result_object in application[0:1]:
-                new_credit = int(cl_credit_amount) - int(result_object['clearing_credit_balance'])
-                new_debit = int(cl_debit_amount) - int(result_object['clearing_debit_balance'])
+            # for result_object in application[0:1]:
+            #     new_credit = int(cl_credit_amount) - int(result_object['clearing_credit_balance'])
+            #     new_debit = int(cl_debit_amount) - int(result_object['clearing_debit_balance'])
+
+            print(cl_credit_amount, cl_debit_amount, cl_credit_old, cl_debit_old)
 
             Account.update_ledger_balance(head_of_accounts=account_head,
-                                          credit_balance=new_credit + cl_credit_old,
-                                          debit_balance=new_debit + cl_debit_old)
+                                          credit_balance=cl_credit_amount + cl_credit_old,
+                                          debit_balance=cl_debit_amount + cl_debit_old)
 
             return render_template('application_added.html', user=user)
 
