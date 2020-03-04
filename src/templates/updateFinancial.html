@@ -197,6 +197,15 @@
                             var total_penal_belated = parseInt(document.getElementById('penalInterest').value) + parseInt(document.getElementById('belatedInterest').value);
                             var cheque_amount = that.value;
                             console.log(post_penal_belated_deduction, interest_due, cheque_amount);
+                            if (cheque_amount === 0) {
+                                interest_paid = 0;
+                                service_charge = 0;
+                                principal_paid = 0;
+                                document.getElementById('principalPaid').value = Math.round(principal_paid);
+                                document.getElementById('interestPaid').value = Math.round(interest_paid);
+                                document.getElementById('serviceCharge').value = Math.round(service_charge);
+                                document.getElementById('principalDue').value = Math.round(principal_due);
+                            } else {
                             if (cheque_amount > total_penal_belated) {
                                 var post_penal_belated_deduction = parseInt(cheque_amount) - parseInt(total_penal_belated);
                                 if (post_penal_belated_deduction > interest_due) {
@@ -221,9 +230,11 @@
                                     document.getElementById('interestDue').value = interest_due;
                                 }
                             }
+                            }
                             p_n_paid = principal_n_due - document.getElementById('principalPaid').value;
                             console.log(principal_n_due, document.getElementById('principalPaid').value);
                             document.getElementById('overallDue').value = p_n_paid;
+
                 } else {
                     var source1 = "/demand_ann_id/" + json[0]['ann_id'] + "/" + demand_number;
                     $.ajax({
@@ -238,6 +249,15 @@
 
                             var total_penal_belated = parseInt(document.getElementById('penalInterest').value) + parseInt(document.getElementById('belatedInterest').value);
                             var cheque_amount = that.value;
+                            if (cheque_amount === 0) {
+                                interest_paid = 0;
+                                service_charge = 0;
+                                principal_paid = 0;
+                                document.getElementById('principalPaid').value = Math.round(principal_paid);
+                                document.getElementById('interestPaid').value = Math.round(interest_paid);
+                                document.getElementById('serviceCharge').value = Math.round(service_charge);
+                                document.getElementById('principalDue').value = Math.round(principal_due);
+                            } else {
                             if (cheque_amount > total_penal_belated) {
                                 var post_penal_belated_deduction = parseInt(cheque_amount) - parseInt(total_penal_belated);
                                 if (post_penal_belated_deduction > interest_due) {
@@ -261,6 +281,7 @@
                                     document.getElementById('principalDue').value = principal_due;
                                     document.getElementById('interestDue').value = interest_due;
                                 }
+                            }
                             }
                             p_n_paid = principal_n_due - document.getElementById('principalPaid').value;
                             console.log(principal_n_due, document.getElementById('principalPaid').value);
