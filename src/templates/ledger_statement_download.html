@@ -13,6 +13,7 @@
             var credit_bal = "{{credit_bal}}";
 
             var source = "/raw_ledger_statement_between/"+hoa+"/{{start}}/{{end}}";
+            console.log(source);
             var doc = new jsPDF();
         $.ajax({
             type: 'GET',
