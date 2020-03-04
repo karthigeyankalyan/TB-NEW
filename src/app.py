@@ -292,6 +292,7 @@ def multi_receipt_form(user_id):
             user = User.get_by_id(user_id)
             invoice_date = request.form['invoiceDate']
             voucher_date = request.form['voucherDate']
+            mode = request.form['mode']
             adjustmentVoucher = request.form['adjustmentVoucher']
             ledger = request.form['ledger']
             nature_of_transaction = request.form['natureOfTransaction']
@@ -472,7 +473,7 @@ def multi_receipt_form(user_id):
                                   cheque_number=cheque_num, payment_voucher=pvoucher, depositing_bank=depoBank,
                                   voucher_date=voucher_date, adjustment_voucher=adjustmentVoucher,
                                   ledger=ledger, cleared="No", cheque_date=cheque_date, narration=narration,
-                                  clearing_credit_balance=clearing_balance_credit,
+                                  clearing_credit_balance=clearing_balance_credit, mode=mode,
                                   clearing_debit_balance=clearing_balance_debit, amount=0)
 
                 print(clearing_balance_debit, clearing_balance_credit)

@@ -11,7 +11,7 @@ class Account(object):
                  depositing_bank=None, adjustment_voucher=None, ledger=None, interest=None, penal_interest=None,
                  service_charge=None, principal=None, external_bank_account=None, voucher_date=None, cleared=None,
                  cheque_date=None, narration=None, clearing_debit_balance=None, clearing_credit_balance=None,
-                 amount=None):
+                 amount=None, mode=mode):
         if invoice_date:
             self.invoice_date = datetime.combine(datetime.strptime(invoice_date, '%Y-%m-%d').date(),
                                                  datetime.now().time())
@@ -39,6 +39,7 @@ class Account(object):
         self.adjustment_voucher = adjustment_voucher
         self.depositing_bank = depositing_bank
         self.amount = amount
+        self.mode = mode
         self.cleared = cleared
         self.ledger = ledger
         self.interest = interest
@@ -91,6 +92,7 @@ class Account(object):
             'clearing_credit_balance': self.clearing_credit_balance,
             'payment_voucher': self.payment_voucher,
             'voucher_date': self.voucher_date,
+            'mode': self.mode,
             'ledger': self.ledger,
             'interest': self.interest,
             'penal_interest': self.penal_interest,

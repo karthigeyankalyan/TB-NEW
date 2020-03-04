@@ -17,6 +17,17 @@
     </div>
 
     <div class="form-group" style="display: block; width: 38%">
+        <label style="flex: 8" for="mode">Mode</label>
+        <select style="flex: 4" class="form-control" id="mode" name="mode">
+            {% set nature = ['Journal Voucher', 'Bank Payment'] %}
+
+            {% for nat in nature %}
+                <option value= "{{nat}}">{{nat}}</option>"
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="form-group" style="display: block; width: 38%">
         <label style="flex: 8" for="ledger">Ledger</label>
         <select style="flex: 4" class="form-control" id="ledger" name="ledger">
             {% set nature = ['Sub', 'Main'] %}
