@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="da0bb03c-275f-4eeb-800c-401a339e857e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/models/accounts.py" afterPath="$PROJECT_DIR$/src/models/accounts.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/templates/multi_receipt_form.html" afterPath="$PROJECT_DIR$/src/templates/multi_receipt_form.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -42,6 +42,28 @@
             <state relative-caret-position="459">
               <caret line="208" column="110" lean-forward="true" selection-start-line="208" selection-start-column="110" selection-end-line="208" selection-end-column="110" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="multi_receipt_form.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/templates/multi_receipt_form.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="374">
+              <caret line="115" column="74" lean-forward="false" selection-start-line="115" selection-start-column="74" selection-end-line="115" selection-end-column="74" />
+              <folding>
+                <element signature="n#style#0;n#input#0;n#div#0;n#form#0;n#!!top" expanded="true" />
+                <marker date="1583310668001" expanded="true" signature="4924:5011" ph="..." />
+                <marker date="1583310668001" expanded="true" signature="5062:5100" ph="..." />
+                <marker date="1583310668001" expanded="true" signature="5310:5357" ph="..." />
+                <marker date="1583310668001" expanded="true" signature="5568:5615" ph="..." />
+                <marker date="1583310668001" expanded="true" signature="5809:5856" ph="..." />
+                <marker date="1583310668001" expanded="true" signature="10204:10291" ph="..." />
+                <marker date="1583310668001" expanded="true" signature="10342:10365" ph="..." />
+                <marker date="1583310668001" expanded="true" signature="10522:10545" ph="..." />
+                <marker date="1583310668001" expanded="true" signature="10671:10694" ph="..." />
+                <marker date="1583310668001" expanded="true" signature="10826:10849" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -114,7 +136,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="accounts.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="accounts.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/models/accounts.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="508">
@@ -215,7 +237,6 @@
         <option value="$PROJECT_DIR$/src/templates/mini_dem_added.html" />
         <option value="$PROJECT_DIR$/src/templates/post_login_loans.html" />
         <option value="$PROJECT_DIR$/src/templates/addFinancial.html" />
-        <option value="$PROJECT_DIR$/src/templates/multi_receipt_form.html" />
         <option value="$PROJECT_DIR$/src/templates/post_login_accounts.html" />
         <option value="$PROJECT_DIR$/src/templates/multi_ledger_View.html" />
         <option value="$PROJECT_DIR$/src/templates/inside_multi_ledger_View.html" />
@@ -230,6 +251,7 @@
         <option value="$PROJECT_DIR$/src/templates/updateFinancial.html" />
         <option value="$PROJECT_DIR$/src/templates/ViewDemands.html" />
         <option value="$PROJECT_DIR$/src/models/accounts.py" />
+        <option value="$PROJECT_DIR$/src/templates/multi_receipt_form.html" />
       </list>
     </option>
   </component>
@@ -858,13 +880,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/templates/multi_receipt_form.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="115" column="0" lean-forward="false" selection-start-line="115" selection-start-column="0" selection-end-line="115" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/templates/multi_ledger_View.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="49">
@@ -997,10 +1012,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/templates/updateFinancial.html">
+    <entry file="file://$PROJECT_DIR$/src/models/loan_financials.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="208" column="110" lean-forward="true" selection-start-line="208" selection-start-column="110" selection-end-line="208" selection-end-column="110" />
+        <state relative-caret-position="17">
+          <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/models/accounts.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="508">
+          <caret line="64" column="0" lean-forward="false" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1018,19 +1041,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/models/loan_financials.py">
+    <entry file="file://$PROJECT_DIR$/src/templates/updateFinancial.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+        <state relative-caret-position="459">
+          <caret line="208" column="110" lean-forward="true" selection-start-line="208" selection-start-column="110" selection-end-line="208" selection-end-column="110" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/models/accounts.py">
+    <entry file="file://$PROJECT_DIR$/src/templates/multi_receipt_form.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="508">
-          <caret line="64" column="0" lean-forward="false" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="374">
+          <caret line="115" column="74" lean-forward="false" selection-start-line="115" selection-start-column="74" selection-end-line="115" selection-end-column="74" />
+          <folding>
+            <element signature="n#style#0;n#input#0;n#div#0;n#form#0;n#!!top" expanded="true" />
+            <marker date="1583310668001" expanded="true" signature="4924:5011" ph="..." />
+            <marker date="1583310668001" expanded="true" signature="5062:5100" ph="..." />
+            <marker date="1583310668001" expanded="true" signature="5310:5357" ph="..." />
+            <marker date="1583310668001" expanded="true" signature="5568:5615" ph="..." />
+            <marker date="1583310668001" expanded="true" signature="5809:5856" ph="..." />
+            <marker date="1583310668001" expanded="true" signature="10204:10291" ph="..." />
+            <marker date="1583310668001" expanded="true" signature="10342:10365" ph="..." />
+            <marker date="1583310668001" expanded="true" signature="10522:10545" ph="..." />
+            <marker date="1583310668001" expanded="true" signature="10671:10694" ph="..." />
+            <marker date="1583310668001" expanded="true" signature="10826:10849" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
