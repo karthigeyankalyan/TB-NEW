@@ -11,7 +11,7 @@ class Account(object):
                  depositing_bank=None, adjustment_voucher=None, ledger=None, interest=None, penal_interest=None,
                  service_charge=None, principal=None, external_bank_account=None, voucher_date=None, cleared=None,
                  cheque_date=None, narration=None, clearing_debit_balance=None, clearing_credit_balance=None,
-                 amount=None, mode=mode):
+                 amount=None, mode=None):
         if invoice_date:
             self.invoice_date = datetime.combine(datetime.strptime(invoice_date, '%Y-%m-%d').date(),
                                                  datetime.now().time())
