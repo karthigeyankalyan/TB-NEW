@@ -1599,7 +1599,7 @@ def acc_head_balance_view():
 
 
 @app.route('/ledger_statement_download/<string:hoa>/<string:debit_bal>/<string:credit_bal>', methods=['POST', 'GET'])
-def acc_head_balance_view(hoa, debit_bal, credit_bal):
+def ledger_statement_view(hoa, debit_bal, credit_bal):
     email = session['email']
     user = User.get_by_email(email)
     if email is not None:
@@ -1619,7 +1619,7 @@ def acc_head_balance_view(hoa, debit_bal, credit_bal):
 
 
 @app.route('/raw_ledger_statement_between/<string:hoa>/<string:start_date>/<string:end_date>')
-def get_raw_footfall_entries_by_district_datefilter(hoa, start_date, end_date):
+def get_raw_footfall_entries_by_hoa_datefilter(hoa, start_date, end_date):
     district_destinations_array = []
 
     start = datetime.combine(datetime.strptime(start_date, '%Y-%m-%d').date(),
