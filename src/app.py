@@ -476,13 +476,13 @@ def multi_receipt_form(user_id):
                                   clearing_credit_balance=clearing_balance_credit, mode=mode,
                                   clearing_debit_balance=clearing_balance_debit, amount=0)
 
-                print(clearing_balance_debit, clearing_balance_credit)
-
                 cl_credit_old, cl_debit_old = 0, 0
 
                 for result_object in application[0:1]:
                     cl_credit_old = int(result_object['Cl']['Credit Bal'])
                     cl_debit_old = int(result_object['Cl']['Debit Bal'])
+
+                print(cl_credit_old, cl_debit_old, clearing_balance_credit, clearing_balance_debit)
 
                 Account.update_ledger_balance(head_of_accounts=account_head,
                                               credit_balance=int(clearing_balance_credit) + int(cl_credit_old),
@@ -699,15 +699,15 @@ def update_receipt(_id):
 
             new_credit, new_debit = 0, 0
 
-            # for result_object in application[0:1]:
-            #     new_credit = int(cl_credit_amount) - int(result_object['clearing_credit_balance'])
-            #     new_debit = int(cl_debit_amount) - int(result_object['clearing_debit_balance'])
+            for result_object in application[0:1]:
+                new_credit = int(cl_credit_amount) - int(result_object['clearing_credit_balance'])
+                new_debit = int(cl_debit_amount) - int(result_object['clearing_debit_balance'])
 
             print(cl_credit_amount, cl_debit_amount, cl_credit_old, cl_debit_old)
 
             Account.update_ledger_balance(head_of_accounts=account_head,
-                                          credit_balance=cl_credit_amount + cl_credit_old,
-                                          debit_balance=cl_debit_amount + cl_debit_old)
+                                          credit_balance=new_credit + cl_credit_old,
+                                          debit_balance=new_debit+ cl_debit_old)
 
             return render_template('application_added.html', user=user)
 
