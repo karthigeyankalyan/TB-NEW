@@ -12,7 +12,7 @@
             var debit_bal = "{{debit_bal}}";
             var credit_bal = "{{credit_bal}}";
 
-            var source = "/raw_ledger_statement_between/"+hoa+"/{{start_date}}/{{end_date}}";
+            var source = "/raw_ledger_statement_between/"+hoa+"/{{start}}/{{end}}";
             var doc = new jsPDF();
         $.ajax({
             type: 'GET',
