@@ -176,16 +176,21 @@
                                 json[i]['Remarks'] = "Demand Payment not yet made; Penal Interest shown if payment is made today";
                             }
 
+                            if (json[i]['cheque_date']) {
+                                json[i]['closing_balance_principal_due'] = json[i]['closing_balance_principal_due'];
+                                json[i]['closing_balance_interest_due'] = json[i]['closing_balance_interest_due'];
+                            } else {
                                 // The Closing Balance Principal Due here is the final amount required to be paid in this demand
                                 json[i]['closing_balance_principal_due'] = parseInt(json[i]['Total Principal Demand']) - Math.round(parseInt(json[i]['principal_collected']));
-    //                                - (parseInt(json[i]['interest_demand']) * 3 / parseInt(json[i]['roi']));
+                                //                                - (parseInt(json[i]['interest_demand']) * 3 / parseInt(json[i]['roi']));
 
-                            console.log(json[0]['Total Principal Demand'], Math.round(json[0]['principal_collected']), json[0]['closing_balance_principal_due']);
+                                console.log(json[0]['Total Principal Demand'], Math.round(json[0]['principal_collected']), json[0]['closing_balance_principal_due']);
                                 // The Closing Balance Interest Due here is the final amount required to be paid in this demand
                                 json[i]['closing_balance_interest_due'] = parseInt(json[i]['Total Interest Demand']) - Math.round(parseInt(json[i]['interest_collected']));
 
                                 // This will be the Principal amount left to be paid if this demand is fully satisfied
                                 json[i]['closing_balance_principal_ndue'] = parseInt(json[i]['loan_amount']) - parseInt(json[i]['principal_collected']);
+                            }
                         }
 
                         console.log(json);
