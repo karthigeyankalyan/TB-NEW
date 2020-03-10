@@ -484,6 +484,8 @@ def multi_receipt_form(user_id):
 
                 new_debit_balance, new_credit_balance = 0, 0
 
+                print(clearing_balance_debit, cl_debit_old, cl_credit_old, clearing_balance_credit)
+
                 if int(clearing_balance_debit) > 0 & int(cl_debit_old) > 0:
                     new_debit_balance = int(clearing_balance_debit) + int(cl_debit_old)
                     new_credit_balance = int(cl_credit_old)
@@ -504,6 +506,8 @@ def multi_receipt_form(user_id):
                     else:
                         new_credit_balance = 0
                         new_debit_balance = int(clearing_balance_debit) - int(cl_credit_old)
+
+                print(new_debit_balance, new_credit_balance)
 
                 Account.update_ledger_balance(head_of_accounts=account_head,
                                               credit_balance=new_credit_balance,
