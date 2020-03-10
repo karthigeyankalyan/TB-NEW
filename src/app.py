@@ -493,7 +493,7 @@ def multi_receipt_form(user_id):
                         print(2)
                         new_credit_balance = int(clearing_balance_credit) + int(cl_credit_old)
                         new_debit_balance = int(cl_debit_old)
-                    elif int(cl_debit_old) > 0 & clearing_balance_credit > 0:
+                    elif int(cl_debit_old) > 0 & int(clearing_balance_credit) > 0:
                         if int(cl_debit_old) >= int(clearing_balance_credit):
                             print(3)
                             new_debit_balance = int(cl_debit_old) - int(clearing_balance_credit)
