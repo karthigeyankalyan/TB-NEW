@@ -150,7 +150,7 @@
             '<label for='+credit_bal+'>Cl. Credit</label>' +
             '<input type="text" id='+credit_bal+' name='+credit_bal+'>' +
             '</div>' +
-            '<div style="display: None; flex: 3; flex-direction: column;">' +
+            '<div style="display: flex; flex: 3; flex-direction: column;">' +
             '<label for='+debit_bal+'>Cl. Credit</label>' +
             '<input type="text" id='+debit_bal+' name='+debit_bal+'>' +
             '</div>'
@@ -212,7 +212,13 @@
                         new_debit_balance = debit_value;
                     }
                 }
-                console.log(new_credit_balance, new_debit_balance);
+                var new_credit = "credit_bal"+credit_id.id.substring(credit_id.id - 1);
+                var new_debit = "debit_bal"+debit_id.id.substring(debit_id.id - 1);
+                console.log(new_debit, new_credit);
+
+                document.getElementById(new_credit).value = new_credit_balance;
+                document.getElementById(new_debit).value = new_debit_balance;
+
             },
             error: function (e) {
                 alert("error");
@@ -259,7 +265,7 @@
             '<label for='+credit_bal+'>Cl. Credit</label>' +
             '<input type="text" id='+credit_bal+' name='+credit_bal+'>' +
             '</div>' +
-            '<div style="display: None; flex: 3; flex-direction: column;">' +
+            '<div style="display: flex; flex: 3; flex-direction: column;">' +
             '<label for='+debit_bal+'>Cl. Credit</label>' +
             '<input type="text" id='+debit_bal+' name='+debit_bal+'>' +
             '</div>'
