@@ -168,13 +168,16 @@
             contentType: "application/json",
             dataType: 'json',
             success: function (json) {
-                var credit_value = document.getElementById(credit_id.id).value;
-                var debit_value = document.getElementById(debit_id.id).value;
+                var credit_value = parseInt(document.getElementById(credit_id.id).value);
+                var debit_value = parseInt(document.getElementById(debit_id.id).value);
                 var old_debit_balance = json[0]["Cl"]["Debit Bal"];
                 var old_credit_balance = json[0]["Cl"]["Credit Bal"];
 
-                console.log(credit_value, debit_value, old_credit_balance, old_debit_balance);
-
+                if (credit_value > 0 && old_credit_balance > 0) {
+                    var new_credit_balance = credit_value + old_credit_balance;
+                    var new_debit_balance = 0;
+                    console.log(new_credit_balance, new_debit_balance);
+                }
             },
             error: function (e) {
                 alert("error");
