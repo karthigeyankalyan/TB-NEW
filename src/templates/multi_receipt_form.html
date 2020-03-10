@@ -142,15 +142,17 @@
             '</div>' +
             '<div style="display: flex; flex: 3; flex-direction: column;">' +
             '<label for='+credit_amount+'>Cl. Credit</label>' +
-            '<input type="text" id='+credit_amount+' onchange="populateNewBalances(this)" name='+credit_amount+'>' +
+            '<input type="text" id='+credit_amount+' onchange="populateNewBalances('+credit_amount+','+debit_amount+')" name='+credit_amount+'>' +
             '</div>'
         );
         shg_det.append(row);
         i++;
         populateSelect();
 
-    function populateNewBalances(that) {
-        console.log(that.value, 123);
+    function populateNewBalances(credit_id, debit_id) {
+        var credit_value = document.getElementById(credit_id).value;
+        var debit_value = document.getElementById(debit_id).value;
+        console.log(credit_value, debit_value)
     }
 
     function populateSelect() {
