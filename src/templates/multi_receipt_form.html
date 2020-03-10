@@ -201,6 +201,15 @@
                         new_debit_balance = debit_value - old_credit_balance;
                     }
                 }
+                if (old_debit_balance === 0 && old_credit_balance) {
+                    if (credit_value > 0) {
+                        new_credit_balance = credit_value;
+                        new_debit_balance = 0;
+                    } else if (debit_value > 0) {
+                        new_credit_balance = 0;
+                        new_debit_balance = debit_value;
+                    }
+                }
                 console.log(new_credit_balance, new_debit_balance);
             },
             error: function (e) {
