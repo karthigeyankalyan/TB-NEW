@@ -309,6 +309,7 @@ def multi_receipt_form(user_id):
             account, account_head, clearing_balance_debit, clearing_balance_credit = None, None, None, None
             new_debit_balance, new_credit_balance = 0, 0
             cl_credit_old, cl_debit_old = 0, 0
+            application = None
 
             for i in range(int(inv_id)):
                 s_no = "sno" + str(i)
@@ -512,7 +513,8 @@ def multi_receipt_form(user_id):
 
             return render_template('receipt_added_multi.html', account=account, user=user, ncb=new_credit_balance,
                                    ndb=new_debit_balance, cl_d_bal=clearing_balance_debit,
-                                   cl_c_bal=clearing_balance_credit, deb_old=cl_debit_old, cre_old=cl_credit_old)
+                                   cl_c_bal=clearing_balance_credit, deb_old=cl_debit_old, cre_old=cl_credit_old,
+                                   application=application)
 
     else:
         return render_template('login_fail.html')
