@@ -1677,7 +1677,7 @@ def raw_acc_head_balance():
 
 
 @app.route('/raw_acc_head_opening_balance/<string:hoa>')
-def raw_acc_head_opening_balance():
+def raw_acc_head_opening_balance(hoa):
     loan = []
     loan_dict = Database.find("trailBalance", {"Head of Accounts": hoa})
 
