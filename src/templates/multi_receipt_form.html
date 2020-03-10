@@ -173,6 +173,8 @@
                 var old_debit_balance = json[0]["Cl"]["Debit Bal"];
                 var old_credit_balance = json[0]["Cl"]["Credit Bal"];
 
+                console.log(credit_value, debit_value, old_credit_balance, old_debit_balance);
+
                 if (credit_value > 0 && old_credit_balance > 0) {
                     var new_credit_balance = credit_value + old_credit_balance;
                     var new_debit_balance = 0;
