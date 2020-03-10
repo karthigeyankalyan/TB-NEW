@@ -514,7 +514,7 @@ def multi_receipt_form(user_id):
             return render_template('receipt_added_multi.html', account=account, user=user, ncb=new_credit_balance,
                                    ndb=new_debit_balance, cl_d_bal=clearing_balance_debit,
                                    cl_c_bal=clearing_balance_credit, deb_old=cl_debit_old, cre_old=cl_credit_old,
-                                   application=application)
+                                   application=application[0], app=application)
 
     else:
         return render_template('login_fail.html')
