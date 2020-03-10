@@ -491,6 +491,7 @@ def multi_receipt_form(user_id):
                         new_debit_balance = int(cl_debit_old)
                     elif int(clearing_balance_credit) >= 0 & int(cl_debit_old) >= 0 & int(clearing_balance_debit) == 0:
                         if int(cl_debit_old) >= int(clearing_balance_credit):
+                            print(1234567)
                             new_debit_balance = int(cl_debit_old) - int(clearing_balance_credit)
                             new_credit_balance = int(cl_credit_old)
                         else:
