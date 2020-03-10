@@ -484,6 +484,7 @@ def multi_receipt_form(user_id):
                     cl_debit_old = int(result_object['Cl']['Debit Bal'])
 
                     print(cl_credit_old, cl_debit_old,  clearing_balance_debit, clearing_balance_credit)
+                    print(int(clearing_balance_credit) >= 0)
 
                     if (int(clearing_balance_credit) == 0 & int(clearing_balance_debit) >= 0 &
                         int(cl_debit_old) >= 0 & int(cl_credit_old) == 0):
