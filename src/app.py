@@ -483,6 +483,8 @@ def multi_receipt_form(user_id):
                     cl_credit_old = int(result_object['Cl']['Credit Bal'])
                     cl_debit_old = int(result_object['Cl']['Debit Bal'])
 
+                    print(cl_credit_old, cl_debit_old)
+
                     if int(clearing_balance_debit) > 0 & int(cl_debit_old) > 0:
                         new_debit_balance = int(clearing_balance_debit) + int(cl_debit_old)
                         new_credit_balance = int(cl_credit_old)
@@ -513,7 +515,8 @@ def multi_receipt_form(user_id):
 
             return render_template('receipt_added_multi.html', account=account, user=user, ncb=new_credit_balance,
                                    ndb=new_debit_balance, cl_d_bal=clearing_balance_debit,
-                                   cl_c_bal=clearing_balance_credit, deb_old=cl_debit_old, cre_old=cl_credit_old)
+                                   cl_c_bal=clearing_balance_credit, deb_old=cl_debit_old, cre_old=cl_credit_old,
+                                   application=application)
 
     else:
         return render_template('login_fail.html')
