@@ -483,29 +483,28 @@ def multi_receipt_form(user_id):
                     cl_credit_old = int(result_object['Cl']['Credit Bal'])
                     cl_debit_old = int(result_object['Cl']['Debit Bal'])
 
-                    print(cl_credit_old, cl_debit_old)
+                    print(cl_credit_old, cl_debit_old, clearing_balance_credit, clearing_balance_debit)
 
-                    if int(clearing_balance_debit) > 0 & int(cl_debit_old) > 0:
+                    if int(clearing_balance_debit) >= 0 & int(cl_debit_old) >= 0:
                         new_debit_balance = int(clearing_balance_debit) + int(cl_debit_old)
                         new_credit_balance = int(cl_credit_old)
-                    elif int(clearing_balance_credit) > 0 & int(cl_credit_old) > 0:
+                    elif int(clearing_balance_credit) >= 0 & int(cl_credit_old) >= 0:
                         new_credit_balance = int(clearing_balance_credit) + int(cl_credit_old)
                         new_debit_balance = int(cl_debit_old)
-                    elif int(clearing_balance_credit) > 0 & int(cl_debit_old) > 0:
+                    elif int(clearing_balance_credit) >= 0 & int(cl_debit_old) >= 0:
                         if int(clearing_balance_credit) <= int(cl_debit_old):
                             new_debit_balance = cl_debit_old - int(clearing_balance_credit)
                             new_credit_balance = int(cl_credit_old)
                         else:
                             new_debit_balance = 0
                             new_credit_balance = int(clearing_balance_credit) - int(cl_debit_old)
-                    elif int(clearing_balance_debit) > 0 & int(cl_credit_old) > 0:
+                    elif int(clearing_balance_debit) >= 0 & int(cl_credit_old) >= 0:
                         if int(clearing_balance_debit) <= int(cl_credit_old):
                             new_credit_balance = int(cl_credit_old) - int(clearing_balance_debit)
                             new_debit_balance = int(cl_debit_old)
                         else:
                             new_credit_balance = 0
                             new_debit_balance = int(clearing_balance_debit) - int(cl_credit_old)
-                    print(new_debit_balance, new_credit_balance)
 
                     # Account.update_ledger_balance(head_of_accounts=account_head,
                     #                               credit_balance=new_credit_balance,
