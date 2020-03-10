@@ -21,16 +21,36 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="app.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="app.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/app.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="423">
-              <caret line="510" column="0" lean-forward="true" selection-start-line="510" selection-start-column="0" selection-end-line="510" selection-end-column="0" />
+            <state relative-caret-position="355">
+              <caret line="514" column="59" lean-forward="false" selection-start-line="514" selection-start-column="59" selection-end-line="514" selection-end-column="59" />
               <folding>
                 <element signature="e#0#29#0" expanded="true" />
-                <element signature="e#17603#29259#0" expanded="false" />
-                <element signature="e#33887#44969#0" expanded="false" />
+                <element signature="e#17707#29363#0" expanded="false" />
+                <element signature="e#34010#45092#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="receipt_added_multi.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/templates/receipt_added_multi.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="372">
+              <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="receipt_added.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/templates/receipt_added.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="313">
+              <caret line="26" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -38,8 +58,8 @@
       <file leaf-file-name="ViewAccountHead.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/templates/ViewAccountHead.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="406">
-              <caret line="33" column="59" lean-forward="true" selection-start-line="33" selection-start-column="40" selection-end-line="33" selection-end-column="59" />
+            <state relative-caret-position="68">
+              <caret line="9" column="23" lean-forward="true" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="43" />
               <folding />
             </state>
           </provider>
@@ -99,8 +119,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>&quot;Demands&quot;, {&quot;_id&quot;</find>
-      <find>mini_demand</find>
       <find>ViewDema</find>
       <find>update_demand</find>
       <find>/demand/</find>
@@ -129,6 +147,8 @@
       <find>&amp;</find>
       <find>trailB</find>
       <find>new_debit</find>
+      <find>ViewAcc</find>
+      <find>raw_acc_head_balance</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -143,7 +163,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/templates/receipt_form.html" />
         <option value="$PROJECT_DIR$/src/templates/account_statements.html" />
         <option value="$PROJECT_DIR$/src/templates/BetweenDatesOtherAccounts.html" />
         <option value="$PROJECT_DIR$/runtime.txt" />
@@ -194,6 +213,7 @@
         <option value="$PROJECT_DIR$/src/models/accounts.py" />
         <option value="$PROJECT_DIR$/src/templates/ledger_statement_download.html" />
         <option value="$PROJECT_DIR$/src/app.py" />
+        <option value="$PROJECT_DIR$/src/templates/receipt_added_multi.html" />
       </list>
     </option>
   </component>
@@ -594,13 +614,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/templates/UtilisationCertificate.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="508">
-          <caret line="33" column="0" lean-forward="false" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/templates/ViewLoansByCategory.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="508">
@@ -724,13 +737,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="491">
           <caret line="30" column="0" lean-forward="true" selection-start-line="25" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/templates/receipt_added.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="287">
-          <caret line="26" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -962,14 +968,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/templates/ViewAccountHead.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="406">
-          <caret line="33" column="59" lean-forward="true" selection-start-line="33" selection-start-column="40" selection-end-line="33" selection-end-column="59" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/templates/multi_receipt_form.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="171">
@@ -990,15 +988,39 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/templates/ViewAccountHead.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="9" column="23" lean-forward="true" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/templates/receipt_added.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="313">
+          <caret line="26" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/app.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="423">
-          <caret line="510" column="0" lean-forward="true" selection-start-line="510" selection-start-column="0" selection-end-line="510" selection-end-column="0" />
+        <state relative-caret-position="355">
+          <caret line="514" column="59" lean-forward="false" selection-start-line="514" selection-start-column="59" selection-end-line="514" selection-end-column="59" />
           <folding>
             <element signature="e#0#29#0" expanded="true" />
-            <element signature="e#17603#29259#0" expanded="false" />
-            <element signature="e#33887#44969#0" expanded="false" />
+            <element signature="e#17707#29363#0" expanded="false" />
+            <element signature="e#34010#45092#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/templates/receipt_added_multi.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="372">
+          <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>

@@ -307,6 +307,8 @@ def multi_receipt_form(user_id):
             user_name = user.username
 
             account, account_head, clearing_balance_debit, clearing_balance_credit = None, None, None, None
+            new_debit_balance, new_credit_balance = 0, 0
+            cl_credit_old, cl_debit_old = 0, 0
 
             for i in range(int(inv_id)):
                 s_no = "sno" + str(i)
@@ -476,15 +478,9 @@ def multi_receipt_form(user_id):
                                   clearing_credit_balance=clearing_balance_credit, mode=mode,
                                   clearing_debit_balance=clearing_balance_debit, amount=0)
 
-                cl_credit_old, cl_debit_old = 0, 0
-
                 for result_object in application[0:1]:
                     cl_credit_old = int(result_object['Cl']['Credit Bal'])
                     cl_debit_old = int(result_object['Cl']['Debit Bal'])
-
-                new_debit_balance, new_credit_balance = 0, 0
-
-                print(clearing_balance_debit, cl_debit_old, cl_credit_old, clearing_balance_credit)
 
                 if int(clearing_balance_debit) > 0 & int(cl_debit_old) > 0:
                     new_debit_balance = int(clearing_balance_debit) + int(cl_debit_old)
@@ -506,7 +502,6 @@ def multi_receipt_form(user_id):
                     else:
                         new_credit_balance = 0
                         new_debit_balance = int(clearing_balance_debit) - int(cl_credit_old)
-
                 print(new_debit_balance, new_credit_balance)
 
                 Account.update_ledger_balance(head_of_accounts=account_head,
@@ -515,7 +510,9 @@ def multi_receipt_form(user_id):
 
                 account.save_to_mongo()
 
-            return render_template('receipt_added.html', account=account, user=user)
+            return render_template('receipt_added_multi.html', account=account, user=user, ncb=new_credit_balance,
+                                   ndb=new_debit_balance, cl_d_bal=clearing_balance_debit,
+                                   cl_c_bal=clearing_balance_credit, deb_old=cl_debit_old, cre_old=cl_credit_old)
 
     else:
         return render_template('login_fail.html')
