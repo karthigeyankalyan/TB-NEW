@@ -480,42 +480,40 @@ def multi_receipt_form(user_id):
                                   clearing_debit_balance=clearing_balance_debit, amount=0)
 
                 for result_object in application[0:1]:
-                    print(result_object)
                     cl_credit_old = int(result_object['Cl']['Credit Bal'])
                     cl_debit_old = int(result_object['Cl']['Debit Bal'])
 
-                if int(clearing_balance_debit) > 0 & int(cl_debit_old) > 0:
-                    new_debit_balance = int(clearing_balance_debit) + int(cl_debit_old)
-                    new_credit_balance = int(cl_credit_old)
-                elif int(clearing_balance_credit) > 0 & int(cl_credit_old) > 0:
-                    new_credit_balance = int(clearing_balance_credit) + int(cl_credit_old)
-                    new_debit_balance = int(cl_debit_old)
-                elif int(clearing_balance_credit) > 0 & int(cl_debit_old) > 0:
-                    if int(clearing_balance_credit) <= int(cl_debit_old):
-                        new_debit_balance = cl_debit_old - int(clearing_balance_credit)
+                    if int(clearing_balance_debit) > 0 & int(cl_debit_old) > 0:
+                        new_debit_balance = int(clearing_balance_debit) + int(cl_debit_old)
                         new_credit_balance = int(cl_credit_old)
-                    else:
-                        new_debit_balance = 0
-                        new_credit_balance = int(clearing_balance_credit) - int(cl_debit_old)
-                elif int(clearing_balance_debit) > 0 & int(cl_credit_old) > 0:
-                    if int(clearing_balance_debit) <= int(cl_credit_old):
-                        new_credit_balance = int(cl_credit_old) - int(clearing_balance_debit)
+                    elif int(clearing_balance_credit) > 0 & int(cl_credit_old) > 0:
+                        new_credit_balance = int(clearing_balance_credit) + int(cl_credit_old)
                         new_debit_balance = int(cl_debit_old)
-                    else:
-                        new_credit_balance = 0
-                        new_debit_balance = int(clearing_balance_debit) - int(cl_credit_old)
-                print(new_debit_balance, new_credit_balance)
+                    elif int(clearing_balance_credit) > 0 & int(cl_debit_old) > 0:
+                        if int(clearing_balance_credit) <= int(cl_debit_old):
+                            new_debit_balance = cl_debit_old - int(clearing_balance_credit)
+                            new_credit_balance = int(cl_credit_old)
+                        else:
+                            new_debit_balance = 0
+                            new_credit_balance = int(clearing_balance_credit) - int(cl_debit_old)
+                    elif int(clearing_balance_debit) > 0 & int(cl_credit_old) > 0:
+                        if int(clearing_balance_debit) <= int(cl_credit_old):
+                            new_credit_balance = int(cl_credit_old) - int(clearing_balance_debit)
+                            new_debit_balance = int(cl_debit_old)
+                        else:
+                            new_credit_balance = 0
+                            new_debit_balance = int(clearing_balance_debit) - int(cl_credit_old)
+                    print(new_debit_balance, new_credit_balance)
 
-                # Account.update_ledger_balance(head_of_accounts=account_head,
-                #                               credit_balance=new_credit_balance,
-                #                               debit_balance=new_debit_balance)
+                    Account.update_ledger_balance(head_of_accounts=account_head,
+                                                  credit_balance=new_credit_balance,
+                                                  debit_balance=new_debit_balance)
 
-                account.save_to_mongo()
+                    account.save_to_mongo()
 
             return render_template('receipt_added_multi.html', account=account, user=user, ncb=new_credit_balance,
                                    ndb=new_debit_balance, cl_d_bal=clearing_balance_debit,
-                                   cl_c_bal=clearing_balance_credit, deb_old=cl_debit_old, cre_old=cl_credit_old,
-                                   application=application[0], app=application)
+                                   cl_c_bal=clearing_balance_credit, deb_old=cl_debit_old, cre_old=cl_credit_old)
 
     else:
         return render_template('login_fail.html')
