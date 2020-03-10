@@ -150,7 +150,7 @@
             '<label for='+credit_bal+'>Cl. Credit</label>' +
             '<input type="text" id='+credit_bal+' name='+credit_bal+'>' +
             '</div>' +
-            '<div style="display: flex; flex: 3; flex-direction: column;">' +
+            '<div style="display: None; flex: 3; flex-direction: column;">' +
             '<label for='+debit_bal+'>Cl. Credit</label>' +
             '<input type="text" id='+debit_bal+' name='+debit_bal+'>' +
             '</div>'
@@ -200,6 +200,8 @@
     var accHead = "acchead"+i;
     var debit_amount = "debit_amount"+i;
     var credit_amount = "credit_amount"+i;
+    var debit_bal = "new_debit_bal"+i;
+    var credit_bal = "new_credit_bal"+i;
     console.log("add"+i);
     var row = $('<div style="display: flex; flex-direction: row; justify-content: space-around; align-items: center;"></div>')
         .html(
@@ -213,7 +215,15 @@
             '<input type="text" id='+debit_amount+' name='+debit_amount+'>' +
             '</div>' +
             '<div style="display: flex; flex: 3;">' +
-            '<input type="text" id='+credit_amount+' name='+credit_amount+'>' +
+            '<input type="text" id='+credit_amount+' onchange="populateNewBalances('+credit_amount+','+debit_amount+','+accHead+')" name='+credit_amount+'>' +
+            '</div>' +
+            '<div style="display: None; flex: 3; flex-direction: column;">' +
+            '<label for='+credit_bal+'>Cl. Credit</label>' +
+            '<input type="text" id='+credit_bal+' name='+credit_bal+'>' +
+            '</div>' +
+            '<div style="display: None; flex: 3; flex-direction: column;">' +
+            '<label for='+debit_bal+'>Cl. Credit</label>' +
+            '<input type="text" id='+debit_bal+' name='+debit_bal+'>' +
             '</div>'
         );
         shg_det.append(row);
