@@ -212,8 +212,12 @@
                         new_debit_balance = debit_value;
                     }
                 }
-                var new_credit = "credit_bal"+credit_id.id.substring(credit_id.id - 1);
-                var new_debit = "debit_bal"+debit_id.id.substring(debit_id.id - 1);
+
+                credit_id = credit_id.id;
+                debit_id = debit_id.id;
+
+                var new_credit = "credit_bal"+credit_id[credit_id.length - 1];
+                var new_debit = "debit_bal"+debit_id[debit_id.length - 1];
                 console.log(new_debit, new_credit);
 
                 document.getElementById(new_credit).value = new_credit_balance;
