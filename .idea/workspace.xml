@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="da0bb03c-275f-4eeb-800c-401a339e857e" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app.py" afterPath="$PROJECT_DIR$/src/app.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/templates/multi_receipt_form.html" afterPath="$PROJECT_DIR$/src/templates/multi_receipt_form.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -21,15 +22,15 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="app.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="app.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/app.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="355">
-              <caret line="519" column="0" lean-forward="false" selection-start-line="517" selection-start-column="0" selection-end-line="519" selection-end-column="0" />
+            <state relative-caret-position="389">
+              <caret line="484" column="0" lean-forward="true" selection-start-line="484" selection-start-column="0" selection-end-line="484" selection-end-column="0" />
               <folding>
                 <element signature="e#0#29#0" expanded="true" />
-                <element signature="e#17738#29394#0" expanded="false" />
-                <element signature="e#35152#46234#0" expanded="false" />
+                <element signature="e#17982#29638#0" expanded="false" />
+                <element signature="e#32684#43766#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -65,27 +66,27 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="multi_receipt_form.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="multi_receipt_form.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/templates/multi_receipt_form.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="219" column="37" lean-forward="false" selection-start-line="219" selection-start-column="37" selection-end-line="219" selection-end-column="37" />
+            <state relative-caret-position="34">
+              <caret line="118" column="0" lean-forward="true" selection-start-line="118" selection-start-column="0" selection-end-line="118" selection-end-column="0" />
               <folding>
                 <element signature="n#style#0;n#input#0;n#div#0;n#form#0;n#!!top" expanded="true" />
-                <marker date="1583877711367" expanded="true" signature="5417:5504" ph="..." />
-                <marker date="1583877711367" expanded="true" signature="5555:5593" ph="..." />
-                <marker date="1583877711367" expanded="true" signature="5803:5850" ph="..." />
-                <marker date="1583877711367" expanded="true" signature="6061:6108" ph="..." />
-                <marker date="1583877711367" expanded="true" signature="6302:6349" ph="..." />
-                <marker date="1583877711367" expanded="true" signature="6626:6673" ph="..." />
-                <marker date="1583877711367" expanded="true" signature="6862:6909" ph="..." />
-                <marker date="1583877711367" expanded="true" signature="14497:14584" ph="..." />
-                <marker date="1583877711367" expanded="true" signature="14635:14658" ph="..." />
-                <marker date="1583877711367" expanded="true" signature="14815:14838" ph="..." />
-                <marker date="1583877711367" expanded="true" signature="14964:14987" ph="..." />
-                <marker date="1583877711367" expanded="true" signature="15119:15142" ph="..." />
-                <marker date="1583877711367" expanded="true" signature="15355:15402" ph="..." />
-                <marker date="1583877711367" expanded="true" signature="15591:15638" ph="..." />
+                <marker date="1583877917186" expanded="true" signature="5417:5504" ph="..." />
+                <marker date="1583877917186" expanded="true" signature="5555:5593" ph="..." />
+                <marker date="1583877917186" expanded="true" signature="5803:5850" ph="..." />
+                <marker date="1583877917186" expanded="true" signature="6061:6108" ph="..." />
+                <marker date="1583877917186" expanded="true" signature="6302:6349" ph="..." />
+                <marker date="1583877917186" expanded="true" signature="6626:6673" ph="..." />
+                <marker date="1583877917186" expanded="true" signature="6862:6909" ph="..." />
+                <marker date="1583877917186" expanded="true" signature="14497:14584" ph="..." />
+                <marker date="1583877917186" expanded="true" signature="14635:14658" ph="..." />
+                <marker date="1583877917186" expanded="true" signature="14815:14838" ph="..." />
+                <marker date="1583877917186" expanded="true" signature="14964:14987" ph="..." />
+                <marker date="1583877917186" expanded="true" signature="15119:15142" ph="..." />
+                <marker date="1583877917186" expanded="true" signature="15355:15402" ph="..." />
+                <marker date="1583877917186" expanded="true" signature="15591:15638" ph="..." />
               </folding>
             </state>
           </provider>
@@ -196,8 +197,8 @@
         <option value="$PROJECT_DIR$/src/models/accounts.py" />
         <option value="$PROJECT_DIR$/src/templates/ledger_statement_download.html" />
         <option value="$PROJECT_DIR$/src/templates/receipt_added_multi.html" />
-        <option value="$PROJECT_DIR$/src/app.py" />
         <option value="$PROJECT_DIR$/src/templates/multi_receipt_form.html" />
+        <option value="$PROJECT_DIR$/src/app.py" />
       </list>
     </option>
   </component>
@@ -592,11 +593,6 @@
           <line>14</line>
           <option name="timeStamp" value="13" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/src/app.py</url>
-          <line>486</line>
-          <option name="timeStamp" value="14" />
-        </line-breakpoint>
       </breakpoints>
       <option name="time" value="15" />
     </breakpoint-manager>
@@ -981,38 +977,38 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app.py">
+    <entry file="file://$PROJECT_DIR$/src/templates/multi_receipt_form.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="355">
-          <caret line="519" column="0" lean-forward="false" selection-start-line="517" selection-start-column="0" selection-end-line="519" selection-end-column="0" />
+        <state relative-caret-position="34">
+          <caret line="118" column="0" lean-forward="true" selection-start-line="118" selection-start-column="0" selection-end-line="118" selection-end-column="0" />
           <folding>
-            <element signature="e#0#29#0" expanded="true" />
-            <element signature="e#17738#29394#0" expanded="false" />
-            <element signature="e#35152#46234#0" expanded="false" />
+            <element signature="n#style#0;n#input#0;n#div#0;n#form#0;n#!!top" expanded="true" />
+            <marker date="1583877917186" expanded="true" signature="5417:5504" ph="..." />
+            <marker date="1583877917186" expanded="true" signature="5555:5593" ph="..." />
+            <marker date="1583877917186" expanded="true" signature="5803:5850" ph="..." />
+            <marker date="1583877917186" expanded="true" signature="6061:6108" ph="..." />
+            <marker date="1583877917186" expanded="true" signature="6302:6349" ph="..." />
+            <marker date="1583877917186" expanded="true" signature="6626:6673" ph="..." />
+            <marker date="1583877917186" expanded="true" signature="6862:6909" ph="..." />
+            <marker date="1583877917186" expanded="true" signature="14497:14584" ph="..." />
+            <marker date="1583877917186" expanded="true" signature="14635:14658" ph="..." />
+            <marker date="1583877917186" expanded="true" signature="14815:14838" ph="..." />
+            <marker date="1583877917186" expanded="true" signature="14964:14987" ph="..." />
+            <marker date="1583877917186" expanded="true" signature="15119:15142" ph="..." />
+            <marker date="1583877917186" expanded="true" signature="15355:15402" ph="..." />
+            <marker date="1583877917186" expanded="true" signature="15591:15638" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/templates/multi_receipt_form.html">
+    <entry file="file://$PROJECT_DIR$/src/app.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="219" column="37" lean-forward="false" selection-start-line="219" selection-start-column="37" selection-end-line="219" selection-end-column="37" />
+        <state relative-caret-position="389">
+          <caret line="484" column="0" lean-forward="true" selection-start-line="484" selection-start-column="0" selection-end-line="484" selection-end-column="0" />
           <folding>
-            <element signature="n#style#0;n#input#0;n#div#0;n#form#0;n#!!top" expanded="true" />
-            <marker date="1583877711367" expanded="true" signature="5417:5504" ph="..." />
-            <marker date="1583877711367" expanded="true" signature="5555:5593" ph="..." />
-            <marker date="1583877711367" expanded="true" signature="5803:5850" ph="..." />
-            <marker date="1583877711367" expanded="true" signature="6061:6108" ph="..." />
-            <marker date="1583877711367" expanded="true" signature="6302:6349" ph="..." />
-            <marker date="1583877711367" expanded="true" signature="6626:6673" ph="..." />
-            <marker date="1583877711367" expanded="true" signature="6862:6909" ph="..." />
-            <marker date="1583877711367" expanded="true" signature="14497:14584" ph="..." />
-            <marker date="1583877711367" expanded="true" signature="14635:14658" ph="..." />
-            <marker date="1583877711367" expanded="true" signature="14815:14838" ph="..." />
-            <marker date="1583877711367" expanded="true" signature="14964:14987" ph="..." />
-            <marker date="1583877711367" expanded="true" signature="15119:15142" ph="..." />
-            <marker date="1583877711367" expanded="true" signature="15355:15402" ph="..." />
-            <marker date="1583877711367" expanded="true" signature="15591:15638" ph="..." />
+            <element signature="e#0#29#0" expanded="true" />
+            <element signature="e#17982#29638#0" expanded="false" />
+            <element signature="e#32684#43766#0" expanded="false" />
           </folding>
         </state>
       </provider>

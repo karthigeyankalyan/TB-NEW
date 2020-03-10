@@ -316,11 +316,15 @@ def multi_receipt_form(user_id):
                 acchead = "acchead" + str(i)
                 cl_debit_balance = "debit_amount" + str(i)
                 cl_credit_balance = "credit_amount" + str(i)
+                new_d_balance = "new_debit_bal" + str(i)
+                new_c_balance = "new_credit_bal" + str(i)
 
                 serial_no = request.form[s_no]
                 account_head = request.form[acchead]
                 clearing_balance_debit = request.form[cl_debit_balance]
                 clearing_balance_credit = request.form[cl_credit_balance]
+                new_debit_balance = request.form[new_d_balance]
+                new_credit_balance = request.form[new_c_balance]
 
                 doc_account_dict = {"LOAN FROM NBCFDC (GTL)": "Borrowings from NBCFDC",
                                     "LOAN FROM NBCFDC (MCS)": "Borrowings from NBCFDC",
@@ -479,53 +483,9 @@ def multi_receipt_form(user_id):
                                   clearing_credit_balance=clearing_balance_credit, mode=mode,
                                   clearing_debit_balance=clearing_balance_debit, amount=0)
 
-                for result_object in application:
-                    cl_credit_old = int(result_object['Cl']['Credit Bal'])
-                    cl_debit_old = int(result_object['Cl']['Debit Bal'])
-
-                    print(int(cl_credit_old), int(cl_debit_old),  int(clearing_balance_debit), int(clearing_balance_credit))
-                    print(int(cl_debit_old) > 0 & int(clearing_balance_credit) > 0)
-
-                    if (int(clearing_balance_debit) > 0 & int(cl_credit_old) > 0):
-                        if int(clearing_balance_debit) <= int(cl_credit_old):
-                            print(4)
-                            new_credit_balance = int(cl_credit_old) - int(clearing_balance_debit)
-                            new_debit_balance = int(cl_debit_old)
-                        else:
-                            print(4)
-                            new_credit_balance = 0
-                            new_debit_balance = int(clearing_balance_debit) - int(cl_credit_old)
-                    elif int(clearing_balance_credit) > 0 & int(cl_credit_old) > 0:
-                        print(2)
-                        new_credit_balance = int(clearing_balance_credit) + int(cl_credit_old)
-                        new_debit_balance = int(cl_debit_old)
-                    elif (int(cl_debit_old) > 0 & int(clearing_balance_credit) > 0):
-                        if int(cl_debit_old) >= int(clearing_balance_credit):
-                            print(3)
-                            new_debit_balance = int(cl_debit_old) - int(clearing_balance_credit)
-                            new_credit_balance = int(cl_credit_old)
-                        else:
-                            print(3)
-                            new_debit_balance = 0
-                            new_credit_balance = int(clearing_balance_credit) - int(cl_debit_old)
-                    elif int(clearing_balance_debit) > 0 & int(cl_debit_old) > 0:
-                        print(1)
-                        new_debit_balance = int(clearing_balance_debit) + int(cl_debit_old)
-                        new_credit_balance = int(cl_credit_old)
-                    elif int(cl_credit_old) == 0 & int(cl_debit_old) == 0:
-                        if int(clearing_balance_credit) > 0:
-                            print(5)
-                            new_credit_balance = clearing_balance_credit
-                            new_debit_balance = 0
-                        elif int(clearing_balance_debit) > 0:
-                            print(5)
-                            new_credit_balance = 0
-                            new_debit_balance = clearing_balance_debit
-
-                    print(new_credit_balance, new_debit_balance)
-                    # Account.update_ledger_balance(head_of_accounts=account_head,
-                    #                               credit_balance=new_credit_balance,
-                    #                               debit_balance=new_debit_balance)
+                Account.update_ledger_balance(head_of_accounts=account_head,
+                                              credit_balance=new_credit_balance,
+                                              debit_balance=new_debit_balance)
 
                     account.save_to_mongo()
 
