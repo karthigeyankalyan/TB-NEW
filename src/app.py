@@ -479,7 +479,7 @@ def multi_receipt_form(user_id):
                                   clearing_credit_balance=clearing_balance_credit, mode=mode,
                                   clearing_debit_balance=clearing_balance_debit, amount=0)
 
-                for result_object in application[0:1]:
+                for result_object in application:
                     cl_credit_old = int(result_object['Cl']['Credit Bal'])
                     cl_debit_old = int(result_object['Cl']['Debit Bal'])
 
