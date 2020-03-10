@@ -1710,6 +1710,19 @@ def raw_acc_head_opening_balance(hoa):
     return single_loan
 
 
+@app.route('/raw_acc_head_opening_balance_acc_head/<string:hoa>')
+def raw_acc_head_opening_balance_acc_head(hoa):
+    loan = []
+    loan_dict = Database.find("accounthead", {"Head of Accounts": hoa})
+
+    for tran in loan_dict:
+        loan.append(tran)
+
+    single_loan = json.dumps(loan, default=json_util.default)
+
+    return single_loan
+
+
 @app.route('/demands_by_cheque/<string:_id>')
 def download_receipt_by_cheque(_id):
     email = session['email']
