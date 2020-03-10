@@ -24,12 +24,12 @@
       <file leaf-file-name="app.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/app.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="485" column="124" lean-forward="true" selection-start-line="485" selection-start-column="124" selection-end-line="485" selection-end-column="124" />
+            <state relative-caret-position="119">
+              <caret line="487" column="0" lean-forward="true" selection-start-line="487" selection-start-column="0" selection-end-line="487" selection-end-column="0" />
               <folding>
                 <element signature="e#0#29#0" expanded="true" />
                 <element signature="e#17738#29394#0" expanded="false" />
-                <element signature="e#35149#46231#0" expanded="false" />
+                <element signature="e#35152#46234#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -608,8 +608,13 @@
           <line>14</line>
           <option name="timeStamp" value="13" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/src/app.py</url>
+          <line>486</line>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="14" />
+      <option name="time" value="15" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1014,12 +1019,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/app.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="485" column="124" lean-forward="true" selection-start-line="485" selection-start-column="124" selection-end-line="485" selection-end-column="124" />
+        <state relative-caret-position="119">
+          <caret line="487" column="0" lean-forward="true" selection-start-line="487" selection-start-column="0" selection-end-line="487" selection-end-column="0" />
           <folding>
             <element signature="e#0#29#0" expanded="true" />
             <element signature="e#17738#29394#0" expanded="false" />
-            <element signature="e#35149#46231#0" expanded="false" />
+            <element signature="e#35152#46234#0" expanded="false" />
           </folding>
         </state>
       </provider>
