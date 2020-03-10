@@ -24,12 +24,12 @@
       <file leaf-file-name="app.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/app.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="423">
-              <caret line="500" column="81" lean-forward="false" selection-start-line="500" selection-start-column="81" selection-end-line="500" selection-end-column="81" />
+            <state relative-caret-position="219">
+              <caret line="508" column="0" lean-forward="false" selection-start-line="508" selection-start-column="0" selection-end-line="511" selection-end-column="0" />
               <folding>
                 <element signature="e#0#29#0" expanded="true" />
                 <element signature="e#17738#29394#0" expanded="false" />
-                <element signature="e#34255#45337#0" expanded="false" />
+                <element signature="e#34249#45331#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -1014,12 +1014,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/app.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="423">
-          <caret line="500" column="81" lean-forward="false" selection-start-line="500" selection-start-column="81" selection-end-line="500" selection-end-column="81" />
+        <state relative-caret-position="219">
+          <caret line="508" column="0" lean-forward="false" selection-start-line="508" selection-start-column="0" selection-end-line="511" selection-end-column="0" />
           <folding>
             <element signature="e#0#29#0" expanded="true" />
             <element signature="e#17738#29394#0" expanded="false" />
-            <element signature="e#34255#45337#0" expanded="false" />
+            <element signature="e#34249#45331#0" expanded="false" />
           </folding>
         </state>
       </provider>
