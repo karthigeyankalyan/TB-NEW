@@ -506,9 +506,9 @@ def multi_receipt_form(user_id):
                         new_debit_balance = int(clearing_balance_debit) - int(cl_credit_old)
                 print(new_debit_balance, new_credit_balance)
 
-                Account.update_ledger_balance(head_of_accounts=account_head,
-                                              credit_balance=new_credit_balance,
-                                              debit_balance=new_debit_balance)
+                # Account.update_ledger_balance(head_of_accounts=account_head,
+                #                               credit_balance=new_credit_balance,
+                #                               debit_balance=new_debit_balance)
 
                 account.save_to_mongo()
 
