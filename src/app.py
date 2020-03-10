@@ -1666,7 +1666,20 @@ def get_raw_footfall_entries_by_hoa_datefilter(hoa, start_date, end_date):
 @app.route('/raw_acc_head_balance')
 def raw_acc_head_balance():
     loan = []
-    loan_dict = Database.find("accounthead", {})
+    loan_dict = Database.find("trailBalance", {})
+
+    for tran in loan_dict:
+        loan.append(tran)
+
+    single_loan = json.dumps(loan, default=json_util.default)
+
+    return single_loan
+
+
+@app.route('/raw_acc_head_opening_balance/<string:hoa>')
+def raw_acc_head_opening_balance():
+    loan = []
+    loan_dict = Database.find("trailBalance", {"Head of Accounts": hoa})
 
     for tran in loan_dict:
         loan.append(tran)
