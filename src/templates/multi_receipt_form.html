@@ -124,6 +124,8 @@
     var accHead = "acchead"+i;
     var debit_amount = "debit_amount"+i;
     var credit_amount = "credit_amount"+i;
+    var debit_bal = "new_debit_bal"+i;
+    var credit_bal = "new_credit_bal"+i;
     document.getElementById('natureOfTransaction').value = 'Multi-Ledger';
     var row = $('<div style="display: flex; flex-direction: row; justify-content: space-around; align-items: center;"></div>')
         .html(
@@ -142,18 +144,42 @@
             '</div>' +
             '<div style="display: flex; flex: 3; flex-direction: column;">' +
             '<label for='+credit_amount+'>Cl. Credit</label>' +
-            '<input type="text" id='+credit_amount+' onchange="populateNewBalances('+credit_amount+','+debit_amount+')" name='+credit_amount+'>' +
+            '<input type="text" id='+credit_amount+' onchange="populateNewBalances('+credit_amount+','+debit_amount+','+accHead+')" name='+credit_amount+'>' +
+            '</div>' +
+            '<div style="display: None; flex: 3; flex-direction: column;">' +
+            '<label for='+credit_bal+'>Cl. Credit</label>' +
+            '<input type="text" id='+credit_bal+' name='+credit_bal+'>' +
+            '</div>' +
+            '<div style="display: flex; flex: 3; flex-direction: column;">' +
+            '<label for='+debit_bal+'>Cl. Credit</label>' +
+            '<input type="text" id='+debit_bal+' name='+debit_bal+'>' +
             '</div>'
         );
         shg_det.append(row);
         i++;
         populateSelect();
 
-    function populateNewBalances(credit_id, debit_id) {
-        console.log(credit_id.id, debit_id.id);
-        var credit_value = document.getElementById(credit_id.id).value;
-        var debit_value = document.getElementById(debit_id.id).value;
-        console.log(credit_value, debit_value)
+    function populateNewBalances(credit_id, debit_id, hoa) {
+        var hoaccount = document.getElementById(hoa.id).value;
+        var source = "/raw_acc_head_opening_balance/"+hoaccount;
+        $.ajax({
+            type: 'GET',
+            url: source,
+            contentType: "application/json",
+            dataType: 'json',
+            success: function (json) {
+                var credit_value = document.getElementById(credit_id.id).value;
+                var debit_value = document.getElementById(debit_id.id).value;
+                var old_debit_balance = json[0]["Cl"]["Debit Bal"];
+                var old_credit_balance = json[0]["Cl"]["Credit Bal"];
+
+                console.log(credit_value, debit_value, old_credit_balance, old_debit_balance);
+
+            },
+            error: function (e) {
+                alert("error");
+            }
+        });
     }
 
     function populateSelect() {
