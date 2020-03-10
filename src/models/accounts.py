@@ -74,7 +74,7 @@ class Account(object):
 
     @classmethod
     def update_ledger_balance(cls, head_of_accounts, debit_balance, credit_balance):
-        Database.update_ledger_balance(collection='accounthead', query={'Head of Accounts': head_of_accounts},
+        Database.update_ledger_balance(collection='trailBalance', query={'Head of Accounts': head_of_accounts},
                                        credit=credit_balance, debit=debit_balance)
 
     def json(self):

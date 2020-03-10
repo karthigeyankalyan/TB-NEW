@@ -465,7 +465,7 @@ def multi_receipt_form(user_id):
 
                 doc_account_head = doc_account_dict[account_head]
 
-                application = Database.find("accounthead", {"Head of Accounts": account_head})
+                application = Database.find("trailBalance", {"Head of Accounts": account_head})
 
                 account = Account(invoice_date=invoice_date, nature_of_transaction=nature_of_transaction,
                                   account_head=account_head, bank_account=bank_account,
@@ -482,11 +482,32 @@ def multi_receipt_form(user_id):
                     cl_credit_old = int(result_object['Cl']['Credit Bal'])
                     cl_debit_old = int(result_object['Cl']['Debit Bal'])
 
-                print(cl_credit_old, cl_debit_old, clearing_balance_credit, clearing_balance_debit)
+                new_debit_balance, new_credit_balance = 0, 0
+
+                if int(clearing_balance_debit) > 0 & int(cl_debit_old) > 0:
+                    new_debit_balance = int(clearing_balance_debit) + int(cl_debit_old)
+                    new_credit_balance = int(cl_credit_old)
+                elif int(clearing_balance_credit) > 0 & int(cl_credit_old) > 0:
+                    new_credit_balance = int(clearing_balance_credit) + int(cl_credit_old)
+                    new_debit_balance = int(cl_debit_old)
+                elif int(clearing_balance_credit) > 0 & int(cl_debit_old) > 0:
+                    if int(clearing_balance_credit) <= int(cl_debit_old):
+                        new_debit_balance = cl_debit_old - int(clearing_balance_credit)
+                        new_credit_balance = int(cl_credit_old)
+                    else:
+                        new_debit_balance = 0
+                        new_credit_balance = int(clearing_balance_credit) - int(cl_debit_old)
+                elif int(clearing_balance_debit) > 0 & int(cl_credit_old) > 0:
+                    if int(clearing_balance_debit) <= int(cl_credit_old):
+                        new_credit_balance = int(cl_credit_old) - int(clearing_balance_debit)
+                        new_debit_balance = int(cl_debit_old)
+                    else:
+                        new_credit_balance = 0
+                        new_debit_balance = int(clearing_balance_debit) - int(cl_credit_old)
 
                 Account.update_ledger_balance(head_of_accounts=account_head,
-                                              credit_balance=int(clearing_balance_credit) + int(cl_credit_old),
-                                              debit_balance=int(clearing_balance_debit) + int(cl_debit_old))
+                                              credit_balance=new_credit_balance,
+                                              debit_balance=new_debit_balance)
 
                 account.save_to_mongo()
 
