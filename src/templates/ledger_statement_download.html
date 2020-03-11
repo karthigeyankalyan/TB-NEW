@@ -41,12 +41,6 @@
                             }
 
                             console.log(total_debit, total_credit);
-                            console.log(opening_balance_debit, opening_balance_credit);
-
-                            total_credit += parseInt(opening_balance_credit);
-                            total_debit += parseInt(opening_balance_debit);
-
-                            console.log(total_debit, total_credit);
 
                             if (total_credit > total_debit) {
                                 var balance_update = total_credit - total_debit;
