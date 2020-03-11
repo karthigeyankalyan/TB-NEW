@@ -24,8 +24,8 @@
       <file leaf-file-name="app.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/app.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="483" column="90" lean-forward="true" selection-start-line="483" selection-start-column="90" selection-end-line="483" selection-end-column="90" />
+            <state relative-caret-position="392">
+              <caret line="1672" column="50" lean-forward="false" selection-start-line="1672" selection-start-column="13" selection-end-line="1672" selection-end-column="50" />
               <folding>
                 <element signature="e#0#29#0" expanded="true" />
                 <element signature="e#17982#29638#0" expanded="false" />
@@ -48,8 +48,8 @@
       <file leaf-file-name="ledger_statement_download.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/templates/ledger_statement_download.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="474">
-              <caret line="33" column="0" lean-forward="false" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+            <state relative-caret-position="287">
+              <caret line="35" column="0" lean-forward="true" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -103,8 +103,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>overallDue</find>
-      <find>update_d</find>
       <find>Inside</find>
       <find>refre</find>
       <find>update_led</find>
@@ -133,6 +131,8 @@
       <find>new_debit_</find>
       <find>accounthead</find>
       <find>new_credit</find>
+      <find>raw_</find>
+      <find>raw_acc_head_opening_balance</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -952,14 +952,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/models/accounts.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="77" column="0" lean-forward="false" selection-start-line="77" selection-start-column="0" selection-end-line="77" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/templates/multi_receipt_form.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
@@ -984,10 +976,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/models/accounts.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="77" column="0" lean-forward="false" selection-start-line="77" selection-start-column="0" selection-end-line="77" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/app.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="483" column="90" lean-forward="true" selection-start-line="483" selection-start-column="90" selection-end-line="483" selection-end-column="90" />
+        <state relative-caret-position="392">
+          <caret line="1672" column="50" lean-forward="false" selection-start-line="1672" selection-start-column="13" selection-end-line="1672" selection-end-column="50" />
           <folding>
             <element signature="e#0#29#0" expanded="true" />
             <element signature="e#17982#29638#0" expanded="false" />
@@ -1006,8 +1006,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/templates/ledger_statement_download.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="474">
-          <caret line="33" column="0" lean-forward="false" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+        <state relative-caret-position="287">
+          <caret line="35" column="0" lean-forward="true" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
           <folding />
         </state>
       </provider>

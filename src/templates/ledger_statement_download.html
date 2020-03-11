@@ -24,15 +24,15 @@
                 success: function (json) {
                     $.ajax({
                         type: 'GET',
-                        url: "/raw_acc_head_opening_balance/" + hoa,
+                        url: "/raw_acc_head_opening_balance_acc_head/" + hoa,
                         contentType: "application/json",
                         dataType: 'json',
                         success: function (jsonFunc) {
                             console.log(json);
                             console.log(jsonFunc);
 
-                            var opening_balance_debit = jsonFunc[0]["Cl"]["Debit Bal"];
-                            var opening_balance_credit = jsonFunc[0]["Cl"]["Credit Bal"];
+                            var opening_balance_debit = parseInt(Math.round(jsonFunc[0]["Cl"]["Debit Bal"]));
+                            var opening_balance_credit = parseInt(Math.round(jsonFunc[0]["Cl"]["Credit Bal"]));
 
                             var total_debit = opening_balance_debit, total_credit = opening_balance_credit;
                             for (var i = 0; i < json.length; i++) {
