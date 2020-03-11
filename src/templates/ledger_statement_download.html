@@ -13,90 +13,92 @@
             var credit_bal = "{{credit_bal}}";
             hoa = hoa.replace("&amp;", "&");
 
-            var source = "/raw_ledger_statement_between/"+hoa+"/{{start}}/{{end}}";
+            var source = "/raw_ledger_statement_between/" + hoa + "/{{start}}/{{end}}";
             console.log(source);
             var doc = new jsPDF();
-        $.ajax({
-            type: 'GET',
-            url: source,
-            contentType: "application/json",
-            dataType: 'json',
-            success: function (json) {
             $.ajax({
                 type: 'GET',
-                url: "/raw_acc_head_opening_balance/"+hoa,
+                url: source,
                 contentType: "application/json",
                 dataType: 'json',
-                success: function (jsonFunc) {
-                    var opening_balance_debit = jsonFunc["Cl"]["Debit Bal"];
-                    var opening_balance_credit = jsonFunc["Cl"]["Credit Bal"];
+                success: function (json) {
+                    $.ajax({
+                        type: 'GET',
+                        url: "/raw_acc_head_opening_balance/" + hoa,
+                        contentType: "application/json",
+                        dataType: 'json',
+                        success: function (jsonFunc) {
+                            var opening_balance_debit = jsonFunc["Cl"]["Debit Bal"];
+                            var opening_balance_credit = jsonFunc["Cl"]["Credit Bal"];
 
-                console.log(json);
-                console.log(jsonFunc);
+                            console.log(json);
+                            console.log(jsonFunc);
 
-                var total_debit = opening_balance_debit, total_credit = opening_balance_credit;
-                for(var i = 0; i < json.length; i++) {
-                     total_debit += parseInt(json[i]['clearing_debit_balance']);
-                     total_credit += parseInt(json[i]['clearing_credit_balance']);
+                            var total_debit = opening_balance_debit, total_credit = opening_balance_credit;
+                            for (var i = 0; i < json.length; i++) {
+                                total_debit += parseInt(json[i]['clearing_debit_balance']);
+                                total_credit += parseInt(json[i]['clearing_credit_balance']);
+                            }
+
+                            total_credit += parseInt(credit_bal);
+                            total_debit += parseInt(debit_bal);
+
+                            console.log(total_debit, total_credit);
+
+                            if (total_credit > total_debit) {
+                                var balance_update = total_credit - total_debit;
+                                var final_total = total_credit;
+                            } else {
+                                balance_update = total_debit - total_credit;
+                                final_total = total_debit;
+                            }
+
+                            doc.setFontSize(10);
+                            doc.text(30, 25, 'TAMILNADU BACKWARD CLASSES ECONOMIC DEVELOPMENT CORPORATION LTD');
+                            doc.setFontSize(10);
+                            doc.text(40, 30, 'General Ledger For: ' + hoa + ' From {{start}} to {{end}}');
+
+                            var columns = ["VR No", "VR Date", "Ch. No", "Ch. Date", "Head of Account", "Mode", "Debit Rs.", "Credit Rs."];
+                            var rows = [];
+
+                            rows.push([[], [], [], [], [],
+                                [], [parseInt(debit_bal)], [parseInt(credit_bal)]]);
+                            for (var j = 0; j < json.length; j++) {
+                                if (json[j]['cheque_number']) {
+                                    var cheque_number = json[j]['cheque_number'];
+                                    var cheque_date = moment(json[j]['cheque_date']['$date']).format('DD/MM/YYYY');
+                                } else {
+                                    cheque_number = '';
+                                    cheque_date = '';
+                                }
+                                rows.push([[json[j]['payment_voucher']], [moment(json[j]['voucher_date']['$date']).format('DD/MM/YYYY')],
+                                    cheque_number, cheque_date,
+                                    [json[j]['account_head'] + " - [" + json[j]['narration'] + "]"], [json[j]['mode']], [parseInt(json[j]['clearing_debit_balance'])],
+                                    [parseInt(json[j]['clearing_credit_balance'])]]);
+                            }
+
+                            rows.push([[], [], [], [], [],
+                                ['Balance c/d'], [], [parseInt(balance_update)]]);
+                            rows.push([[], [], [], [], [],
+                                [], [parseInt(final_total)], [parseInt(final_total)]]);
+                            rows.push([[], [], [], [], [],
+                                ['Balance b/d'], [parseInt(balance_update)], []]);
+
+                            doc.autoTable(columns, rows, {
+                                startY: 40,
+                                styles: {overflow: 'linebreak', fontSize: 8}
+                            });
+
+                            doc.save('ledger_statement_{{hoa}}_{{start}}_{{end}}.pdf');
+
+                        },
+                        error: function (e) {
+                            alert("error");
+                        }
+                    });
                 }
-
-                total_credit += parseInt(credit_bal);
-                total_debit += parseInt(debit_bal);
-
-                console.log(total_debit, total_credit);
-
-                if (total_credit > total_debit) {
-                    var balance_update = total_credit - total_debit;
-                    var final_total = total_credit;
-                } else {
-                    balance_update = total_debit - total_credit;
-                    final_total = total_debit;
-                }
-
-                doc.setFontSize(10);
-                doc.text(30, 25, 'TAMILNADU BACKWARD CLASSES ECONOMIC DEVELOPMENT CORPORATION LTD');
-                doc.setFontSize(10);
-                doc.text(40, 30, 'General Ledger For: '+hoa+' From {{start}} to {{end}}');
-
-                var columns = ["VR No", "VR Date", "Ch. No", "Ch. Date", "Head of Account", "Mode", "Debit Rs.", "Credit Rs."];
-                var rows = [];
-
-                rows.push([[], [], [], [], [],
-                    [], [parseInt(debit_bal)], [parseInt(credit_bal)]]);
-                for(var j = 0; j < json.length; j++) {
-                    if (json[j]['cheque_number']) {
-                        var cheque_number = json[j]['cheque_number'];
-                        var cheque_date = moment(json[j]['cheque_date']['$date']).format('DD/MM/YYYY');
-                    } else {
-                        cheque_number = '';
-                        cheque_date = '';
-                    }
-                    rows.push([[json[j]['payment_voucher']], [moment(json[j]['voucher_date']['$date']).format('DD/MM/YYYY')],
-                        cheque_number, cheque_date,
-                        [json[j]['account_head']+" - ["+json[j]['narration']+"]"], [json[j]['mode']], [parseInt(json[j]['clearing_debit_balance'])],
-                        [parseInt(json[j]['clearing_credit_balance'])]]);
-                }
-
-                rows.push([[], [], [], [], [],
-                    ['Balance c/d'], [], [parseInt(balance_update)]]);
-                rows.push([[], [], [], [], [],
-                    [], [parseInt(final_total)], [parseInt(final_total)]]);
-                rows.push([[], [], [], [], [],
-                    ['Balance b/d'], [parseInt(balance_update)], []]);
-
-                doc.autoTable(columns, rows, {
-                    startY: 40,
-                    styles: {overflow: 'linebreak', fontSize: 8}
-                });
-
-                doc.save('ledger_statement_{{hoa}}_{{start}}_{{end}}.pdf');
-
-            },
-            error: function (e) {
-                alert("error");
-            }
-        });
-    }
+            })
+        }
 
 </script>
 
