@@ -487,7 +487,7 @@ def multi_receipt_form(user_id):
                                               credit_balance=new_credit_balance,
                                               debit_balance=new_debit_balance)
 
-                    account.save_to_mongo()
+                account.save_to_mongo()
 
             return render_template('receipt_added_multi.html', account=account, user=user, ncb=new_credit_balance,
                                    ndb=new_debit_balance, cl_d_bal=clearing_balance_debit,
