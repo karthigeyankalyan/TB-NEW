@@ -28,11 +28,11 @@
                         contentType: "application/json",
                         dataType: 'json',
                         success: function (jsonFunc) {
-                            var opening_balance_debit = jsonFunc["Cl"]["Debit Bal"];
-                            var opening_balance_credit = jsonFunc["Cl"]["Credit Bal"];
-
                             console.log(json);
                             console.log(jsonFunc);
+
+                            var opening_balance_debit = jsonFunc[0]["Cl"]["Debit Bal"];
+                            var opening_balance_credit = jsonFunc[0]["Cl"]["Credit Bal"];
 
                             var total_debit = opening_balance_debit, total_credit = opening_balance_credit;
                             for (var i = 0; i < json.length; i++) {
