@@ -40,8 +40,8 @@
                                 total_credit += parseInt(json[i]['clearing_credit_balance']);
                             }
 
-                            total_credit += parseInt(credit_bal);
-                            total_debit += parseInt(debit_bal);
+                            total_credit += parseInt(opening_balance_credit);
+                            total_debit += parseInt(opening_balance_debit);
 
                             console.log(total_debit, total_credit);
 
