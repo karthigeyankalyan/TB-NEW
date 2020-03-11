@@ -1,6 +1,8 @@
 import uuid
 from datetime import datetime
 
+from bson import ObjectId
+
 from src.common.database import Database
 
 
@@ -17,10 +19,17 @@ class Ledger(object):
 
     @classmethod
     def update_account_head_opening_balance(cls, _id, head_of_account, opening_balance_debit, opening_balance_credit):
-        Database.update_account_head_opening_balance(collection='accounthead', query={'_id': _id},
-                                                     account_head=head_of_account,
-                                                     opening_balance_debit=opening_balance_debit,
-                                                     opening_balance_credit=opening_balance_credit)
+
+        if Database.is_valid(_id):
+            Database.update_account_head_opening_balance(collection='accounthead', query={'_id': ObjectId(_id)},
+                                                         account_head=head_of_account,
+                                                         opening_balance_debit=opening_balance_debit,
+                                                         opening_balance_credit=opening_balance_credit)
+        else:
+            Database.update_account_head_opening_balance(collection='accounthead', query={'_id': _id},
+                                                         account_head=head_of_account,
+                                                         opening_balance_debit=opening_balance_debit,
+                                                         opening_balance_credit=opening_balance_credit)
 
     def json(self):
         return {

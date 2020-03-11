@@ -1,0 +1,28 @@
+{% extends "post_login_accounts.html" %}
+{% block content %}
+
+<form id="new-intent" action="/account_head_add_form/{{ user._id }}" method="post">
+
+<div style="display: flex; flex-direction: column; align-items: center; flex: 1; justify-content: space-around; margin-top: 10px">
+    <div class="form-group" style="display: block; width: 38%">
+        <label style="flex: 4" for="accountHead">Account Head Name</label>
+        <input type="text" id="accountHead" name="accountHead" style="display: block; width: 100%">
+    </div>
+
+    <div class="form-group" style="display: flex; flex-direction: row; justify-content: space-between;">
+        <div>
+            <label for="openingBalanceDebit">Opening Balance Debit</label>
+            <input type="text" id="openingBalanceDebit" name="openingBalanceDebit">
+        </div>
+        <div>
+            <label for="openingBalanceCredit">Opening Balance Credit</label>
+            <input type="text" id="openingBalanceCredit" name="openingBalanceCredit">
+        </div>
+    </div>
+
+    </div>
+
+    <button type="submit" class="btn btn-success">Save Account Head</button>
+</form>
+
+{% endblock %}

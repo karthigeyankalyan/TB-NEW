@@ -1,7 +1,7 @@
 from datetime import datetime
 
 import pymongo
-from bson import json_util
+from bson import json_util, ObjectId
 from flask import Flask, render_template, request, session, json, abort
 from src.common.database import Database
 from src.models.accounts import Account
@@ -9,6 +9,7 @@ from src.models.loan_financials import Demand
 from src.models.loanapplication import LoanApplication
 from src.models.user import User
 from src.models.mini_demands import MiniDemand
+from src.models.ledger import Ledger
 
 app = Flask(__name__)  # main
 app.secret_key = "commercial"
@@ -1603,6 +1604,16 @@ def acc_head_balance_view():
         return render_template('login_fail.html', user=user)
 
 
+@app.route('/ViewAccountHeads')
+def acc_head_opening_balance_view():
+    email = session['email']
+    user = User.get_by_email(email)
+    if email is not None:
+        return render_template('ViewAccountHeadOpening.html', user=user)
+    else:
+        return render_template('login_fail.html', user=user)
+
+
 @app.route('/ledger_statement_download/<string:hoa>/<string:debit_bal>/<string:credit_bal>', methods=['POST', 'GET'])
 def ledger_statement_view(hoa, debit_bal, credit_bal):
     email = session['email']
@@ -1618,6 +1629,54 @@ def ledger_statement_view(hoa, debit_bal, credit_bal):
 
             return render_template('ledger_statement_download.html', end=end, start=start, hoa=hoa, user=user,
                                    debit_bal=debit_bal, credit_bal=credit_bal)
+
+    else:
+        return render_template('login_fail.html', user=user)
+
+
+@app.route('/account_head_add_form/<string:user_id>', methods=['POST', 'GET'])
+def account_head_add_form(user_id):
+    email = session['email']
+    user = User.get_by_email(email)
+    if email is not None:
+        if request.method == 'GET':
+            return render_template('account_head_add_form.html', user=user, user_id=user_id)
+        else:
+            opening_debit = request.form['openingBalanceDebit']
+            opening_credit = request.form['openingBalanceCredit']
+            account_head = request.form['accountHead']
+            user = User.get_by_email(email)
+
+            ledger = Ledger(head_of_account=account_head, opening_balance_credit=opening_credit,
+                            opening_balance_debit=opening_debit)
+
+            ledger.save_to_mongo()
+
+            return render_template('receipt_added.html', user=user)
+
+    else:
+        return render_template('login_fail.html', user=user)
+
+
+@app.route('/update_ledger_balance/<string:accHead>', methods=['POST', 'GET'])
+def update_account_head_add_form(accHead):
+    email = session['email']
+    user = User.get_by_email(email)
+    if email is not None:
+        if request.method == 'GET':
+            return render_template('update_account_head_add_form.html', user=user, account_head=accHead)
+        else:
+            opening_debit = request.form['openingBalanceDebit']
+            opening_credit = request.form['openingBalanceCredit']
+            account_head = request.form['accountHead']
+            user = User.get_by_email(email)
+
+            Ledger.update_account_head_opening_balance(head_of_account=account_head,
+                                                       opening_balance_credit=opening_credit,
+                                                       opening_balance_debit=opening_debit,
+                                                       _id=accHead)
+
+            return render_template('receipt_added.html', user=user)
 
     else:
         return render_template('login_fail.html', user=user)
@@ -1683,10 +1742,13 @@ def raw_acc_head_opening_balance(hoa):
     return single_loan
 
 
-@app.route('/raw_acc_head_opening_balance_acc_head/<string:hoa>')
-def raw_acc_head_opening_balance_acc_head(hoa):
+@app.route('/raw_acc_head_opening_balance_acc_head/<string:_id>')
+def raw_acc_head_opening_balance_acc_head(_id):
     loan = []
-    loan_dict = Database.find("accounthead", {"Head of Accounts": hoa})
+    if Database.is_valid(_id):
+        loan_dict = Database.find("employees", {'_id': ObjectId(_id)})
+    else:
+        loan_dict = Database.find("employees", {'_id': _id})
 
     for tran in loan_dict:
         loan.append(tran)

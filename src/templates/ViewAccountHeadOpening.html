@@ -1,0 +1,55 @@
+{% extends "post_login_accounts.html" %}
+{% block content %}
+
+<body>
+    <div id="demandList">
+    </div>
+</body>
+
+<script>
+        var source = "/raw_acc_head_list";
+        $.ajax({
+            type: 'GET',
+            url: source,
+            contentType: "application/json",
+            dataType: 'json',
+            success: function (json) {
+                var tbl = $("<table class='table table-bordered table-dark' id='demandDetails'/>");
+                $("#demandList").append(tbl);
+                var hr = "<tr>";
+                var th1 = "<th onclick='sortTable(0)' style='text-align:center;vertical-align:middle'>" + "S.No" + "</th>";
+                var th2 = "<th style='text-align:center;vertical-align:middle'>" + "Account Head" + "</th>";
+                var th3 = "<th style='text-align:center;vertical-align:middle'>" + "Cl Balance Debit" + "</th>";
+                var th4 = "<th style='text-align:center;vertical-align:middle'>" + "Cl Balance Credit" + "</th>";
+                var th5 = "<th style='text-align:center;vertical-align:middle'>" + "Update" + "</th>";
+                $("#demandDetails").append(hr + th1 + th2 + th3 + th4 + th5);
+
+                for (var j = 0; j< json.length; j++) {
+                    if(json[j]["_id"]["$oid"]){
+                        var emp_id = json[j]["_id"]["$oid"];
+                    }
+                    else {
+                        emp_id = json[j]["_id"];
+                    }
+                    var debit_bal = json[j]["Cl"]["Debit Bal"];
+                    var credit_bal = json[j]["Cl"]["Credit Bal"];
+                    var url = '/update_ledger_balance/'+emp_id;
+                    var row = $('<tr></tr>').html('<td>' +
+                        + (j+1) + '</td>' +
+                        '<td>' + json[j]["Head of Accounts"] + '</td>' +
+                        '<td>' + json[j]["Cl"]["Debit Bal"] + '</td>' +
+                        '<td>' + json[j]["Cl"]["Credit Bal"] + '</td>' +
+                        '<td><button class="btn btn-default"><a href="' + url + '">'+ 'Update Ledger Balance' +'</a></button></td>'
+                    );
+                    $("#demandDetails").append(row);
+                }
+            },
+            error: function (e) {
+                alert("error");
+            }
+        });
+
+
+</script>
+
+{% endblock %}

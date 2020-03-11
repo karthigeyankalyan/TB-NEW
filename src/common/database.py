@@ -1,6 +1,8 @@
 import os
 
 import pymongo
+from bson import ObjectId
+from bson.errors import InvalidId
 
 
 class Database(object):
@@ -73,6 +75,14 @@ class Database(object):
                                                                              'Credit Bal': opening_balance_credit,
                                                                              'Debit Bal': opening_balance_debit
                                                                          }}}, True)
+
+    @staticmethod
+    def is_valid(oid):
+        try:
+            ObjectId(oid)
+            return True
+        except (InvalidId, TypeError):
+            return False
 
     @staticmethod
     def update_application(collection, query, applicant_name, loan_category, age, gender, address, district, roi,
