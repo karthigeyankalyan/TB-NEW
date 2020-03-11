@@ -59,7 +59,7 @@
                             var rows = [];
 
                             rows.push([[], [], [], [], [],
-                                [], [parseInt(opening_balance_debit)], [parseInt(opening_balance_credit)]]);
+                                [], [addCommas(parseInt(opening_balance_debit))], [addCommas(parseInt(opening_balance_credit))]]);
                             for (var j = 0; j < json.length; j++) {
                                 if (json[j]['cheque_number']) {
                                     var cheque_number = json[j]['cheque_number'];
@@ -70,16 +70,16 @@
                                 }
                                 rows.push([[json[j]['payment_voucher']], [moment(json[j]['voucher_date']['$date']).format('DD/MM/YYYY')],
                                     cheque_number, cheque_date,
-                                    [json[j]['account_head'] + " - [" + json[j]['narration'] + "]"], [json[j]['mode']], [parseInt(json[j]['clearing_debit_balance'])],
-                                    [parseInt(json[j]['clearing_credit_balance'])]]);
+                                    [json[j]['account_head'] + " - [" + json[j]['narration'] + "]"], [json[j]['mode']], [addCommas(parseInt(json[j]['clearing_debit_balance']))],
+                                    [addCommas(parseInt(json[j]['clearing_credit_balance']))]]);
                             }
 
                             rows.push([[], [], [], [], [],
-                                ['Balance c/d'], [], [parseInt(balance_update)]]);
+                                ['Balance c/d'], [], [addCommas(parseInt(balance_update))]]);
                             rows.push([[], [], [], [], [],
-                                [], [parseInt(final_total)], [parseInt(final_total)]]);
+                                [], [addCommas(parseInt(final_total))], [addCommas(parseInt(final_total))]]);
                             rows.push([[], [], [], [], [],
-                                ['Balance b/d'], [parseInt(balance_update)], []]);
+                                ['Balance b/d'], [addCommas(parseInt(balance_update))], []]);
 
                             doc.autoTable(columns, rows, {
                                 startY: 40,
@@ -97,6 +97,15 @@
                 }
             })
         }
+
+    function addCommas(x) {
+        x=x.toString();
+        var lastThree = x.substring(x.length-3);
+        var otherNumbers = x.substring(0,x.length-3);
+        if(otherNumbers !== '')
+            lastThree = ',' + lastThree;
+        return otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree;
+    }
 
 </script>
 
