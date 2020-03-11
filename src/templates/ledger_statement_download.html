@@ -62,7 +62,7 @@
                             var rows = [];
 
                             rows.push([[], [], [], [], [],
-                                [], [parseInt(debit_bal)], [parseInt(credit_bal)]]);
+                                [], [parseInt(opening_balance_debit)], [parseInt(opening_balance_credit)]]);
                             for (var j = 0; j < json.length; j++) {
                                 if (json[j]['cheque_number']) {
                                     var cheque_number = json[j]['cheque_number'];
