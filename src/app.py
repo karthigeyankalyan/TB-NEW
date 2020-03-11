@@ -1657,6 +1657,19 @@ def raw_acc_head_balance():
     return single_loan
 
 
+@app.route('/raw_acc_head_list')
+def raw_acc_head_list():
+    loan = []
+    loan_dict = Database.find("accounthead", {})
+
+    for tran in loan_dict:
+        loan.append(tran)
+
+    single_loan = json.dumps(loan, default=json_util.default)
+
+    return single_loan
+
+
 @app.route('/raw_acc_head_opening_balance/<string:hoa>')
 def raw_acc_head_opening_balance(hoa):
     loan = []

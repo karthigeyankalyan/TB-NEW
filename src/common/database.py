@@ -66,6 +66,15 @@ class Database(object):
                                                                          'changed_on_date': changed_on_date}}, True)
 
     @staticmethod
+    def update_account_head_opening_balance(collection, query, account_head, opening_balance_debit,
+                                            opening_balance_credit):
+        return Database.DATABASE[collection].update_one(query, {'$set': {'Head of Accounts': account_head,
+                                                                         'Cl': {
+                                                                             'Credit Bal': opening_balance_credit,
+                                                                             'Debit Bal': opening_balance_debit
+                                                                         }}}, True)
+
+    @staticmethod
     def update_application(collection, query, applicant_name, loan_category, age, gender, address, district, roi,
                            annual_income, caste, bank, loan_reason, loan_amount, received_date, status, status_date,
                            ann_loan_id, user_id, user_name, shg_name, amount_per_member, strength, no_of_shgs,
