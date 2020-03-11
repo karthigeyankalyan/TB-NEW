@@ -83,7 +83,8 @@
 
                             doc.autoTable(columns, rows, {
                                 startY: 40,
-                                styles: {overflow: 'linebreak', fontSize: 8}
+                                styles: {overflow: 'linebreak', fontSize: 8},
+                                columnStyles: {6: {columnWidth: 20}, 7: {columnWidth: 20}}
                             });
 
                             doc.save('ledger_statement_{{hoa}}_{{start}}_{{end}}.pdf');
