@@ -176,8 +176,7 @@
                                 json[i]['Remarks'] = "Demand Payment not yet made; Penal Interest shown if payment is made today";
                             }
 
-                            console.log(json[i]['cheque_date']['$date'], json[i]['cheque_date']);
-                            if (json[i]['cheque_date']['$date']) {
+                            if (json[i]['cheque_date']) {
                                 json[i]['closing_balance_principal_due'] = json[i]['closing_balance_principal_due'];
                                 json[i]['closing_balance_interest_due'] = json[i]['closing_balance_interest_due'];
                             } else {
