@@ -93,7 +93,7 @@
                 if (json[0]['loan_category'] === 'GTL (General Term Loan)' || json[0]['loan_category'] === 'NSS (New-Swarnima Scheme)') {
                     doc.setFontSize(10);
 
-                    if (moment(json[0]['loan_sanction_date']['$date']).month() + 1 < 4) {
+                    if (moment(json[0]['received_date']['$date']).month() + 1 < 4) {
                         var PSO = json[0]['loan_number'] + '/' + cat + '/' +
                             // Creating financial Year (For e.g. 1718, 1819)
                             (moment(json[0]['received_date']['$date']).year() - 2001) + '' +
