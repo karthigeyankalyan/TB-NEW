@@ -193,29 +193,31 @@
                     interest_due = parseInt(json[0]['interest_demand']);
                     principal_n_due = parseInt(json[0]['loan_amount']);
                     document.getElementById('overallDue').value = p_n_paid;
-
-                            var total_penal_belated = parseInt(document.getElementById('penalInterest').value) + parseInt(document.getElementById('belatedInterest').value);
-                            var cheque_amount = parseInt(that.value);
-                            if (cheque_amount === 0) {
-                                interest_paid = 0;
-                                service_charge = 0;
-                                principal_paid = 0;
+                    var penal = document.getElementById('penalInterest').value;
+                    var belated = document.getElementById('belatedInterest').value;
+                    var total_penal_belated = parseInt(document.getElementById('penalInterest').value) + parseInt(document.getElementById('belatedInterest').value);
+                    var cheque_amount = parseInt(that.value);
+                    if (cheque_amount === 0) {
+                        interest_paid = 0;
+                        service_charge = 0;
+                        principal_paid = 0;
+                        interest_due = parseInt(penal) + parseInt(belated);
+                        document.getElementById('principalPaid').value = Math.round(principal_paid);
+                        document.getElementById('interestPaid').value = Math.round(interest_paid);
+                        document.getElementById('serviceCharge').value = Math.round(service_charge);
+                        document.getElementById('principalDue').value = Math.round(principal_due);
+                        document.getElementById('interestDue').value = Math.round(interest_due);
+                    } else {
+                        if (cheque_amount > total_penal_belated) {
+                            var post_penal_belated_deduction = parseInt(cheque_amount) - parseInt(total_penal_belated);
+                            if (post_penal_belated_deduction > interest_due) {
+                                var interest_paid = interest_due;
+                                var post_interest_late_deduction = post_penal_belated_deduction - interest_due;
+                                var service_charge = interest_paid * 3 / json[0]['roi'];
+                                var principal_paid = post_interest_late_deduction + service_charge;
+                                principal_due = principal_due - principal_paid;
                                 document.getElementById('principalPaid').value = Math.round(principal_paid);
                                 document.getElementById('interestPaid').value = Math.round(interest_paid);
-                                document.getElementById('serviceCharge').value = Math.round(service_charge);
-                                document.getElementById('principalDue').value = Math.round(principal_due);
-                                document.getElementById('interestDue').value = Math.round(interest_due);
-                            } else {
-                            if (cheque_amount > total_penal_belated) {
-                                var post_penal_belated_deduction = parseInt(cheque_amount) - parseInt(total_penal_belated);
-                                if (post_penal_belated_deduction > interest_due) {
-                                    var interest_paid = interest_due;
-                                    var post_interest_late_deduction = post_penal_belated_deduction - interest_due;
-                                    var service_charge = interest_paid * 3 / json[0]['roi'];
-                                    var principal_paid = post_interest_late_deduction + service_charge;
-                                    principal_due = principal_due - principal_paid;
-                                    document.getElementById('principalPaid').value = Math.round(principal_paid);
-                                    document.getElementById('interestPaid').value = Math.round(interest_paid);
                                     document.getElementById('serviceCharge').value = Math.round(service_charge);
                                     document.getElementById('principalDue').value = Math.round(principal_due);
                                     document.getElementById('interestDue').value = 0;
