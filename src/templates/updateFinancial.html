@@ -196,7 +196,6 @@
 
                             var total_penal_belated = parseInt(document.getElementById('penalInterest').value) + parseInt(document.getElementById('belatedInterest').value);
                             var cheque_amount = parseInt(that.value);
-                            console.log(post_penal_belated_deduction, interest_due, cheque_amount);
                             if (cheque_amount === 0) {
                                 interest_paid = 0;
                                 service_charge = 0;
@@ -205,6 +204,7 @@
                                 document.getElementById('interestPaid').value = Math.round(interest_paid);
                                 document.getElementById('serviceCharge').value = Math.round(service_charge);
                                 document.getElementById('principalDue').value = Math.round(principal_due);
+                                document.getElementById('interestDue').value = Math.round(interest_due);
                             } else {
                             if (cheque_amount > total_penal_belated) {
                                 var post_penal_belated_deduction = parseInt(cheque_amount) - parseInt(total_penal_belated);
