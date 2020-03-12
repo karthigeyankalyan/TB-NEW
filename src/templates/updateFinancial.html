@@ -195,7 +195,7 @@
                     document.getElementById('overallDue').value = p_n_paid;
 
                             var total_penal_belated = parseInt(document.getElementById('penalInterest').value) + parseInt(document.getElementById('belatedInterest').value);
-                            var cheque_amount = that.value;
+                            var cheque_amount = parseInt(that.value);
                             console.log(post_penal_belated_deduction, interest_due, cheque_amount);
                             if (cheque_amount === 0) {
                                 interest_paid = 0;
