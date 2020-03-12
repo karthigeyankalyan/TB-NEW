@@ -216,6 +216,7 @@
                                 var service_charge = interest_paid * 3 / json[0]['roi'];
                                 var principal_paid = post_interest_late_deduction + service_charge;
                                 principal_due = principal_due - principal_paid;
+                                console.log(post_interest_late_deduction, service_charge, principal_due);
                                 document.getElementById('principalPaid').value = Math.round(principal_paid);
                                 document.getElementById('interestPaid').value = Math.round(interest_paid);
                                     document.getElementById('serviceCharge').value = Math.round(service_charge);
