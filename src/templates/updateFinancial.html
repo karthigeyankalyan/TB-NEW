@@ -190,7 +190,7 @@
                 demand_number = parseInt(json[0]['demand_number']) - 1;
                 if (parseInt(json[0]['demand_number']) === 1) {
                     principal_due = parseInt(json[0]['principal_demand']);
-                    interest_due += parseInt(json[0]['interest_demand']);
+                    interest_due = parseInt(json[0]['interest_demand']);
                     principal_n_due = parseInt(json[0]['loan_amount']);
                     document.getElementById('overallDue').value = p_n_paid;
                     var penal = document.getElementById('penalInterest').value;
@@ -201,7 +201,7 @@
                         interest_paid = 0;
                         service_charge = 0;
                         principal_paid = 0;
-                        interest_due = parseInt(penal) + parseInt(belated);
+                        interest_due += parseInt(penal) + parseInt(belated);
                         document.getElementById('principalPaid').value = Math.round(principal_paid);
                         document.getElementById('interestPaid').value = Math.round(interest_paid);
                         document.getElementById('serviceCharge').value = Math.round(service_charge);
