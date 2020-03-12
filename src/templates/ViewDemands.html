@@ -178,6 +178,7 @@
 
                             if (json[i]['cheque_date']['$date']) {
                                 json[i]['closing_balance_principal_due'] = json[i]['closing_balance_principal_due'];
+                                console.log(json[i]['closing_balance_principal_due']);
                                 json[i]['closing_balance_interest_due'] = json[i]['closing_balance_interest_due'];
                             } else {
                                 // The Closing Balance Principal Due here is the final amount required to be paid in this demand
