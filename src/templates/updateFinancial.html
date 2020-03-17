@@ -172,6 +172,8 @@
                             var penal_old = (delay_old * prev_principal_due * 5) / (365 * 100);
                             var belated_old = (delay_old * prev_principal_due * parseInt(json[0]['roi'])) / (365 * 100);
 
+                            console.log(delay_old, prev_principal_due, json[0]['roi']);
+
                             if (prev_principal_due === 0) {
                                 penal_old = 0;
                                 belated_old = 0;
