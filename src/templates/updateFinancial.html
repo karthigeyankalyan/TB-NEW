@@ -185,7 +185,7 @@
 
                             console.log(delay, total_demand, json[0]['roi'], penal, belated);
 
-                            if (penal < 0) {
+                            if (penal < 0 && prev_principal_due === 0 && delay <=4) {
                                 penal = 0;
                                 belated = 0;
                             }
