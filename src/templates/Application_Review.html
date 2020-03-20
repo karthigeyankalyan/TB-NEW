@@ -664,13 +664,30 @@
 
                     if (json[0]['cheque_date']) {
                     if (json[0]['loan_category'] === 'MCG (Micro-Credit Gents)' || json[0]['loan_category'] === 'MSY (Mahila Samridhi Yojana)') {
-                        var PSO = json[0]['loan_number'] + '/' + cat + '/' +
-                            (moment(json[0]['received_date']['$date']).year() - 2000) + '' +
-                            (moment(json[0]['received_date']['$date']).year() - 1999);
 
-                        var RO = json[0]['ro_number'] + '/' + cat + '/' +
-                            (moment(json[0]['received_date']['$date']).year() - 2000) + '' +
-                            (moment(json[0]['received_date']['$date']).year() - 1999);
+                        if (moment(json[0]['received_date']['$date']).month() + 1 < 4) {
+                            var PSO = json[0]['loan_number'] + '/' + cat + '/' +
+                                // Creating financial Year (For e.g. 1718, 1819)
+                                (moment(json[0]['received_date']['$date']).year() - 2001) + '' +
+                                (moment(json[0]['received_date']['$date']).year() - 2000);
+                        } else {
+                            PSO = json[0]['loan_number'] + '/' + cat + '/' +
+                                // Creating financial Year (For e.g. 1718, 1819)
+                                (moment(json[0]['received_date']['$date']).year() - 2000) + '' +
+                                (moment(json[0]['received_date']['$date']).year() - 1999);
+                        }
+
+                        if (moment(json[0]['received_date']['$date']).month() + 1 < 4) {
+                            var RO = json[0]['ro_number'] + '/' + cat + '/' +
+                                // Creating financial Year (For e.g. 1718, 1819)
+                                (moment(json[0]['received_date']['$date']).year() - 2001) + '' +
+                                (moment(json[0]['received_date']['$date']).year() - 2000);
+                        } else {
+                            RO = json[0]['ro_number'] + '/' + cat + '/' +
+                                // Creating financial Year (For e.g. 1718, 1819)
+                                (moment(json[0]['received_date']['$date']).year() - 2000) + '' +
+                                (moment(json[0]['received_date']['$date']).year() - 1999);
+                        }
 
                         var loan_amounts = [];
 
@@ -835,13 +852,29 @@
                         }
                     }
                     else {
-                        PSO = json[0]['loan_number'] + '/' + cat + '/' +
-                            (moment(json[0]['received_date']['$date']).year() - 2000) + '' +
-                            (moment(json[0]['received_date']['$date']).year() - 1999);
+                        if (moment(json[0]['received_date']['$date']).month() + 1 < 4) {
+                            PSO = json[0]['loan_number'] + '/' + cat + '/' +
+                                // Creating financial Year (For e.g. 1718, 1819)
+                                (moment(json[0]['received_date']['$date']).year() - 2001) + '' +
+                                (moment(json[0]['received_date']['$date']).year() - 2000);
+                        } else {
+                            PSO = json[0]['loan_number'] + '/' + cat + '/' +
+                                // Creating financial Year (For e.g. 1718, 1819)
+                                (moment(json[0]['received_date']['$date']).year() - 2000) + '' +
+                                (moment(json[0]['received_date']['$date']).year() - 1999);
+                        }
 
-                        RO = json[0]['ro_number'] + '/' + cat + '/' +
-                            (moment(json[0]['received_date']['$date']).year() - 2000) + '' +
-                            (moment(json[0]['received_date']['$date']).year() - 1999);
+                        if (moment(json[0]['received_date']['$date']).month() + 1 < 4) {
+                            RO = json[0]['ro_number'] + '/' + cat + '/' +
+                                // Creating financial Year (For e.g. 1718, 1819)
+                                (moment(json[0]['received_date']['$date']).year() - 2001) + '' +
+                                (moment(json[0]['received_date']['$date']).year() - 2000);
+                        } else {
+                            RO = json[0]['ro_number'] + '/' + cat + '/' +
+                                // Creating financial Year (For e.g. 1718, 1819)
+                                (moment(json[0]['received_date']['$date']).year() - 2000) + '' +
+                                (moment(json[0]['received_date']['$date']).year() - 1999);
+                        }
 
                         var distinct_demands = [];
                         var distinct_demands_amounts_only = [];
