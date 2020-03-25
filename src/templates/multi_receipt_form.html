@@ -130,21 +130,21 @@
     document.getElementById('natureOfTransaction').value = 'Multi-Ledger';
     var row = $('<div style="display: flex; flex-direction: row; justify-content: space-around; align-items: center;"></div>')
         .html(
-            '<div style="display: flex; flex-direction: column;">' +
+            '<div style="display: flex; flex: 3; flex-direction: column;">' +
             '<label for='+inputSNO+'>S.No</label>' +
             '<input class="amount" type="number" id='+inputSNO+' name='+inputSNO+' value='+(i+1)+'>' +
             '</div>' +
-            '<div style="display: flex; flex: 3; flex-direction: column;">' +
+            '<div style="display: flex; flex: 5; flex-direction: column;">' +
             '<label for='+accHead+'>Account Head</label>' +
             '<select class="select" id='+accHead+' name='+accHead+' onchange="populateSL('+i+')">' +
             '</select>'+
             '</div>' +
-            '<div style="display: flex; flex: 3; flex-direction: column;">' +
+            '<div style="display: flex; flex: 5; flex-direction: column;">' +
             '<label for='+sub_ledger+'>Sub Ledger</label>' +
             '<select class="slPicker" id='+sub_ledger+' name='+sub_ledger+'>' +
             '</select>'+
             '</div>' +
-            '<div style="display: flex; flex: 5; flex-direction: column;">' +
+            '<div style="display: flex; flex: 3; flex-direction: column;">' +
             '<label for='+debit_amount+'>Cl. Debit</label>' +
             '<input type="text" id='+debit_amount+' name='+debit_amount+'>' +
             '</div>' +
@@ -325,7 +325,7 @@
             '<div style="display: flex; flex: 5;">' +
             '<select class="select" id='+accHead+' name='+accHead+' onchange="populateSL('+i+')">' +
             '</div>' +
-            '<div style="display: flex; flex: 3;">' +
+            '<div style="display: flex; flex: 5;">' +
             '<select class="slPicker" id='+sub_ledger+' name='+sub_ledger+'>' +
             '</select>'+
             '</div>' +
@@ -342,10 +342,6 @@
             '<div style="display: None; flex: 3; flex-direction: column;">' +
             '<label for='+debit_bal+'>Cl. Credit</label>' +
             '<input type="text" id='+debit_bal+' name='+debit_bal+'>' +
-            '</div>' +
-            '<div style="display: None; flex: 3; flex-direction: column;">' +
-            '<label for="credit_bal">Cl. Credit</label>' +
-            '<input type="text" id="credit_bal" name="credit_bal">' +
             '</div>'
         );
         shg_det.append(row);
