@@ -319,6 +319,7 @@ def multi_receipt_form(user_id):
                 cl_credit_balance = "credit_amount" + str(i)
                 new_d_balance = "new_debit_bal" + str(i)
                 new_c_balance = "new_credit_bal" + str(i)
+                sub_ledger = "sub_ledger" + str(i)
 
                 serial_no = request.form[s_no]
                 account_head = request.form[acchead]
@@ -326,6 +327,7 @@ def multi_receipt_form(user_id):
                 clearing_balance_credit = request.form[cl_credit_balance]
                 new_debit_balance = request.form[new_d_balance]
                 new_credit_balance = request.form[new_c_balance]
+                s_ledger = request.form[sub_ledger]
 
                 doc_account_dict = {"LOAN FROM NBCFDC (GTL)": "Borrowings from NBCFDC",
                                     "LOAN FROM NBCFDC (MCS)": "Borrowings from NBCFDC",
@@ -482,7 +484,7 @@ def multi_receipt_form(user_id):
                                   voucher_date=voucher_date, adjustment_voucher=adjustmentVoucher,
                                   ledger=ledger, cleared="No", cheque_date=cheque_date, narration=narration,
                                   clearing_credit_balance=clearing_balance_credit, mode=mode,
-                                  clearing_debit_balance=clearing_balance_debit, amount=0)
+                                  clearing_debit_balance=clearing_balance_debit, amount=0, sub_ledger=s_ledger)
 
                 Account.update_ledger_balance(head_of_accounts=account_head,
                                               credit_balance=new_credit_balance,
