@@ -298,8 +298,8 @@
         var html;
         var $locations = $(classPick);
         var main_ledger = document.getElementById('acchead'+i).value;
-        console.warn(main_ledger, i);
-        var district = $(this).val(), societies = sub_ledgers[main_ledger] || [];
+        var societies = sub_ledgers[main_ledger] || [];
+        console.log(societies);
         html = $.map(societies, function(lcn){
             return '<option value="' + lcn + '">' + lcn + '</option>'
         });
