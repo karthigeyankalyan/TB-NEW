@@ -183,10 +183,9 @@
                             var penal = (delay * total_demand * 5) / (365 * 100);
                             var belated = (delay * total_demand * parseInt(json[0]['roi'])) / (365 * 100);
 
-                            console.log(delay, total_demand, json[0]['roi'], penal, belated);
+                            console.log(delay, penal, prev_principal_due);
 
                             if (penal < 0 && prev_principal_due === 0 && delay <=4) {
-                                console.log(delay, penal, prev_principal_due);
                                 penal = 0;
                                 belated = 0;
                             }
