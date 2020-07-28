@@ -132,7 +132,7 @@
                 document.getElementById("penalInterest").value = parseInt(json[0]["penal_interest"]);
                 document.getElementById("belatedInterest").value = parseInt(json[0]["belated_interest"]);
                 document.getElementById("totalChequeAmount").value = parseInt(json[0]["cheque_amount"]);
-                console.log(json[0]["cheque_date"]['$date']);
+                console.log(json[0]["cheque_date"]);
 //                document.getElementById("chequeDate").value = moment(json[0]["cheque_date"]['$date']).format('YYYY-MM-DD');
                 document.getElementById("chequeDateIssued").value = moment(json[0]["cheque_date_issued"]['$date']).format('YYYY-MM-DD');
                     },
