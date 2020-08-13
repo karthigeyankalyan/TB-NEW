@@ -198,6 +198,11 @@
                                     belated_old = 0;
                                 }
 
+                                if (penal_old < 0) {
+                                    penal_old = 0;
+                                    belated_old = 0;
+                                }
+
                                 var delay = moment(cheque_date).diff(moment(demand_date), 'days');
                                 var penal = (delay * total_demand * 5) / (365 * 100);
                                 var belated = (delay * total_demand * parseInt(json[0]['roi'])) / (365 * 100);
