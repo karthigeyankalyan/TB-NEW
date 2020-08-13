@@ -204,6 +204,23 @@ class Database(object):
                                                                              closing_balance_interest_due}}, True)
 
     @staticmethod
+    def update_main_demand(collection, query, principal_collected, interest_collected, penal_interest, belated_interest,
+                           service_charge, cheque_amount, closing_balance_principal_due,
+                           closing_balance_principal_ndue, closing_balance_interest_due):
+        return Database.DATABASE[collection].update_one(query, {'$set': {"cheque_amount": cheque_amount,
+                                                                         "principal_collected": principal_collected,
+                                                                         "interest_collected": interest_collected,
+                                                                         "penal_interest": penal_interest,
+                                                                         "belated_interest": belated_interest,
+                                                                         "service_charge": service_charge,
+                                                                         "closing_balance_principal_due":
+                                                                             closing_balance_principal_due,
+                                                                         "closing_balance_principal_ndue":
+                                                                             closing_balance_principal_ndue,
+                                                                         "closing_balance_interest_due":
+                                                                             closing_balance_interest_due}}, True)
+
+    @staticmethod
     def update_pending_amount(collection, query, amount_yet_to_be_paid):
         return Database.DATABASE[collection].update_many(query,
                                                          {'$set': {"amount_yet_to_pay": amount_yet_to_be_paid}}, True)
