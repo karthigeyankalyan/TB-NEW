@@ -209,6 +209,11 @@
                                     belated = 0;
                                 }
 
+                                if (penal < 0) {
+                                    penal = 0;
+                                    belated = 0;
+                                }
+
                                 document.getElementById("penalInterest").value = Math.round(penal + penal_old);
                                 document.getElementById("belatedInterest").value = Math.round(belated + belated_old);
                             }
