@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="da0bb03c-275f-4eeb-800c-401a339e857e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/templates/updateFinancial.html" afterPath="$PROJECT_DIR$/src/templates/updateFinancial.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/models/mini_demands.py" afterPath="$PROJECT_DIR$/src/models/mini_demands.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -24,7 +24,7 @@
       <file leaf-file-name="app.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/app.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="18972">
+            <state relative-caret-position="-34">
               <caret line="1542" column="27" lean-forward="false" selection-start-line="1542" selection-start-column="19" selection-end-line="1542" selection-end-column="27" />
               <folding>
                 <element signature="e#0#29#0" expanded="true" />
@@ -36,38 +36,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="receipt_download_by_cheque.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/templates/receipt_download_by_cheque.html">
+      <file leaf-file-name="mini_demands.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/models/mini_demands.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1479">
-              <caret line="87" column="0" lean-forward="false" selection-start-line="86" selection-start-column="0" selection-end-line="87" selection-end-column="0" />
+            <state relative-caret-position="202">
+              <caret line="53" column="0" lean-forward="false" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="multi_receipt_form.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/templates/multi_receipt_form.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5746">
-              <caret line="338" column="0" lean-forward="false" selection-start-line="338" selection-start-column="0" selection-end-line="338" selection-end-column="0" />
-              <folding>
-                <marker date="1585161184602" expanded="true" signature="5454:5541" ph="..." />
-                <marker date="1585161184602" expanded="true" signature="5592:5639" ph="..." />
-                <marker date="1585161184602" expanded="true" signature="5849:5896" ph="..." />
-                <marker date="1585161184602" expanded="true" signature="6136:6183" ph="..." />
-                <marker date="1585161184602" expanded="true" signature="6403:6450" ph="..." />
-                <marker date="1585161184602" expanded="true" signature="6644:6691" ph="..." />
-                <marker date="1585161184602" expanded="true" signature="6968:7015" ph="..." />
-                <marker date="1585161184602" expanded="true" signature="7204:7251" ph="..." />
-                <marker date="1585161184602" expanded="true" signature="46556:46643" ph="..." />
-                <marker date="1585161184602" expanded="true" signature="46842:46850" ph="..." />
-                <marker date="1585161184602" expanded="true" signature="47100:47108" ph="..." />
-                <marker date="1585161184602" expanded="true" signature="47267:47275" ph="..." />
-                <marker date="1585161184602" expanded="true" signature="47407:47415" ph="..." />
-                <marker date="1585161184602" expanded="true" signature="47628:47675" ph="..." />
-                <marker date="1585161184602" expanded="true" signature="47864:47911" ph="..." />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -84,7 +58,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="updateFinancial.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="updateFinancial.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/templates/updateFinancial.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="238">
@@ -109,16 +83,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1683">
               <caret line="102" column="0" lean-forward="false" selection-start-line="102" selection-start-column="0" selection-end-line="102" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="receipt_form.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/templates/receipt_form.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="765">
-              <caret line="45" column="31" lean-forward="false" selection-start-line="45" selection-start-column="31" selection-end-line="45" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -210,7 +174,6 @@
         <option value="$PROJECT_DIR$/src/templates/multi_ledger_View.html" />
         <option value="$PROJECT_DIR$/src/templates/ViewMiniDemands.html" />
         <option value="$PROJECT_DIR$/src/templates/ViewAllMiniDemands.html" />
-        <option value="$PROJECT_DIR$/src/models/mini_demands.py" />
         <option value="$PROJECT_DIR$/src/templates/receipt_download_by_cheque.html" />
         <option value="$PROJECT_DIR$/src/templates/receipt_download_minis_by_cheque.html" />
         <option value="$PROJECT_DIR$/src/templates/AddMiniDemand.html" />
@@ -231,6 +194,7 @@
         <option value="$PROJECT_DIR$/src/models/accounts.py" />
         <option value="$PROJECT_DIR$/src/app.py" />
         <option value="$PROJECT_DIR$/src/templates/updateFinancial.html" />
+        <option value="$PROJECT_DIR$/src/models/mini_demands.py" />
       </list>
     </option>
   </component>
@@ -804,13 +768,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/models/mini_demands.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="355">
-          <caret line="86" column="0" lean-forward="false" selection-start-line="86" selection-start-column="0" selection-end-line="86" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/templates/post_login_loans.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
@@ -1024,19 +981,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18972">
-          <caret line="1542" column="27" lean-forward="false" selection-start-line="1542" selection-start-column="19" selection-end-line="1542" selection-end-column="27" />
-          <folding>
-            <element signature="e#0#29#0" expanded="true" />
-            <element signature="e#3849#14937#0" expanded="false" />
-            <element signature="e#18132#29788#0" expanded="false" />
-            <element signature="e#32851#43933#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/templates/AddMiniDemand.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="799">
@@ -1049,6 +993,27 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
           <caret line="202" column="0" lean-forward="false" selection-start-line="202" selection-start-column="0" selection-end-line="202" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-34">
+          <caret line="1542" column="27" lean-forward="false" selection-start-line="1542" selection-start-column="19" selection-end-line="1542" selection-end-column="27" />
+          <folding>
+            <element signature="e#0#29#0" expanded="true" />
+            <element signature="e#3849#14937#0" expanded="false" />
+            <element signature="e#18132#29788#0" expanded="false" />
+            <element signature="e#32851#43933#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/models/mini_demands.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="53" column="0" lean-forward="false" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
           <folding />
         </state>
       </provider>

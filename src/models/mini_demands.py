@@ -50,8 +50,7 @@ class MiniDemand(object):
         self.ro_number = ro_number
 
         if cheque_date_issued:
-            self.cheque_date_issued = (datetime.combine(datetime.strptime(cheque_date_issued, '%Y-%m-%d').date(),
-                                                        datetime.now().time()))
+            self.cheque_date_issued = (datetime.combine(cheque_date_issued, datetime.now().time()))
         else:
             self.cheque_date_issued = cheque_date_issued
 
