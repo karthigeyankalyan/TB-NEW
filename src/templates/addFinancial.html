@@ -210,6 +210,7 @@
                             current_demand_date = moment(cheque_date, "DD-MM-YYYY").add(4, 'M').startOf('month').format('DD-MM-YYYY');
                             if (moment(cheque_date, 'DD-MM-YYYY').format('DD') === 1) {
                                 interest = Math.round(roi * tla / 400);
+                                console.log(interest)
                             }
 
                             else {
