@@ -1156,6 +1156,8 @@ def loan_financial_form(_id, ro_number, loan_amount):
                 var_form_interest_demand = "id"+str(i+1)
                 var_form_dem_number = "s"+str(i+1)
 
+                print(var_form_date, var_form_principal_demand, var_form_interest_demand, var_form_dem_number)
+
                 var_date.append(request.form[var_form_date])
                 var_principal_demand.append(request.form[var_form_principal_demand])
                 var_interest_demand.append(request.form[var_form_interest_demand])
@@ -1166,6 +1168,8 @@ def loan_financial_form(_id, ro_number, loan_amount):
             user_id = user._id
             user_name = user.username
             loan_id = request.form['loanID']
+
+            print(loan_amount, sanction_date, loan_id)
 
             demand_object = None
 
