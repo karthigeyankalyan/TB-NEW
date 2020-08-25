@@ -180,6 +180,12 @@
                         new_penal_interest = 0;
                         new_belated_interest = 0;
                     }
+
+                    if (delay <= 3) {
+                        new_penal_interest = 0;
+                        new_belated_interest = 0;
+                    }
+
                     var total_penal_belated = parseInt(old_interest) + parseInt(new_interest);
                     document.getElementById("penalInterest").value = parseInt(new_penal_interest);
                     document.getElementById("belatedInterest").value = parseInt(new_belated_interest);
