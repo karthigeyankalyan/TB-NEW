@@ -1479,6 +1479,7 @@ def mini_demand_form(_id, belated_int, penal_int, p_due, p_ndue, i_due, old_inte
             opening_balance_principal_due, opening_balance_interest_due = 0, 0
             main_demand_principal_demand, main_demand_interest_demand = 0, 0
             d_number, main_demand_date, ann_id = None, None, None
+            main_demand_principal_due, main_demand_interest_due = 0, 0
 
             # Find the demand for which mini Demand is being added; Need to get auxiliary information
             demands = Database.find("Demands", {"_id": _id})
@@ -1496,8 +1497,8 @@ def mini_demand_form(_id, belated_int, penal_int, p_due, p_ndue, i_due, old_inte
                 main_demand_principal_collected = int(demand['principal_collected'])
                 main_demand_interest_collected = demand['interest_collected']
                 main_demand_principal_ndue = int(demand['closing_balance_principal_ndue'])
-                main_demand_penal_interest = demand['penal_interest']
-                main_demand_penal_interest = demand['belated_interest']
+                main_demand_principal_due = int(demand['closing_balance_principal_due'])
+                main_demand_interest_due = int(demand['closing_balance_interest_due'])
                 main_demand_service_charge = demand['service_charge']
                 loan_amount = demand['loan_amount']
                 demand_loan_id = demand['loan_id']
@@ -1510,8 +1511,8 @@ def mini_demand_form(_id, belated_int, penal_int, p_due, p_ndue, i_due, old_inte
             if d_number == 1:
                 print(1111, main_demand_principal_ndue, loan_amount, demand_number)
                 closing_balance_not_due = loan_amount
-                opening_balance_principal_due = demands['closing_balance_principal_due']
-                opening_balance_interest_due = demands['closing_balance_interest_due']
+                opening_balance_principal_due = main_demand_principal_due
+                opening_balance_interest_due = main_demand_interest_due
 
             else:
                 previous_demand = Database.find("Demands", {"$and": [{"demand_number": str(previous_demand_number)},
@@ -1559,17 +1560,17 @@ def mini_demand_form(_id, belated_int, penal_int, p_due, p_ndue, i_due, old_inte
             if int(closing_balance_idue) < 0:
                 main_demand_closing_balance_interest_due = 0
 
-            # Demand.update_main_demand(demand_id=_id,
-            #                           principal_collected=int(principal_paid)+int(main_demand_principal_collected),
-            #                           interest_collected=int(float(interest_paid)) +
-            #                                              int(float(main_demand_interest_collected)),
-            #                           penal_interest=int(main_demand_penal_interest)+int(penal_interest),
-            #                           belated_interest=int(main_demand_belated_interest) + int(belated_interest),
-            #                           service_charge=int(main_demand_service_charge)+int(service_charge),
-            #                           closing_balance_interest_due=main_demand_closing_balance_interest_due,
-            #                           closing_balance_principal_due=main_demand_closing_balance_principal_due,
-            #                           cheque_amount=int(cheque_amount)+int(main_demand_cheque_amount),
-            #                           closing_balance_principal_ndue=main_demand_closing_balance_principal_ndue)
+            Demand.update_main_demand(demand_id=_id,
+                                      principal_collected=int(principal_paid)+int(main_demand_principal_collected),
+                                      interest_collected=int(float(interest_paid)) +
+                                                         int(float(main_demand_interest_collected)),
+                                      penal_interest=int(main_demand_penal_interest)+int(penal_interest),
+                                      belated_interest=int(main_demand_belated_interest) + int(belated_interest),
+                                      service_charge=int(main_demand_service_charge)+int(service_charge),
+                                      closing_balance_interest_due=main_demand_closing_balance_interest_due,
+                                      closing_balance_principal_due=main_demand_closing_balance_principal_due,
+                                      cheque_amount=int(cheque_amount)+int(main_demand_cheque_amount),
+                                      closing_balance_principal_ndue=main_demand_closing_balance_principal_ndue)
 
             return render_template('mini_dem_added.html', mini_dem=mini_dem, user=user, district_bank=district_bank,
                                    b=sub_bank, closing_balance_pdue=main_demand_closing_balance_principal_due)
