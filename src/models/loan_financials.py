@@ -99,6 +99,7 @@ class Demand(object):
     def update_main_demand(cls, principal_collected, interest_collected, demand_id,
                            penal_interest, belated_interest, service_charge, closing_balance_principal_due,
                            closing_balance_principal_ndue, closing_balance_interest_due, cheque_amount):
+        print(closing_balance_principal_due)
         Database.update_main_demand(collection='Demands', query={'_id': demand_id},
                                     principal_collected=principal_collected, interest_collected=interest_collected,
                                     penal_interest=penal_interest, belated_interest=belated_interest,
