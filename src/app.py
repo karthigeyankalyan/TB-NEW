@@ -1544,9 +1544,14 @@ def mini_demand_form(_id, belated_int, penal_int, p_due, p_ndue, i_due, old_inte
             main_demand_closing_balance_principal_ndue = \
                 (int(closing_balance_not_due) - (main_demand_principal_collected + mini_demand_principal_total))
             main_demand_closing_balance_principal_due = \
-                (int(opening_balance_principal_due)) - int(closing_balance_pdue)
+                (int(opening_balance_principal_due) + int(main_demand_principal_demand)) - mini_demand_principal_total
             main_demand_closing_balance_interest_due = \
                 (int(opening_balance_interest_due) + int(main_demand_interest_demand)) - mini_demand_interest_total
+
+            if closing_balance_pdue < 0:
+                main_demand_closing_balance_principal_due = 0
+            if closing_balance_idue < 0:
+                main_demand_closing_balance_interest_due = 0
 
             Demand.update_main_demand(demand_id=_id,
                                       principal_collected=int(principal_paid)+int(main_demand_principal_collected),
