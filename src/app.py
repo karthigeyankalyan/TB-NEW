@@ -1507,9 +1507,10 @@ def mini_demand_form(_id, belated_int, penal_int, p_due, p_ndue, i_due, old_inte
             # Previous Main Demand to get Closing Balance; To calculate Principal Not Due
 
             if demand_number == 1:
-                closing_balance_not_due = main_demand_principal_ndue
+                closing_balance_not_due = loan_amount
                 opening_balance_principal_due = demands['closing_balance_principal_due']
                 opening_balance_interest_due = demands['closing_balance_interest_due']
+                print(loan_amount)
 
             else:
                 previous_demand = Database.find("Demands", {"$and": [{"demand_number": str(previous_demand_number)},
@@ -1543,7 +1544,7 @@ def mini_demand_form(_id, belated_int, penal_int, p_due, p_ndue, i_due, old_inte
                 mini_demand_principal_total += int(mdemand['principal_collected'])
                 mini_demand_interest_total += int(float(mdemand['interest_collected']))
 
-            print(closing_balance_not_due, main_demand_interest_demand, mini_demand_principal_total)
+            print(closing_balance_not_due, main_demand_principal_collected, mini_demand_principal_total)
 
             main_demand_closing_balance_principal_ndue = \
                 (int(closing_balance_not_due) - (main_demand_principal_collected + mini_demand_principal_total))
