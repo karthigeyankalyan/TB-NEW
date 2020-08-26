@@ -1530,11 +1530,11 @@ def mini_demand_form(_id, belated_int, penal_int, p_due, p_ndue, i_due, old_inte
                                   cheque_date_issued=cheque_date_issued)
 
             mini_demands = Database.find("mDemands", {"demand_id": _id})
-            print(mini_demands[0])
+            print(len(mini_demands[0]))
 
             # Cumulating principal & interest totals for final main_demand alterations;
             # [Closing Balance Principal & Interest Dues]
-            for mdemand in mini_demands[0:1]:
+            for mdemand in mini_demands[0]:
                 main_demand_service_charge += int(mdemand['service_charge'])
                 main_demand_cheque_amount += int(mdemand['cheque_amount'])
                 mini_demand_principal_total += int(mdemand['principal_collected'])
