@@ -1478,7 +1478,7 @@ def mini_demand_form(_id, belated_int, penal_int, p_due, p_ndue, i_due, old_inte
             mini_demand_principal_total, mini_demand_interest_total, closing_balance_not_due = 0, 0, 0
             opening_balance_principal_due, opening_balance_interest_due = 0, 0
             main_demand_principal_demand, main_demand_interest_demand = 0, 0
-            main_demand_date, ann_id = None, None
+            d_number, main_demand_date, ann_id = None, None, None
 
             # Find the demand for which mini Demand is being added; Need to get auxiliary information
             demands = Database.find("Demands", {"_id": _id})
@@ -1503,10 +1503,11 @@ def mini_demand_form(_id, belated_int, penal_int, p_due, p_ndue, i_due, old_inte
                 demand_loan_id = demand['loan_id']
                 ann_id = demand['ann_id']
                 previous_demand_number = int(demand['demand_number'])-1
+                d_number = int(demand['demand_number'])
 
             # Previous Main Demand to get Closing Balance; To calculate Principal Not Due
 
-            if demand_number == 1:
+            if d_number == 1:
                 print(1111, main_demand_principal_ndue, loan_amount, demand_number)
                 closing_balance_not_due = loan_amount
                 opening_balance_principal_due = demands['closing_balance_principal_due']
