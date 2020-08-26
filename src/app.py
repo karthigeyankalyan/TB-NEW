@@ -1179,7 +1179,8 @@ def loan_financial_form(_id, ro_number, loan_amount):
                                        demand_date=var_date[i], principal_demand=var_principal_demand[i],
                                        interest_demand=var_interest_demand[i], loan_id=_id, user_id=user_id,
                                        user_name=user_name, ann_id=loan_id, loan_sanction_date=sanction_date,
-                                       roi=roi, no_of_demands=dem_count, ro_number=ro_number, closing_balance_principal_ndue=loan_amount)
+                                       roi=roi, no_of_demands=dem_count, ro_number=ro_number,
+                                       closing_balance_principal_ndue=loan_amount)
 
                 demand_object.save_to_mongo()
 
@@ -1500,15 +1501,12 @@ def mini_demand_form(_id, belated_int, penal_int, p_due, p_ndue, i_due, old_inte
                 demand_loan_id = demand['loan_id']
                 ann_id = demand['ann_id']
                 previous_demand_number = int(demand['demand_number'])-1
+                if demand_number == 1:
+                    closing_balance_not_due = int(demand['closing_balance_principal_ndue'])
+                    opening_balance_principal_due = int(demand['closing_balance_principal_due'])
+                    opening_balance_interest_due = int(demand['closing_balance_interest_due'])
 
-            # Previous Main Demand to get Closing Balance; To calculate Principal Not Due
-
-            if demand_number == 1:
-                closing_balance_not_due = demands['closing_balance_principal_ndue']
-                opening_balance_principal_due = demands['closing_balance_principal_due']
-                opening_balance_interest_due = demands['closing_balance_interest_due']
-
-            else:
+            if demand_number != 1:
                 previous_demand = Database.find("Demands", {"$and": [{"demand_number": str(previous_demand_number)},
                                                                      {"loan_id": demand_loan_id}]})
 
