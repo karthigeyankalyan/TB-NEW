@@ -1425,6 +1425,7 @@ def update_loan_financial_form(_id, late_interest, belated_int, penal_int, p_due
            '<string:penal_int>/<string:p_due>/<string:p_ndue>/<string:i_due>/'
            '<string:old_interest>/<string:demand_date>', methods=['POST', 'GET'])
 def mini_demand_form(_id, belated_int, penal_int, p_due, p_ndue, i_due, old_interest, demand_date):
+    global main_demand_principal_ndue, main_demand_principal_ndue
     email = session['email']
     if email is not None:
         if request.method == 'GET':
@@ -1494,6 +1495,7 @@ def mini_demand_form(_id, belated_int, penal_int, p_due, p_ndue, i_due, old_inte
                 main_demand_interest_demand = int(demand['interest_demand'])
                 main_demand_principal_collected = int(demand['principal_collected'])
                 main_demand_interest_collected = demand['interest_collected']
+                main_demand_principal_ndue = int(demand['closing_balance_principal_ndue'])
                 main_demand_penal_interest = demand['penal_interest']
                 main_demand_penal_interest = demand['belated_interest']
                 main_demand_service_charge = demand['service_charge']
@@ -1501,12 +1503,15 @@ def mini_demand_form(_id, belated_int, penal_int, p_due, p_ndue, i_due, old_inte
                 demand_loan_id = demand['loan_id']
                 ann_id = demand['ann_id']
                 previous_demand_number = int(demand['demand_number'])-1
-                if demand_number == 1:
-                    closing_balance_not_due = int(demand['closing_balance_principal_ndue'])
-                    opening_balance_principal_due = int(demand['closing_balance_principal_due'])
-                    opening_balance_interest_due = int(demand['closing_balance_interest_due'])
 
-            if demand_number != 1:
+            # Previous Main Demand to get Closing Balance; To calculate Principal Not Due
+
+            if demand_number == 1:
+                closing_balance_not_due = main_demand_principal_ndue
+                opening_balance_principal_due = demands['closing_balance_principal_due']
+                opening_balance_interest_due = demands['closing_balance_interest_due']
+
+            else:
                 previous_demand = Database.find("Demands", {"$and": [{"demand_number": str(previous_demand_number)},
                                                                      {"loan_id": demand_loan_id}]})
 
