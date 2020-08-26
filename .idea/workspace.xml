@@ -24,8 +24,8 @@
       <file leaf-file-name="app.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/app.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="389">
-              <caret line="1564" column="0" lean-forward="true" selection-start-line="1564" selection-start-column="0" selection-end-line="1564" selection-end-column="0" />
+            <state relative-caret-position="272">
+              <caret line="1542" column="0" lean-forward="true" selection-start-line="1542" selection-start-column="0" selection-end-line="1542" selection-end-column="0" />
               <folding>
                 <element signature="e#0#29#0" expanded="true" />
                 <element signature="e#3849#14937#0" expanded="false" />
@@ -40,7 +40,7 @@
         <entry file="file://$PROJECT_DIR$/src/models/loan_financials.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="340">
-              <caret line="101" column="44" lean-forward="true" selection-start-line="101" selection-start-column="44" selection-end-line="101" selection-end-column="44" />
+              <caret line="101" column="0" lean-forward="false" selection-start-line="101" selection-start-column="0" selection-end-line="102" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -192,8 +192,8 @@
         <option value="$PROJECT_DIR$/src/templates/ViewLoans.html" />
         <option value="$PROJECT_DIR$/src/templates/AddMiniDemand.html" />
         <option value="$PROJECT_DIR$/src/templates/updateFinancial.html" />
-        <option value="$PROJECT_DIR$/src/models/loan_financials.py" />
         <option value="$PROJECT_DIR$/src/app.py" />
+        <option value="$PROJECT_DIR$/src/models/loan_financials.py" />
       </list>
     </option>
   </component>
@@ -996,15 +996,15 @@
     <entry file="file://$PROJECT_DIR$/src/models/loan_financials.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
-          <caret line="101" column="44" lean-forward="true" selection-start-line="101" selection-start-column="44" selection-end-line="101" selection-end-column="44" />
+          <caret line="101" column="0" lean-forward="false" selection-start-line="101" selection-start-column="0" selection-end-line="102" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/app.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="389">
-          <caret line="1564" column="0" lean-forward="true" selection-start-line="1564" selection-start-column="0" selection-end-line="1564" selection-end-column="0" />
+        <state relative-caret-position="272">
+          <caret line="1542" column="0" lean-forward="true" selection-start-line="1542" selection-start-column="0" selection-end-line="1542" selection-end-column="0" />
           <folding>
             <element signature="e#0#29#0" expanded="true" />
             <element signature="e#3849#14937#0" expanded="false" />

@@ -1539,10 +1539,12 @@ def mini_demand_form(_id, belated_int, penal_int, p_due, p_ndue, i_due, old_inte
                 mini_demand_principal_total += int(mdemand['principal_collected'])
                 mini_demand_interest_total += int(float(mdemand['interest_collected']))
 
+            print(mini_demand_principal_total)
+
             main_demand_closing_balance_principal_ndue = \
                 (int(closing_balance_not_due) - (main_demand_principal_collected + mini_demand_principal_total))
             main_demand_closing_balance_principal_due = \
-                (int(opening_balance_principal_due) + int(main_demand_principal_demand)) - mini_demand_principal_total
+                (int(opening_balance_principal_due)) - closing_balance_pdue
             main_demand_closing_balance_interest_due = \
                 (int(opening_balance_interest_due) + int(main_demand_interest_demand)) - mini_demand_interest_total
 
