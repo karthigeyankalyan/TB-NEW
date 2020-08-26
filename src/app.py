@@ -1528,13 +1528,13 @@ def mini_demand_form(_id, belated_int, penal_int, p_due, p_ndue, i_due, old_inte
                                   loan_id=loan_id, demand_reference=demand_reference,
                                   m_demand_no=demand_number, loan_amount=loan_amount, ann_id=ann_id,
                                   cheque_date_issued=cheque_date_issued)
+            mini_dem.save_to_mongo()
 
             mini_demands = Database.find("mDemands", {"demand_id": _id})
-            print(mini_demands.count())
 
             # Cumulating principal & interest totals for final main_demand alterations;
             # [Closing Balance Principal & Interest Dues]
-            for mdemand in mini_demands[0]:
+            for mdemand in mini_demands[0:1]:
                 main_demand_service_charge += int(mdemand['service_charge'])
                 main_demand_cheque_amount += int(mdemand['cheque_amount'])
                 mini_demand_principal_total += int(mdemand['principal_collected'])
@@ -1565,8 +1565,6 @@ def mini_demand_form(_id, belated_int, penal_int, p_due, p_ndue, i_due, old_inte
                                       closing_balance_principal_due=main_demand_closing_balance_principal_due,
                                       cheque_amount=int(cheque_amount)+int(main_demand_cheque_amount),
                                       closing_balance_principal_ndue=main_demand_closing_balance_principal_ndue)
-
-            mini_dem.save_to_mongo()
 
             return render_template('mini_dem_added.html', mini_dem=mini_dem, user=user, district_bank=district_bank,
                                    b=sub_bank, closing_balance_pdue=main_demand_closing_balance_principal_due)
