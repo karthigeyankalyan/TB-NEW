@@ -191,12 +191,14 @@
 
                     var previous_demand_date = current_demand_date;
                 }
+                document.getElementById('loanAmount').value = NBCShare+TabcedcoShare;
             }
 
             else {
                 if (parseInt(no_of_demands) === 32 || parseInt(no_of_demands) === 20) {
                 NBCShare = NBCFDCShareCalculator(json[0]['loan_category'], amount);
                 TabcedcoShare = tabcedcoShareCalculator(json[0]['loan_category'], amount);
+                document.getElementById('loanAmount').value = NBCShare+TabcedcoShare;
 
                 var tabcedco_installments = Math.round(TabcedcoShare)/2;
                 var nbcfdc_installments = Math.floor(parseInt(NBCShare)/(no_of_demands-2));
@@ -278,6 +280,7 @@
                 else {
                 NBCShare = NBCFDCShareCalculator(json[0]['loan_category'], amount);
                 TabcedcoShare = tabcedcoShareCalculator(json[0]['loan_category'], amount);
+                document.getElementById('loanAmount').value = NBCShare+TabcedcoShare;
 
                 tabcedco_installments = Math.round(TabcedcoShare);
                 nbcfdc_installments = Math.round(parseInt(NBCShare)/(no_of_demands-1));
