@@ -1179,7 +1179,7 @@ def loan_financial_form(_id, ro_number, loan_amount):
                                        demand_date=var_date[i], principal_demand=var_principal_demand[i],
                                        interest_demand=var_interest_demand[i], loan_id=_id, user_id=user_id,
                                        user_name=user_name, ann_id=loan_id, loan_sanction_date=sanction_date,
-                                       roi=roi, no_of_demands=dem_count, ro_number=ro_number)
+                                       roi=roi, no_of_demands=dem_count, ro_number=ro_number, closing_balance_principal_ndue=loan_amount)
 
                 demand_object.save_to_mongo()
 
