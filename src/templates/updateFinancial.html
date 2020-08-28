@@ -180,18 +180,17 @@
                     var penal_old = 0;
                     var belated_old = 0;
                     var source1;
-                    for (var i = 1; i <parseInt(json[0]['demand_number']); i++)
+                    for (var i = 1; i < parseInt(json[0]['demand_number']); i++)
                     {
-                    var previous_demand_number = (parseInt(json[0]['demand_number'])-1) - i;
+                    var previous_demand_number = json[0]['demand_number'] - i;
                     source1 = "/demand_ann_id/" + json[0]['ann_id'] + "/" + previous_demand_number;
-                    console.log(previous_demand_number, source1)
-//                    $.ajax({
-//                        type: 'GET',
-//                        url: source1,
-//                        contentType: "application/json",
-//                        dataType: 'json',
-//                        success: function (jsonFunc) {
-//                            console.log(jsonFunc[0]['demand_number']);
+                    $.ajax({
+                        type: 'GET',
+                        url: source1,
+                        contentType: "application/json",
+                        dataType: 'json',
+                        success: function (jsonFunc) {
+                            console.log(jsonFunc);
 //                            if (previous_demand_number >= 1) {
 //                                console.log(jsonFunc);
 //                                var prev_principal_due = parseInt(jsonFunc[0]['closing_balance_principal_due']) + parseInt(jsonFunc[0]['closing_balance_interest_due']);
@@ -265,11 +264,11 @@
 ////                    });
 //
 //                            }
-//                        },
-//                        error: function (e) {
-//                            console.log("First Demand");
-//                        }
-//                    });
+                        },
+                        error: function (e) {
+                            console.log("First Demand");
+                        }
+                    });
                     }
                 }
             },
