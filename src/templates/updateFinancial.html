@@ -180,17 +180,18 @@
                     var penal_old = 0;
                     var belated_old = 0;
                     var previous_demand_number;
-                    for (var i = parseInt(json[0]['demand_number']); i >2; i--)
+                    var source1;
+                    for (var i = 1; i <parseInt(json[0]['demand_number']); i++)
                     {
-                    previous_demand_number = parseInt(json[0]['demand_number']) - i;
-                    var source1 = "/demand_ann_id/" + json[0]['ann_id'] + "/" + previous_demand_number;
+                    previous_demand_number = (parseInt(json[0]['demand_number'])-1) - i;
+                    source1 = "/demand_ann_id/" + json[0]['ann_id'] + "/" + previous_demand_number;
                     $.ajax({
                         type: 'GET',
                         url: source1,
                         contentType: "application/json",
                         dataType: 'json',
                         success: function (jsonFunc) {
-                            console.log(jsonFunc, source1);
+                            console.log(jsonFunc, source1, previous_demand_number);
 //                            if (previous_demand_number >= 1) {
 //                                console.log(jsonFunc);
 //                                var prev_principal_due = parseInt(jsonFunc[0]['closing_balance_principal_due']) + parseInt(jsonFunc[0]['closing_balance_interest_due']);
