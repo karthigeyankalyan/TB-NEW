@@ -180,7 +180,7 @@
                     var penal_old = 0;
                     var belated_old = 0;
                     var previous_demand_number;
-                    for (var i = parseInt(json[0]['demand_number']); i >=2; i--)
+                    for (var i = parseInt(json[0]['demand_number']); i >2; i--)
                     {
                     previous_demand_number = parseInt(json[0]['demand_number']) - i;
                     var source1 = "/demand_ann_id/" + json[0]['ann_id'] + "/" + previous_demand_number;
