@@ -349,6 +349,7 @@
                                 service_charge = 0;
                                 principal_paid = 0;
                                 interest_due += parseInt(penal) + parseInt(belated);
+                                console.log(interest_due);
                                 document.getElementById('principalPaid').value = Math.round(principal_paid);
                                 document.getElementById('interestPaid').value = Math.round(interest_paid);
                                 document.getElementById('serviceCharge').value = Math.round(service_charge);
