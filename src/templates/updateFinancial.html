@@ -345,8 +345,7 @@
                             interest_due = parseInt(jsonFunc[0]['closing_balance_interest_due']) + parseInt(json[0]['interest_demand']);
 
                             var total_penal_belated = parseInt(document.getElementById('penalInterest').value) + parseInt(document.getElementById('belatedInterest').value);
-                            var cheque_amount = that.value;
-                            console.log(cheque_amount);
+                            var cheque_amount = parseInt(that.value);
                             if (cheque_amount === 0) {
                                 interest_paid = 0;
                                 service_charge = 0;
