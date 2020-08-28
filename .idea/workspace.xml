@@ -72,8 +72,8 @@
       <file leaf-file-name="updateFinancial.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/templates/updateFinancial.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="351" column="58" lean-forward="false" selection-start-line="351" selection-start-column="58" selection-end-line="351" selection-end-column="58" />
+            <state relative-caret-position="236">
+              <caret line="355" column="125" lean-forward="false" selection-start-line="355" selection-start-column="125" selection-end-line="355" selection-end-column="125" />
               <folding />
             </state>
           </provider>
@@ -1021,8 +1021,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/templates/updateFinancial.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="351" column="58" lean-forward="false" selection-start-line="351" selection-start-column="58" selection-end-line="351" selection-end-column="58" />
+        <state relative-caret-position="236">
+          <caret line="355" column="125" lean-forward="false" selection-start-line="355" selection-start-column="125" selection-end-line="355" selection-end-column="125" />
           <folding />
         </state>
       </provider>

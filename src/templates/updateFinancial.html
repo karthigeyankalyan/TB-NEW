@@ -349,12 +349,11 @@
                                 service_charge = 0;
                                 principal_paid = 0;
                                 interest_due += parseInt(penal) + parseInt(belated);
-                                console.log(interest_due);
                                 document.getElementById('principalPaid').value = Math.round(principal_paid);
                                 document.getElementById('interestPaid').value = Math.round(interest_paid);
                                 document.getElementById('serviceCharge').value = Math.round(service_charge);
                                 document.getElementById('principalDue').value = Math.round(principal_due);
-                                document.getElementById('interestDue').value = interest_due;
+                                document.getElementById('interestDue').value = document.getElementById('demandInterestPayable').value;
                             } else {
                             if (cheque_amount > total_penal_belated) {
                                 var post_penal_belated_deduction = parseInt(cheque_amount) - parseInt(total_penal_belated);
