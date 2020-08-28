@@ -279,7 +279,6 @@
             contentType: "application/json",
             dataType: 'json',
             success: function (json) {
-                console.log(json);
                 ann_id = json[0]['ann_id'];
                 demand_number = parseInt(json[0]['demand_number']) - 1;
                 if (parseInt(json[0]['demand_number']) === 1) {
@@ -301,7 +300,6 @@
                         document.getElementById('serviceCharge').value = Math.round(service_charge);
                         document.getElementById('principalDue').value = Math.round(principal_due);
                         document.getElementById('interestDue').value = Math.round(interest_due);
-                        console.log('cheque is 0')
                     } else {
                         if (cheque_amount > total_penal_belated) {
                             var post_penal_belated_deduction = parseInt(cheque_amount) - parseInt(total_penal_belated);
