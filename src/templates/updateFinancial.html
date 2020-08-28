@@ -302,7 +302,7 @@
                         document.getElementById('principalDue').value = Math.round(principal_due);
                         document.getElementById('interestDue').value = Math.round(interest_due);
                     } else {
-                        if (cheque_amount > total_penal_belated) {
+                        if (cheque_amount > 0) {
                             var post_penal_belated_deduction = parseInt(cheque_amount) - parseInt(total_penal_belated);
                             if (post_penal_belated_deduction > interest_due) {
                                 var interest_paid = interest_due;
