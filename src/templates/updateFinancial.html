@@ -58,6 +58,7 @@
             <h6>Principal Due</h6>
             <h6>Overall Due</h6>
             <h6>Interest Due</h6>
+            <h6>Penal + Belated Due</h6>
             <h6>Cheque #</h6>
             <h6>Cheque Date Issued</h6>
         </div>
@@ -77,6 +78,7 @@
             <input type="number" name="overallDue" id="overallDue">
             <input type="number" name="interestDue" id="interestDue">
             <input type="number" name="interestTotal" id="interestTotal" style="display: none">
+            <input type="number" name="pbDue" id="pbDue" style="display: none">
             <input type="text" name="chequeNumber" id="chequeNumber">
             <input type="Date" name="chequeDateIssued" id="chequeDateIssued">
         </div>
@@ -175,7 +177,12 @@
                     document.getElementById("belatedInterest").value = Math.round(belated);
                 }
                 else {
-                    var previous_demand_number = parseInt(json[0]['demand_number']) - 1;
+                    var penal_old = 0;
+                    var belated_old = 0;
+                    var previous_demand_number;
+                    for (var i = parseInt(json[0]['demand_number']); i >1; i--)
+                    {
+                    previous_demand_number = parseInt(json[0]['demand_number']) - i;
                     var source1 = "/demand_ann_id/" + json[0]['ann_id'] + "/" + previous_demand_number;
                     console.log(source1);
                     $.ajax({
@@ -187,10 +194,10 @@
                             if (previous_demand_number >= 1) {
                                 var prev_principal_due = parseInt(jsonFunc[0]['closing_balance_principal_due']) + parseInt(jsonFunc[0]['closing_balance_interest_due']);
                                 var prev_cheque_date = moment(jsonFunc[0]['cheque_date']['$date']).format('YYYY-MM-DD');
-                                var d_minus_1_demand_date = moment(jsonFunc[0]['demand_date']['$date']).format('YYYY-MM-DD');
-                                var delay_old = moment(demand_date).diff(moment(prev_cheque_date), 'days');
-                                var penal_old = (delay_old * prev_principal_due * 5) / (365 * 100);
-                                var belated_old = (delay_old * prev_principal_due * parseInt(json[0]['roi'])) / (365 * 100);
+                                var d_minus_i_demand_date = moment(jsonFunc[0]['demand_date']['$date']).format('YYYY-MM-DD');
+                                var delay_old = moment(d_minus_i_demand_date).diff(moment(prev_cheque_date), 'days');
+                                penal_old += (delay_old * prev_principal_due * 5) / (365 * 100);
+                                belated_old += (delay_old * prev_principal_due * parseInt(json[0]['roi'])) / (365 * 100);
 
                                 console.log(delay_old, prev_principal_due, json[0]['roi'], penal_old, belated_old);
 
@@ -204,38 +211,38 @@
                                     belated_old = 0;
                                 }
 
-                                var previous_demand_number_2 = parseInt(json[0]['demand_number']) - 2;
-                                var source2 = "/demand_ann_id/" + json[0]['ann_id'] + "/" + previous_demand_number_2;
-                                console.log(source2);
-                                $.ajax({
-                                    type: 'GET',
-                                    url: source2,
-                                    contentType: "application/json",
-                                    dataType: 'json',
-                                    success: function (jsonFunc2) {
-                                        if (previous_demand_number_2 >= 1) {
-                                        var prev_principal_due_2 = parseInt(jsonFunc2[0]['closing_balance_principal_due']) + parseInt(jsonFunc2[0]['closing_balance_interest_due']);
-                                        var prev_cheque_date_2 = moment(jsonFunc2[0]['cheque_date']['$date']).format('YYYY-MM-DD');
-                                        var delay_old_2 = moment(d_minus_1_demand_date).diff(moment(prev_cheque_date_2), 'days');
-                                        var penal_old_2 = (delay_old_2 * prev_principal_due_2 * 5) / (365 * 100);
-                                        var belated_old_2 = (delay_old_2 * prev_principal_due_2 * parseInt(json[0]['roi'])) / (365 * 100);
-                                        console.log(penal_old_2 + belated_old_2);
-                                        if (prev_principal_due_2 === 0) {
-                                            penal_old_2 = 0;
-                                            belated_old_2 = 0;
-                                        }
-
-                                        if (penal_old_2 < 0) {
-                                            penal_old_2 = 0;
-                                            belated_old_2 = 0;
-                                        }
-
-                                    }
+//                                var previous_demand_number_2 = parseInt(json[0]['demand_number']) - 2;
+//                                var source2 = "/demand_ann_id/" + json[0]['ann_id'] + "/" + previous_demand_number_2;
+//                                console.log(source2);
+//                                $.ajax({
+//                                    type: 'GET',
+//                                    url: source2,
+//                                    contentType: "application/json",
+//                                    dataType: 'json',
+//                                    success: function (jsonFunc2) {
+//                                        if (previous_demand_number_2 >= 1) {
+//                                        var prev_principal_due_2 = parseInt(jsonFunc2[0]['closing_balance_principal_due']) + parseInt(jsonFunc2[0]['closing_balance_interest_due']);
+//                                        var prev_cheque_date_2 = moment(jsonFunc2[0]['cheque_date']['$date']).format('YYYY-MM-DD');
+//                                        var delay_old_2 = moment(d_minus_1_demand_date).diff(moment(prev_cheque_date_2), 'days');
+//                                        var penal_old_2 = (delay_old_2 * prev_principal_due_2 * 5) / (365 * 100);
+//                                        var belated_old_2 = (delay_old_2 * prev_principal_due_2 * parseInt(json[0]['roi'])) / (365 * 100);
+//                                        console.log(penal_old_2 + belated_old_2);
+//                                        if (prev_principal_due_2 === 0) {
+//                                            penal_old_2 = 0;
+//                                            belated_old_2 = 0;
+//                                        }
+//
+//                                        if (penal_old_2 < 0) {
+//                                            penal_old_2 = 0;
+//                                            belated_old_2 = 0;
+//                                        }
+//
+//                                    }
                                 var delay = moment(cheque_date).diff(moment(demand_date), 'days');
                                 var penal = (delay * total_demand * 5) / (365 * 100);
                                 var belated = (delay * total_demand * parseInt(json[0]['roi'])) / (365 * 100);
 
-                                console.log(delay, penal, prev_principal_due);
+                                console.log(belated + penal, penal_old + belated_old);
 
                                 if (prev_principal_due === 0 && delay <= 3) {
                                     penal = 0;
@@ -249,11 +256,11 @@
 
                                 document.getElementById("penalInterest").value = Math.round(penal + penal_old);
                                 document.getElementById("belatedInterest").value = Math.round(belated + belated_old);
-                        },
-                        error: function (e) {
-                            console.log("First Demand");
-                        }
-                    });
+//                        },
+//                        error: function (e) {
+//                            console.log("First Demand");
+//                        }
+//                    });
 
                             }
                         },
@@ -261,6 +268,7 @@
                             console.log("First Demand");
                         }
                     });
+                    }
                 }
             },
             error: function (e) {
@@ -286,23 +294,24 @@
                     interest_due = parseInt(json[0]['interest_demand']);
                     principal_n_due = parseInt(json[0]['loan_amount']);
                     document.getElementById('overallDue').value = p_n_paid;
-                    var penal = document.getElementById('penalInterest').value;
-                    var belated = document.getElementById('belatedInterest').value;
+                    var penal = parseInt(document.getElementById('penalInterest').value);
+                    var belated = parseInt(document.getElementById('belatedInterest').value);
                     var total_penal_belated = parseInt(document.getElementById('penalInterest').value) + parseInt(document.getElementById('belatedInterest').value);
                     var cheque_amount = parseInt(that.value);
                     if (cheque_amount === 0) {
                         interest_paid = 0;
                         service_charge = 0;
                         principal_paid = 0;
-                        interest_due += parseInt(penal) + parseInt(belated);
                         document.getElementById('principalPaid').value = Math.round(principal_paid);
                         document.getElementById('interestPaid').value = Math.round(interest_paid);
                         document.getElementById('serviceCharge').value = Math.round(service_charge);
                         document.getElementById('principalDue').value = Math.round(principal_due);
                         document.getElementById('interestDue').value = Math.round(interest_due);
+                        document.getElementById('pbDue').value = 0;
                     } else {
                         if (cheque_amount > total_penal_belated) {
                             var post_penal_belated_deduction = parseInt(cheque_amount) - parseInt(total_penal_belated);
+                            document.getElementById('pbDue').value = 0;
                             if (post_penal_belated_deduction > interest_due) {
                                 var interest_paid = interest_due;
                                 var post_interest_late_deduction = post_penal_belated_deduction - interest_due;
@@ -324,7 +333,9 @@
                                     document.getElementById('principalDue').value = principal_due;
                                     document.getElementById('interestDue').value = interest_due;
                                 }
-                            }
+                            } else {
+                            document.getElementById('pbDue').value = parseInt(cheque_amount);
+                        }
                             }
                             p_n_paid = principal_n_due - document.getElementById('principalPaid').value;
                             console.log(principal_n_due, document.getElementById('principalPaid').value);
@@ -348,22 +359,22 @@
                                 interest_paid = 0;
                                 service_charge = 0;
                                 principal_paid = 0;
-                                interest_due += parseInt(penal) + parseInt(belated);
                                 document.getElementById('principalPaid').value = Math.round(principal_paid);
                                 document.getElementById('interestPaid').value = Math.round(interest_paid);
                                 document.getElementById('serviceCharge').value = Math.round(service_charge);
                                 document.getElementById('principalDue').value = Math.round(principal_due);
                                 document.getElementById('interestDue').value = document.getElementById('demandInterestPayable').value;
+                                document.getElementById('pbDue').value = total_penal_belated;
                             } else {
                             if (cheque_amount > total_penal_belated) {
                                 var post_penal_belated_deduction = parseInt(cheque_amount) - parseInt(total_penal_belated);
+                                document.getElementById('pbDue').value = 0;
                                 if (post_penal_belated_deduction > interest_due) {
                                     var interest_paid = interest_due;
                                     var post_interest_late_deduction = post_penal_belated_deduction - interest_due;
                                     var service_charge = Math.round(interest_paid * 3 / json[0]['roi']);
                                     var principal_paid = post_interest_late_deduction + service_charge;
                                     principal_due = principal_due - principal_paid;
-                                    console.log(service_charge, post_interest_late_deduction, principal_due);
                                     document.getElementById('principalPaid').value = Math.round(principal_paid);
                                     document.getElementById('interestPaid').value = Math.round(interest_paid);
                                     document.getElementById('serviceCharge').value = Math.round(service_charge);
@@ -379,6 +390,8 @@
                                     document.getElementById('principalDue').value = principal_due;
                                     document.getElementById('interestDue').value = interest_due;
                                 }
+                            } else {
+                                document.getElementById('pbDue').value = parseInt(cheque_amount);
                             }
                             }
                             p_n_paid = principal_n_due - document.getElementById('principalPaid').value;
