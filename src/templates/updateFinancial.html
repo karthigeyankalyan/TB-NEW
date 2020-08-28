@@ -192,6 +192,7 @@
                         dataType: 'json',
                         success: function (jsonFunc) {
                             if (previous_demand_number >= 1) {
+                                console.log(jsonFunc);
                                 var prev_principal_due = parseInt(jsonFunc[0]['closing_balance_principal_due']) + parseInt(jsonFunc[0]['closing_balance_interest_due']);
                                 var prev_cheque_date = moment(jsonFunc[0]['cheque_date']['$date']).format('YYYY-MM-DD');
                                 var d_minus_i_demand_date = moment(jsonFunc[0]['demand_date']['$date']).format('YYYY-MM-DD');
