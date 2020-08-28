@@ -291,6 +291,7 @@
                     var belated = document.getElementById('belatedInterest').value;
                     var total_penal_belated = parseInt(document.getElementById('penalInterest').value) + parseInt(document.getElementById('belatedInterest').value);
                     var cheque_amount = parseInt(that.value);
+                    console.log(cheque_amount);
                     if (cheque_amount === 0) {
                         interest_paid = 0;
                         service_charge = 0;
