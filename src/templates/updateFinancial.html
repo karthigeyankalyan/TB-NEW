@@ -200,7 +200,7 @@
                                     belated_old = 0;
                                 }
 
-                                if (penal_old < 0) {
+                                if (delay_old <= 3 || penal_old < 0) {
                                     penal_old = 0;
                                     belated_old = 0;
                                 }
@@ -228,7 +228,7 @@
                                                     belated_old_2 = 0;
                                                 }
 
-                                                if (penal_old_2 < 0) {
+                                                if (delay_old_2 <=3 || penal_old_2 < 0) {
                                                     penal_old_2 = 0;
                                                     belated_old_2 = 0;
                                                 }
@@ -257,13 +257,12 @@
                                                     belated_old_3 = 0;
                                                 }
 
-                                                if (penal_old_3 < 0) {
+                                                if (delay_old_3 <=3 || penal_old_3 < 0) {
                                                     penal_old_3 = 0;
                                                     belated_old_3 = 0;
                                                 }
 
                                             }
-
 
                                             var delay = moment(cheque_date).diff(moment(demand_date), 'days');
                                             var penal = (delay * total_demand * 5) / (365 * 100);
@@ -274,7 +273,7 @@
                                                 belated = 0;
                                             }
 
-                                            if (penal < 0) {
+                                            if (delay <=3 || penal < 0) {
                                                 penal = 0;
                                                 belated = 0;
                                             }

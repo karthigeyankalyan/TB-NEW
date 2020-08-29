@@ -69,17 +69,17 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="updateFinancial.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="updateFinancial.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/templates/updateFinancial.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="480">
-              <caret line="407" column="0" lean-forward="false" selection-start-line="407" selection-start-column="0" selection-end-line="407" selection-end-column="0" />
+            <state relative-caret-position="374">
+              <caret line="281" column="161" lean-forward="true" selection-start-line="281" selection-start-column="161" selection-end-line="281" selection-end-column="161" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ViewLoans.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ViewLoans.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/templates/ViewLoans.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="221">
@@ -960,25 +960,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/templates/ViewLoans.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="49" column="0" lean-forward="false" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
-          <folding>
-            <marker date="1598343817198" expanded="true" signature="3723:3762" ph="..." />
-            <marker date="1598343817198" expanded="true" signature="3846:3885" ph="..." />
-            <marker date="1598343817198" expanded="true" signature="3961:4000" ph="..." />
-            <marker date="1598343817198" expanded="true" signature="4078:4117" ph="..." />
-            <marker date="1598343817198" expanded="true" signature="4191:4230" ph="..." />
-            <marker date="1598343817198" expanded="true" signature="4311:4350" ph="..." />
-            <marker date="1598343817198" expanded="true" signature="4431:4470" ph="..." />
-            <marker date="1598343817198" expanded="true" signature="4551:4590" ph="..." />
-            <marker date="1598343817198" expanded="true" signature="4676:4715" ph="..." />
-            <marker date="1598343817198" expanded="true" signature="4799:4838" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/app.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="480">
@@ -1021,9 +1002,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/templates/updateFinancial.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="407" column="0" lean-forward="false" selection-start-line="407" selection-start-column="0" selection-end-line="407" selection-end-column="0" />
+        <state relative-caret-position="374">
+          <caret line="281" column="161" lean-forward="true" selection-start-line="281" selection-start-column="161" selection-end-line="281" selection-end-column="161" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/templates/ViewLoans.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="49" column="0" lean-forward="false" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
+          <folding>
+            <marker date="1598343817198" expanded="true" signature="3723:3762" ph="..." />
+            <marker date="1598343817198" expanded="true" signature="3846:3885" ph="..." />
+            <marker date="1598343817198" expanded="true" signature="3961:4000" ph="..." />
+            <marker date="1598343817198" expanded="true" signature="4078:4117" ph="..." />
+            <marker date="1598343817198" expanded="true" signature="4191:4230" ph="..." />
+            <marker date="1598343817198" expanded="true" signature="4311:4350" ph="..." />
+            <marker date="1598343817198" expanded="true" signature="4431:4470" ph="..." />
+            <marker date="1598343817198" expanded="true" signature="4551:4590" ph="..." />
+            <marker date="1598343817198" expanded="true" signature="4676:4715" ph="..." />
+            <marker date="1598343817198" expanded="true" signature="4799:4838" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
