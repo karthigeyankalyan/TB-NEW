@@ -58,7 +58,6 @@
             <h6>Principal Due</h6>
             <h6>Overall Due</h6>
             <h6>Interest Due</h6>
-            <h6>Penal + Belated Due</h6>
             <h6>Cheque #</h6>
             <h6>Cheque Date Issued</h6>
         </div>
@@ -78,7 +77,6 @@
             <input type="number" name="overallDue" id="overallDue">
             <input type="number" name="interestDue" id="interestDue">
             <input type="number" name="interestTotal" id="interestTotal" style="display: none">
-            <input type="number" name="pbDue" id="pbDue" style="display: none">
             <input type="text" name="chequeNumber" id="chequeNumber">
             <input type="Date" name="chequeDateIssued" id="chequeDateIssued">
         </div>
@@ -339,11 +337,9 @@
                         document.getElementById('serviceCharge').value = Math.round(service_charge);
                         document.getElementById('principalDue').value = Math.round(principal_due);
                         document.getElementById('interestDue').value = Math.round(interest_due);
-                        document.getElementById('pbDue').value = 0;
                     } else {
                         if (cheque_amount > total_penal_belated) {
                             var post_penal_belated_deduction = parseInt(cheque_amount) - parseInt(total_penal_belated);
-                            document.getElementById('pbDue').value = 0;
                             if (post_penal_belated_deduction > interest_due) {
                                 var interest_paid = interest_due;
                                 var post_interest_late_deduction = post_penal_belated_deduction - interest_due;
@@ -365,9 +361,7 @@
                                     document.getElementById('principalDue').value = principal_due;
                                     document.getElementById('interestDue').value = interest_due;
                                 }
-                            } else {
-                            document.getElementById('pbDue').value = parseInt(cheque_amount);
-                        }
+                            }
                             }
                             p_n_paid = principal_n_due - document.getElementById('principalPaid').value;
                             console.log(principal_n_due, document.getElementById('principalPaid').value);
@@ -396,11 +390,9 @@
                                 document.getElementById('serviceCharge').value = Math.round(service_charge);
                                 document.getElementById('principalDue').value = Math.round(principal_due);
                                 document.getElementById('interestDue').value = document.getElementById('demandInterestPayable').value;
-                                document.getElementById('pbDue').value = total_penal_belated;
                             } else {
                             if (cheque_amount > total_penal_belated) {
                                 var post_penal_belated_deduction = parseInt(cheque_amount) - parseInt(total_penal_belated);
-                                document.getElementById('pbDue').value = 0;
                                 if (post_penal_belated_deduction > interest_due) {
                                     var interest_paid = interest_due;
                                     var post_interest_late_deduction = post_penal_belated_deduction - interest_due;
@@ -422,8 +414,6 @@
                                     document.getElementById('principalDue').value = principal_due;
                                     document.getElementById('interestDue').value = interest_due;
                                 }
-                            } else {
-                                document.getElementById('pbDue').value = parseInt(cheque_amount);
                             }
                             }
                             p_n_paid = principal_n_due - document.getElementById('principalPaid').value;
