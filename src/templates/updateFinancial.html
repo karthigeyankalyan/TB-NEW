@@ -224,7 +224,6 @@
                                                 var delay_old_2 = moment(prev_cheque_date_2).diff(moment(d_minus_1_demand_date), 'days');
                                                 var penal_old_2 = (delay_old_2 * prev_principal_due_2 * 5) / (365 * 100);
                                                 var belated_old_2 = (delay_old_2 * prev_principal_due_2 * parseInt(json[0]['roi'])) / (365 * 100);
-                                                console.log(penal_old_2 + belated_old_2);
                                                 if (prev_principal_due_2 === 0) {
                                                     penal_old_2 = 0;
                                                     belated_old_2 = 0;
@@ -234,7 +233,7 @@
                                                     penal_old_2 = 0;
                                                     belated_old_2 = 0;
                                                 }
-
+                                                console.log(penal_old_2 + belated_old_2);
                                             }
 
                                 if (parseInt(json[0]['demand_number']) >= 3) {
@@ -269,6 +268,7 @@
                                             var delay = moment(cheque_date).diff(moment(demand_date), 'days');
                                             var penal = (delay * total_demand * 5) / (365 * 100);
                                             var belated = (delay * total_demand * parseInt(json[0]['roi'])) / (365 * 100);
+                                            console.log(penal, belated, penal_old_2, belated_old_2);
 
                                             if (prev_principal_due === 0 && delay <= 3) {
                                                 penal = 0;
