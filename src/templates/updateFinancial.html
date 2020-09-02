@@ -236,7 +236,8 @@
                                                 console.log(penal_old_2 + belated_old_2);
                                             }
 
-                                var penal_old_3, belated_old_3 = 0;
+                                                var penal_old_3 = 0;
+                                                var belated_old_3 = 0;
 
                                 if (parseInt(json[0]['demand_number']) >= 3) {
                                     var previous_demand_number_3 = parseInt(json[0]['demand_number']) - 2;
@@ -287,6 +288,9 @@
                                                 penal = 0;
                                                 belated = 0;
                                             }
+
+                                            console.log(penal, penal_old, penal_old_2, penal_old_3);
+                                            console.log(belated, belated_old, belated_old_2, belated_old_3);
 
                                             document.getElementById("penalInterest").value = Math.round(penal + penal_old + penal_old_2 + penal_old_3);
                                             document.getElementById("belatedInterest").value = Math.round(belated + belated_old + belated_old_2 + belated_old_3);
