@@ -248,8 +248,8 @@
                                             if (previous_demand_number_3 >= 1) {
                                                 var prev_principal_due_3 = parseInt(jsonFunc3[0]['closing_balance_principal_due']) + parseInt(jsonFunc3[0]['closing_balance_interest_due']);
                                                 var prev_cheque_date_3 = moment(jsonFunc3[0]['cheque_date']['$date']).format('YYYY-MM-DD');
-                                                var delay_old_3 = moment(prev_cheque_date_3).diff(moment(d_minus_2_demand_date), 'days');
-                                                console.log(d_minus_2_demand_date, prev_cheque_date_3);
+                                                var d_minus_3_demand_date = moment(jsonFunc3[0]['demand_date']['$date']).format('YYYY-MM-DD');
+                                                var delay_old_3 = moment(prev_cheque_date_3).diff(moment(d_minus_3_demand_date), 'days');
                                                 penal_old_3 = (delay_old_3 * prev_principal_due_3 * 5) / (365 * 100);
                                                 belated_old_3 = (delay_old_3 * prev_principal_due_3 * parseInt(json[0]['roi'])) / (365 * 100);
                                                 console.log(penal_old_3 + belated_old_3);
