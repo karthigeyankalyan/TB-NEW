@@ -209,6 +209,8 @@
                                 }
 
                                 if (parseInt(json[0]['demand_number']) >= 2) {
+                                        var penal_old_3;
+                                        var belated_old_3;
                                         var previous_demand_number_2 = parseInt(json[0]['demand_number']) - 1;
                                         var source2 = "/demand_ann_id/" + json[0]['ann_id'] + "/" + previous_demand_number_2;
                                         $.ajax({
