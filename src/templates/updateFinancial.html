@@ -152,6 +152,9 @@
 
     function populateInterest() {
         var source = "/demand/" + "{{demand_id}}";
+        var penal_old_3 = 0;
+        var belated_old_3 = 0;
+
         $.ajax({
             type: 'GET',
             url: source,
@@ -231,9 +234,6 @@
                                                     belated_old_2 = 0;
                                                 }
                                             }
-
-                                                var penal_old_3 = 0;
-                                                var belated_old_3 = 0;
 
                                 if (parseInt(json[0]['demand_number']) >= 3) {
                                     var previous_demand_number_3 = parseInt(json[0]['demand_number']) - 2;
