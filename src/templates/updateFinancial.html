@@ -224,7 +224,7 @@
                                                 var delay_old_2 = moment(prev_cheque_date_2).diff(moment(d_minus_1_demand_date), 'days');
                                                 var penal_old_2 = (delay_old_2 * prev_principal_due_2 * 5) / (365 * 100);
                                                 var belated_old_2 = (delay_old_2 * prev_principal_due_2 * parseInt(json[0]['roi'])) / (365 * 100);
-                                                console.log(penal_old_2 + belated_old_2, delay_old_2);
+                                                console.log(prev_cheque_date_2, d_minus_1_demand_date);
                                                 if (prev_principal_due_2 === 0) {
                                                     penal_old_2 = 0;
                                                     belated_old_2 = 0;
