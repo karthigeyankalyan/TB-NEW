@@ -65,6 +65,7 @@
             <input type="number" name="interestDue" id="interestDue">
             <input type="number" name="interestTotal" id="interestTotal" style="display: none">
             <input type="Date" name="chequeIssueDate" id="chequeIssueDate">
+            <input type="number" name="pbDue" id="pbDue">
         </div>
     </div>
 
@@ -129,6 +130,7 @@
     var source1 = "/rawMinisByDemand/"+"{{demand_id}}";
     var length;
     var prev_cheque_date;
+    var pb_due;
     $.ajax({
         type: 'GET',
         url: source1,
@@ -138,7 +140,8 @@
             length = parseInt(json.length);
             for(var i = 0; i<json.length; i++) {
                 if (json[i]["m_demand_no"] === length) {
-                    prev_cheque_date = json[i]['cheque_date']
+                    prev_cheque_date = json[i]['cheque_date'];
+                    pb_due = json[i]['pbDue'];
                 }
             }
         },
@@ -149,7 +152,6 @@
 
         var old_interest = "{{old_interest}}";
         var cheque_date = document.getElementById("chequeDate").value;
-        console.log(cheque_date);
         var principal_due = "{{p_due}}";
         var interest_due = "{{i_due}}";
         var source2 = "/demand/"+"{{demand_id}}";
@@ -167,6 +169,7 @@
                     var new_belated_interest = (delay * total_new_amount * parseInt(json[i]['roi'])) / (365 * 100);
                     var new_interest = parseInt(new_belated_interest) + parseInt(new_penal_interest);
                     old_interest = 0;
+                    console.log(delay, prev_cheque_date, cheque_date);
                 } else {
                     demand_date = json[0]['demand_date']['$date'];
                     total_new_amount = parseInt(principal_due) + parseInt(interest_due);
@@ -226,7 +229,11 @@
                 document.getElementById('principalDue').value = principal_due;
                 document.getElementById('interestDue').value = interest_due;
             }
+            var penal_belated_due = 0;
+        } else {
+            penal_belated_due = (parseInt(document.getElementById('penalInterest').value) + parseInt(document.getElementById('belatedInterest').value)) - cheque_amount;
         }
+        document.getElementById('pbDue').value = penal_belated_due;
     }
 
 </script>

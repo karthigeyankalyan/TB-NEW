@@ -14,7 +14,7 @@ class MiniDemand(object):
                  loan_amount=None, no_of_demands=None, m_demand_no=None, roi=None, loan_sanction_date=None,
                  user_id=None, user_name=None, ann_id=None, _id=None, demand_reference=None,
                  opening_balance_principal_due=None, opening_balance_interest_due=None, cheque_amount=None,
-                 cheque_date_issued=None):
+                 cheque_date_issued=None, pbDue=None):
         self.loan_id = loan_id
         self.demand_id = demand_id
         self.loan_category = loan_category
@@ -23,6 +23,7 @@ class MiniDemand(object):
         self.opening_balance_principal_due = opening_balance_principal_due
         self.district_bank = district_bank
         self.sub_bank = sub_bank
+        self.pbDue = pbDue
         self.demand_number = demand_number
         self.demand_date = demand_date
         self.m_demand_no = m_demand_no
@@ -72,7 +73,7 @@ class MiniDemand(object):
     def update_mini_demand(cls, demand_number, demand_date, cheque_number, cheque_date, principal_collected,
                            interest_collected, demand_id, penal_interest, belated_interest, service_charge, no_of_demands,
                            closing_balance_principal_due, closing_balance_principal_ndue, closing_balance_interest_due,
-                           cheque_amount, demand_reference, cheque_date_issued):
+                           cheque_amount, demand_reference, cheque_date_issued, pb_due):
         Database.update_mini_demand(collection='mDemands', query={'_id': demand_id}, demand_number=demand_number,
                                     demand_date=demand_date, cheque_number=cheque_number, cheque_date=cheque_date,
                                     principal_collected=principal_collected, interest_collected=interest_collected,
@@ -82,7 +83,7 @@ class MiniDemand(object):
                                     closing_balance_principal_ndue=closing_balance_principal_ndue,
                                     closing_balance_interest_due=closing_balance_interest_due,
                                     cheque_amount=cheque_amount, demand_reference=demand_reference,
-                                    cheque_date_issued=cheque_date_issued)
+                                    cheque_date_issued=cheque_date_issued, pb_due=pb_due)
 
     @classmethod
     def deletefrom_mongo(cls, _id):
@@ -121,6 +122,7 @@ class MiniDemand(object):
             "closing_balance_interest_due": self.closing_balance_interest_due,
             "loan_sanction_date": self.loan_sanction_date,
             "user_id": self.user_id,
+            "pbDue": self.pbDue,
             "user_name": self.user_name,
             "ann_id": self.ann_id,
             "no_of_demands": self.no_of_demands,
