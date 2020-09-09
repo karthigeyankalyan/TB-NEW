@@ -174,7 +174,7 @@
                     demand_date = json[0]['demand_date']['$date'];
                     total_new_amount = parseInt(principal_due) + parseInt(interest_due);
                     delay = moment(cheque_date).diff(moment(demand_date), 'days');
-                    console.log(delay, moment(json[0]['demand_date']['$date']), cheque_date);
+                    console.log(delay, moment(json[0]['demand_date']['$date']).format('DD/MM/YYYY'), cheque_date);
                     new_penal_interest = (delay * total_new_amount * 5) / (365 * 100);
                     new_belated_interest = (delay * total_new_amount * parseInt(json[0]['roi'])) / (365 * 100);
                     new_interest = parseInt(new_belated_interest) + parseInt(new_penal_interest);
