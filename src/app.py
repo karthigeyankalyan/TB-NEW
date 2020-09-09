@@ -1853,7 +1853,7 @@ def raw_minis_by_demands(_id):
 
 
 @app.route('/rawMinisByDemand/<string:_id>/<string:demand_number>')
-def raw_minis_by_demands(_id, demand_number):
+def raw_minis_by_demands_demand_number(_id, demand_number):
     loan = []
     loan_dict = Database.find("mDemands", {"demand_id": _id,
                                            "m_demand_no": demand_number})
