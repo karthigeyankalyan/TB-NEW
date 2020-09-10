@@ -59,8 +59,8 @@
       <file leaf-file-name="AddMiniDemand.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/templates/AddMiniDemand.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="175" column="90" lean-forward="false" selection-start-line="175" selection-start-column="90" selection-end-line="175" selection-end-column="90" />
+            <state relative-caret-position="476">
+              <caret line="168" column="115" lean-forward="true" selection-start-line="168" selection-start-column="115" selection-end-line="168" selection-end-column="115" />
               <folding />
             </state>
           </provider>
@@ -930,8 +930,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/templates/AddMiniDemand.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="175" column="90" lean-forward="false" selection-start-line="175" selection-start-column="90" selection-end-line="175" selection-end-column="90" />
+        <state relative-caret-position="476">
+          <caret line="168" column="115" lean-forward="true" selection-start-line="168" selection-start-column="115" selection-end-line="168" selection-end-column="115" />
           <folding />
         </state>
       </provider>
