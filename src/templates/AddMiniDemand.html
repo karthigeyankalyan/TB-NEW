@@ -137,11 +137,9 @@
         contentType: "application/json",
         dataType: 'json',
         success: function (json) {
-            console.log(json);
             length = parseInt(json.length);
             for(var i = 0; i<json.length; i++) {
-                console.log(json[i]["m_demand_no"], length);
-                if (json[i]["m_demand_no"] === length) {
+                if (parseInt(json[i]["m_demand_no"]) === length) {
                     console.log(json[i]['cheque_date']);
                     prev_cheque_date = json[i]['cheque_date'];
                     pb_due = json[i]['pbDue'];
