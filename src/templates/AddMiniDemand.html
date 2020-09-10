@@ -141,7 +141,7 @@
             for(var i = 0; i<json.length; i++) {
                 if (parseInt(json[i]["m_demand_no"]) === length) {
                     console.log(json[i]['cheque_date']);
-                    prev_cheque_date = json[i]['cheque_date'];
+                    prev_cheque_date = moment(json[0]['cheque_date']['$date']);
                     pb_due = json[i]['pbDue'];
                 }
             }
