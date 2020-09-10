@@ -128,6 +128,8 @@
         //    Find out previous demands and the latest cheque date
 
     var source1 = "/rawMinisByDemand/"+"{{demand_id}}";
+    var source2 = "/demand/"+"{{demand_id}}";
+    console.log(source2);
     var length;
     var prev_cheque_date;
     var pb_due;
@@ -140,7 +142,6 @@
             length = parseInt(json.length);
             for(var i = 0; i<json.length; i++) {
                 if (parseInt(json[i]["m_demand_no"]) === length) {
-                    console.log(moment(json[0]['cheque_date']['$date']));
                     prev_cheque_date = moment(json[0]['cheque_date']['$date']);
                     pb_due = json[i]['pbDue'];
                 }
@@ -150,7 +151,6 @@
         var cheque_date = document.getElementById("chequeDate").value;
         var principal_due = "{{p_due}}";
         var interest_due = "{{i_due}}";
-        var source2 = "/demand/"+"{{demand_id}}";
         $.ajax({
             type: 'GET',
             url: source2,
