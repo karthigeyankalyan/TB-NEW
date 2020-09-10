@@ -160,7 +160,7 @@
                 if (length > 0) {
                     var total_new_amount = parseInt(principal_due) + parseInt(interest_due);
                     var demand_date = jsonFunc[0]['demand_date'];
-                    var delay = moment(cheque_date).diff(moment(prev_cheque_date), 'days');
+                    var delay = moment(cheque_date).diff(moment(prev_cheque_date), 'days') + 1;
                     var new_penal_interest = (delay * total_new_amount * 5) / (365 * 100);
                     var new_belated_interest = (delay * total_new_amount * parseInt(jsonFunc[0]['roi'])) / (365 * 100);
                     var new_interest = parseInt(new_belated_interest) + parseInt(new_penal_interest);
