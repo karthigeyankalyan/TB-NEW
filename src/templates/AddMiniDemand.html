@@ -171,7 +171,7 @@
                     old_interest = 0;
                     console.log(delay, prev_cheque_date, cheque_date);
                 } else {
-                    prev_cheque_date = moment(json[0]['cheque_date']['$date']);
+                    prev_cheque_date = moment(json[0]['cheque_date']['$date']).format('DD/MM/YYYY');
                     total_new_amount = parseInt(principal_due) + parseInt(interest_due);
                     delay = moment(cheque_date).diff(moment(prev_cheque_date), 'days');
                     console.log(delay, prev_cheque_date, cheque_date, total_new_amount, json[0]['roi']);
@@ -190,6 +190,7 @@
                     }
 
                     var total_penal_belated = parseInt(old_interest) + parseInt(new_interest);
+                    console.log(old_interest);
                     document.getElementById("penalInterest").value = parseInt(new_penal_interest);
                     document.getElementById("belatedInterest").value = parseInt(new_belated_interest);
                     document.getElementById("interestTotal").value = parseInt(total_penal_belated);
