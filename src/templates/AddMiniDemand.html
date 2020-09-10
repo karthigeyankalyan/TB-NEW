@@ -171,10 +171,10 @@
                     old_interest = 0;
                     console.log(delay, prev_cheque_date, cheque_date);
                 } else {
-                    prev_cheque_date = moment(json[0]['cheque_date']['$date']).format('DD/MM/YYYY');
+                    prev_cheque_date = moment(json[0]['cheque_date']['$date']);
                     total_new_amount = parseInt(principal_due) + parseInt(interest_due);
                     delay = moment(cheque_date).diff(moment(prev_cheque_date), 'days');
-                    console.log(delay, prev_cheque_date, cheque_date, total_new_amount, json[0]['roi']);
+                    console.log(delay, moment(json[0]['cheque_date']['$date']).format('DD/MM/YYYY'), cheque_date, total_new_amount, json[0]['roi']);
                     new_penal_interest = (delay * total_new_amount * 5) / (365 * 100);
                     new_belated_interest = (delay * total_new_amount * parseInt(json[0]['roi'])) / (365 * 100);
                     new_interest = parseInt(new_belated_interest) + parseInt(new_penal_interest);
