@@ -139,7 +139,7 @@
         success: function (json) {
             console.log(json);
             length = parseInt(json.length);
-            for(var i = 0; i<json.length; i++) {
+            for(var i = 1; i<=json.length; i++) {
                 if (json[i]["m_demand_no"] === length) {
                     console.log(json[i]['cheque_date']);
                     prev_cheque_date = json[i]['cheque_date'];
