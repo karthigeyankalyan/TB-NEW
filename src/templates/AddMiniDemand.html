@@ -140,16 +140,11 @@
             length = parseInt(json.length);
             for(var i = 0; i<json.length; i++) {
                 if (parseInt(json[i]["m_demand_no"]) === length) {
-                    console.log(json[i]['cheque_date']);
+                    console.log(moment(json[0]['cheque_date']['$date']));
                     prev_cheque_date = moment(json[0]['cheque_date']['$date']);
                     pb_due = json[i]['pbDue'];
                 }
             }
-        },
-        error: function (e) {
-            console.log(e);
-        }
-    });
 
         var old_interest = "{{old_interest}}";
         var cheque_date = document.getElementById("chequeDate").value;
@@ -159,25 +154,25 @@
         $.ajax({
             type: 'GET',
             url: source2,
-            contentType: "application/json",
-            dataType: 'json',
-            success: function (json) {
+            contentType: "application/jsonFunc",
+            dataType: 'jsonFunc',
+            success: function (jsonFunc) {
                 if (length > 0) {
                     var total_new_amount = parseInt(principal_due) + parseInt(interest_due);
-                    var demand_date = json[0]['demand_date'];
+                    var demand_date = jsonFunc[0]['demand_date'];
                     var delay = moment(cheque_date).diff(moment(prev_cheque_date), 'days');
                     var new_penal_interest = (delay * total_new_amount * 5) / (365 * 100);
-                    var new_belated_interest = (delay * total_new_amount * parseInt(json[0]['roi'])) / (365 * 100);
+                    var new_belated_interest = (delay * total_new_amount * parseInt(jsonFunc[0]['roi'])) / (365 * 100);
                     var new_interest = parseInt(new_belated_interest) + parseInt(new_penal_interest);
                     old_interest = 0;
                     console.log(delay, prev_cheque_date, cheque_date);
                 } else {
-                    prev_cheque_date = moment(json[0]['cheque_date']['$date']);
+                    prev_cheque_date = moment(jsonFunc[0]['cheque_date']['$date']);
                     total_new_amount = parseInt(principal_due) + parseInt(interest_due);
                     delay = moment(cheque_date).diff(moment(prev_cheque_date), 'days') + 1;
-                    console.log(delay, moment(json[0]['cheque_date']['$date']).format('DD/MM/YYYY'), cheque_date, total_new_amount, json[0]['roi']);
+                    console.log(delay, moment(jsonFunc[0]['cheque_date']['$date']).format('DD/MM/YYYY'), cheque_date, total_new_amount, jsonFunc[0]['roi']);
                     new_penal_interest = (delay * total_new_amount * 5) / (365 * 100);
-                    new_belated_interest = (delay * total_new_amount * parseInt(json[0]['roi'])) / (365 * 100);
+                    new_belated_interest = (delay * total_new_amount * parseInt(jsonFunc[0]['roi'])) / (365 * 100);
                     new_interest = parseInt(new_belated_interest) + parseInt(new_penal_interest);
                 }
                     if (new_penal_interest < 0) {
@@ -200,6 +195,11 @@
                 alert("The Loan Application does not exist");
             }
         });
+        },
+        error: function (e) {
+            console.log(e);
+        }
+    });
     }
 
     function calculatePayments(that) {
