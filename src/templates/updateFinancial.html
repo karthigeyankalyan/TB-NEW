@@ -219,6 +219,7 @@
                                             success: function (jsonFunc2) {
                                                 if (previous_demand_number_2 >= 1) {
                                                 var prev_principal_due_2 = parseInt(jsonFunc2[0]['closing_balance_principal_due']) + parseInt(jsonFunc2[0]['closing_balance_interest_due']);
+                                                console.log(prev_principal_due_2, moment(jsonFunc2[0]['demand_date']['$date'].format('YYYY-MM-DD')))
                                                 var prev_cheque_date_2 = moment(jsonFunc2[0]['cheque_date']['$date']).format('YYYY-MM-DD');
                                                 var d_minus_2_demand_date = moment(jsonFunc2[0]['demand_date']['$date']).format('YYYY-MM-DD');
                                                 var delay_old_2 = moment(prev_cheque_date_2).diff(moment(d_minus_1_demand_date), 'days');
@@ -237,7 +238,6 @@
                                             var delay = moment(cheque_date).diff(moment(demand_date), 'days');
                                             var penal = (delay * total_demand * 5) / (365 * 100);
                                             var belated = (delay * total_demand * parseInt(json[0]['roi'])) / (365 * 100);
-                                            console.log(penal, belated, penal_old_2, belated_old_2);
 
                                             if (prev_principal_due === 0 && delay <= 3) {
                                                 penal = 0;
@@ -248,9 +248,6 @@
                                                 penal = 0;
                                                 belated = 0;
                                             }
-
-                                            console.log(penal, penal_old, penal_old_2);
-                                            console.log(belated, belated_old, belated_old_2);
 
                                             document.getElementById("penalInterest").value = Math.round(penal + penal_old + penal_old_2);
                                             document.getElementById("belatedInterest").value = Math.round(belated + belated_old + belated_old_2);
