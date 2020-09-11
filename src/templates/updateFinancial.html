@@ -251,7 +251,7 @@
                                                 belated = 0;
                                             }
 
-                                            console.log(penal_old_2, belated_old_2);
+                                            console.log(delay_old_2, moment(jsonFunc2[0]['cheque_date']['$date']).format('YYYY-MM-DD'), moment(jsonFunc2[0]['demand_date']['$date']).format('YYYY-MM-DD'));
 
                                             document.getElementById("penalInterest").value = Math.round(penal + penal_old + penal_old_2);
                                             document.getElementById("belatedInterest").value = Math.round(belated + belated_old + belated_old_2);
