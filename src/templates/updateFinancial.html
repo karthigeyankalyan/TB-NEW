@@ -225,7 +225,7 @@
                                                     prev_cheque_date_2 = moment(jsonFunc2[0]['demand_date']['$date']).format('YYYY-MM-DD');
                                                 }
                                                 var d_minus_2_demand_date = moment(jsonFunc2[0]['demand_date']['$date']).format('YYYY-MM-DD');
-                                                var delay_old_2 = moment(prev_cheque_date_2).diff(moment(cheque_date), 'days');
+                                                var delay_old_2 = moment(cheque_date).diff(moment(prev_cheque_date_2), 'days');
                                                 var penal_old_2 = (delay_old_2 * prev_principal_due_2 * 5) / (365 * 100);
                                                 var belated_old_2 = (delay_old_2 * prev_principal_due_2 * parseInt(json[0]['roi'])) / (365 * 100);
                                                 if (prev_principal_due_2 === 0) {
