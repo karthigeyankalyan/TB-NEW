@@ -185,6 +185,11 @@
                         new_belated_interest = 0;
                     }
 
+                    if (moment(cheque_date).isBefore(jsonFunc[0]['demand_date'])) {
+                        new_penal_interest = 0;
+                        new_belated_interest = 0;
+                    }
+
                     var total_penal_belated = parseInt(old_interest) + parseInt(new_interest);
                     console.log(old_interest);
                     document.getElementById("penalInterest").value = parseInt(new_penal_interest);

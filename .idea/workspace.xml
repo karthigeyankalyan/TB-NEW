@@ -24,8 +24,8 @@
       <file leaf-file-name="app.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/app.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="491">
-              <caret line="1855" column="38" lean-forward="false" selection-start-line="1855" selection-start-column="38" selection-end-line="1855" selection-end-column="38" />
+            <state relative-caret-position="123">
+              <caret line="1565" column="0" lean-forward="false" selection-start-line="1565" selection-start-column="0" selection-end-line="1565" selection-end-column="0" />
               <folding>
                 <element signature="e#0#29#0" expanded="true" />
                 <element signature="e#3849#14937#0" expanded="false" />
@@ -59,8 +59,8 @@
       <file leaf-file-name="AddMiniDemand.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/templates/AddMiniDemand.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="162" column="94" lean-forward="false" selection-start-line="162" selection-start-column="94" selection-end-line="162" selection-end-column="94" />
+            <state relative-caret-position="255">
+              <caret line="190" column="0" lean-forward="false" selection-start-line="190" selection-start-column="0" selection-end-line="190" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -114,10 +114,10 @@
       <find>Loan Amo</find>
       <find>addF</find>
       <find>addFinan</find>
-      <find>add_mini</find>
       <find>pbDu</find>
       <find>pbDue</find>
       <find>mini</find>
+      <find>add_mini</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -891,10 +891,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/templates/updateFinancial.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="200" column="0" lean-forward="false" selection-start-line="200" selection-start-column="0" selection-end-line="200" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/app.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="491">
-          <caret line="1855" column="38" lean-forward="false" selection-start-line="1855" selection-start-column="38" selection-end-line="1855" selection-end-column="38" />
+        <state relative-caret-position="123">
+          <caret line="1565" column="0" lean-forward="false" selection-start-line="1565" selection-start-column="0" selection-end-line="1565" selection-end-column="0" />
           <folding>
             <element signature="e#0#29#0" expanded="true" />
             <element signature="e#3849#14937#0" expanded="false" />
@@ -920,18 +928,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/templates/updateFinancial.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="200" column="0" lean-forward="false" selection-start-line="200" selection-start-column="0" selection-end-line="200" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/templates/AddMiniDemand.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="162" column="94" lean-forward="false" selection-start-line="162" selection-start-column="94" selection-end-line="162" selection-end-column="94" />
+        <state relative-caret-position="255">
+          <caret line="190" column="0" lean-forward="false" selection-start-line="190" selection-start-column="0" selection-end-line="190" selection-end-column="0" />
           <folding />
         </state>
       </provider>
