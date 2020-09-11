@@ -70,7 +70,7 @@
         <entry file="file://$PROJECT_DIR$/src/templates/updateFinancial.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="106">
-              <caret line="221" column="144" lean-forward="false" selection-start-line="221" selection-start-column="144" selection-end-line="221" selection-end-column="144" />
+              <caret line="221" column="149" lean-forward="true" selection-start-line="221" selection-start-column="149" selection-end-line="221" selection-end-column="149" />
               <folding />
             </state>
           </provider>
@@ -931,7 +931,7 @@
     <entry file="file://$PROJECT_DIR$/src/templates/updateFinancial.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="106">
-          <caret line="221" column="144" lean-forward="false" selection-start-line="221" selection-start-column="144" selection-end-line="221" selection-end-column="144" />
+          <caret line="221" column="149" lean-forward="true" selection-start-line="221" selection-start-column="149" selection-end-line="221" selection-end-column="149" />
           <folding />
         </state>
       </provider>
