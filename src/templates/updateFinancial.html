@@ -237,6 +237,9 @@
                                                     belated_old_2 = 0;
                                                 }
 
+                                                console.log(delay_old_2, moment(prev_cheque_date_2).isBefore(moment(jsonFunc2[0]['demand_date']['$date'])), moment(cheque_date).isBefore(moment(demand_date)));
+                                                console.log(moment(prev_cheque_date_2), moment(jsonFunc2[0]['demand_date']['$date']), moment(cheque_date), moment(demand_date));
+
                                                 if (delay_old_2 <=3 || penal_old_2 < 0) {
                                                     penal_old_2 = 0;
                                                     belated_old_2 = 0;
