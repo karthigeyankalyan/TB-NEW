@@ -219,7 +219,6 @@
                                             success: function (jsonFunc2) {
                                                 if (previous_demand_number_2 >= 1) {
                                                 var prev_principal_due_2 = parseInt(jsonFunc2[0]['closing_balance_principal_due']) + parseInt(jsonFunc2[0]['closing_balance_interest_due']);
-                                                console.log(prev_principal_due_2, );
                                                 var prev_cheque_date_2 = moment(jsonFunc2[0]['cheque_date']['$date']).format('YYYY-MM-DD');
                                                 if (moment(prev_cheque_date_2).isBefore(moment(jsonFunc2[0]['demand_date']['$date']))) {
                                                     prev_cheque_date_2 = moment(jsonFunc2[0]['demand_date']['$date']).format('YYYY-MM-DD');
@@ -251,6 +250,8 @@
                                                 penal = 0;
                                                 belated = 0;
                                             }
+
+                                            console.log(penal_old_2, belated_old_2);
 
                                             document.getElementById("penalInterest").value = Math.round(penal + penal_old + penal_old_2);
                                             document.getElementById("belatedInterest").value = Math.round(belated + belated_old + belated_old_2);
