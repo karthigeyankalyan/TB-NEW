@@ -60,7 +60,7 @@
         <entry file="file://$PROJECT_DIR$/src/templates/AddMiniDemand.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="357">
-              <caret line="188" column="0" lean-forward="false" selection-start-line="188" selection-start-column="0" selection-end-line="188" selection-end-column="0" />
+              <caret line="188" column="90" lean-forward="true" selection-start-line="188" selection-start-column="90" selection-end-line="188" selection-end-column="90" />
               <folding />
             </state>
           </provider>
@@ -931,7 +931,7 @@
     <entry file="file://$PROJECT_DIR$/src/templates/AddMiniDemand.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
-          <caret line="188" column="0" lean-forward="false" selection-start-line="188" selection-start-column="0" selection-end-line="188" selection-end-column="0" />
+          <caret line="188" column="90" lean-forward="true" selection-start-line="188" selection-start-column="90" selection-end-line="188" selection-end-column="90" />
           <folding />
         </state>
       </provider>
