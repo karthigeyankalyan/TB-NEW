@@ -237,8 +237,9 @@
                                                     belated_old_2 = 0;
                                                 }
 
-                                                console.log(delay_old_2, moment(cheque_date).diff(moment(prev_cheque_date_2), 'days'), prev_cheque_date_2, d_minus_1_demand_date, cheque_date, penal_old_2, belated_old_2, parseInt(json[0]['roi']));
+//                                                console.log(delay_old_2, moment(cheque_date).diff(moment(prev_cheque_date_2), 'days'), prev_cheque_date_2, d_minus_1_demand_date, cheque_date, penal_old_2, belated_old_2, parseInt(json[0]['roi']));
 //                                                console.log(moment(prev_cheque_date_2), moment(jsonFunc2[0]['demand_date']['$date']).format('DD/MM/YYYY'), moment(cheque_date), moment(demand_date));
+                                                    console.log(moment(prev_cheque_date_2).isBefore(moment(jsonFunc2[0]['demand_date']['$date'])), moment(cheque_date).isBefore(moment(demand_date)));
 
                                                 if (delay_old_2 <=3 || penal_old_2 < 0) {
                                                     penal_old_2 = 0;
