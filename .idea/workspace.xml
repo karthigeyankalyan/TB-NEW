@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="da0bb03c-275f-4eeb-800c-401a339e857e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/templates/updateFinancial.html" afterPath="$PROJECT_DIR$/src/templates/updateFinancial.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/templates/AddMiniDemand.html" afterPath="$PROJECT_DIR$/src/templates/AddMiniDemand.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -56,17 +56,17 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AddMiniDemand.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="AddMiniDemand.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/templates/AddMiniDemand.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="190" column="0" lean-forward="false" selection-start-line="190" selection-start-column="0" selection-end-line="190" selection-end-column="0" />
+            <state relative-caret-position="374">
+              <caret line="189" column="0" lean-forward="false" selection-start-line="189" selection-start-column="0" selection-end-line="189" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="updateFinancial.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="updateFinancial.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/templates/updateFinancial.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="446">
@@ -88,7 +88,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>update_account_</find>
       <find>accounthead</find>
       <find>accHead</find>
       <find>ViewAccountHeads</find>
@@ -118,6 +117,7 @@
       <find>pbDue</find>
       <find>mini</find>
       <find>add_mini</find>
+      <find>console.log(principal_n_due, document.getElementById('principalPaid').value);</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -181,8 +181,8 @@
         <option value="$PROJECT_DIR$/src/common/database.py" />
         <option value="$PROJECT_DIR$/src/models/mini_demands.py" />
         <option value="$PROJECT_DIR$/src/app.py" />
-        <option value="$PROJECT_DIR$/src/templates/AddMiniDemand.html" />
         <option value="$PROJECT_DIR$/src/templates/updateFinancial.html" />
+        <option value="$PROJECT_DIR$/src/templates/AddMiniDemand.html" />
       </list>
     </option>
   </component>
@@ -920,18 +920,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/templates/AddMiniDemand.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="190" column="0" lean-forward="false" selection-start-line="190" selection-start-column="0" selection-end-line="190" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/templates/updateFinancial.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="446">
           <caret line="239" column="0" lean-forward="false" selection-start-line="239" selection-start-column="0" selection-end-line="239" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/templates/AddMiniDemand.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="189" column="0" lean-forward="false" selection-start-line="189" selection-start-column="0" selection-end-line="189" selection-end-column="0" />
           <folding />
         </state>
       </provider>

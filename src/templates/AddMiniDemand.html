@@ -185,6 +185,8 @@
                         new_belated_interest = 0;
                     }
 
+                    console.log(moment(cheque_date), moment(jsonFunc[0]['demand_date']['$date']).format('DD/MM/YYYY'));
+                    console.log(new_penal_interest, new_belated_interest);
                     if (moment(cheque_date).isBefore(jsonFunc[0]['demand_date'])) {
                         new_penal_interest = 0;
                         new_belated_interest = 0;
