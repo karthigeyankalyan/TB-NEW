@@ -1571,7 +1571,7 @@ def mini_demand_form(_id, belated_int, penal_int, p_due, p_ndue, i_due, old_inte
                                       belated_interest=int(main_demand_belated_interest) + int(belated_interest),
                                       service_charge=int(main_demand_service_charge)+int(service_charge),
                                       closing_balance_interest_due=main_demand_closing_balance_interest_due,
-                                      closing_balance_principal_due=main_demand_closing_balance_principal_due,
+                                      closing_balance_principal_due=closing_balance_pdue,
                                       cheque_amount=int(cheque_amount)+int(main_demand_cheque_amount),
                                       closing_balance_principal_ndue=main_demand_closing_balance_principal_ndue)
 
