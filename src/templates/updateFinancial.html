@@ -119,6 +119,7 @@
                 document.getElementById("loanID").value = json[0]["ann_id"];
                 document.getElementById("demandNumber").value = parseInt(json[0]["demand_number"]);
                 document.getElementById("demandDate").value = moment(json[0]["demand_date"]['$date']).format('YYYY-MM-DD');
+                console.log(json, jsonFunc);
                 if (parseInt(json[0]["demand_number"]) > 1) {
                     var principal_payable = parseInt(json[0]["principal_demand"]) + parseInt(jsonFunc[0]["closing_balance_principal_due"]);
                     var interest_payable = parseInt(json[0]["interest_demand"]) + parseInt(jsonFunc[0]["closing_balance_interest_due"]);
@@ -237,8 +238,8 @@
                                                     belated_old_2 = 0;
                                                 }
 
-                                                console.log(delay_old_2, delay_old_2, prev_principal_due_2);
-                                                console.log(moment(prev_cheque_date_2), moment(jsonFunc2[0]['demand_date']['$date']).format('DD/MM/YYYY'), moment(cheque_date), moment(demand_date));
+//                                                console.log(delay_old_2, delay_old_2, prev_principal_due_2);
+//                                                console.log(moment(prev_cheque_date_2), moment(jsonFunc2[0]['demand_date']['$date']).format('DD/MM/YYYY'), moment(cheque_date), moment(demand_date));
 
                                                 if (delay_old_2 <=3 || penal_old_2 < 0) {
                                                     penal_old_2 = 0;
