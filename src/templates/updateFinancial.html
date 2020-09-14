@@ -198,8 +198,6 @@
                                 var penal_old = (delay_old * prev_principal_due * 5) / (365 * 100);
                                 var belated_old = (delay_old * prev_principal_due * parseInt(json[0]['roi'])) / (365 * 100);
 
-                                console.log(delay_old, d_minus_1_demand_date, prev_cheque_date);
-
                                 if (prev_principal_due === 0) {
                                     penal_old = 0;
                                     belated_old = 0;
@@ -265,7 +263,7 @@
                                                 belated = 0;
                                             }
 
-//                                            console.log(delay, penal, belated);
+                                            console.log(delay, penal, belated, delay_old, penal_old, belated_old);
 
                                             document.getElementById("penalInterest").value = Math.round(penal + penal_old + penal_old_2);
                                             document.getElementById("belatedInterest").value = Math.round(belated + belated_old + belated_old_2);
