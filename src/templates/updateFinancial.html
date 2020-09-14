@@ -198,7 +198,7 @@
                                 var penal_old = (delay_old * prev_principal_due * 5) / (365 * 100);
                                 var belated_old = (delay_old * prev_principal_due * parseInt(json[0]['roi'])) / (365 * 100);
 
-                                console.log(delay_old, d_minus_1_demand_date, prev_cheque_date);
+//                                console.log(delay_old, d_minus_1_demand_date, prev_cheque_date);
 
                                 if (prev_principal_due === 0) {
                                     penal_old = 0;
@@ -245,7 +245,6 @@
                                                 }
 
 //                                                console.log(delay_old_2, moment(cheque_date).diff(moment(prev_cheque_date_2), 'days'), prev_cheque_date_2, d_minus_1_demand_date, cheque_date, penal_old_2, belated_old_2, parseInt(json[0]['roi']));
-                                                console.log();
 
                                                 if (delay_old_2 <=3 || penal_old_2 < 0) {
                                                     penal_old_2 = 0;
@@ -274,7 +273,6 @@
                                 if (parseInt(json[0]['demand_number']) >= 3) {
                                     var previous_demand_number_3 = parseInt(json[0]['demand_number']) - 2;
                                     var source3 = "/demand_ann_id/" + json[0]['ann_id'] + "/" + previous_demand_number_3;
-                                    console.log(source3);
                                     $.ajax({
                                         type: 'GET',
                                         url: source3,
@@ -285,6 +283,7 @@
                                                 var prev_principal_due_3 = parseInt(jsonFunc3[0]['closing_balance_principal_due']) + parseInt(jsonFunc3[0]['closing_balance_interest_due']);
                                                 var prev_cheque_date_3 = moment(jsonFunc3[0]['cheque_date']['$date']).format('YYYY-MM-DD');
                                                 var d_minus_3_demand_date = moment(jsonFunc3[0]['demand_date']['$date']).format('YYYY-MM-DD');
+                                                var d_minus_3_cheque_amount = parseInt(jsonFunc3[0]['cheque_amount']);
                                                 var delay_old_3 = moment(prev_cheque_date_3).diff(moment(d_minus_3_demand_date), 'days');
                                                 var penal_old_3 = (delay_old_3 * prev_principal_due_3 * 5) / (365 * 100);
                                                 var belated_old_3 = (delay_old_3 * prev_principal_due_3 * parseInt(json[0]['roi'])) / (365 * 100);
@@ -299,11 +298,17 @@
                                                 }
                                                 p3 = penal_old_3;
                                                 b3 = belated_old_3;
+
+                                                if (d_minus_3_cheque_amount > (penal_old_3 + belated_old_3)) {
+                                                    penal_old_3 = 0;
+                                                    belated_old_3 = 0;
+                                                }
+
                                             }
                                             var delay = moment(cheque_date).diff(moment(demand_date), 'days');
                                             var penal = (delay * total_demand * 5) / (365 * 100);
                                             var belated = (delay * total_demand * parseInt(json[0]['roi'])) / (365 * 100);
-//                                            console.log(penal, belated, penal_old_2, belated_old_2, penal_old_3, belated_old_3);
+                                            console.log(penal, belated, penal_old_2, belated_old_2, penal_old_3, belated_old_3);
 
                                             if (prev_principal_due === 0 && delay <= 3) {
                                                 penal = 0;
