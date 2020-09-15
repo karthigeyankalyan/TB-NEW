@@ -179,7 +179,6 @@
                     var previous_demand_number;
                     previous_demand_number = parseInt(json[0]['demand_number']) - 1;
                     var source1 = "/demand_ann_id/" + json[0]['ann_id'] + "/" + previous_demand_number;
-                    console.log(source1);
                     $.ajax({
                         type: 'GET',
                         url: source1,
@@ -207,6 +206,8 @@
                                     penal_old = 0;
                                     belated_old = 0;
                                 }
+
+                                console.log(delay_old, penal_old, belated_old, prev_principal_due);
 
                                 if (parseInt(json[0]['demand_number']) >= 2) {
                                         var p3;
