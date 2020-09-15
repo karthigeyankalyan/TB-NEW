@@ -58,7 +58,7 @@
                                 var delay = moment().diff(moment(json[i]['demand_date']), 'days');
                                 json[i]['delay'] = delay;
                                 json[i]['penal_interest'] = json[i]['penal_interest'];
-                                json[i]['belated_interest'] = json[i]['penal_interest'];
+                                json[i]['belated_interest'] = json[i]['belated_interest'];
                                 json[i]['closing_balance_principal_due'] = parseInt(json[i]['closing_balance_principal_due']);
                                 json[i]['closing_balance_interest_due'] = parseInt(json[i]['closing_balance_interest_due']);
                                 json[i]['closing_balance_principal_ndue'] = parseInt(json[i]['loan_amount']) - parseInt(json[i]['Total Principal Demand']);
