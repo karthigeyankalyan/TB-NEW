@@ -189,14 +189,15 @@
                                 var prev_principal_due = parseInt(jsonFunc[0]['closing_balance_principal_due']) + parseInt(jsonFunc[0]['closing_balance_interest_due']);
                                 var prev_cheque_date = moment(jsonFunc[0]['cheque_date']['$date']).format('YYYY-MM-DD');
                                 var d_minus_1_demand_date = moment(jsonFunc[0]['demand_date']['$date']).format('YYYY-MM-DD');
-                                var delay_calc_latest_demand = d_minus_1_demand_date;
                                 if (moment(cheque_date).isAfter(moment(demand_date))) {
-                                    delay_calc_latest_demand = cheque_date;
+                                    var delay_calc_latest_demand = cheque_date;
+                                    var cheque_date_dummy = prev_cheque_date
                                 } else {
                                     delay_calc_latest_demand = d_minus_1_demand_date;
+                                    cheque_date_dummy = cheque_date
                                 }
 
-                                var delay_old = moment(delay_calc_latest_demand).diff(moment(prev_cheque_date), 'days');
+                                var delay_old = moment(delay_calc_latest_demand).diff(moment(cheque_date_dummy), 'days');
                                 var penal_old = (delay_old * prev_principal_due * 5) / (365 * 100);
                                 var belated_old = (delay_old * prev_principal_due * parseInt(json[0]['roi'])) / (365 * 100);
 
