@@ -193,6 +193,11 @@
                                 if (moment(cheque_date).isAfter(d_minus_1_demand_date)) {
                                     delay_calc_latest_demand = cheque_date;
                                 }
+
+                                if (moment(prev_cheque_date).isBefore(d_minus_1_demand_date)) {
+                                    delay_calc_latest_demand = d_minus_1_demand_date;
+                                }
+
                                 var delay_old = moment(delay_calc_latest_demand).diff(moment(prev_cheque_date), 'days');
                                 var penal_old = (delay_old * prev_principal_due * 5) / (365 * 100);
                                 var belated_old = (delay_old * prev_principal_due * parseInt(json[0]['roi'])) / (365 * 100);
