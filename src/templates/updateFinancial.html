@@ -190,11 +190,9 @@
                                 var prev_cheque_date = moment(jsonFunc[0]['cheque_date']['$date']).format('YYYY-MM-DD');
                                 var d_minus_1_demand_date = moment(jsonFunc[0]['demand_date']['$date']).format('YYYY-MM-DD');
                                 var delay_calc_latest_demand = d_minus_1_demand_date;
-                                if (moment(cheque_date).isAfter(d_minus_1_demand_date)) {
+                                if (moment(cheque_date).isAfter(moment(demand_date))) {
                                     delay_calc_latest_demand = cheque_date;
-                                }
-
-                                if (moment(prev_cheque_date).isBefore(d_minus_1_demand_date)) {
+                                } else {
                                     delay_calc_latest_demand = d_minus_1_demand_date;
                                 }
 
