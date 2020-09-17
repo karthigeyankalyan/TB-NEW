@@ -1234,6 +1234,8 @@ def update_loan_financial_form(_id, late_interest, belated_int, penal_int, p_due
                     demandm1_date = result_object['demand_date']
                     days = (demand_date-demandm1_date).days
 
+                print(principal_due)
+
                 if principal_due is None:
                     principal_due = p_due
                     principal_for_interest = p_ndue
