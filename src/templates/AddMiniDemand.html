@@ -170,10 +170,10 @@
                     prev_cheque_date = moment(jsonFunc[0]['cheque_date']['$date']);
                     total_new_amount = parseInt(principal_due) + parseInt(interest_due);
                     delay = moment(cheque_date).diff(moment(prev_cheque_date), 'days') + 1;
-                    console.log(delay, moment(jsonFunc[0]['cheque_date']['$date']).format('DD/MM/YYYY'), cheque_date, total_new_amount, jsonFunc[0]['roi']);
                     new_penal_interest = (delay * total_new_amount * 5) / (365 * 100);
                     new_belated_interest = (delay * total_new_amount * parseInt(jsonFunc[0]['roi'])) / (365 * 100);
                     new_interest = parseInt(new_belated_interest) + parseInt(new_penal_interest);
+                    console.log(delay, moment(jsonFunc[0]['cheque_date']['$date']).format('DD/MM/YYYY'), cheque_date, total_new_amount, jsonFunc[0]['roi'], new_belated_interest, new_belated_interest);
                 }
                     if (new_penal_interest < 0) {
                         new_penal_interest = 0;
@@ -185,8 +185,8 @@
                         new_belated_interest = 0;
                     }
 
-                    console.log(moment(cheque_date).format('DD/MM/YYYY'), moment(jsonFunc[0]['demand_date']['$date']).format('DD/MM/YYYY'));
-                    console.log(moment(cheque_date).isBefore(jsonFunc[0]['demand_date']));
+//                    console.log(moment(cheque_date).format('DD/MM/YYYY'), moment(jsonFunc[0]['demand_date']['$date']).format('DD/MM/YYYY'));
+//                    console.log(moment(cheque_date).isBefore(jsonFunc[0]['demand_date']));
 //                    if (moment(cheque_date).isBefore(jsonFunc[0]['demand_date'])) {
 //                        new_penal_interest = 0;
 //                        new_belated_interest = 0;
