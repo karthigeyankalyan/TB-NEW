@@ -194,9 +194,9 @@
 
                     var total_penal_belated = parseInt(old_interest) + parseInt(new_interest);
                     console.log(old_interest);
-                    document.getElementById("penalInterest").value = parseInt(new_penal_interest);
-                    document.getElementById("belatedInterest").value = parseInt(new_belated_interest);
-                    document.getElementById("interestTotal").value = parseInt(total_penal_belated);
+                    document.getElementById("penalInterest").value = Math.round(new_penal_interest);
+                    document.getElementById("belatedInterest").value = Math.round(new_belated_interest);
+                    document.getElementById("interestTotal").value = Math.round(total_penal_belated);
             },
             error: function (e) {
                 alert("e");
