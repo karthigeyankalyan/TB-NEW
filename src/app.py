@@ -1466,7 +1466,6 @@ def mini_demand_form(_id, belated_int, penal_int, p_due, p_ndue, i_due, old_inte
             service_charge = request.form['serviceCharge']
             closing_balance_pdue = request.form['principalDue']
             closing_balance_idue = request.form['interestDue']
-            penal_belated_due = request.form['pbDue']
             user_name = user.username
 
             cheque_date_issued = (datetime.combine(datetime.strptime(cheque_date_issued, '%Y-%m-%d').date(),
