@@ -1535,7 +1535,7 @@ def mini_demand_form(_id, belated_int, penal_int, p_due, p_ndue, i_due, old_inte
                                   district_bank=district_bank, sub_bank=sub_bank, loan_category=loan_category,
                                   loan_id=loan_id, demand_reference=demand_reference,
                                   m_demand_no=demand_number, loan_amount=loan_amount, ann_id=ann_id,
-                                  cheque_date_issued=cheque_date_issued, pbDue=penal_belated_due)
+                                  cheque_date_issued=cheque_date_issued)
             mini_dem.save_to_mongo()
 
             mini_demands = Database.find("mDemands", {"demand_id": _id})
