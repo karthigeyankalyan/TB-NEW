@@ -172,6 +172,10 @@
 
                         var regular_nbc_interest = (roi * NBCShare / 400);
                         var regular_tbc_interest = (roi * TabcedcoShare / 400);
+
+                        console.log(roi, NBCShare, TabcedcoShare, extra_interest_days);
+                        console.log(extra_days_nbc, extra_days_tbc, regular_nbc_interest, regular_tbc_interest);
+
                         var interest = Math.round(extra_days_nbc+extra_days_tbc+ regular_nbc_interest + regular_tbc_interest);
                     }
 
