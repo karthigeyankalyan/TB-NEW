@@ -170,8 +170,8 @@
                         var extra_days_nbc = ((roi) * NBCShare * extra_interest_days) / (365 * 100);
                         var extra_days_tbc = ((roi) * TabcedcoShare * extra_interest_days) / (365 * 100);
 
-                        var regular_nbc_interest = (roi * parseInt(NBCShare) / 400);
-                        var regular_tbc_interest = (roi * parseInt(TabcedcoShare) / 400);
+                        var regular_nbc_interest = parseFloat(roi * NBCShare / 400);
+                        var regular_tbc_interest = parseFloat(roi * TabcedcoShare / 400);
                         var interest = Math.round(extra_days_nbc+extra_days_tbc+ regular_nbc_interest + regular_tbc_interest);
                     }
 
@@ -221,8 +221,8 @@
                                 extra_days_nbc = parseFloat((roi) * NBCShare * extra_interest_days) / (365 * 100);
                                 extra_days_tbc = parseFloat((roi) * TabcedcoShare * extra_interest_days) / (365 * 100);
 
-                                regular_nbc_interest = Math.round(roi * parseInt(NBCShare) / 400);
-                                regular_tbc_interest = Math.round(roi * parseInt(TabcedcoShare) / 400);
+                                regular_nbc_interest = parseFloat(roi * parseInt(NBCShare) / 400);
+                                regular_tbc_interest = parseFloat(roi * parseInt(TabcedcoShare) / 400);
 
                                 interest = Math.round(extra_days_nbc + extra_days_tbc + regular_nbc_interest + regular_tbc_interest);
                                 console.log(regular_tbc_interest, regular_nbc_interest, extra_days_tbc, extra_days_nbc);
