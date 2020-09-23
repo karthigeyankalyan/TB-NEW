@@ -243,7 +243,7 @@
                                                     belated_old_2 = 0;
                                                 }
 
-                                                console.log(delay_old_2, moment(cheque_date).diff(moment(prev_cheque_date_2), 'days'), prev_cheque_date_2, cheque_date, penal_old_2, belated_old_2, parseInt(json[0]['roi']));
+                                                console.log(delay_old_2, moment(cheque_date).diff(moment(prev_cheque_date_2), 'days'), prev_cheque_date_2, cheque_date, penal_old_2, belated_old_2, parseInt(json[0]['roi']), prev_principal_due_2);
 
                                                 if (delay_old_2 <=3 || penal_old_2 < 0) {
                                                     penal_old_2 = 0;
@@ -269,7 +269,7 @@
                                                 belated_old = belated_old_2;
                                             }
 
-                                            console.log(delay, penal, belated, delay_old, penal_old, belated_old);
+                                            console.log(delay, penal, belated, delay_old, penal_old, belated_old, total_demand);
 
                                             document.getElementById("penalInterest").value = Math.round(penal + penal_old);
                                             document.getElementById("belatedInterest").value = Math.round(belated + belated_old);
