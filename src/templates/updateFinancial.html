@@ -235,6 +235,9 @@
                                                  if (moment(prev_cheque_date_2).isAfter(moment(jsonFunc2[0]['demand_date']['$date'])) && moment(cheque_date).isAfter(moment(demand_date))) {
                                                      delay_old_2 = moment(cheque_date).diff(moment(prev_cheque_date_2), 'days')
                                                  }
+                                                 if (moment(cheque_date).isAfter(moment(demand_date))) {
+                                                     delay_old_2 = moment(demand_date).diff(moment(prev_cheque_date_2), 'days')
+                                                 }
 
                                                 var penal_old_2 = (delay_old_2 * prev_principal_due_2 * 5) / (365 * 100);
                                                 var belated_old_2 = (delay_old_2 * prev_principal_due_2 * parseInt(json[0]['roi'])) / (365 * 100);
