@@ -370,7 +370,7 @@
                                                 var delay = moment(cheque_date).diff(moment(demand_date), 'days');
                                                 var penal = (delay * total_demand * 5) / (365 * 100);
                                                 var belated = (delay * total_demand * parseInt(json[0]['roi'])) / (365 * 100);
-                                                console.log(penal, belated, penal_old_2, belated_old_2, penal_old_3, belated_old_3, penal_old_4, belated_old_4);
+                                                console.log(delay_old_4, d_minus_4_demand_date, prev_cheque_date_4);
 
                                                 if (prev_principal_due === 0 && delay <= 3) {
                                                     penal = 0;
