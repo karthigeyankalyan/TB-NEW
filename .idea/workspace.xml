@@ -39,7 +39,7 @@
       <file leaf-file-name="mini_dem_added.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/templates/mini_dem_added.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="325">
+            <state relative-caret-position="339">
               <caret line="30" column="0" lean-forward="false" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
               <folding />
             </state>
@@ -147,8 +147,8 @@
       <file leaf-file-name="updateFinancial.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/templates/updateFinancial.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="458">
-              <caret line="372" column="116" lean-forward="false" selection-start-line="372" selection-start-column="116" selection-end-line="372" selection-end-column="116" />
+            <state relative-caret-position="424">
+              <caret line="384" column="69" lean-forward="true" selection-start-line="384" selection-start-column="69" selection-end-line="384" selection-end-column="69" />
               <folding />
             </state>
           </provider>
@@ -934,6 +934,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="508">
           <caret line="102" column="0" lean-forward="false" selection-start-line="102" selection-start-column="0" selection-end-line="102" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -955,6 +956,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="508">
           <caret line="130" column="0" lean-forward="true" selection-start-line="130" selection-start-column="0" selection-end-line="130" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#11#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -990,6 +994,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1071,7 +1076,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/templates/mini_dem_added.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="325">
+        <state relative-caret-position="339">
           <caret line="30" column="0" lean-forward="false" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
           <folding />
         </state>
@@ -1100,8 +1105,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/templates/updateFinancial.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="458">
-          <caret line="372" column="116" lean-forward="false" selection-start-line="372" selection-start-column="116" selection-end-line="372" selection-end-column="116" />
+        <state relative-caret-position="424">
+          <caret line="384" column="69" lean-forward="true" selection-start-line="384" selection-start-column="69" selection-end-line="384" selection-end-column="69" />
           <folding />
         </state>
       </provider>
